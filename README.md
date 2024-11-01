@@ -37,3 +37,12 @@
 ## **🔒** 라이센스
 
 - 미정
+
+## 바로가기
+
+[WiKi](https://github.com/boostcampwm-2024/iOS03-SniffMeet/wiki) 
+
+[팀노션](https://www.notion.so/check-it/SniffMeet-129f6d0576c28022a263f6673925113e?pvs=4) 
+
+[Figma](https://www.figma.com/design/hqvx1sLktjajEBcT0lGhyd/SniffMeet?node-id=0-1&m=dev&t=JhNxpBr3EsmhXR5k-1)
+
