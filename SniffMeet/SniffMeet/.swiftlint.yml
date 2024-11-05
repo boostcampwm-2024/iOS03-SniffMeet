@@ -26,10 +26,10 @@ custom_rules:
     # 타입 바디에 static 멤버 금지
     static_in_extension:
         included: ".*\\.swift"
-        name: "Static properties should be declared in an extension"
+        name: "Declare Static Members in Extensions"
         regex: '(class|struct|enum)\s+\w+\s*\{[^}]*?\s*static\s+(var|let|func)\s+\w+'
         severity: warning
-        message: "Static properties should be declared inside an extension."
+        message: "Static members should be declared inside an extension."
     # return 생략할 수 있으면 생략하기
     implicit_return:
         included: ".*\\.swift"
