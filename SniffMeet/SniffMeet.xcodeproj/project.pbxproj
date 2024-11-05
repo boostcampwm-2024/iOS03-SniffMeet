@@ -52,13 +52,741 @@
 		FD3A033E2CD8CF460047B7ED /* SniffMeet */ = {
 			isa = PBXGroup;
 			children = (
-				FD3A03382CD8CF460047B7ED /* AppDelegate.swift */,
-				FD3A03392CD8CF460047B7ED /* Assets.xcassets */,
-				FD3A033A2CD8CF460047B7ED /* Info.plist */,
-				FD3A033C2CD8CF460047B7ED /* LaunchScreen.storyboard */,
-				FD3A033D2CD8CF460047B7ED /* SceneDelegate.swift */,
+				FDA491332CD9FE7C00A36FB0 /* Source */,
+				FDA4912A2CD9FE3500A36FB0 /* Resource */,
 			);
 			path = SniffMeet;
+			sourceTree = "<group>";
+		};
+		FDA4912A2CD9FE3500A36FB0 /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				FD3A033C2CD8CF460047B7ED /* LaunchScreen.storyboard */,
+				FD3A033A2CD8CF460047B7ED /* Info.plist */,
+				FD3A03392CD8CF460047B7ED /* Assets.xcassets */,
+			);
+			path = Resource;
+			sourceTree = "<group>";
+		};
+		FDA491332CD9FE7C00A36FB0 /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				FDA491392CD9FEC400A36FB0 /* App */,
+				FDA4915E2CDA790300A36FB0 /* Auth */,
+				FDA4913B2CDA055900A36FB0 /* Home */,
+				FDA4913C2CDA056400A36FB0 /* Walk */,
+				FDA4913E2CDA05F900A36FB0 /* Mate */,
+				FDA4913A2CDA04BB00A36FB0 /* Repository */,
+			);
+			path = Source;
+			sourceTree = "<group>";
+		};
+		FDA491342CD9FE8000A36FB0 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		FDA491352CD9FE8600A36FB0 /* Interactor */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Interactor;
+			sourceTree = "<group>";
+		};
+		FDA491362CD9FE8C00A36FB0 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		FDA491372CD9FE9300A36FB0 /* Entity */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Entity;
+			sourceTree = "<group>";
+		};
+		FDA491382CD9FEB000A36FB0 /* Router */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Router;
+			sourceTree = "<group>";
+		};
+		FDA491392CD9FEC400A36FB0 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				FD3A033D2CD8CF460047B7ED /* SceneDelegate.swift */,
+				FD3A03382CD8CF460047B7ED /* AppDelegate.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		FDA4913A2CDA04BB00A36FB0 /* Repository */ = {
+			isa = PBXGroup;
+			children = (
+				FDA491632CDA7B9900A36FB0 /* Walk */,
+				FDA491522CDA665F00A36FB0 /* Mate */,
+				FDA4913F2CDA05FE00A36FB0 /* Auth */,
+			);
+			path = Repository;
+			sourceTree = "<group>";
+		};
+		FDA4913B2CDA055900A36FB0 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				FDA491572CDA740800A36FB0 /* Main */,
+				FDA491532CDA696D00A36FB0 /* EditProfile */,
+				FDA491512CDA661B00A36FB0 /* Alarm */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		FDA4913C2CDA056400A36FB0 /* Walk */ = {
+			isa = PBXGroup;
+			children = (
+				FDA491932CDA7C6200A36FB0 /* RequestWalk */,
+				FDA4914B2CDA65E200A36FB0 /* WalkLog */,
+				FDA4914A2CDA077100A36FB0 /* RecordWalk */,
+			);
+			path = Walk;
+			sourceTree = "<group>";
+		};
+		FDA4913E2CDA05F900A36FB0 /* Mate */ = {
+			isa = PBXGroup;
+			children = (
+				FDA491552CDA69AB00A36FB0 /* MateList */,
+				FDA491622CDA7A8D00A36FB0 /* RequestMate */,
+				FDA491562CDA6ABC00A36FB0 /* ReportMate */,
+			);
+			path = Mate;
+			sourceTree = "<group>";
+		};
+		FDA4913F2CDA05FE00A36FB0 /* Auth */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Auth;
+			sourceTree = "<group>";
+		};
+		FDA491402CDA06FC00A36FB0 /* Router */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Router;
+			sourceTree = "<group>";
+		};
+		FDA491412CDA070200A36FB0 /* Entity */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Entity;
+			sourceTree = "<group>";
+		};
+		FDA491422CDA070900A36FB0 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		FDA491432CDA070F00A36FB0 /* Interactor */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Interactor;
+			sourceTree = "<group>";
+		};
+		FDA491442CDA071500A36FB0 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		FDA491452CDA073200A36FB0 /* Router */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Router;
+			sourceTree = "<group>";
+		};
+		FDA491462CDA073900A36FB0 /* Entity */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Entity;
+			sourceTree = "<group>";
+		};
+		FDA491472CDA073F00A36FB0 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		FDA491482CDA074700A36FB0 /* Interactor */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Interactor;
+			sourceTree = "<group>";
+		};
+		FDA491492CDA074E00A36FB0 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		FDA4914A2CDA077100A36FB0 /* RecordWalk */ = {
+			isa = PBXGroup;
+			children = (
+				FDA491612CDA7A6200A36FB0 /* AddRecordResult */,
+				FDA491602CDA7A4500A36FB0 /* Map */,
+				FDA4915A2CDA74C600A36FB0 /* Camera */,
+			);
+			path = RecordWalk;
+			sourceTree = "<group>";
+		};
+		FDA4914B2CDA65E200A36FB0 /* WalkLog */ = {
+			isa = PBXGroup;
+			children = (
+				FDA491582CDA749100A36FB0 /* WalkLogList */,
+				FDA491592CDA74A000A36FB0 /* WalkReport */,
+			);
+			path = WalkLog;
+			sourceTree = "<group>";
+		};
+		FDA4914C2CDA65E900A36FB0 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		FDA4914D2CDA65EE00A36FB0 /* Interactor */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Interactor;
+			sourceTree = "<group>";
+		};
+		FDA4914E2CDA65F400A36FB0 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		FDA4914F2CDA65F900A36FB0 /* Entity */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Entity;
+			sourceTree = "<group>";
+		};
+		FDA491502CDA65FF00A36FB0 /* Router */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Router;
+			sourceTree = "<group>";
+		};
+		FDA491512CDA661B00A36FB0 /* Alarm */ = {
+			isa = PBXGroup;
+			children = (
+				FDA491342CD9FE8000A36FB0 /* View */,
+				FDA491352CD9FE8600A36FB0 /* Interactor */,
+				FDA491362CD9FE8C00A36FB0 /* Presenter */,
+				FDA491372CD9FE9300A36FB0 /* Entity */,
+				FDA491382CD9FEB000A36FB0 /* Router */,
+			);
+			path = Alarm;
+			sourceTree = "<group>";
+		};
+		FDA491522CDA665F00A36FB0 /* Mate */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Mate;
+			sourceTree = "<group>";
+		};
+		FDA491532CDA696D00A36FB0 /* EditProfile */ = {
+			isa = PBXGroup;
+			children = (
+				FDA4916E2CDA7C0E00A36FB0 /* View */,
+				FDA4916F2CDA7C0E00A36FB0 /* Interactor */,
+				FDA491702CDA7C0E00A36FB0 /* Presenter */,
+				FDA491712CDA7C0E00A36FB0 /* Entity */,
+				FDA491722CDA7C0E00A36FB0 /* Router */,
+			);
+			path = EditProfile;
+			sourceTree = "<group>";
+		};
+		FDA491552CDA69AB00A36FB0 /* MateList */ = {
+			isa = PBXGroup;
+			children = (
+				FDA491492CDA074E00A36FB0 /* View */,
+				FDA491482CDA074700A36FB0 /* Interactor */,
+				FDA491472CDA073F00A36FB0 /* Presenter */,
+				FDA491462CDA073900A36FB0 /* Entity */,
+				FDA491452CDA073200A36FB0 /* Router */,
+			);
+			path = MateList;
+			sourceTree = "<group>";
+		};
+		FDA491562CDA6ABC00A36FB0 /* ReportMate */ = {
+			isa = PBXGroup;
+			children = (
+				FDA4918C2CDA7C3400A36FB0 /* View */,
+				FDA4918D2CDA7C3400A36FB0 /* Interactor */,
+				FDA4918E2CDA7C3400A36FB0 /* Presenter */,
+				FDA4918F2CDA7C3400A36FB0 /* Entity */,
+				FDA491902CDA7C3400A36FB0 /* Router */,
+			);
+			path = ReportMate;
+			sourceTree = "<group>";
+		};
+		FDA491572CDA740800A36FB0 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				FDA491692CDA7C0B00A36FB0 /* View */,
+				FDA4916A2CDA7C0B00A36FB0 /* Interactor */,
+				FDA4916B2CDA7C0B00A36FB0 /* Presenter */,
+				FDA4916C2CDA7C0B00A36FB0 /* Entity */,
+				FDA4916D2CDA7C0B00A36FB0 /* Router */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
+		FDA491582CDA749100A36FB0 /* WalkLogList */ = {
+			isa = PBXGroup;
+			children = (
+				FDA4914C2CDA65E900A36FB0 /* View */,
+				FDA4914D2CDA65EE00A36FB0 /* Interactor */,
+				FDA4914E2CDA65F400A36FB0 /* Presenter */,
+				FDA4914F2CDA65F900A36FB0 /* Entity */,
+				FDA491502CDA65FF00A36FB0 /* Router */,
+			);
+			path = WalkLogList;
+			sourceTree = "<group>";
+		};
+		FDA491592CDA74A000A36FB0 /* WalkReport */ = {
+			isa = PBXGroup;
+			children = (
+				FDA491732CDA7C1800A36FB0 /* View */,
+				FDA491742CDA7C1800A36FB0 /* Interactor */,
+				FDA491752CDA7C1800A36FB0 /* Presenter */,
+				FDA491762CDA7C1800A36FB0 /* Entity */,
+				FDA491772CDA7C1800A36FB0 /* Router */,
+			);
+			path = WalkReport;
+			sourceTree = "<group>";
+		};
+		FDA4915A2CDA74C600A36FB0 /* Camera */ = {
+			isa = PBXGroup;
+			children = (
+				FDA491442CDA071500A36FB0 /* View */,
+				FDA491432CDA070F00A36FB0 /* Interactor */,
+				FDA491422CDA070900A36FB0 /* Presenter */,
+				FDA491412CDA070200A36FB0 /* Entity */,
+				FDA491402CDA06FC00A36FB0 /* Router */,
+			);
+			path = Camera;
+			sourceTree = "<group>";
+		};
+		FDA4915E2CDA790300A36FB0 /* Auth */ = {
+			isa = PBXGroup;
+			children = (
+				FDA4915F2CDA791300A36FB0 /* CreateProfile */,
+			);
+			path = Auth;
+			sourceTree = "<group>";
+		};
+		FDA4915F2CDA791300A36FB0 /* CreateProfile */ = {
+			isa = PBXGroup;
+			children = (
+				FDA491682CDA7C0300A36FB0 /* View */,
+				FDA491662CDA7BE500A36FB0 /* Interactor */,
+				FDA491642CDA7BD600A36FB0 /* Presenter */,
+				FDA491652CDA7BDF00A36FB0 /* Entity */,
+				FDA491672CDA7BEB00A36FB0 /* Router */,
+			);
+			path = CreateProfile;
+			sourceTree = "<group>";
+		};
+		FDA491602CDA7A4500A36FB0 /* Map */ = {
+			isa = PBXGroup;
+			children = (
+				FDA4917D2CDA7C2400A36FB0 /* View */,
+				FDA4917E2CDA7C2400A36FB0 /* Interactor */,
+				FDA4917F2CDA7C2400A36FB0 /* Presenter */,
+				FDA491802CDA7C2400A36FB0 /* Entity */,
+				FDA491812CDA7C2400A36FB0 /* Router */,
+			);
+			path = Map;
+			sourceTree = "<group>";
+		};
+		FDA491612CDA7A6200A36FB0 /* AddRecordResult */ = {
+			isa = PBXGroup;
+			children = (
+				FDA491782CDA7C1C00A36FB0 /* View */,
+				FDA491792CDA7C1C00A36FB0 /* Interactor */,
+				FDA4917A2CDA7C1C00A36FB0 /* Presenter */,
+				FDA4917B2CDA7C1C00A36FB0 /* Entity */,
+				FDA4917C2CDA7C1C00A36FB0 /* Router */,
+			);
+			path = AddRecordResult;
+			sourceTree = "<group>";
+		};
+		FDA491622CDA7A8D00A36FB0 /* RequestMate */ = {
+			isa = PBXGroup;
+			children = (
+				FDA491872CDA7C3000A36FB0 /* View */,
+				FDA491882CDA7C3000A36FB0 /* Interactor */,
+				FDA491892CDA7C3000A36FB0 /* Presenter */,
+				FDA4918A2CDA7C3000A36FB0 /* Entity */,
+				FDA4918B2CDA7C3000A36FB0 /* Router */,
+			);
+			path = RequestMate;
+			sourceTree = "<group>";
+		};
+		FDA491632CDA7B9900A36FB0 /* Walk */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Walk;
+			sourceTree = "<group>";
+		};
+		FDA491642CDA7BD600A36FB0 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		FDA491652CDA7BDF00A36FB0 /* Entity */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Entity;
+			sourceTree = "<group>";
+		};
+		FDA491662CDA7BE500A36FB0 /* Interactor */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Interactor;
+			sourceTree = "<group>";
+		};
+		FDA491672CDA7BEB00A36FB0 /* Router */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Router;
+			sourceTree = "<group>";
+		};
+		FDA491682CDA7C0300A36FB0 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		FDA491692CDA7C0B00A36FB0 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		FDA4916A2CDA7C0B00A36FB0 /* Interactor */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Interactor;
+			sourceTree = "<group>";
+		};
+		FDA4916B2CDA7C0B00A36FB0 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		FDA4916C2CDA7C0B00A36FB0 /* Entity */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Entity;
+			sourceTree = "<group>";
+		};
+		FDA4916D2CDA7C0B00A36FB0 /* Router */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Router;
+			sourceTree = "<group>";
+		};
+		FDA4916E2CDA7C0E00A36FB0 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		FDA4916F2CDA7C0E00A36FB0 /* Interactor */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Interactor;
+			sourceTree = "<group>";
+		};
+		FDA491702CDA7C0E00A36FB0 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		FDA491712CDA7C0E00A36FB0 /* Entity */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Entity;
+			sourceTree = "<group>";
+		};
+		FDA491722CDA7C0E00A36FB0 /* Router */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Router;
+			sourceTree = "<group>";
+		};
+		FDA491732CDA7C1800A36FB0 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		FDA491742CDA7C1800A36FB0 /* Interactor */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Interactor;
+			sourceTree = "<group>";
+		};
+		FDA491752CDA7C1800A36FB0 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		FDA491762CDA7C1800A36FB0 /* Entity */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Entity;
+			sourceTree = "<group>";
+		};
+		FDA491772CDA7C1800A36FB0 /* Router */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Router;
+			sourceTree = "<group>";
+		};
+		FDA491782CDA7C1C00A36FB0 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		FDA491792CDA7C1C00A36FB0 /* Interactor */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Interactor;
+			sourceTree = "<group>";
+		};
+		FDA4917A2CDA7C1C00A36FB0 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		FDA4917B2CDA7C1C00A36FB0 /* Entity */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Entity;
+			sourceTree = "<group>";
+		};
+		FDA4917C2CDA7C1C00A36FB0 /* Router */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Router;
+			sourceTree = "<group>";
+		};
+		FDA4917D2CDA7C2400A36FB0 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		FDA4917E2CDA7C2400A36FB0 /* Interactor */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Interactor;
+			sourceTree = "<group>";
+		};
+		FDA4917F2CDA7C2400A36FB0 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		FDA491802CDA7C2400A36FB0 /* Entity */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Entity;
+			sourceTree = "<group>";
+		};
+		FDA491812CDA7C2400A36FB0 /* Router */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Router;
+			sourceTree = "<group>";
+		};
+		FDA491872CDA7C3000A36FB0 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		FDA491882CDA7C3000A36FB0 /* Interactor */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Interactor;
+			sourceTree = "<group>";
+		};
+		FDA491892CDA7C3000A36FB0 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		FDA4918A2CDA7C3000A36FB0 /* Entity */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Entity;
+			sourceTree = "<group>";
+		};
+		FDA4918B2CDA7C3000A36FB0 /* Router */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Router;
+			sourceTree = "<group>";
+		};
+		FDA4918C2CDA7C3400A36FB0 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		FDA4918D2CDA7C3400A36FB0 /* Interactor */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Interactor;
+			sourceTree = "<group>";
+		};
+		FDA4918E2CDA7C3400A36FB0 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		FDA4918F2CDA7C3400A36FB0 /* Entity */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Entity;
+			sourceTree = "<group>";
+		};
+		FDA491902CDA7C3400A36FB0 /* Router */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Router;
+			sourceTree = "<group>";
+		};
+		FDA491932CDA7C6200A36FB0 /* RequestWalk */ = {
+			isa = PBXGroup;
+			children = (
+				FDA491942CDA7C6A00A36FB0 /* View */,
+				FDA491952CDA7C6A00A36FB0 /* Interactor */,
+				FDA491962CDA7C6A00A36FB0 /* Presenter */,
+				FDA491972CDA7C6A00A36FB0 /* Entity */,
+				FDA491982CDA7C6A00A36FB0 /* Router */,
+			);
+			path = RequestWalk;
+			sourceTree = "<group>";
+		};
+		FDA491942CDA7C6A00A36FB0 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		FDA491952CDA7C6A00A36FB0 /* Interactor */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Interactor;
+			sourceTree = "<group>";
+		};
+		FDA491962CDA7C6A00A36FB0 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		FDA491972CDA7C6A00A36FB0 /* Entity */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Entity;
+			sourceTree = "<group>";
+		};
+		FDA491982CDA7C6A00A36FB0 /* Router */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Router;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -173,7 +901,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = B3PWYBKFUK;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = SniffMeet/Info.plist;
+				INFOPLIST_FILE = SniffMeet/Resource/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
@@ -205,7 +933,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = B3PWYBKFUK;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = SniffMeet/Info.plist;
+				INFOPLIST_FILE = SniffMeet/Resource/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
