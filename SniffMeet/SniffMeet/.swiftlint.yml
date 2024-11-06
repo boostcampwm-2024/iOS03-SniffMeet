@@ -4,16 +4,25 @@ disabled_rules:
 
 opt_in_rules:
     - sorted_imports
+    - empty_count
+    - missing_docs
 
 analyzer_rules:
     - unused_import
     - unused_declaration
 
+reporter: "xcode"
 line_length:
     warning: 100
     # ignores_urls: true
     # ignores_comments: true
-
+large_tuple:
+    warning: 3
+nesting:
+    type_level:
+        warning: 3
+force_cast: warning
+force_try: warning
 custom_rules:
     # 함수 네이밍에 get prefix 금지
     no_get_prefix:
@@ -39,3 +48,5 @@ custom_rules:
         message: "Use implicit return by omitting 'return' when possible."
 
 excluded:
+    - SniffMeet/AppDelegate.swift
+    - SniffMeet/SceneDelegate.swift
