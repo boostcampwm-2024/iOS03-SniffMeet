@@ -1,0 +1,52 @@
+# HGD SwiftLint Rules
+
+disabled_rules:
+
+opt_in_rules:
+    - sorted_imports
+    - empty_count
+    - missing_docs
+
+analyzer_rules:
+    - unused_import
+    - unused_declaration
+
+reporter: "xcode"
+line_length:
+    warning: 100
+    # ignores_urls: true
+    # ignores_comments: true
+large_tuple:
+    warning: 3
+nesting:
+    type_level:
+        warning: 3
+force_cast: warning
+force_try: warning
+custom_rules:
+    # 함수 네이밍에 get prefix 금지
+    no_get_prefix:
+        included: ".*\\.swift"
+        name: "Avoid 'get' Prefix"
+        regex: 'func get[A-Z].*'
+        match_kind: [function_decl]
+        severity: warning
+        message: "Do not use 'get' as a function prefix."
+    # 타입 바디에 static 멤버 금지
+    static_in_extension:
+        included: ".*\\.swift"
+        name: "Declare Static Members in Extensions"
+        regex: '(class|struct|enum)\s+\w+\s*\{[^}]*?\s*static\s+(var|let|func)\s+\w+'
+        severity: warning
+        message: "Static members should be declared inside an extension."
+    # return 생략할 수 있으면 생략하기
+    implicit_return:
+        included: ".*\\.swift"
+        name: "Use implicit return when possible"
+        regex: '\{\s*[^\{\}\n]*\n?return\s+[^\s\{\}\n]+\n?\s*\}'
+        severity: warning
+        message: "Use implicit return by omitting 'return' when possible."
+
+excluded:
+    - SniffMeet/AppDelegate.swift
+    - SniffMeet/SceneDelegate.swift
