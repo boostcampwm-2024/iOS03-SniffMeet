@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		320043702CDC9A0D00D08B6D /* InputTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3200436F2CDC99F900D08B6D /* InputTextField.swift */; };
 		320043722CDC9E5F00D08B6D /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 320043712CDC9E5F00D08B6D /* TestViewController.swift */; };
+		320043762CDCA18E00D08B6D /* Extension + Navigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 320043752CDCA17E00D08B6D /* Extension + Navigation.swift */; };
 		A2C844D12CDBE1E5007F2970 /* PrimaryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2C844D02CDBE1E5007F2970 /* PrimaryButton.swift */; };
 		A2C844D72CDBEF8B007F2970 /* KeywordButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2C844D62CDBEF8B007F2970 /* KeywordButton.swift */; };
 		FD3A033F2CD8CF460047B7ED /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FD3A03392CD8CF460047B7ED /* Assets.xcassets */; };
@@ -20,6 +21,7 @@
 /* Begin PBXFileReference section */
 		3200436F2CDC99F900D08B6D /* InputTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputTextField.swift; sourceTree = "<group>"; };
 		320043712CDC9E5F00D08B6D /* TestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestViewController.swift; sourceTree = "<group>"; };
+		320043752CDCA17E00D08B6D /* Extension + Navigation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension + Navigation.swift"; sourceTree = "<group>"; };
 		A2C844D02CDBE1E5007F2970 /* PrimaryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimaryButton.swift; sourceTree = "<group>"; };
 		A2C844D62CDBEF8B007F2970 /* KeywordButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeywordButton.swift; sourceTree = "<group>"; };
 		FD3A03202CD8CDE50047B7ED /* SniffMeet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SniffMeet.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -44,6 +46,7 @@
 		A2C844CF2CDBE1CB007F2970 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				320043752CDCA17E00D08B6D /* Extension + Navigation.swift */,
 				320043712CDC9E5F00D08B6D /* TestViewController.swift */,
 				3200436F2CDC99F900D08B6D /* InputTextField.swift */,
 				A2C844D02CDBE1E5007F2970 /* PrimaryButton.swift */,
@@ -889,6 +892,7 @@
 				A2C844D12CDBE1E5007F2970 /* PrimaryButton.swift in Sources */,
 				FD3A03422CD8CF460047B7ED /* AppDelegate.swift in Sources */,
 				FD3A03432CD8CF460047B7ED /* SceneDelegate.swift in Sources */,
+				320043762CDCA18E00D08B6D /* Extension + Navigation.swift in Sources */,
 				A2C844D72CDBEF8B007F2970 /* KeywordButton.swift in Sources */,
 				320043722CDC9E5F00D08B6D /* TestViewController.swift in Sources */,
 				320043702CDC9A0D00D08B6D /* InputTextField.swift in Sources */,
