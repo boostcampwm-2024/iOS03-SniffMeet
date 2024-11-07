@@ -7,7 +7,7 @@
 
 import UIKit
 
-class KeywordButton: UIButton {
+final class KeywordButton: UIButton {
     init(title: String) {
         super.init(frame: .zero)
         setupConfiguration(title: title)

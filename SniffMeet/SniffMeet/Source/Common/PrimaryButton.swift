@@ -7,7 +7,7 @@
 
 import UIKit
 
-class PrimaryButton: UIButton {
+final class PrimaryButton: UIButton {
     init(title: String) {
         super.init(frame: .zero)
         setupConfiguration(title: title)
