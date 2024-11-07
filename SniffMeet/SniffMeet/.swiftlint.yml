@@ -11,6 +11,9 @@ analyzer_rules:
     - unused_import
     - unused_declaration
 
+excluded:
+    - Source/App/AppDelegate.swift
+
 reporter: "xcode"
 line_length:
     warning: 100
@@ -46,7 +49,3 @@ custom_rules:
         regex: '\{\s*[^\{\}\n]*\n?return\s+[^\s\{\}\n]+\n?\s*\}'
         severity: warning
         message: "Use implicit return by omitting 'return' when possible."
-
-excluded:
-    - SniffMeet/AppDelegate.swift
-    - SniffMeet/SceneDelegate.swift
