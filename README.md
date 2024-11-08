@@ -54,7 +54,7 @@
 - 거절도 가능해요
 
 <img src="https://github.com/user-attachments/assets/d86ca49e-f017-4c8e-b8b0-cdce988cd51c" width = 200 >
-<img src="https://github.com/user-attachments/assets/525123a0-e6f7-4fd6-9b14-6b25e091a314" width = 200 >
+<img src="https://github.com/user-attachments/assets/458bb507-f388-4471-8717-a06bb668fde0" width = 200 >
 <img src="https://github.com/user-attachments/assets/9a3f7743-73ee-4f9e-8cca-e5b01b544cca" width = 200 >
 
 </br>
@@ -66,10 +66,10 @@
 - 지도에서 만날 장소를 지정할 수 있어요
 - 알림을 통해 메이트에게 요청이 전달돼요
 
-<img src="https://github.com/user-attachments/assets/33eb7547-ae77-4ee4-83c4-604c0ac3b0c6" width = 200 >
+<img src="https://github.com/user-attachments/assets/3141a843-74ce-4647-af41-7ec8b15030f4" width = 200 >
 <img src="https://github.com/user-attachments/assets/41eeb613-1266-4b8f-9ef1-13aa99828da0" width = 200 >
 <img src="https://github.com/user-attachments/assets/36eeb0d8-187f-4054-a1ce-fc0252c587f3" width = 200 >
-<img src="https://github.com/user-attachments/assets/8f1362df-3ef6-4e5e-a59b-1e028c368f1f" width = 200 >
+<img src="https://github.com/user-attachments/assets/b18fd8ea-16dd-4d66-b82c-c3d72dda3c79" width = 200 >
 
 </br>
 
@@ -110,10 +110,15 @@
 
 필요한 익명 Auth, Messaging 기능을 사용하기 위해 선택했습니다.
 
-### CoreData
+### Nearby Interaction
 
-유저의 정보 및 산책 히스토리 데이터를 영속적으로 저장하기 위해 선택했습니다. </br>
-복잡한 데이터 관계 및 구조를 쉽게 관리할 수 있습니다.
+탐색한 기기의 거리와 방향을 파악하기 위해 선택했습니다. </br>
+UWB를 지원하는 기기(iPhone 11+)에 제한되어 사용 가능합니다.
+
+### Multipeer Connectivity
+
+Nearby Interaction에서 지원하지 않는 토근 교환을 위해 선택했습니다. </br>
+와이파이나 블루투스를 이용해 기기를 탐색하고 연결해 데이터를 전송할 수 있습니다.
 
 </br>
 </br>
