@@ -10,8 +10,6 @@ import UIKit
 extension UIView {
     func makeViewCircular() {
         layer.cornerRadius = frame.size.width / 2
-        
-        print("frame: \(frame.size.width)")
         clipsToBounds = true
     }
 }
