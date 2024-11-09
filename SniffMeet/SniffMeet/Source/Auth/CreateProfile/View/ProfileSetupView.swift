@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import PhotosUI
 
 final class ProfileSetupView: UIViewController {
     private var titleLabel: UILabel = {
@@ -32,16 +33,26 @@ final class ProfileSetupView: UIViewController {
     private var warningLabel: UILabel = {
         let label = UILabel()
         label.textColor = UIColor.red
-        label.text = "이미 존재하는 닉네임입니다."
+        label.text = Context.placeholder
+        label.alpha = 0
         label.font = UIFont.systemFont(ofSize: 12)
         return label
     }()
     private var nicknameTextField: InputTextField = InputTextField(placeholder: Context.placeholder)
     private var submitButton = PrimaryButton(title: Context.submitBtnTitle)
-    
+    private var picker: PHPickerViewController = {
+        var configuration = PHPickerConfiguration()
+        configuration.selectionLimit = 1
+        configuration.filter = .images
+        return PHPickerViewController(configuration: configuration)
+    }()
+
     override func viewDidLoad() {
         setSubviewsLayout()
         view.backgroundColor = .white
+        submitButton.isEnabled = false
+        setDelegate()
+        setButtonAction()
     }
     override func viewDidLayoutSubviews() {
         profileImageView.makeViewCircular()
@@ -105,5 +116,41 @@ private extension ProfileSetupView {
                                                    constant: -Context.horizontalPadding),
             submitButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -32)
         ])
+    }
+    func setDelegate() {
+        picker.delegate = self
+        nicknameTextField.delegate = self
+    }
+    func setButtonAction() {
+        addPhotoButton.addAction(UIAction { [weak self] _ in
+            guard let picker = self?.picker else { return }
+            self?.present(picker, animated: true, completion: nil)
+        }, for: .touchUpInside)
+    }
+}
+
+extension ProfileSetupView: PHPickerViewControllerDelegate {
+    func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
+        picker.dismiss(animated: true, completion: nil)
+        let itemProvider = results.first?.itemProvider
+        if let itemProvider = itemProvider,
+           itemProvider.canLoadObject(ofClass: UIImage.self) {
+            itemProvider.loadObject(ofClass: UIImage.self) { image, error in
+                guard let selectedImage = image as? UIImage else { return }
+                DispatchQueue.main.async { [weak self] in
+                    self?.profileImageView.image =  selectedImage
+                }
+            }
+        }
+    }
+}
+
+extension ProfileSetupView: UITextFieldDelegate {
+    func textFieldDidChangeSelection(_ textField: UITextField) {
+        if (textField.text?.count ?? 0 < 1) || (textField.text?.count ?? 0 < 1) {
+            submitButton.isEnabled = false
+        } else {
+            submitButton.isEnabled = true
+        }
     }
 }
