@@ -1,15 +1,32 @@
 # HGD SwiftLint Rules
 
 disabled_rules:
+  - colon
+  - comma
+  - vertical_whitespace                    # 세로 공백
+  - trailing_whitespace                    # 후행 공백
+  - redundant_optional_initialization      # 옵셔널 타입을 nil로 초기화 중복
+  - unused_closure_parameter               # 미사용 클로저 파라미터 _ 대체
+  - unused_optional_binding                # 사용되지 않는 옵셔널 바인딩 제한
+  - unused_control_flow_label              # 미사용 제어 플로우 제거
+  - statement_position                     # 구문 위치 제한 (else, catch 등이 선언 바로 뒤 한칸 공백 후 위치함)
+  - control_statement
+  - orphaned_doc_comment
+  - multiple_closures_with_trailing_closure
+  - vertical_parameter_alignment
+  - opening_brace
 
 opt_in_rules:
     - sorted_imports
     - empty_count
     - missing_docs
+    - closure_end_indentation                # 클로저의 끝 괄호를 시작한 행과의 들여쓰기 맞춤
+    - empty_string                           # == ""보다 isEmpty 선호
 
 analyzer_rules:
-    - unused_import
     - unused_declaration
+    - unused_import                            # 사용되지 않는 모듈 import 알림
+
 
 excluded:
     - Source/App/AppDelegate.swift
@@ -17,15 +34,64 @@ excluded:
 reporter: "xcode"
 line_length:
     warning: 100
-    # ignores_urls: true
-    # ignores_comments: true
+    ignores_urls: true
+    ignores_comments: true
+    
 large_tuple:
     warning: 3
+    
 nesting:
     type_level:
         warning: 3
 force_cast: warning
 force_try: warning
+
+# 네이밍 룰은 경고/에러에 min_length와 max_length를 각각 설정 가능
+# 제외할 이름을 설정할 수 있음
+type_name:
+  min_length:
+    warning: 1
+  max_length: # 경고와 에러 둘 다 적용
+    warning: 40
+    error: 50
+  excluded:
+    - iPhone # 제외할 문자열 값 사용
+  allowed_symbols: ["_"]
+identifier_name:
+  min_length: # min_length에서
+    error: 3 # 에러만 적용
+  excluded: # 제외할 문자열 목록 사용
+    - $
+    - id
+    - URL
+    - url
+    - end
+    - vm
+    - app
+    - lhs
+    - rhs
+    - at
+    - acc
+    - cur
+    - box
+    - day
+    - top
+    - key
+    - mid
+    - low
+    - vc
+    - vcs
+    - min
+    - max
+    - epm
+    - hex
+    - to
+    - gap
+    - T
+    - sut # System under test (테스트코드에서 사용)
+  allowed_symbols: ["_"]
+  
+  
 custom_rules:
     # 함수 네이밍에 get prefix 금지
     no_get_prefix:
@@ -39,7 +105,7 @@ custom_rules:
     static_in_extension:
         included: ".*\\.swift"
         name: "Declare Static Members in Extensions"
-        regex: '(class|struct|enum)\s+\w+\s*\{[^}]*?\s*static\s+(var|let|func)\s+\w+'
+        regex: '(class|struct)\s+\w+\s*\{[^}]*?\s*static\s+(var|let|func)\s+\w+'
         severity: warning
         message: "Static members should be declared inside an extension."
     # return 생략할 수 있으면 생략하기
