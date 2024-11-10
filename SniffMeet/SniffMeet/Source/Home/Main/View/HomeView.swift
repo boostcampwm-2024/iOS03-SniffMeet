@@ -15,6 +15,7 @@ final class HomeView: UIViewController {
         // presenter.viewDidLoad()
         setupNavigationItem()
         setupLayouts()
+        view.backgroundColor = .systemBackground
     }
 
     func setupNavigationItem() {

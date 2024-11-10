@@ -52,6 +52,7 @@ final class ProfileCardView: UIView {
         setProfileImage(profileImage: profileImage)
         setName(name: name)
         setKeywords(keywords: keywords)
+        setShadow()
         setupLayouts()
     }
 
@@ -107,5 +108,13 @@ final class ProfileCardView: UIView {
     }
     func setProfileImage(profileImage: UIImage) {
         profileImageView.image = profileImage
+    }
+    func setShadow() {
+        layer.cornerRadius = 15
+        layer.shadowOffset = CGSize(width: 0, height: 4)
+        layer.shadowColor = UIColor.black.cgColor
+        layer.shadowOpacity = 0.25
+        layer.shadowRadius = 4
+        layer.masksToBounds = false
     }
 }
