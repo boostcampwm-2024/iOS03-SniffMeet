@@ -46,6 +46,11 @@ class ProfileInputView: UIViewController {
         super.viewDidLoad()
 
         setSubveiws()
+
+        nameTextField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
+        ageTextField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
+
+        updateNextButtonState()
         hideKeyboardWhenTappedAround()
     }
 
@@ -147,5 +152,17 @@ extension ProfileInputView {
 
     @objc func dismissKeyboard() {
         view.endEditing(true)
+    }
+}
+
+extension ProfileInputView: UITextFieldDelegate {
+    @objc private func textFieldDidChange(_ textField: UITextField) {
+        updateNextButtonState()
+    }
+
+    private func updateNextButtonState() {
+        let isNameFilled = !(nameTextField.text ?? "").isEmpty
+        let isAgeFilled = !(ageTextField.text ?? "").isEmpty
+        nextButton.isEnabled = isNameFilled && isAgeFilled
     }
 }
