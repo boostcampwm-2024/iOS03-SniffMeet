@@ -15,7 +15,7 @@
 		A288A63D2CDC595000D11C34 /* (null) in Resources */ = {isa = PBXBuildFile; };
 		A2C844D12CDBE1E5007F2970 /* (null) in Sources */ = {isa = PBXBuildFile; };
 		A2C844D72CDBEF8B007F2970 /* (null) in Sources */ = {isa = PBXBuildFile; };
-		A2F825D12CDF4BA6000C5419 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2F825D02CDF4BA6000C5419 /* MainViewController.swift */; };
+		A2F825D12CDF4BA6000C5419 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2F825D02CDF4BA6000C5419 /* HomeView.swift */; };
 		A2F825DD2CDFBEB4000C5419 /* ProfileCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2F825DC2CDFBEB4000C5419 /* ProfileCardView.swift */; };
 		A2F825E32CE084A7000C5419 /* PrimaryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2F825E22CE084A7000C5419 /* PrimaryButton.swift */; };
 		A2F825E42CE084A7000C5419 /* Extension + Navigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2F825DE2CE084A7000C5419 /* Extension + Navigation.swift */; };
@@ -29,7 +29,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		A2F825D02CDF4BA6000C5419 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		A2F825D02CDF4BA6000C5419 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		A2F825DC2CDFBEB4000C5419 /* ProfileCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCardView.swift; sourceTree = "<group>"; };
 		A2F825DE2CE084A7000C5419 /* Extension + Navigation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension + Navigation.swift"; sourceTree = "<group>"; };
 		A2F825DF2CE084A7000C5419 /* InputTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputTextField.swift; sourceTree = "<group>"; };
@@ -535,7 +535,7 @@
 		FDA491692CDA7C0B00A36FB0 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				A2F825D02CDF4BA6000C5419 /* MainViewController.swift */,
+				A2F825D02CDF4BA6000C5419 /* HomeView.swift */,
 				A2F825DC2CDFBEB4000C5419 /* ProfileCardView.swift */,
 			);
 			path = View;
@@ -919,7 +919,7 @@
 				3200437C2CDCA6F300D08B6D /* (null) in Sources */,
 				320043702CDC9A0D00D08B6D /* (null) in Sources */,
 				A2F825DD2CDFBEB4000C5419 /* ProfileCardView.swift in Sources */,
-				A2F825D12CDF4BA6000C5419 /* MainViewController.swift in Sources */,
+				A2F825D12CDF4BA6000C5419 /* HomeView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
