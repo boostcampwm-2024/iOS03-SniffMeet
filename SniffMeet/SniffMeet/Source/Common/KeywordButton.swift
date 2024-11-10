@@ -11,6 +11,7 @@ final class KeywordButton: UIButton {
     init(title: String) {
         super.init(frame: .zero)
         setupConfiguration(title: title)
+        addTarget(self, action: #selector(toggleSelection), for: .touchUpInside)
     }
 
     @available(*, unavailable)
@@ -48,5 +49,9 @@ final class KeywordButton: UIButton {
 
         self.configuration = configuration
         self.configurationUpdateHandler = handler
+    }
+
+    @objc private func toggleSelection() {
+        isSelected.toggle()
     }
 }
