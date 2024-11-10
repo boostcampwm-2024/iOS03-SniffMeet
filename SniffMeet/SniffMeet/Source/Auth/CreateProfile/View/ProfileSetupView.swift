@@ -137,7 +137,7 @@ extension ProfileSetupView: PHPickerViewControllerDelegate {
            itemProvider.canLoadObject(ofClass: UIImage.self) {
             itemProvider.loadObject(ofClass: UIImage.self) { image, error in
                 guard let selectedImage = image as? UIImage else { return }
-                DispatchQueue.main.async { [weak self] in
+                Task { @MainActor [weak self] in
                     self?.profileImageView.image =  selectedImage
                 }
             }
@@ -147,10 +147,6 @@ extension ProfileSetupView: PHPickerViewControllerDelegate {
 
 extension ProfileSetupView: UITextFieldDelegate {
     func textFieldDidChangeSelection(_ textField: UITextField) {
-        if (textField.text?.count ?? 0 < 1) || (textField.text?.count ?? 0 < 1) {
-            submitButton.isEnabled = false
-        } else {
-            submitButton.isEnabled = true
-        }
+        submitButton.isEnabled = (textField.text?.count ?? 0 > 1)
     }
 }
