@@ -10,7 +10,7 @@ import UIKit
 final class MainTabBarFactory {
     func configure() -> UITabBarController {
         let tabBarController = UITabBarController()
-        let mainViewController = UINavigationController(rootViewController: UIViewController())
+        let mainViewController = UINavigationController(rootViewController: MainViewController())
         let walkViewController = UINavigationController(rootViewController: UIViewController())
         let mateViewController = UINavigationController(rootViewController: UIViewController())
 
