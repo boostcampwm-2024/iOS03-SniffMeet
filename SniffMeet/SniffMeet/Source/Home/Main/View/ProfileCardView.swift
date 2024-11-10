@@ -22,9 +22,15 @@ final class ProfileCardView: UIView {
         return label
     }()
     let editButton: UIButton = {
-        let button = UIButton()
+        let button = UIButton(frame: CGRect(x: 0, y: 0, width: 44, height: 44))
         button.setImage(UIImage(systemName: "pencil"), for: .normal)
-        button.tintColor = .systemBackground
+        button.tintColor = .label
+        button.backgroundColor = UIColor(
+            red: 236 / 255,
+            green: 236 / 255,
+            blue: 236 / 255,
+            alpha: 0.87
+        )
         button.layer.cornerRadius = 22
         return button
     }()
@@ -41,7 +47,7 @@ final class ProfileCardView: UIView {
         return stackView
     }()
 
-    init(name: String = "dog_name", keywords: [String] = ["keyword1", "keyword2"], profileImage: UIImage = .imagePlaceholder) {
+    init(name: String = "", keywords: [String] = [], profileImage: UIImage = .imagePlaceholder) {
         super.init(frame: .zero)
         setProfileImage(profileImage: profileImage)
         setName(name: name)
@@ -82,6 +88,8 @@ final class ProfileCardView: UIView {
             profileImageView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
             editButton.topAnchor.constraint(equalTo: self.topAnchor, constant: 8),
             editButton.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -8),
+            editButton.heightAnchor.constraint(equalToConstant: 44),
+            editButton.widthAnchor.constraint(equalToConstant: 44),
             profileInfoStack.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -20),
             profileInfoStack.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 20)
         ])
