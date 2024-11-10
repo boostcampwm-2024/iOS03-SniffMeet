@@ -46,9 +46,12 @@ class ProfileInputView: UIViewController {
         super.viewDidLoad()
 
         setSubveiws()
+        setSubviewsLayout()
 
-        nameTextField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
-        ageTextField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
+        nameTextField.addTarget(self, action: #selector(textFieldDidChange(_:)),
+                                for: .editingChanged)
+        ageTextField.addTarget(self, action: #selector(textFieldDidChange(_:)),
+                               for: .editingChanged)
 
         updateNextButtonState()
         hideKeyboardWhenTappedAround()
@@ -57,32 +60,24 @@ class ProfileInputView: UIViewController {
     private func setSubveiws() {
         view.backgroundColor = .white
 
-        titleLabel.translatesAutoresizingMaskIntoConstraints = false
-        nameTextField.translatesAutoresizingMaskIntoConstraints = false
-        ageTextField.translatesAutoresizingMaskIntoConstraints = false
-        sizeSelectionLabel.translatesAutoresizingMaskIntoConstraints = false
-        segmentedControl.translatesAutoresizingMaskIntoConstraints = false
-        keywordSelectionLabel.translatesAutoresizingMaskIntoConstraints = false
-        activeKeywordButton.translatesAutoresizingMaskIntoConstraints = false
-        smartKeywordButton.translatesAutoresizingMaskIntoConstraints = false
-        friendlyKeywordButton.translatesAutoresizingMaskIntoConstraints = false
-        shyKeywordButton.translatesAutoresizingMaskIntoConstraints = false
-        independentKeywordButton.translatesAutoresizingMaskIntoConstraints = false
-        nextButton.translatesAutoresizingMaskIntoConstraints = false
+        [titleLabel,
+        nameTextField,
+        ageTextField,
+        sizeSelectionLabel,
+        segmentedControl,
+        keywordSelectionLabel,
+        activeKeywordButton,
+        smartKeywordButton,
+        friendlyKeywordButton,
+        shyKeywordButton,
+        independentKeywordButton,
+         nextButton].forEach {
+            $0.translatesAutoresizingMaskIntoConstraints = false
+            view.addSubview($0)
+        }
+    }
 
-        view.addSubview(titleLabel)
-        view.addSubview(nameTextField)
-        view.addSubview(ageTextField)
-        view.addSubview(sizeSelectionLabel)
-        view.addSubview(segmentedControl)
-        view.addSubview(keywordSelectionLabel)
-        view.addSubview(activeKeywordButton)
-        view.addSubview(smartKeywordButton)
-        view.addSubview(friendlyKeywordButton)
-        view.addSubview(shyKeywordButton)
-        view.addSubview(independentKeywordButton)
-        view.addSubview(nextButton)
-
+    private func setSubviewsLayout() {
         NSLayoutConstraint.activate([
             titleLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor,
                                             constant: 16),
@@ -121,18 +116,18 @@ class ProfileInputView: UIViewController {
 
             friendlyKeywordButton.topAnchor.constraint(equalTo: keywordSelectionLabel.bottomAnchor,
                                                        constant: 16),
-            friendlyKeywordButton.leadingAnchor.constraint(equalTo: smartKeywordButton.trailingAnchor,
-                                                           constant: 8),
+            friendlyKeywordButton.leadingAnchor.constraint(
+                equalTo: smartKeywordButton.trailingAnchor, constant: 8),
 
             shyKeywordButton.topAnchor.constraint(equalTo: keywordSelectionLabel.bottomAnchor,
                                                   constant: 16),
-            shyKeywordButton.leadingAnchor.constraint(equalTo: friendlyKeywordButton.trailingAnchor,
-                                                      constant: 8),
+            shyKeywordButton.leadingAnchor.constraint(
+                equalTo: friendlyKeywordButton.trailingAnchor, constant: 8),
 
-            independentKeywordButton.topAnchor.constraint(equalTo: keywordSelectionLabel.bottomAnchor,
-                                                          constant: 16),
-            independentKeywordButton.leadingAnchor.constraint(equalTo: shyKeywordButton.trailingAnchor,
-                                                              constant: 8),
+            independentKeywordButton.topAnchor.constraint(
+                equalTo: keywordSelectionLabel.bottomAnchor, constant: 16),
+            independentKeywordButton.leadingAnchor.constraint(
+                equalTo: shyKeywordButton.trailingAnchor, constant: 8),
 
             nextButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor,
                                                constant: -32),
