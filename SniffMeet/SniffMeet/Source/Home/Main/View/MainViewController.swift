@@ -7,7 +7,7 @@
 
 import UIKit
 
-class MainViewController: UIViewController {
+final class MainViewController: UIViewController {
     let profileCard = ProfileCardView()
 
     override func viewDidLoad() {

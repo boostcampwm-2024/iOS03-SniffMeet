@@ -16,7 +16,6 @@
 		A2C844D12CDBE1E5007F2970 /* (null) in Sources */ = {isa = PBXBuildFile; };
 		A2C844D72CDBEF8B007F2970 /* (null) in Sources */ = {isa = PBXBuildFile; };
 		A2F825D12CDF4BA6000C5419 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2F825D02CDF4BA6000C5419 /* MainViewController.swift */; };
-		A2F825DB2CDFBBE6000C5419 /* MainTabBarFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2F825DA2CDFBBE6000C5419 /* MainTabBarFactory.swift */; };
 		A2F825DD2CDFBEB4000C5419 /* ProfileCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2F825DC2CDFBEB4000C5419 /* ProfileCardView.swift */; };
 		A2F825E32CE084A7000C5419 /* PrimaryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2F825E22CE084A7000C5419 /* PrimaryButton.swift */; };
 		A2F825E42CE084A7000C5419 /* Extension + Navigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2F825DE2CE084A7000C5419 /* Extension + Navigation.swift */; };
@@ -31,7 +30,6 @@
 
 /* Begin PBXFileReference section */
 		A2F825D02CDF4BA6000C5419 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
-		A2F825DA2CDFBBE6000C5419 /* MainTabBarFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarFactory.swift; sourceTree = "<group>"; };
 		A2F825DC2CDFBEB4000C5419 /* ProfileCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCardView.swift; sourceTree = "<group>"; };
 		A2F825DE2CE084A7000C5419 /* Extension + Navigation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension + Navigation.swift"; sourceTree = "<group>"; };
 		A2F825DF2CE084A7000C5419 /* InputTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputTextField.swift; sourceTree = "<group>"; };
@@ -158,7 +156,6 @@
 			children = (
 				FD3A033D2CD8CF460047B7ED /* SceneDelegate.swift */,
 				FD3A03382CD8CF460047B7ED /* AppDelegate.swift */,
-				A2F825DA2CDFBBE6000C5419 /* MainTabBarFactory.swift */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -909,7 +906,6 @@
 			files = (
 				A2C844D12CDBE1E5007F2970 /* (null) in Sources */,
 				FD3A03422CD8CF460047B7ED /* AppDelegate.swift in Sources */,
-				A2F825DB2CDFBBE6000C5419 /* MainTabBarFactory.swift in Sources */,
 				FD3A03432CD8CF460047B7ED /* SceneDelegate.swift in Sources */,
 				320043762CDCA18E00D08B6D /* (null) in Sources */,
 				320043782CDCA49100D08B6D /* (null) in Sources */,
