@@ -46,6 +46,7 @@ class ProfileInputView: UIViewController {
         super.viewDidLoad()
 
         setSubveiws()
+        hideKeyboardWhenTappedAround()
     }
 
     private func setSubveiws() {
@@ -133,5 +134,18 @@ class ProfileInputView: UIViewController {
             nextButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 24),
             nextButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -24)
         ])
+    }
+}
+
+extension ProfileInputView {
+    func hideKeyboardWhenTappedAround() {
+        let tap = UITapGestureRecognizer(target: self,
+                                         action: #selector(ProfileInputView.dismissKeyboard))
+        tap.cancelsTouchesInView = false
+        view.addGestureRecognizer(tap)
+    }
+
+    @objc func dismissKeyboard() {
+        view.endEditing(true)
     }
 }
