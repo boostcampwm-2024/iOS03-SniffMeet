@@ -11,6 +11,7 @@ final class KeywordButton: UIButton {
     init(title: String) {
         super.init(frame: .zero)
         setupConfiguration(title: title)
+        addAction(UIAction { [weak self] _ in self?.isSelected.toggle()}, for: .touchUpInside)
     }
 
     @available(*, unavailable)
