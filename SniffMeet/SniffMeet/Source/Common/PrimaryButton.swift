@@ -36,7 +36,19 @@ final class PrimaryButton: UIButton {
                 [.font: UIFont.systemFont(ofSize: 16.0, weight: .bold)]
             )
         )
+        
+        let handler: UIButton.ConfigurationUpdateHandler = { button in
+            switch button.state {
+            case .disabled:
+                button.configuration?.baseBackgroundColor = .systemGray3
+            case .normal:
+                button.configuration?.baseBackgroundColor = .mainNavy
+            default:
+                break
+            }
+        }
 
         self.configuration = configuration
+        self.configurationUpdateHandler = handler
     }
 }
