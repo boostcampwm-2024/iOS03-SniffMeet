@@ -49,12 +49,9 @@ final class ProfileCardView: UIView {
 
     init(name: String = "", keywords: [String] = [], profileImage: UIImage = .imagePlaceholder) {
         super.init(frame: .zero)
-        setProfileInfoStackView()
-        setProfileImage(profileImage: profileImage)
-        setName(name: name)
-        setKeywords(keywords: keywords)
-        setShadow()
-        setupLayouts()
+        configureAttributes(profileImage: profileImage, name: name, keywords: keywords)
+        configureHierarchy()
+        configureConstraints()
     }
 
     @available(*, unavailable)
@@ -62,31 +59,17 @@ final class ProfileCardView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
 
-    private func setKeywordViews(from keywords: [String]) {
-        clearKeywordViews()
-        addKeywordViews(from: keywords)
-    }
-    private func addKeywordViews(from keywords: [String]) {
-        keywords.forEach { keyword in
-            keywordStackView.addArrangedSubview(KeywordView(title: keyword))
-        }
-    }
-    private func clearKeywordViews() {
-        keywordStackView.arrangedSubviews.forEach { subview in
-            subview.removeFromSuperview()
-        }
-    }
-    private func setProfileInfoStackView() {
+    private func configureHierarchy() {
         profileInfoStackView.addArrangedSubview(nameLabel)
         profileInfoStackView.addArrangedSubview(keywordStackView)
-    }
-    private func setupLayouts() {
-        profileImageView.translatesAutoresizingMaskIntoConstraints = false
-        editButton.translatesAutoresizingMaskIntoConstraints = false
-        profileInfoStackView.translatesAutoresizingMaskIntoConstraints = false
         addSubview(profileImageView)
         addSubview(editButton)
         addSubview(profileInfoStackView)
+    }
+    private func configureConstraints() {
+        profileImageView.translatesAutoresizingMaskIntoConstraints = false
+        editButton.translatesAutoresizingMaskIntoConstraints = false
+        profileInfoStackView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             profileImageView.topAnchor.constraint(equalTo: self.topAnchor),
             profileImageView.bottomAnchor.constraint(equalTo: self.bottomAnchor),
@@ -100,6 +83,30 @@ final class ProfileCardView: UIView {
             profileInfoStackView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 20)
         ])
     }
+    private func configureAttributes(profileImage: UIImage, name: String, keywords: [String]) {
+        setProfileImage(profileImage: profileImage)
+        setName(name: name)
+        setKeywords(from: keywords)
+        setShadow()
+    }
+    private func addKeywords(from keywords: [String]) {
+        keywords.forEach { keyword in
+            keywordStackView.addArrangedSubview(KeywordView(title: keyword))
+        }
+    }
+    private func clearKeywords() {
+        keywordStackView.arrangedSubviews.forEach { subview in
+            subview.removeFromSuperview()
+        }
+    }
+    private func setShadow() {
+        layer.cornerRadius = 15
+        layer.shadowOffset = CGSize(width: 0, height: 4)
+        layer.shadowColor = UIColor.black.cgColor
+        layer.shadowOpacity = 0.25
+        layer.shadowRadius = 4
+        layer.masksToBounds = false
+    }
     private func setNameLabelShadow() {
         nameLabel.layer.shadowOffset = CGSize(width: 0, height: 4)
         nameLabel.layer.shadowColor = UIColor.black.cgColor
@@ -107,22 +114,15 @@ final class ProfileCardView: UIView {
         nameLabel.layer.shadowRadius = 3.0
         nameLabel.layer.masksToBounds = false
     }
+    func setKeywords(from keywords: [String]) {
+        clearKeywords()
+        addKeywords(from: keywords)
+    }
     func setName(name: String) {
         nameLabel.text = name
         setNameLabelShadow()
     }
-    func setKeywords(keywords: [String]) {
-        setKeywordViews(from: keywords)
-    }
     func setProfileImage(profileImage: UIImage) {
         profileImageView.image = profileImage
-    }
-    func setShadow() {
-        layer.cornerRadius = 15
-        layer.shadowOffset = CGSize(width: 0, height: 4)
-        layer.shadowColor = UIColor.black.cgColor
-        layer.shadowOpacity = 0.25
-        layer.shadowRadius = 4
-        layer.masksToBounds = false
     }
 }
