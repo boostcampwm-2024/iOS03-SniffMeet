@@ -12,6 +12,8 @@
 		320043762CDCA18E00D08B6D /* (null) in Sources */ = {isa = PBXBuildFile; };
 		320043782CDCA49100D08B6D /* (null) in Sources */ = {isa = PBXBuildFile; };
 		3200437C2CDCA6F300D08B6D /* (null) in Sources */ = {isa = PBXBuildFile; };
+		A2F825D12CDF4BA6000C5419 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2F825D02CDF4BA6000C5419 /* HomeViewController.swift */; };
+		A2F825DD2CDFBEB4000C5419 /* ProfileCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2F825DC2CDFBEB4000C5419 /* ProfileCardView.swift */; };
 		3200438B2CDF3BEF00D08B6D /* ProfileSetupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3200438A2CDF3BE900D08B6D /* ProfileSetupView.swift */; };
 		320043912CDF3D7F00D08B6D /* KeywordButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3200438E2CDF3D7F00D08B6D /* KeywordButton.swift */; };
 		320043922CDF3D7F00D08B6D /* InputTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3200438D2CDF3D7F00D08B6D /* InputTextField.swift */; };
@@ -29,6 +31,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		A2F825D02CDF4BA6000C5419 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		A2F825DC2CDFBEB4000C5419 /* ProfileCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCardView.swift; sourceTree = "<group>"; };
 		3200438A2CDF3BE900D08B6D /* ProfileSetupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSetupView.swift; sourceTree = "<group>"; };
 		3200438C2CDF3D7F00D08B6D /* Extension + Navigation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension + Navigation.swift"; sourceTree = "<group>"; };
 		3200438D2CDF3D7F00D08B6D /* InputTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputTextField.swift; sourceTree = "<group>"; };
@@ -537,6 +541,8 @@
 		FDA491692CDA7C0B00A36FB0 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				A2F825D02CDF4BA6000C5419 /* HomeViewController.swift */,
+				A2F825DC2CDFBEB4000C5419 /* ProfileCardView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -908,6 +914,8 @@
 				FD3A03422CD8CF460047B7ED /* AppDelegate.swift in Sources */,
 				FD3A03432CD8CF460047B7ED /* SceneDelegate.swift in Sources */,
 				320043762CDCA18E00D08B6D /* (null) in Sources */,
+				A2F825DD2CDFBEB4000C5419 /* ProfileCardView.swift in Sources */,
+				A2F825D12CDF4BA6000C5419 /* HomeViewController.swift in Sources */,
 				320043972CDF493C00D08B6D /* Extension + UIView.swift in Sources */,
 				320043782CDCA49100D08B6D /* (null) in Sources */,
 				320043912CDF3D7F00D08B6D /* KeywordButton.swift in Sources */,
