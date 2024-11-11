@@ -28,6 +28,7 @@
 		FD3A03432CD8CF460047B7ED /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD3A033D2CD8CF460047B7ED /* SceneDelegate.swift */; };
 		FDBFA99F2CE1E50C00AA9220 /* SNMFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDBFA99E2CE1E50900AA9220 /* SNMFont.swift */; };
 		FDBFA9A12CE1E51500AA9220 /* SNMColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDBFA9A02CE1E51000AA9220 /* SNMColor.swift */; };
+		FDBFA9B12CE1FE5500AA9220 /* LayoutConstant.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDBFA9B02CE1FDED00AA9220 /* LayoutConstant.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,6 +47,7 @@
 		FD3A033D2CD8CF460047B7ED /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		FDBFA99E2CE1E50900AA9220 /* SNMFont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SNMFont.swift; sourceTree = "<group>"; };
 		FDBFA9A02CE1E51000AA9220 /* SNMColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SNMColor.swift; sourceTree = "<group>"; };
+		FDBFA9B02CE1FDED00AA9220 /* LayoutConstant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LayoutConstant.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +64,7 @@
 		A2C844CF2CDBE1CB007F2970 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				FDBFA9B02CE1FDED00AA9220 /* LayoutConstant.swift */,
 				FDBFA9A02CE1E51000AA9220 /* SNMColor.swift */,
 				FDBFA99E2CE1E50900AA9220 /* SNMFont.swift */,
 				320043962CDF493600D08B6D /* Extension + UIView.swift */,
@@ -917,6 +920,7 @@
 				320043762CDCA18E00D08B6D /* (null) in Sources */,
 				320043972CDF493C00D08B6D /* Extension + UIView.swift in Sources */,
 				320043782CDCA49100D08B6D /* (null) in Sources */,
+				FDBFA9B12CE1FE5500AA9220 /* LayoutConstant.swift in Sources */,
 				320043912CDF3D7F00D08B6D /* KeywordButton.swift in Sources */,
 				320043922CDF3D7F00D08B6D /* InputTextField.swift in Sources */,
 				320043932CDF3D7F00D08B6D /* KeywordView.swift in Sources */,
