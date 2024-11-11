@@ -7,8 +7,8 @@
 
 import UIKit
 
-final class HomeView: UIViewController {
-    let profileCard = ProfileCardView()
+final class HomeViewController: UIViewController {
+    let profileCardView = ProfileCardView()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,22 +32,22 @@ final class HomeView: UIViewController {
         navigationItem.rightBarButtonItem = notificationBarButtonItem
     }
     func setupLayouts() {
-        profileCard.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(profileCard)
+        profileCardView.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(profileCardView)
         NSLayoutConstraint.activate([
-            profileCard.topAnchor.constraint(
+            profileCardView.topAnchor.constraint(
                 equalTo: view.safeAreaLayoutGuide.topAnchor,
                 constant: 30
             ),
-            profileCard.leadingAnchor.constraint(
+            profileCardView.leadingAnchor.constraint(
                 equalTo: view.safeAreaLayoutGuide.leadingAnchor,
                 constant: 24
             ),
-            profileCard.trailingAnchor.constraint(
+            profileCardView.trailingAnchor.constraint(
                 equalTo: view.safeAreaLayoutGuide.trailingAnchor,
                 constant: -24
             ),
-            profileCard.bottomAnchor.constraint(
+            profileCardView.bottomAnchor.constraint(
                 equalTo: view.safeAreaLayoutGuide.bottomAnchor,
                 constant: -30
             )
