@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ProfileInputView: UIViewController {
+final class ProfileInputView: UIViewController {
     private var titleLabel: UILabel = {
         let label = UILabel()
         label.text = "반가워요!\n당신의 반려견을 소개해주세요."
@@ -45,21 +45,20 @@ class ProfileInputView: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        view.backgroundColor = .white
+
         setSubveiws()
         setSubviewsLayout()
+        updateNextButtonState()
+        hideKeyboardWhenTappedAround()
 
         nameTextField.addTarget(self, action: #selector(textFieldDidChange(_:)),
                                 for: .editingChanged)
         ageTextField.addTarget(self, action: #selector(textFieldDidChange(_:)),
                                for: .editingChanged)
-
-        updateNextButtonState()
-        hideKeyboardWhenTappedAround()
     }
 
-    private func setSubveiws() {
-        view.backgroundColor = .white
-
+    func setSubveiws() {
         [titleLabel,
         nameTextField,
         ageTextField,
@@ -77,7 +76,7 @@ class ProfileInputView: UIViewController {
         }
     }
 
-    private func setSubviewsLayout() {
+    func setSubviewsLayout() {
         NSLayoutConstraint.activate([
             titleLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor,
                                             constant: 16),
