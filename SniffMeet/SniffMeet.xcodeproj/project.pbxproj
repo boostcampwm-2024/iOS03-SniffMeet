@@ -78,11 +78,27 @@
 		A21435F52CE20CF600564A4D /* Tab */ = {
 			isa = PBXGroup;
 			children = (
-				A21435F62CE20D2500564A4D /* TabBarController.swift */,
-				A2C328832CE242D600D255AB /* TabBarRouter.swift */,
 				A2C328852CE245AC00D255AB /* TabBarModuleBuilder.swift */,
+				A2C3288A2CE2F50100D255AB /* View */,
+				A2C328892CE2F4F600D255AB /* Router */,
 			);
 			path = Tab;
+			sourceTree = "<group>";
+		};
+		A2C328892CE2F4F600D255AB /* Router */ = {
+			isa = PBXGroup;
+			children = (
+				A2C328832CE242D600D255AB /* TabBarRouter.swift */,
+			);
+			path = Router;
+			sourceTree = "<group>";
+		};
+		A2C3288A2CE2F50100D255AB /* View */ = {
+			isa = PBXGroup;
+			children = (
+				A21435F62CE20D2500564A4D /* TabBarController.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		A2C844CF2CDBE1CB007F2970 /* Common */ = {
