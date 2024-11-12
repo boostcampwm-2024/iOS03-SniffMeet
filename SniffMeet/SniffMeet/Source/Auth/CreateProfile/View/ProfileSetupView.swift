@@ -12,7 +12,7 @@ final class ProfileSetupView: UIViewController {
     private var titleLabel: UILabel = {
         let label = UILabel()
         label.text = Context.mainTitle
-        label.textColor = UIColor.mainNavy
+        label.textColor = SNMColor.mainNavy
         label.numberOfLines = 2
         label.font = UIFont.systemFont(ofSize: 24, weight: .heavy)
         return label
@@ -25,14 +25,14 @@ final class ProfileSetupView: UIViewController {
     private var addPhotoButton: UIButton = {
         let button = UIButton()
         button.setImage(UIImage(systemName: "photo"), for: .normal)
-        button.backgroundColor = UIColor.mainNavy
-        button.setTitleColor(UIColor.white, for: .normal)
-        button.tintColor = UIColor.white
+        button.backgroundColor = SNMColor.mainNavy
+        button.setTitleColor(SNMColor.white, for: .normal)
+        button.tintColor = SNMColor.white
         return button
     }()
     private var warningLabel: UILabel = {
         let label = UILabel()
-        label.textColor = UIColor.red
+        label.textColor = SNMColor.warningRed
         label.text = Context.placeholder
         label.alpha = 0
         label.font = UIFont.systemFont(ofSize: 12)
@@ -49,10 +49,11 @@ final class ProfileSetupView: UIViewController {
 
     override func viewDidLoad() {
         setSubviewsLayout()
-        view.backgroundColor = .white
+        view.backgroundColor = SNMColor.white
         submitButton.isEnabled = false
         setDelegate()
         setButtonAction()
+        hideKeyboardWhenTappedAround()
     }
     override func viewDidLayoutSubviews() {
         profileImageView.makeViewCircular()

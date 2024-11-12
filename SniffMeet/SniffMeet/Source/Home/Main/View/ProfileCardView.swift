@@ -25,12 +25,7 @@ final class ProfileCardView: UIView {
         let button = UIButton(frame: CGRect(x: 0, y: 0, width: 44, height: 44))
         button.setImage(UIImage(systemName: "pencil"), for: .normal)
         button.tintColor = .label
-        button.backgroundColor = UIColor(
-            red: 236 / 255,
-            green: 236 / 255,
-            blue: 236 / 255,
-            alpha: 0.87
-        )
+        button.backgroundColor = SNMColor.cardIconButtonBackground
         button.layer.cornerRadius = 22
         return button
     }()
@@ -102,14 +97,14 @@ final class ProfileCardView: UIView {
     private func setShadow() {
         layer.cornerRadius = 15
         layer.shadowOffset = CGSize(width: 0, height: 4)
-        layer.shadowColor = UIColor.black.cgColor
+        layer.shadowColor = SNMColor.black.cgColor
         layer.shadowOpacity = 0.25
         layer.shadowRadius = 4
         layer.masksToBounds = false
     }
     private func setNameLabelShadow() {
         nameLabel.layer.shadowOffset = CGSize(width: 0, height: 4)
-        nameLabel.layer.shadowColor = UIColor.black.cgColor
+        nameLabel.layer.shadowColor = SNMColor.black.cgColor
         nameLabel.layer.shadowOpacity = 0.25
         nameLabel.layer.shadowRadius = 3.0
         nameLabel.layer.masksToBounds = false
