@@ -11,7 +11,7 @@ final class ProfileInputView: UIViewController {
     private var titleLabel: UILabel = {
         let label = UILabel()
         label.text = Context.titleLabel
-        label.textColor = UIColor.mainNavy
+        label.textColor = SNMColor.mainNavy
         label.numberOfLines = 2
         label.font = .systemFont(ofSize: .init(24), weight: .heavy)
         return label
@@ -45,7 +45,7 @@ final class ProfileInputView: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        view.backgroundColor = .white
+        view.backgroundColor = SNMColor.white
 
         setSubveiws()
         setSubviewsLayout()

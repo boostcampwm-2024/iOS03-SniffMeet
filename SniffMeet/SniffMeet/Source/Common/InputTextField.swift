@@ -21,7 +21,7 @@ final class InputTextField: UITextField {
         super.init(coder: coder)
     }
     private func setupConfiguration(placeholder: String) {
-        backgroundColor = .subGray1
+        backgroundColor = SNMColor.subGray1
         self.placeholder = placeholder
         borderStyle = .none
         layer.cornerRadius = Context.cornerRadius

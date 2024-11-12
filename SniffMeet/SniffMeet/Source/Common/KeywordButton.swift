@@ -24,15 +24,16 @@ final class KeywordButton: UIButton {
         let handler: UIButton.ConfigurationUpdateHandler = { button in
             switch button.state {
             case .selected:
-                button.configuration?.baseBackgroundColor = .mainBrown
+                button.configuration?.baseBackgroundColor = SNMColor.mainBrown
             case .normal:
-                button.configuration?.baseBackgroundColor = .systemGray3
+                button.configuration?.baseBackgroundColor = SNMColor.disabledGray
             default:
                 break
             }
         }
         configuration.title = title
-        configuration.baseForegroundColor = .white
+        configuration.baseForegroundColor = SNMColor.white
+        configuration.baseForegroundColor = SNMColor.black
         configuration.cornerStyle = .capsule
         configuration.contentInsets = NSDirectionalEdgeInsets(
             top: 6,

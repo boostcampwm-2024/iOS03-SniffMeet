@@ -21,8 +21,8 @@ final class PrimaryButton: UIButton {
     private func setupConfiguration(title: String) {
         var configuration = UIButton.Configuration.filled()
         configuration.title = title
-        configuration.baseBackgroundColor = .mainNavy
-        configuration.baseForegroundColor = .white
+        configuration.baseBackgroundColor = SNMColor.mainNavy
+        configuration.baseForegroundColor = SNMColor.white
         configuration.cornerStyle = .large
         configuration.contentInsets = NSDirectionalEdgeInsets(
             top: 20,
