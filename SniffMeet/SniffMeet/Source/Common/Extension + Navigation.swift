@@ -20,4 +20,3 @@ extension UINavigationItem {
         scrollEdgeAppearance = appearance
     }
 }
-
