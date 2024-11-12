@@ -12,6 +12,9 @@
 		320043762CDCA18E00D08B6D /* (null) in Sources */ = {isa = PBXBuildFile; };
 		320043782CDCA49100D08B6D /* (null) in Sources */ = {isa = PBXBuildFile; };
 		3200437C2CDCA6F300D08B6D /* (null) in Sources */ = {isa = PBXBuildFile; };
+        99FA4E792CE0FBBF00553C2E /* ProfileInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99FA4E782CE0FBBF00553C2E /* ProfileInputView.swift */; };
+        A2F825D12CDF4BA6000C5419 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2F825D02CDF4BA6000C5419 /* HomeViewController.swift */; };
+        A2F825DD2CDFBEB4000C5419 /* ProfileCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2F825DC2CDFBEB4000C5419 /* ProfileCardView.swift */; };
 		3200438B2CDF3BEF00D08B6D /* ProfileSetupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3200438A2CDF3BE900D08B6D /* ProfileSetupView.swift */; };
 		320043912CDF3D7F00D08B6D /* KeywordButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3200438E2CDF3D7F00D08B6D /* KeywordButton.swift */; };
 		320043922CDF3D7F00D08B6D /* InputTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3200438D2CDF3D7F00D08B6D /* InputTextField.swift */; };
@@ -19,12 +22,9 @@
 		320043942CDF3D7F00D08B6D /* PrimaryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 320043902CDF3D7F00D08B6D /* PrimaryButton.swift */; };
 		320043952CDF3D7F00D08B6D /* Extension + Navigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3200438C2CDF3D7F00D08B6D /* Extension + Navigation.swift */; };
 		320043972CDF493C00D08B6D /* Extension + UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 320043962CDF493600D08B6D /* Extension + UIView.swift */; };
-		99FA4E792CE0FBBF00553C2E /* ProfileInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99FA4E782CE0FBBF00553C2E /* ProfileInputView.swift */; };
 		A288A63D2CDC595000D11C34 /* (null) in Resources */ = {isa = PBXBuildFile; };
 		A2C844D12CDBE1E5007F2970 /* (null) in Sources */ = {isa = PBXBuildFile; };
 		A2C844D72CDBEF8B007F2970 /* (null) in Sources */ = {isa = PBXBuildFile; };
-		A2F825D12CDF4BA6000C5419 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2F825D02CDF4BA6000C5419 /* HomeViewController.swift */; };
-		A2F825DD2CDFBEB4000C5419 /* ProfileCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2F825DC2CDFBEB4000C5419 /* ProfileCardView.swift */; };
 		FD3A033F2CD8CF460047B7ED /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FD3A03392CD8CF460047B7ED /* Assets.xcassets */; };
 		FD3A03412CD8CF460047B7ED /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FD3A033C2CD8CF460047B7ED /* LaunchScreen.storyboard */; };
 		FD3A03422CD8CF460047B7ED /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD3A03382CD8CF460047B7ED /* AppDelegate.swift */; };
@@ -37,6 +37,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+        99FA4E782CE0FBBF00553C2E /* ProfileInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileInputView.swift; sourceTree = "<group>"; };
+        A2F825D02CDF4BA6000C5419 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+        A2F825DC2CDFBEB4000C5419 /* ProfileCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCardView.swift; sourceTree = "<group>"; };
 		3200438A2CDF3BE900D08B6D /* ProfileSetupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSetupView.swift; sourceTree = "<group>"; };
 		3200438C2CDF3D7F00D08B6D /* Extension + Navigation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension + Navigation.swift"; sourceTree = "<group>"; };
 		3200438D2CDF3D7F00D08B6D /* InputTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputTextField.swift; sourceTree = "<group>"; };
@@ -44,9 +47,6 @@
 		3200438F2CDF3D7F00D08B6D /* KeywordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeywordView.swift; sourceTree = "<group>"; };
 		320043902CDF3D7F00D08B6D /* PrimaryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimaryButton.swift; sourceTree = "<group>"; };
 		320043962CDF493600D08B6D /* Extension + UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension + UIView.swift"; sourceTree = "<group>"; };
-		99FA4E782CE0FBBF00553C2E /* ProfileInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileInputView.swift; sourceTree = "<group>"; };
-		A2F825D02CDF4BA6000C5419 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
-		A2F825DC2CDFBEB4000C5419 /* ProfileCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCardView.swift; sourceTree = "<group>"; };
 		FD3A03202CD8CDE50047B7ED /* SniffMeet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SniffMeet.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FD3A03382CD8CF460047B7ED /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FD3A03392CD8CF460047B7ED /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
