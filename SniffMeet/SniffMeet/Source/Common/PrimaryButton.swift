@@ -40,9 +40,9 @@ final class PrimaryButton: UIButton {
         let handler: UIButton.ConfigurationUpdateHandler = { button in
             switch button.state {
             case .disabled:
-                button.configuration?.baseBackgroundColor = .systemGray3
+                button.configuration?.background.backgroundColor = SNMColor.disabledGray
             case .normal:
-                button.configuration?.baseBackgroundColor = .mainNavy
+                button.configuration?.background.backgroundColor = SNMColor.mainNavy
             default:
                 break
             }
