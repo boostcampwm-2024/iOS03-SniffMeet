@@ -22,7 +22,6 @@
 		99FA4E792CE0FBBF00553C2E /* ProfileInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99FA4E782CE0FBBF00553C2E /* ProfileInputView.swift */; };
 		A21435F72CE20D2500564A4D /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A21435F62CE20D2500564A4D /* TabBarController.swift */; };
 		A288A63D2CDC595000D11C34 /* (null) in Resources */ = {isa = PBXBuildFile; };
-		A2C328842CE242D600D255AB /* TabBarRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2C328832CE242D600D255AB /* TabBarRouter.swift */; };
 		A2C328862CE245AC00D255AB /* TabBarModuleBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2C328852CE245AC00D255AB /* TabBarModuleBuilder.swift */; };
 		A2C328882CE2481900D255AB /* HomeModuleBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2C328872CE2481900D255AB /* HomeModuleBuilder.swift */; };
 		A2C844D12CDBE1E5007F2970 /* (null) in Sources */ = {isa = PBXBuildFile; };
@@ -48,7 +47,6 @@
 		320043962CDF493600D08B6D /* Extension + UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension + UIView.swift"; sourceTree = "<group>"; };
 		99FA4E782CE0FBBF00553C2E /* ProfileInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileInputView.swift; sourceTree = "<group>"; };
 		A21435F62CE20D2500564A4D /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
-		A2C328832CE242D600D255AB /* TabBarRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarRouter.swift; sourceTree = "<group>"; };
 		A2C328852CE245AC00D255AB /* TabBarModuleBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarModuleBuilder.swift; sourceTree = "<group>"; };
 		A2C328872CE2481900D255AB /* HomeModuleBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeModuleBuilder.swift; sourceTree = "<group>"; };
 		A2F825D02CDF4BA6000C5419 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
@@ -88,7 +86,6 @@
 		A2C328892CE2F4F600D255AB /* Router */ = {
 			isa = PBXGroup;
 			children = (
-				A2C328832CE242D600D255AB /* TabBarRouter.swift */,
 			);
 			path = Router;
 			sourceTree = "<group>";
@@ -977,7 +974,6 @@
 				320043942CDF3D7F00D08B6D /* PrimaryButton.swift in Sources */,
 				320043952CDF3D7F00D08B6D /* Extension + Navigation.swift in Sources */,
 				FDBFA99F2CE1E50C00AA9220 /* SNMFont.swift in Sources */,
-				A2C328842CE242D600D255AB /* TabBarRouter.swift in Sources */,
 				A2C844D72CDBEF8B007F2970 /* (null) in Sources */,
 				3200438B2CDF3BEF00D08B6D /* ProfileSetupView.swift in Sources */,
 				A2C328862CE245AC00D255AB /* TabBarModuleBuilder.swift in Sources */,
