@@ -46,7 +46,6 @@ final class ProfileInputView: UIViewController {
         super.viewDidLoad()
 
         view.backgroundColor = SNMColor.white
-
         setSubveiws()
         setSubviewsLayout()
         updateNextButtonState()
@@ -167,19 +166,6 @@ private extension ProfileInputView {
                                                 constant: Context.horizontalPadding),
             nextButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -Context.horizontalPadding)
         ])
-    }
-}
-
-extension ProfileInputView {
-    func hideKeyboardWhenTappedAround() {
-        let tap = UITapGestureRecognizer(target: self,
-                                         action: #selector(ProfileInputView.dismissKeyboard))
-        tap.cancelsTouchesInView = false
-        view.addGestureRecognizer(tap)
-    }
-
-    @objc func dismissKeyboard() {
-        view.endEditing(true)
     }
 }
 

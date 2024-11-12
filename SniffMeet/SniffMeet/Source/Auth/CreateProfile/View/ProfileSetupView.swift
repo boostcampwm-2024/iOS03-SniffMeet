@@ -53,6 +53,7 @@ final class ProfileSetupView: UIViewController {
         submitButton.isEnabled = false
         setDelegate()
         setButtonAction()
+        hideKeyboardWhenTappedAround()
     }
     override func viewDidLayoutSubviews() {
         profileImageView.makeViewCircular()
