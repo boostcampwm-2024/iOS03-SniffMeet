@@ -10,7 +10,8 @@ import UIKit
 enum SNMColor {
     static let mainNavy: UIColor = UIColor.mainNavy
     static let mainWhite: UIColor = UIColor.mainWhite
-    static let mainBrown: UIColor = UIColor.brown
+    static let mainBrown: UIColor = UIColor.mainBrown
+    static let mainBeige: UIColor = UIColor.mainBeige
     static let subGray1: UIColor = UIColor.subGray1
     static let subGray2: UIColor = UIColor(hex: 0xC0C0C0)
     static let text1: UIColor = UIColor(hex: 0xCCD7DC)
