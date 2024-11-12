@@ -36,6 +36,8 @@
 		FDBFA99F2CE1E50C00AA9220 /* SNMFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDBFA99E2CE1E50900AA9220 /* SNMFont.swift */; };
 		FDBFA9A12CE1E51500AA9220 /* SNMColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDBFA9A02CE1E51000AA9220 /* SNMColor.swift */; };
 		FDBFA9B12CE1FE5500AA9220 /* LayoutConstant.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDBFA9B02CE1FDED00AA9220 /* LayoutConstant.swift */; };
+		FDEAEA7A2CE3148D005890FA /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDEAEA792CE3148C005890FA /* BaseView.swift */; };
+		FDEAEA7C2CE314A7005890FA /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDEAEA7B2CE314A3005890FA /* BaseViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -62,6 +64,8 @@
 		FDBFA99E2CE1E50900AA9220 /* SNMFont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SNMFont.swift; sourceTree = "<group>"; };
 		FDBFA9A02CE1E51000AA9220 /* SNMColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SNMColor.swift; sourceTree = "<group>"; };
 		FDBFA9B02CE1FDED00AA9220 /* LayoutConstant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LayoutConstant.swift; sourceTree = "<group>"; };
+		FDEAEA792CE3148C005890FA /* BaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseView.swift; sourceTree = "<group>"; };
+		FDEAEA7B2CE314A3005890FA /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,6 +107,8 @@
 		A2C844CF2CDBE1CB007F2970 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				FDEAEA792CE3148C005890FA /* BaseView.swift */,
+				FDEAEA7B2CE314A3005890FA /* BaseViewController.swift */,
 				FDBFA9B02CE1FDED00AA9220 /* LayoutConstant.swift */,
 				FDBFA9A02CE1E51000AA9220 /* SNMColor.swift */,
 				FDBFA99E2CE1E50900AA9220 /* SNMFont.swift */,
@@ -963,9 +969,10 @@
 				FD3A03422CD8CF460047B7ED /* AppDelegate.swift in Sources */,
 				FD3A03432CD8CF460047B7ED /* SceneDelegate.swift in Sources */,
 				99FA4E792CE0FBBF00553C2E /* ProfileInputView.swift in Sources */,
+				FDEAEA7C2CE314A7005890FA /* BaseViewController.swift in Sources */,
 				A21435F72CE20D2500564A4D /* TabBarController.swift in Sources */,
 				320043762CDCA18E00D08B6D /* (null) in Sources */,
-				A2F825DD2CDFBEB4000C5419 /* ProfileCardView.swift in Sources */,r
+				A2F825DD2CDFBEB4000C5419 /* ProfileCardView.swift in Sources */,
 				A2C328882CE2481900D255AB /* HomeModuleBuilder.swift in Sources */,
 				995D94262CE32ECE005A47BF /* Extension + Keyboard.swift in Sources */,
 				A2F825D12CDF4BA6000C5419 /* HomeViewController.swift in Sources */,
@@ -980,6 +987,7 @@
 				FDBFA99F2CE1E50C00AA9220 /* SNMFont.swift in Sources */,
 				A2C844D72CDBEF8B007F2970 /* (null) in Sources */,
 				3200438B2CDF3BEF00D08B6D /* ProfileSetupView.swift in Sources */,
+				FDEAEA7A2CE3148D005890FA /* BaseView.swift in Sources */,
 				A2C328862CE245AC00D255AB /* TabBarModuleBuilder.swift in Sources */,
 				320043722CDC9E5F00D08B6D /* (null) in Sources */,
 				3200437C2CDCA6F300D08B6D /* (null) in Sources */,
