@@ -17,10 +17,14 @@ final class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     ) {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         window = UIWindow(windowScene: windowScene)
-        let mainViewController = ProfileInputView()
+        let submodules = (
+            home: HomeModuleBuilder.build(),
+            walk: UIViewController(),
+            mate: UIViewController()
+        )
 
-        let navigationController = UINavigationController(rootViewController: mainViewController)
-        window?.rootViewController = navigationController
+        let tabBarController = TabBarModuleBuilder.build(usingSubmodules: submodules)
+        window?.rootViewController = tabBarController
         window?.makeKeyAndVisible()
     }
 }

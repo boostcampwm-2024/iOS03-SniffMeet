@@ -41,7 +41,7 @@ final class KeywordView: UILabel {
         font = UIFont.systemFont(ofSize: 14)
         layer.cornerRadius = Context.cornerRadius
         layer.masksToBounds = true
-        self.backgroundColor = UIColor.white
+        self.backgroundColor = SNMColor.white
 
     }
 }

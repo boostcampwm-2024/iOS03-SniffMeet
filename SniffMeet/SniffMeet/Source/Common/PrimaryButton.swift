@@ -21,8 +21,8 @@ final class PrimaryButton: UIButton {
     private func setupConfiguration(title: String) {
         var configuration = UIButton.Configuration.filled()
         configuration.title = title
-        configuration.baseBackgroundColor = .mainNavy
-        configuration.baseForegroundColor = .white
+        configuration.baseBackgroundColor = SNMColor.mainNavy
+        configuration.baseForegroundColor = SNMColor.white
         configuration.cornerStyle = .large
         configuration.contentInsets = NSDirectionalEdgeInsets(
             top: 20,
@@ -40,9 +40,9 @@ final class PrimaryButton: UIButton {
         let handler: UIButton.ConfigurationUpdateHandler = { button in
             switch button.state {
             case .disabled:
-                button.configuration?.baseBackgroundColor = .systemGray3
+                button.configuration?.background.backgroundColor = SNMColor.disabledGray
             case .normal:
-                button.configuration?.baseBackgroundColor = .mainNavy
+                button.configuration?.background.backgroundColor = SNMColor.mainNavy
             default:
                 break
             }
