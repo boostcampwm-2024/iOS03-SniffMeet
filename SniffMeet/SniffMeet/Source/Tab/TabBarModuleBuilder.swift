@@ -7,9 +7,7 @@
 
 import UIKit
 
-final class TabBarModuleBuilder {}
-
-extension TabBarModuleBuilder {
+enum TabBarModuleBuilder {
     static func build(usingSubmodules submodules: MainTabs) -> UITabBarController {
         let homeTabBarItem = UITabBarItem(
             title: "Home",

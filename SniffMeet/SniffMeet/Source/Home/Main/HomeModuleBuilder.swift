@@ -7,9 +7,7 @@
 
 import UIKit
 
-final class HomeModuleBuilder {}
-
-extension HomeModuleBuilder {
+enum HomeModuleBuilder {
     static func build() -> UINavigationController {
         let view = HomeViewController()
         view.title = "SniffMeet"
