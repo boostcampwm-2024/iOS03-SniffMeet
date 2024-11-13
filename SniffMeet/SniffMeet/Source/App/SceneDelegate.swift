@@ -9,6 +9,7 @@ import UIKit
 
 final class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     var window: UIWindow?
+    var appRouter: AppRouter?
 
     func scene(
         _ scene: UIScene,
@@ -16,15 +17,12 @@ final class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         options connectionOptions: UIScene.ConnectionOptions
     ) {
         guard let windowScene = (scene as? UIWindowScene) else { return }
-        window = UIWindow(windowScene: windowScene)
-        let submodules = (
-            home: HomeModuleBuilder.build(),
-            walk: UIViewController(),
-            mate: UIViewController()
-        )
+        let window = UIWindow(windowScene: windowScene)
+        let appRouter = AppRouter(window: window)
+        self.window = window
+        self.appRouter = appRouter
 
-        let tabBarController = TabBarModuleBuilder.build(usingSubmodules: submodules)
-        window?.rootViewController = tabBarController
-        window?.makeKeyAndVisible()
+        appRouter.displayInitialScreen(isLoggedIn: true)
+        window.makeKeyAndVisible()
     }
 }
