@@ -34,12 +34,28 @@
 		FD3A03412CD8CF460047B7ED /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FD3A033C2CD8CF460047B7ED /* LaunchScreen.storyboard */; };
 		FD3A03422CD8CF460047B7ED /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD3A03382CD8CF460047B7ED /* AppDelegate.swift */; };
 		FD3A03432CD8CF460047B7ED /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD3A033D2CD8CF460047B7ED /* SceneDelegate.swift */; };
+		FD69B1B32CE3BC76009D71DC /* KeychainManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD69B1B22CE3BC68009D71DC /* KeychainManager.swift */; };
+		FD69B1B52CE3BC7E009D71DC /* UserDefaultsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD69B1B42CE3BC79009D71DC /* UserDefaultsManager.swift */; };
+		FD69B1C32CE3BCE4009D71DC /* UserDefaultsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD69B1B42CE3BC79009D71DC /* UserDefaultsManager.swift */; };
+		FD69B1C42CE3BCE4009D71DC /* KeychainManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD69B1B22CE3BC68009D71DC /* KeychainManager.swift */; };
+		FD69B1CB2CE3E9B4009D71DC /* UserDefaultsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD69B1CA2CE3E9B4009D71DC /* UserDefaultsTests.swift */; };
+		FD69B1CD2CE3E9BB009D71DC /* KeychainTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD69B1CC2CE3E9B8009D71DC /* KeychainTests.swift */; };
 		FDBFA99F2CE1E50C00AA9220 /* SNMFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDBFA99E2CE1E50900AA9220 /* SNMFont.swift */; };
 		FDBFA9A12CE1E51500AA9220 /* SNMColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDBFA9A02CE1E51000AA9220 /* SNMColor.swift */; };
 		FDBFA9B12CE1FE5500AA9220 /* LayoutConstant.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDBFA9B02CE1FDED00AA9220 /* LayoutConstant.swift */; };
 		FDEAEA7A2CE3148D005890FA /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDEAEA792CE3148C005890FA /* BaseView.swift */; };
 		FDEAEA7C2CE314A7005890FA /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDEAEA7B2CE314A3005890FA /* BaseViewController.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		FD69B1BE2CE3BCDC009D71DC /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = FD3A03182CD8CDE50047B7ED /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = FD3A031F2CD8CDE50047B7ED;
+			remoteInfo = SniffMeet;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		3200438A2CDF3BE900D08B6D /* ProfileSetupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSetupView.swift; sourceTree = "<group>"; };
@@ -63,6 +79,11 @@
 		FD3A033A2CD8CF460047B7ED /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FD3A033B2CD8CF460047B7ED /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		FD3A033D2CD8CF460047B7ED /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		FD69B1B22CE3BC68009D71DC /* KeychainManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainManager.swift; sourceTree = "<group>"; };
+		FD69B1B42CE3BC79009D71DC /* UserDefaultsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsManager.swift; sourceTree = "<group>"; };
+		FD69B1BA2CE3BCDC009D71DC /* SNMPersistenceTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SNMPersistenceTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		FD69B1CA2CE3E9B4009D71DC /* UserDefaultsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsTests.swift; sourceTree = "<group>"; };
+		FD69B1CC2CE3E9B8009D71DC /* KeychainTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainTests.swift; sourceTree = "<group>"; };
 		FDBFA99E2CE1E50900AA9220 /* SNMFont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SNMFont.swift; sourceTree = "<group>"; };
 		FDBFA9A02CE1E51000AA9220 /* SNMColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SNMColor.swift; sourceTree = "<group>"; };
 		FDBFA9B02CE1FDED00AA9220 /* LayoutConstant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LayoutConstant.swift; sourceTree = "<group>"; };
@@ -72,6 +93,13 @@
 
 /* Begin PBXFrameworksBuildPhase section */
 		FD3A031D2CD8CDE50047B7ED /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FD69B1B72CE3BCDC009D71DC /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -129,6 +157,7 @@
 			isa = PBXGroup;
 			children = (
 				FD3A033E2CD8CF460047B7ED /* SniffMeet */,
+				FD69B1C62CE3BCED009D71DC /* SNMPersistenceTests */,
 				FD3A03212CD8CDE50047B7ED /* Products */,
 			);
 			sourceTree = "<group>";
@@ -137,6 +166,7 @@
 			isa = PBXGroup;
 			children = (
 				FD3A03202CD8CDE50047B7ED /* SniffMeet.app */,
+				FD69B1BA2CE3BCDC009D71DC /* SNMPersistenceTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -148,6 +178,24 @@
 				FDA4912A2CD9FE3500A36FB0 /* Resource */,
 			);
 			path = SniffMeet;
+			sourceTree = "<group>";
+		};
+		FD69B1B12CE3BC55009D71DC /* Persistence */ = {
+			isa = PBXGroup;
+			children = (
+				FD69B1B42CE3BC79009D71DC /* UserDefaultsManager.swift */,
+				FD69B1B22CE3BC68009D71DC /* KeychainManager.swift */,
+			);
+			path = Persistence;
+			sourceTree = "<group>";
+		};
+		FD69B1C62CE3BCED009D71DC /* SNMPersistenceTests */ = {
+			isa = PBXGroup;
+			children = (
+				FD69B1CC2CE3E9B8009D71DC /* KeychainTests.swift */,
+				FD69B1CA2CE3E9B4009D71DC /* UserDefaultsTests.swift */,
+			);
+			path = SNMPersistenceTests;
 			sourceTree = "<group>";
 		};
 		FDA4912A2CD9FE3500A36FB0 /* Resource */ = {
@@ -163,6 +211,7 @@
 		FDA491332CD9FE7C00A36FB0 /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				FD69B1B12CE3BC55009D71DC /* Persistence */,
 				A2C844CF2CDBE1CB007F2970 /* Common */,
 				FDA491392CD9FEC400A36FB0 /* App */,
 				A21435F52CE20CF600564A4D /* Tab */,
@@ -912,6 +961,26 @@
 			productReference = FD3A03202CD8CDE50047B7ED /* SniffMeet.app */;
 			productType = "com.apple.product-type.application";
 		};
+		FD69B1B92CE3BCDC009D71DC /* SNMPersistenceTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FD69B1C02CE3BCDC009D71DC /* Build configuration list for PBXNativeTarget "SNMPersistenceTests" */;
+			buildPhases = (
+				FD69B1B62CE3BCDC009D71DC /* Sources */,
+				FD69B1B72CE3BCDC009D71DC /* Frameworks */,
+				FD69B1B82CE3BCDC009D71DC /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				FD69B1BF2CE3BCDC009D71DC /* PBXTargetDependency */,
+			);
+			name = SNMPersistenceTests;
+			packageProductDependencies = (
+			);
+			productName = SNMPersistenceTests;
+			productReference = FD69B1BA2CE3BCDC009D71DC /* SNMPersistenceTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -924,6 +993,10 @@
 				TargetAttributes = {
 					FD3A031F2CD8CDE50047B7ED = {
 						CreatedOnToolsVersion = 16.0;
+					};
+					FD69B1B92CE3BCDC009D71DC = {
+						CreatedOnToolsVersion = 16.0;
+						TestTargetID = FD3A031F2CD8CDE50047B7ED;
 					};
 				};
 			};
@@ -945,6 +1018,7 @@
 			projectRoot = "";
 			targets = (
 				FD3A031F2CD8CDE50047B7ED /* SniffMeet */,
+				FD69B1B92CE3BCDC009D71DC /* SNMPersistenceTests */,
 			);
 		};
 /* End PBXProject section */
@@ -957,6 +1031,13 @@
 				A288A63D2CDC595000D11C34 /* (null) in Resources */,
 				FD3A033F2CD8CF460047B7ED /* Assets.xcassets in Resources */,
 				FD3A03412CD8CF460047B7ED /* LaunchScreen.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FD69B1B82CE3BCDC009D71DC /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -980,6 +1061,7 @@
 				995D94262CE32ECE005A47BF /* Extension + Keyboard.swift in Sources */,
 				A2F825D12CDF4BA6000C5419 /* HomeViewController.swift in Sources */,
 				320043972CDF493C00D08B6D /* Extension + UIView.swift in Sources */,
+				FD69B1B32CE3BC76009D71DC /* KeychainManager.swift in Sources */,
 				320043782CDCA49100D08B6D /* (null) in Sources */,
 				FDBFA9B12CE1FE5500AA9220 /* LayoutConstant.swift in Sources */,
 				320043912CDF3D7F00D08B6D /* KeywordButton.swift in Sources */,
@@ -992,10 +1074,22 @@
 				3200438B2CDF3BEF00D08B6D /* ProfileSetupView.swift in Sources */,
 				FDEAEA7A2CE3148D005890FA /* BaseView.swift in Sources */,
 				A2C328862CE245AC00D255AB /* TabBarModuleBuilder.swift in Sources */,
+				FD69B1B52CE3BC7E009D71DC /* UserDefaultsManager.swift in Sources */,
 				320043722CDC9E5F00D08B6D /* (null) in Sources */,
 				3200437C2CDCA6F300D08B6D /* (null) in Sources */,
 				A2C328922CE3BEA000D255AB /* AppRouter.swift in Sources */,
 				320043702CDC9A0D00D08B6D /* (null) in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FD69B1B62CE3BCDC009D71DC /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FD69B1CB2CE3E9B4009D71DC /* UserDefaultsTests.swift in Sources */,
+				FD69B1C32CE3BCE4009D71DC /* UserDefaultsManager.swift in Sources */,
+				FD69B1C42CE3BCE4009D71DC /* KeychainManager.swift in Sources */,
+				FD69B1CD2CE3E9BB009D71DC /* KeychainTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1005,6 +1099,11 @@
 		FD3A03472CD8D2C90047B7ED /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			productRef = FD3A03462CD8D2C90047B7ED /* SwiftLintBuildToolPlugin */;
+		};
+		FD69B1BF2CE3BCDC009D71DC /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = FD3A031F2CD8CDE50047B7ED /* SniffMeet */;
+			targetProxy = FD69B1BE2CE3BCDC009D71DC /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -1203,6 +1302,42 @@
 			};
 			name = Release;
 		};
+		FD69B1C12CE3BCDC009D71DC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = B3PWYBKFUK;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = kr.codesquad.boostcamp9.SNMPersistenceTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SniffMeet.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/SniffMeet";
+			};
+			name = Debug;
+		};
+		FD69B1C22CE3BCDC009D71DC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = B3PWYBKFUK;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = kr.codesquad.boostcamp9.SNMPersistenceTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SniffMeet.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/SniffMeet";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -1220,6 +1355,15 @@
 			buildConfigurations = (
 				FD3A03342CD8CDE60047B7ED /* Debug */,
 				FD3A03352CD8CDE60047B7ED /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		FD69B1C02CE3BCDC009D71DC /* Build configuration list for PBXNativeTarget "SNMPersistenceTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FD69B1C12CE3BCDC009D71DC /* Debug */,
+				FD69B1C22CE3BCDC009D71DC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
