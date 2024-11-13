@@ -72,7 +72,7 @@ extension MPCBrowser: MCNearbyServiceBrowserDelegate {
         
         // info에 해당되는 peer에 대해서만 availablepeers에 넣을 수 있다
         log.info("ServiceBrowser found peer: \(peerID)")
-        guard self.availablePeers.contains(peerID) == false else { return }
+        guard !(self.availablePeers.contains(peerID)) else { return }
         self.availablePeers.append(peerID)
     }
     

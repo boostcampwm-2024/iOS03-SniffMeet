@@ -6,6 +6,7 @@
 //
 import MultipeerConnectivity
 import os
+import NearbyInteraction
 
 extension String {
     static var serviceName = "SniffMeet"
@@ -63,7 +64,7 @@ final class MPCManager: NSObject {
         browser.stopBrowsing()
     }
     
-    func send(mateData: Codable) {
+    func send(mateData: Encodable) {
         if !session.connectedPeers.isEmpty {
             do {
                 if let data =  try? JSONEncoder().encode(mateData) {
