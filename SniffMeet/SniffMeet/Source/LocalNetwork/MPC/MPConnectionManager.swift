@@ -17,7 +17,7 @@ final class MPCManager: NSObject {
     let browser: MPCBrowser
     let session: MCSession
     let mypeerID: MCPeerID
-    var connectedPeers: MCPeerID?
+    var connectedPeers = [MCPeerID]()
     
     @Published var paired: Bool = false
     @Published var receivedData: Data?

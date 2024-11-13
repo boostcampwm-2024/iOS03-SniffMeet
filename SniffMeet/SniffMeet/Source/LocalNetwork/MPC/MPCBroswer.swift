@@ -48,8 +48,8 @@ final class MPCBrowser: NSObject {
     }
     
     func invite() {
-        guard availablePeers.isEmpty else { return }
-        browser.invitePeer(availablePeers[0], to: session, withContext: nil, timeout: 10)
+        guard let peer = availablePeers.first else { return }
+        browser.invitePeer(peer, to: session, withContext: nil, timeout: 10)
     }
     
     func invite(peerID: MCPeerID) {
