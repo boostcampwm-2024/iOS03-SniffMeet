@@ -19,6 +19,9 @@
 		320043942CDF3D7F00D08B6D /* PrimaryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 320043902CDF3D7F00D08B6D /* PrimaryButton.swift */; };
 		320043952CDF3D7F00D08B6D /* Extension + Navigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3200438C2CDF3D7F00D08B6D /* Extension + Navigation.swift */; };
 		320043972CDF493C00D08B6D /* Extension + UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 320043962CDF493600D08B6D /* Extension + UIView.swift */; };
+		3200441A2CE48A3D00D08B6D /* MPCBroswer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 320044192CE48A3100D08B6D /* MPCBroswer.swift */; };
+		3200441C2CE48C5C00D08B6D /* MPCAdvertiser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3200441B2CE48C5600D08B6D /* MPCAdvertiser.swift */; };
+		3200441E2CE48D3500D08B6D /* MPConnectionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3200441D2CE48D1F00D08B6D /* MPConnectionManager.swift */; };
 		995D94262CE32ECE005A47BF /* Extension + Keyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 995D94252CE32EC1005A47BF /* Extension + Keyboard.swift */; };
 		99FA4E792CE0FBBF00553C2E /* ProfileInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99FA4E782CE0FBBF00553C2E /* ProfileInputView.swift */; };
 		A21435F72CE20D2500564A4D /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A21435F62CE20D2500564A4D /* TabBarController.swift */; };
@@ -65,6 +68,9 @@
 		3200438F2CDF3D7F00D08B6D /* KeywordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeywordView.swift; sourceTree = "<group>"; };
 		320043902CDF3D7F00D08B6D /* PrimaryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimaryButton.swift; sourceTree = "<group>"; };
 		320043962CDF493600D08B6D /* Extension + UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension + UIView.swift"; sourceTree = "<group>"; };
+		320044192CE48A3100D08B6D /* MPCBroswer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MPCBroswer.swift; sourceTree = "<group>"; };
+		3200441B2CE48C5600D08B6D /* MPCAdvertiser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MPCAdvertiser.swift; sourceTree = "<group>"; };
+		3200441D2CE48D1F00D08B6D /* MPConnectionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MPConnectionManager.swift; sourceTree = "<group>"; };
 		995D94252CE32EC1005A47BF /* Extension + Keyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension + Keyboard.swift"; sourceTree = "<group>"; };
 		99FA4E782CE0FBBF00553C2E /* ProfileInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileInputView.swift; sourceTree = "<group>"; };
 		A21435F62CE20D2500564A4D /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
@@ -109,6 +115,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		320044172CE489A900D08B6D /* LocalNetwork */ = {
+			isa = PBXGroup;
+			children = (
+				320044182CE48A1900D08B6D /* MPC */,
+			);
+			path = LocalNetwork;
+			sourceTree = "<group>";
+		};
+		320044182CE48A1900D08B6D /* MPC */ = {
+			isa = PBXGroup;
+			children = (
+				3200441D2CE48D1F00D08B6D /* MPConnectionManager.swift */,
+				3200441B2CE48C5600D08B6D /* MPCAdvertiser.swift */,
+				320044192CE48A3100D08B6D /* MPCBroswer.swift */,
+			);
+			path = MPC;
+			sourceTree = "<group>";
+		};
 		A21435F52CE20CF600564A4D /* Tab */ = {
 			isa = PBXGroup;
 			children = (
@@ -220,6 +244,7 @@
 				FDA4913C2CDA056400A36FB0 /* Walk */,
 				FDA4913E2CDA05F900A36FB0 /* Mate */,
 				FDA4913A2CDA04BB00A36FB0 /* Repository */,
+				320044172CE489A900D08B6D /* LocalNetwork */,
 			);
 			path = Source;
 			sourceTree = "<group>";
@@ -1059,6 +1084,7 @@
 				A2F825DD2CDFBEB4000C5419 /* ProfileCardView.swift in Sources */,
 				A2C328882CE2481900D255AB /* HomeModuleBuilder.swift in Sources */,
 				995D94262CE32ECE005A47BF /* Extension + Keyboard.swift in Sources */,
+				3200441C2CE48C5C00D08B6D /* MPCAdvertiser.swift in Sources */,
 				A2F825D12CDF4BA6000C5419 /* HomeViewController.swift in Sources */,
 				320043972CDF493C00D08B6D /* Extension + UIView.swift in Sources */,
 				FD69B1B32CE3BC76009D71DC /* KeychainManager.swift in Sources */,
@@ -1076,6 +1102,8 @@
 				A2C328862CE245AC00D255AB /* TabBarModuleBuilder.swift in Sources */,
 				FD69B1B52CE3BC7E009D71DC /* UserDefaultsManager.swift in Sources */,
 				320043722CDC9E5F00D08B6D /* (null) in Sources */,
+				3200441E2CE48D3500D08B6D /* MPConnectionManager.swift in Sources */,
+				3200441A2CE48A3D00D08B6D /* MPCBroswer.swift in Sources */,
 				3200437C2CDCA6F300D08B6D /* (null) in Sources */,
 				A2C328922CE3BEA000D255AB /* AppRouter.swift in Sources */,
 				320043702CDC9A0D00D08B6D /* (null) in Sources */,
@@ -1129,6 +1157,7 @@
 				DEVELOPMENT_TEAM = B3PWYBKFUK;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SniffMeet/Resource/Info.plist;
+				INFOPLIST_KEY_NSLocalNetworkUsageDescription = "메이트 맺기 기능에는 로컬 네트워크 사용이 필요합니다.  \\n 로컬 네트워크를 사용하시겠습니까?";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
@@ -1161,6 +1190,7 @@
 				DEVELOPMENT_TEAM = B3PWYBKFUK;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SniffMeet/Resource/Info.plist;
+				INFOPLIST_KEY_NSLocalNetworkUsageDescription = "메이트 맺기 기능에는 로컬 네트워크 사용이 필요합니다.  \\n 로컬 네트워크를 사용하시겠습니까?";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
