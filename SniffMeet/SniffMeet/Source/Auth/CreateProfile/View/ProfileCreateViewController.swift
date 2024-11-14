@@ -71,7 +71,7 @@ private extension ProfileCreateViewController {
     enum Context {
         static let submitBtnTitle: String = "등록 완료"
         static let placeholder: String = "닉네임을 입력해주세요."
-        static let mainTitle: String = "마지막으로,\n사진과 닉네임을 등록해주세요."
+        static let mainTitle: String = "마지막으로,\n반려견 사진과 닉네임을 등록해주세요."
         static let horizontalPadding: CGFloat = 24
         static let imageViewSize: CGFloat = 140
         static let addPhotoButtonSize: CGFloat = 44
@@ -121,17 +121,25 @@ private extension ProfileCreateViewController {
                                                   constant: Context.horizontalPadding),
             submitButton.trailingAnchor.constraint(equalTo: view.trailingAnchor,
                                                    constant: -Context.horizontalPadding),
-            submitButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -32)
+            submitButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -32)
         ])
     }
     func setDelegate() {
         picker.delegate = self
         nicknameTextField.delegate = self
     }
+    
     func setButtonAction() {
         addPhotoButton.addAction(UIAction { [weak self] _ in
             guard let picker = self?.picker else { return }
             self?.present(picker, animated: true, completion: nil)
+        }, for: .touchUpInside)
+        
+        submitButton.addAction(UIAction { [weak self] _ in
+            // approuter를 통해서 화면전환을 수행한다. window를 다르게 설정해야 할듯
+            guard let nickname = self?.nicknameTextField.text else { return }
+            self?.presenter?.saveDogInfo(nickname: nickname, imageData: nil)
+            
         }, for: .touchUpInside)
     }
 }
