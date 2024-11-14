@@ -33,8 +33,12 @@ final class ProfileCreateRouter: ProfileCreateRoutable {
     }
     
     func presentMainScreen(from view: any ProfileCreateViewable) {
-#if DEBUG
-        print("여기까지 성공하셨습니다. ")
-#endif
+        if let sceneDelegate = UIApplication.shared.connectedScenes
+            .first(where: { $0.activationState == .foregroundActive })?
+            .delegate as? SceneDelegate {
+            if let router = sceneDelegate.appRouter {
+                router.moveToHomeScreen()
+            }
+        }
     }
 }

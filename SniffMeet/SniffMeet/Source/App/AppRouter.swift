@@ -13,8 +13,6 @@ final class AppRouter {
     init(window: UIWindow?) {
         self.window = window
     }
-
-    // 첫 화면을 뭘 보여줄지는 회원 가입 여부에 따라 앱 플로우가 다르므로, UIWindow를 이용해야 합니다.
     func displayInitialScreen(isLoggedIn: Bool) {
         if isLoggedIn {
             displayTabBar()
@@ -24,7 +22,7 @@ final class AppRouter {
     }
     private func displayTabBar() {
         let submodules = (
-            home: HomeModuleBuilder.build(),
+            home: UINavigationController(rootViewController:  HomeModuleBuilder.build()),
             walk: UIViewController(),
             mate: UIViewController()
         )
@@ -36,5 +34,14 @@ final class AppRouter {
         UINavigationController(rootViewController: ProfileInputRouter.createProfileInputModule())
         window?.rootViewController = navigationController
         window?.makeKeyAndVisible()
+    }
+    
+    func moveToHomeScreen() {
+        let submodules = (
+            home: UINavigationController(rootViewController:  HomeModuleBuilder.build()),
+            walk: UIViewController(),
+            mate: UIViewController()
+        )
+        window?.rootViewController = TabBarModuleBuilder.build(usingSubmodules: submodules)
     }
 }

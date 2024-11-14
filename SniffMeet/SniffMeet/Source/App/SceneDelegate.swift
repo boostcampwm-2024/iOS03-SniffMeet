@@ -17,12 +17,10 @@ final class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         options connectionOptions: UIScene.ConnectionOptions
     ) {
         guard let windowScene = (scene as? UIWindowScene) else { return }
-        let window = UIWindow(windowScene: windowScene)
-        let appRouter = AppRouter(window: window)
-        self.window = window
-        self.appRouter = appRouter
+        
+        window = UIWindow(windowScene: windowScene)
+        appRouter = AppRouter(window: window)
 
-        appRouter.displayInitialScreen(isLoggedIn: true)
-        window.makeKeyAndVisible()
+        appRouter?.displayInitialScreen(isLoggedIn: false)
     }
 }
