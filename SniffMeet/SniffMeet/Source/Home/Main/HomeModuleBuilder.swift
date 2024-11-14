@@ -8,7 +8,7 @@
 import UIKit
 
 enum HomeModuleBuilder {
-    static func build() -> UINavigationController {
+    static func build() -> UIViewController {
         let view = HomeViewController()
         view.title = "SniffMeet"
 
@@ -16,6 +16,6 @@ enum HomeModuleBuilder {
         // let interactor = HomeInteractor()
         // view.presenter = HomePresenter(view: view, router: router, interactor: interactor)
 
-        return UINavigationController(rootViewController: view)
+        return view
     }
 }
