@@ -5,10 +5,16 @@
 //  Created by 윤지성 on 11/9/24.
 //
 
-import UIKit
 import PhotosUI
+import UIKit
 
-final class ProfileCreateViewController: UIViewController {
+protocol ProfileCreateViewable: AnyObject {
+    var presenter: ProfileCreatePresentable? { get set }
+}
+
+final class ProfileCreateViewController: UIViewController, ProfileCreateViewable {
+    var presenter: ProfileCreatePresentable?
+    
     private var titleLabel: UILabel = {
         let label = UILabel()
         label.text = Context.mainTitle
