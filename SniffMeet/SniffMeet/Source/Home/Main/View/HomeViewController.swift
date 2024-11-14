@@ -5,10 +5,16 @@
 //  Created by Kelly Chui on 11/9/24.
 //
 
+import Combine
 import UIKit
 
 final class HomeViewController: UIViewController {
     let profileCardView = ProfileCardView()
+
+    private var startSessionButton: UIButton = PrimaryButton(title: "메이트 연결하기")
+    private var mpcManager: MPCManager?
+    private var niManager: NBInteractionManager?
+    private var cancellables = Set<AnyCancellable>()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -16,6 +22,9 @@ final class HomeViewController: UIViewController {
         setupNavigationItem()
         setupLayouts()
         view.backgroundColor = .systemBackground
+        setupMPCManager()
+        setupBindings()
+        startSessionButton.addTarget(self, action: #selector(goToStartSession), for: .touchUpInside)
     }
 
     func setupNavigationItem() {
@@ -33,7 +42,9 @@ final class HomeViewController: UIViewController {
     }
     func setupLayouts() {
         profileCardView.translatesAutoresizingMaskIntoConstraints = false
+        startSessionButton.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(profileCardView)
+        view.addSubview(startSessionButton)
         NSLayoutConstraint.activate([
             profileCardView.topAnchor.constraint(
                 equalTo: view.safeAreaLayoutGuide.topAnchor,
@@ -49,12 +60,58 @@ final class HomeViewController: UIViewController {
             ),
             profileCardView.bottomAnchor.constraint(
                 equalTo: view.safeAreaLayoutGuide.bottomAnchor,
-                constant: -30
+                constant: -100
+            ),
+            startSessionButton.bottomAnchor.constraint(
+                equalTo: view.safeAreaLayoutGuide.bottomAnchor,
+                constant: -24
+            ),
+            startSessionButton.leadingAnchor.constraint(
+                equalTo: view.leadingAnchor,
+                constant: LayoutConstant.horizontalPadding
+            ),
+            startSessionButton.trailingAnchor.constraint(
+                equalTo: view.trailingAnchor,
+                constant: -LayoutConstant.horizontalPadding
             )
         ])
     }
     @objc func notificationBarButtonDidTap() {
         // presenter.notificationBarButtonDidTap
         // 혹은 action을 nil로 하고 아예 .touchUpInside 사용해서 Combine으로 처리할 수 있지 않을까요
+    }
+
+    @objc func goToStartSession() {
+        mpcManager?.isAvailableToBeConnected = true
+        mpcManager?.browser.startBrowsing()
+        mpcManager?.advertiser.startAdvertising()
+    }
+
+    private func setupMPCManager() {
+        mpcManager = MPCManager(yourName: UIDevice.current.name)
+        niManager = NBInteractionManager(mpcManager: mpcManager!)
+    }
+
+    private func setupBindings() {
+        mpcManager?.$paired
+            .receive(on: RunLoop.main)
+            .sink { [weak self] isPaired in
+                if isPaired {
+                    self?.showAlert(title: "Connected", message: "Successfully connected to a peer.")
+                } else {
+                    self?.showAlert(title: "Disconnected", message: "Connection to peer lost.")
+                }
+            }
+            .store(in: &cancellables)
+    }
+
+    private func showAlert(title: String, message: String) {
+        if let presentedVC = presentedViewController as? UIAlertController {
+            presentedVC.dismiss(animated: false)
+        }
+
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        present(alert, animated: true, completion: nil)
     }
 }
