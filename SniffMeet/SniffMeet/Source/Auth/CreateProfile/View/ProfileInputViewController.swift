@@ -7,7 +7,13 @@
 
 import UIKit
 
-final class ProfileInputViewController: UIViewController {
+protocol ProfileInputViewable: AnyObject {
+    var presenter: ProfileInputPresentable? { get set }
+}
+
+final class ProfileInputViewController: UIViewController, ProfileInputViewable {
+    var presenter: ProfileInputPresentable?
+
     private var titleLabel: UILabel = {
         let label = UILabel()
         label.text = Context.titleLabel
