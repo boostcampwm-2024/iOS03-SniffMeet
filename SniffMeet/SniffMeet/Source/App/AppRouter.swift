@@ -32,8 +32,9 @@ final class AppRouter {
         window?.makeKeyAndVisible()
     }
     private func displayProfileSetupView() {
-        let profileViewController = ProfileInputView()
-        window?.rootViewController = profileViewController
+        let navigationController =
+        UINavigationController(rootViewController: ProfileInputRouter.createProfileInputModule())
+        window?.rootViewController = navigationController
         window?.makeKeyAndVisible()
     }
 }
