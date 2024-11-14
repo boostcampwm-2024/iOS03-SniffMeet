@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class ProfileInputView: UIViewController {
+final class ProfileInputViewController: UIViewController {
     private var titleLabel: UILabel = {
         let label = UILabel()
         label.text = Context.titleLabel
@@ -58,7 +58,7 @@ final class ProfileInputView: UIViewController {
     }
 }
 
-private extension ProfileInputView {
+private extension ProfileInputViewController {
     enum Context {
         static let nextBtnTitle: String = "다음으로"
         static let titleLabel: String = "반가워요!\n당신의 반려견을 소개해주세요."
@@ -169,7 +169,7 @@ private extension ProfileInputView {
     }
 }
 
-extension ProfileInputView: UITextFieldDelegate {
+extension ProfileInputViewController: UITextFieldDelegate {
     @objc private func textFieldDidChange(_ textField: UITextField) {
         updateNextButtonState()
     }

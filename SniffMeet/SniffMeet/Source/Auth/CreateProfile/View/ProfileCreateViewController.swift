@@ -8,7 +8,7 @@
 import UIKit
 import PhotosUI
 
-final class ProfileSetupView: UIViewController {
+final class ProfileCreateViewController: UIViewController {
     private var titleLabel: UILabel = {
         let label = UILabel()
         label.text = Context.mainTitle
@@ -61,7 +61,7 @@ final class ProfileSetupView: UIViewController {
     }
 }
 
-private extension ProfileSetupView {
+private extension ProfileCreateViewController {
     enum Context {
         static let submitBtnTitle: String = "등록 완료"
         static let placeholder: String = "닉네임을 입력해주세요."
@@ -130,7 +130,7 @@ private extension ProfileSetupView {
     }
 }
 
-extension ProfileSetupView: PHPickerViewControllerDelegate {
+extension ProfileCreateViewController: PHPickerViewControllerDelegate {
     func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
         picker.dismiss(animated: true, completion: nil)
         let itemProvider = results.first?.itemProvider
@@ -146,7 +146,7 @@ extension ProfileSetupView: PHPickerViewControllerDelegate {
     }
 }
 
-extension ProfileSetupView: UITextFieldDelegate {
+extension ProfileCreateViewController: UITextFieldDelegate {
     func textFieldDidChangeSelection(_ textField: UITextField) {
         submitButton.isEnabled = (textField.text?.count ?? 0 > 1)
     }
