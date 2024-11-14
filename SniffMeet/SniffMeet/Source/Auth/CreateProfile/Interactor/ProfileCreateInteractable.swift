@@ -6,9 +6,11 @@
 //
 
 protocol ProfileCreateInteractable: AnyObject {
+    var dogDetailInfo: DogDetailInfo? { get set }
     var presenter: ProfileCreatePresentable? { get set }
 }
 
 final class ProfileCreateInteractor: ProfileCreateInteractable {
+    var dogDetailInfo: DogDetailInfo? 
     weak var presenter: ProfileCreatePresentable?
 }

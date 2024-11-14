@@ -61,6 +61,19 @@ final class ProfileInputViewController: UIViewController, ProfileInputViewable {
                                 for: .editingChanged)
         ageTextField.addTarget(self, action: #selector(textFieldDidChange(_:)),
                                for: .editingChanged)
+        
+        setButtonAction()
+    }
+    
+    func setButtonAction() {
+        nextButton.addAction(UIAction { [weak self] _ in
+            guard let name = self?.nameTextField.text,
+                  let ageText = self?.ageTextField.text,
+                  let age = Int(ageText) else { return }
+            
+            let dogInfo = DogDetailInfo(name: name, age: UInt8(age), size: .small, keywords: [.active])
+            self?.presenter?.moveToProfileCreateView(with: dogInfo)
+        }, for: .touchUpInside)
     }
 }
 

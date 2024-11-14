@@ -7,12 +7,12 @@
 import UIKit
 
 protocol ProfileCreateRoutable {
-    static func createProfileCreateModule() -> UIViewController
+    static func createProfileCreateModule(dogDetailInfo: DogDetailInfo) -> UIViewController
     func presentMainScreen(from view: ProfileCreateViewable)
 }
 
 final class ProfileCreateRouter: ProfileCreateRoutable {
-    static func createProfileCreateModule() -> UIViewController {
+    static func createProfileCreateModule(dogDetailInfo: DogDetailInfo) -> UIViewController {
         let view: ProfileCreateViewable & UIViewController = ProfileCreateViewController()
         var presenter: ProfileCreatePresentable = ProfileCreatePresenter()
         let interactor: ProfileCreateInteractable = ProfileCreateInteractor()
@@ -23,6 +23,8 @@ final class ProfileCreateRouter: ProfileCreateRoutable {
         presenter.router = router
         presenter.interactor = interactor
         interactor.presenter = presenter
+        interactor.dogDetailInfo = dogDetailInfo
+        print("전달완료: \(dogDetailInfo)")
 
         return view
     }

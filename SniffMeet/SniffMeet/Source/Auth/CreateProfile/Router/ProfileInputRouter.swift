@@ -8,7 +8,7 @@ import UIKit
 
 protocol ProfileInputRoutable {
     static func createProfileInputModule() -> UIViewController
-    func navigateToNextScreen()
+    func presentPostCreateScreen(from view: ProfileInputViewable, with dogDetail: DogDetailInfo)
 }
 
 final class ProfileInputRouter: ProfileInputRoutable {
@@ -24,7 +24,13 @@ final class ProfileInputRouter: ProfileInputRoutable {
         return view
     }
     
-    func navigateToNextScreen() {
-        
+    func presentPostCreateScreen(from view: ProfileInputViewable, with dogDetail: DogDetailInfo) {
+        let profileCreateViewController =
+        ProfileCreateRouter.createProfileCreateModule(dogDetailInfo: dogDetail)
+   
+        if let sourceView = view as? UIViewController {
+            sourceView.navigationController?.pushViewController(profileCreateViewController,
+                                                                animated: true)
+        }
     }
 }
