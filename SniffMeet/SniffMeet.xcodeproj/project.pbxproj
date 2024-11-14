@@ -29,6 +29,7 @@
 		320044582CE5B04C00D08B6D /* ProfileCreateRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 320044572CE5B04300D08B6D /* ProfileCreateRouter.swift */; };
 		3200445A2CE5B3AA00D08B6D /* ProfileCreateInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 320044592CE5B39A00D08B6D /* ProfileCreateInteractor.swift */; };
 		3200445E2CE5CA1B00D08B6D /* SaveInfoUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3200445D2CE5CA1A00D08B6D /* SaveInfoUseCase.swift */; };
+		320044672CE6125100D08B6D /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 320044662CE6124900D08B6D /* DataManager.swift */; };
 		995D94262CE32ECE005A47BF /* Extension + Keyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 995D94252CE32EC1005A47BF /* Extension + Keyboard.swift */; };
 		99FA4E792CE0FBBF00553C2E /* ProfileInputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99FA4E782CE0FBBF00553C2E /* ProfileInputViewController.swift */; };
 		A21435F72CE20D2500564A4D /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A21435F62CE20D2500564A4D /* TabBarController.swift */; };
@@ -85,6 +86,7 @@
 		320044572CE5B04300D08B6D /* ProfileCreateRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCreateRouter.swift; sourceTree = "<group>"; };
 		320044592CE5B39A00D08B6D /* ProfileCreateInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCreateInteractor.swift; sourceTree = "<group>"; };
 		3200445D2CE5CA1A00D08B6D /* SaveInfoUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveInfoUseCase.swift; sourceTree = "<group>"; };
+		320044662CE6124900D08B6D /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		995D94252CE32EC1005A47BF /* Extension + Keyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension + Keyboard.swift"; sourceTree = "<group>"; };
 		99FA4E782CE0FBBF00553C2E /* ProfileInputViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileInputViewController.swift; sourceTree = "<group>"; };
 		A21435F62CE20D2500564A4D /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
@@ -666,6 +668,7 @@
 		FDA491662CDA7BE500A36FB0 /* Interactor */ = {
 			isa = PBXGroup;
 			children = (
+				320044662CE6124900D08B6D /* DataManager.swift */,
 				320044592CE5B39A00D08B6D /* ProfileCreateInteractor.swift */,
 				3200445D2CE5CA1A00D08B6D /* SaveInfoUseCase.swift */,
 			);
@@ -1125,6 +1128,7 @@
 				320044562CE59DF500D08B6D /* ProfileInputRouter.swift in Sources */,
 				A2C844D72CDBEF8B007F2970 /* (null) in Sources */,
 				3200438B2CDF3BEF00D08B6D /* ProfileCreateViewController.swift in Sources */,
+				320044672CE6125100D08B6D /* DataManager.swift in Sources */,
 				FDEAEA7A2CE3148D005890FA /* BaseView.swift in Sources */,
 				A2C328862CE245AC00D255AB /* TabBarModuleBuilder.swift in Sources */,
 				FD69B1B52CE3BC7E009D71DC /* UserDefaultsManager.swift in Sources */,
