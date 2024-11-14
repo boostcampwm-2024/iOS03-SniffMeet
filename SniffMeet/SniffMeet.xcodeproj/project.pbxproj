@@ -41,6 +41,11 @@
 		A2C844D72CDBEF8B007F2970 /* (null) in Sources */ = {isa = PBXBuildFile; };
 		A2F825D12CDF4BA6000C5419 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2F825D02CDF4BA6000C5419 /* HomeViewController.swift */; };
 		A2F825DD2CDFBEB4000C5419 /* ProfileCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2F825DC2CDFBEB4000C5419 /* ProfileCardView.swift */; };
+		FD0634262CE596B5003C9D6B /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD0634252CE596B2003C9D6B /* Endpoint.swift */; };
+		FD0634282CE596BD003C9D6B /* SNMRequestConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD0634272CE596BA003C9D6B /* SNMRequestConvertible.swift */; };
+		FD06342A2CE596D0003C9D6B /* NetworkProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD0634292CE596C2003C9D6B /* NetworkProvider.swift */; };
+		FD06342C2CE5984D003C9D6B /* SNMNetworkResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD06342B2CE59843003C9D6B /* SNMNetworkResponse.swift */; };
+		FD0634312CE62578003C9D6B /* AnyEncodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD0634302CE62573003C9D6B /* AnyEncodable.swift */; };
 		FD3A033F2CD8CF460047B7ED /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FD3A03392CD8CF460047B7ED /* Assets.xcassets */; };
 		FD3A03412CD8CF460047B7ED /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FD3A033C2CD8CF460047B7ED /* LaunchScreen.storyboard */; };
 		FD3A03422CD8CF460047B7ED /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD3A03382CD8CF460047B7ED /* AppDelegate.swift */; };
@@ -95,6 +100,11 @@
 		A2C328912CE3BEA000D255AB /* AppRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppRouter.swift; sourceTree = "<group>"; };
 		A2F825D02CDF4BA6000C5419 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		A2F825DC2CDFBEB4000C5419 /* ProfileCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCardView.swift; sourceTree = "<group>"; };
+		FD0634252CE596B2003C9D6B /* Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
+		FD0634272CE596BA003C9D6B /* SNMRequestConvertible.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SNMRequestConvertible.swift; sourceTree = "<group>"; };
+		FD0634292CE596C2003C9D6B /* NetworkProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkProvider.swift; sourceTree = "<group>"; };
+		FD06342B2CE59843003C9D6B /* SNMNetworkResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SNMNetworkResponse.swift; sourceTree = "<group>"; };
+		FD0634302CE62573003C9D6B /* AnyEncodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnyEncodable.swift; sourceTree = "<group>"; };
 		FD3A03202CD8CDE50047B7ED /* SniffMeet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SniffMeet.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FD3A03382CD8CF460047B7ED /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FD3A03392CD8CF460047B7ED /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -201,6 +211,18 @@
 			path = Common;
 			sourceTree = "<group>";
 		};
+		FD0634242CE596A7003C9D6B /* SNMNetwork */ = {
+			isa = PBXGroup;
+			children = (
+				FD0634302CE62573003C9D6B /* AnyEncodable.swift */,
+				FD0634292CE596C2003C9D6B /* NetworkProvider.swift */,
+				FD0634272CE596BA003C9D6B /* SNMRequestConvertible.swift */,
+				FD0634252CE596B2003C9D6B /* Endpoint.swift */,
+				FD06342B2CE59843003C9D6B /* SNMNetworkResponse.swift */,
+			);
+			path = SNMNetwork;
+			sourceTree = "<group>";
+		};
 		FD3A03172CD8CDE50047B7ED = {
 			isa = PBXGroup;
 			children = (
@@ -259,6 +281,7 @@
 		FDA491332CD9FE7C00A36FB0 /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				FD0634242CE596A7003C9D6B /* SNMNetwork */,
 				FD69B1B12CE3BC55009D71DC /* Persistence */,
 				A2C844CF2CDBE1CB007F2970 /* Common */,
 				FDA491392CD9FEC400A36FB0 /* App */,
@@ -1112,14 +1135,18 @@
 				995D94262CE32ECE005A47BF /* Extension + Keyboard.swift in Sources */,
 				3200441C2CE48C5C00D08B6D /* MPCAdvertiser.swift in Sources */,
 				A2F825D12CDF4BA6000C5419 /* HomeViewController.swift in Sources */,
+				FD0634282CE596BD003C9D6B /* SNMRequestConvertible.swift in Sources */,
 				320043972CDF493C00D08B6D /* Extension + UIView.swift in Sources */,
+				FD0634262CE596B5003C9D6B /* Endpoint.swift in Sources */,
 				320044502CE595F700D08B6D /* ProfileInputPresenter.swift in Sources */,
 				FD69B1B32CE3BC76009D71DC /* KeychainManager.swift in Sources */,
 				320043782CDCA49100D08B6D /* (null) in Sources */,
+				FD06342A2CE596D0003C9D6B /* NetworkProvider.swift in Sources */,
 				FDBFA9B12CE1FE5500AA9220 /* LayoutConstant.swift in Sources */,
 				320043912CDF3D7F00D08B6D /* KeywordButton.swift in Sources */,
 				320043922CDF3D7F00D08B6D /* InputTextField.swift in Sources */,
 				320043932CDF3D7F00D08B6D /* KeywordView.swift in Sources */,
+				FD06342C2CE5984D003C9D6B /* SNMNetworkResponse.swift in Sources */,
 				3200445E2CE5CA1B00D08B6D /* SaveInfoUseCase.swift in Sources */,
 				320043942CDF3D7F00D08B6D /* PrimaryButton.swift in Sources */,
 				320043952CDF3D7F00D08B6D /* Extension + Navigation.swift in Sources */,
@@ -1134,6 +1161,7 @@
 				FD69B1B52CE3BC7E009D71DC /* UserDefaultsManager.swift in Sources */,
 				320043722CDC9E5F00D08B6D /* (null) in Sources */,
 				3200441E2CE48D3500D08B6D /* MPConnectionManager.swift in Sources */,
+				FD0634312CE62578003C9D6B /* AnyEncodable.swift in Sources */,
 				3200441A2CE48A3D00D08B6D /* MPCBroswer.swift in Sources */,
 				3200437C2CDCA6F300D08B6D /* (null) in Sources */,
 				3200445A2CE5B3AA00D08B6D /* ProfileCreateInteractor.swift in Sources */,
