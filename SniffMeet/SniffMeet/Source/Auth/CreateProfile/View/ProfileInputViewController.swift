@@ -71,7 +71,10 @@ final class ProfileInputViewController: UIViewController, ProfileInputViewable {
                   let ageText = self?.ageTextField.text,
                   let age = Int(ageText) else { return }
             
-            let dogInfo = DogDetailInfo(name: name, age: UInt8(age), size: .small, keywords: [.active])
+            let dogInfo = DogDetailInfo(name: name,
+                                        age: UInt8(age),
+                                        size: .small,
+                                        keywords: [.energetic])
             self?.presenter?.moveToProfileCreateView(with: dogInfo)
         }, for: .touchUpInside)
     }

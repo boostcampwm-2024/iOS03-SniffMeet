@@ -14,7 +14,6 @@ struct DogDetailInfo {
 }
 
 enum Size: Codable {
-    case superSmall
     case small
     case medium
     case big
@@ -23,7 +22,7 @@ enum Size: Codable {
 enum Keyword: String, Codable  {
     case energetic = "활발한"
     case smart = "똑똑한"
-    case active = "적극적인"
+    case friendly = "친화력 좋은"
     case shy = "소심한"
     case independent = "독립적인"
 }
