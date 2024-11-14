@@ -97,7 +97,7 @@ final class HomeViewController: UIViewController {
             .receive(on: RunLoop.main)
             .sink { [weak self] isPaired in
                 if isPaired {
-                    self?.showAlert(title: "Connected", message: "Successfully connected to a peer.")
+                    self?.showAlert(title: "Connected", message: "Successfully connected to peer.")
                 } else {
                     self?.showAlert(title: "Disconnected", message: "Connection to peer lost.")
                 }

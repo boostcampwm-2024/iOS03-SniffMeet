@@ -54,7 +54,10 @@ class NIManager: NSObject {
         }
 
         do {
-            let tokenData = try NSKeyedArchiver.archivedData(withRootObject: discoveryToken, requiringSecureCoding: true)
+            let tokenData = try NSKeyedArchiver.archivedData(
+                withRootObject: discoveryToken,
+                requiringSecureCoding: true
+            )
             mpcManager.send(mateData: tokenData)
             print("Discovery token sent to peer.")
         } catch {
@@ -65,7 +68,10 @@ class NIManager: NSObject {
     // discoveryToken 수신 처리
     private func handleReceivedDiscoveryToken(_ data: Data) {
         do {
-            guard let token = try NSKeyedUnarchiver.unarchivedObject(ofClass: NIDiscoveryToken.self, from: data) else {
+            guard let token = try NSKeyedUnarchiver.unarchivedObject(
+                ofClass: NIDiscoveryToken.self,
+                from: data
+            ) else {
                 print("Invalid discovery token received.")
                 return
             }
