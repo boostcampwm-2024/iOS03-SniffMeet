@@ -31,8 +31,8 @@ public extension SNMRequestConvertible {
             else { throw SNMNetworkError.invalidRequest(request: self) }
             urlRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
             do {
-                let jsonEncoder: JSONEncoder = JSONEncoder()
-                let encodedData = try jsonEncoder.encode(body)
+                let anyEncodableBody = AnyEncodable(body)
+                let encodedData = try anyEncodableBody.encode()
                 urlRequest.httpBody = encodedData
             } catch {
                 throw SNMNetworkError.encodingError(with: body)
