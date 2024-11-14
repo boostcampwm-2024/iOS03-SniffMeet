@@ -21,7 +21,7 @@
 		320043972CDF493C00D08B6D /* Extension + UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 320043962CDF493600D08B6D /* Extension + UIView.swift */; };
 		3200441A2CE48A3D00D08B6D /* MPCBroswer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 320044192CE48A3100D08B6D /* MPCBroswer.swift */; };
 		3200441C2CE48C5C00D08B6D /* MPCAdvertiser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3200441B2CE48C5600D08B6D /* MPCAdvertiser.swift */; };
-		3200441E2CE48D3500D08B6D /* MPConnectionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3200441D2CE48D1F00D08B6D /* MPConnectionManager.swift */; };
+		3200441E2CE48D3500D08B6D /* MPCManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3200441D2CE48D1F00D08B6D /* MPCManager.swift */; };
 		995D94262CE32ECE005A47BF /* Extension + Keyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 995D94252CE32EC1005A47BF /* Extension + Keyboard.swift */; };
 		995D94622CE598FD005A47BF /* NIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 995D94612CE598F0005A47BF /* NIManager.swift */; };
 		99FA4E792CE0FBBF00553C2E /* ProfileInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99FA4E782CE0FBBF00553C2E /* ProfileInputView.swift */; };
@@ -71,7 +71,7 @@
 		320043962CDF493600D08B6D /* Extension + UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension + UIView.swift"; sourceTree = "<group>"; };
 		320044192CE48A3100D08B6D /* MPCBroswer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MPCBroswer.swift; sourceTree = "<group>"; };
 		3200441B2CE48C5600D08B6D /* MPCAdvertiser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MPCAdvertiser.swift; sourceTree = "<group>"; };
-		3200441D2CE48D1F00D08B6D /* MPConnectionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MPConnectionManager.swift; sourceTree = "<group>"; };
+		3200441D2CE48D1F00D08B6D /* MPCManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MPCManager.swift; sourceTree = "<group>"; };
 		995D94252CE32EC1005A47BF /* Extension + Keyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension + Keyboard.swift"; sourceTree = "<group>"; };
 		995D94612CE598F0005A47BF /* NIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NIManager.swift; sourceTree = "<group>"; };
 		99FA4E782CE0FBBF00553C2E /* ProfileInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileInputView.swift; sourceTree = "<group>"; };
@@ -129,7 +129,7 @@
 		320044182CE48A1900D08B6D /* MPC */ = {
 			isa = PBXGroup;
 			children = (
-				3200441D2CE48D1F00D08B6D /* MPConnectionManager.swift */,
+				3200441D2CE48D1F00D08B6D /* MPCManager.swift */,
 				3200441B2CE48C5600D08B6D /* MPCAdvertiser.swift */,
 				320044192CE48A3100D08B6D /* MPCBroswer.swift */,
 			);
@@ -1114,7 +1114,7 @@
 				A2C328862CE245AC00D255AB /* TabBarModuleBuilder.swift in Sources */,
 				FD69B1B52CE3BC7E009D71DC /* UserDefaultsManager.swift in Sources */,
 				320043722CDC9E5F00D08B6D /* (null) in Sources */,
-				3200441E2CE48D3500D08B6D /* MPConnectionManager.swift in Sources */,
+				3200441E2CE48D3500D08B6D /* MPCManager.swift in Sources */,
 				3200441A2CE48A3D00D08B6D /* MPCBroswer.swift in Sources */,
 				3200437C2CDCA6F300D08B6D /* (null) in Sources */,
 				A2C328922CE3BEA000D255AB /* AppRouter.swift in Sources */,
