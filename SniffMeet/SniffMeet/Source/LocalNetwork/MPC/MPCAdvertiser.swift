@@ -64,8 +64,8 @@ extension MPCAdvertiser: MCNearbyServiceAdvertiserDelegate {
         self.receivedInvite = true
         self.receivedInviteFrom = peerID
         self.invitationHandler = invitationHandler
-        
+
+        log.info("Received invitation from \(peerID)")
         invitationHandler(true, session)
     }
 }
-

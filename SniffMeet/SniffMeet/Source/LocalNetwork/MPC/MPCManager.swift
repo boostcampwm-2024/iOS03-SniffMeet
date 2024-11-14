@@ -4,9 +4,11 @@
 //
 //  Created by 윤지성 on 11/13/24.
 //
+
+import Combine
 import MultipeerConnectivity
-import os
 import NearbyInteraction
+import os
 
 extension String {
     static var serviceName = "SniffMeet"
@@ -20,9 +22,10 @@ final class MPCManager: NSObject {
     var connectedPeers = [MCPeerID]()
     
     @Published var paired: Bool = false
-    @Published var receivedData: Data?
+
     private let log = Logger()
 
+    var receivedTokenPublisher = PassthroughSubject<Data, Never>()
     var isAvailableToBeConnected: Bool = false {
         didSet {
             if isAvailableToBeConnected {
@@ -64,12 +67,10 @@ final class MPCManager: NSObject {
         browser.stopBrowsing()
     }
     
-    func send(mateData: Encodable) {
+    func send(mateData: Data) {
         if !session.connectedPeers.isEmpty {
             do {
-                if let data =  try? JSONEncoder().encode(mateData) {
-                    try session.send(data, toPeers: session.connectedPeers, with: .reliable)
-                }
+                try session.send(mateData, toPeers: session.connectedPeers, with: .reliable)
             } catch {
                 print("error sending \(error.localizedDescription)")
             }
@@ -91,6 +92,7 @@ extension MPCManager: MCSessionDelegate {
             Task { @MainActor in
                 self.paired = true
                 self.isAvailableToBeConnected = false
+                log.log("successfully connected to MPCSession")
             }
         default:
             Task { @MainActor in
@@ -103,10 +105,9 @@ extension MPCManager: MCSessionDelegate {
     func session(_ session: MCSession, didReceive data: Data, fromPeer peerID: MCPeerID) {
         log.info("didReceive bytes \(data.count) bytes")
         Task { @MainActor in
-            // interactor에 mate 요청 데이터를 보내고
-            receivedData = data
             self.session.disconnect()
             self.isAvailableToBeConnected = true
+            receivedTokenPublisher.send(data)
         }
     }
 
@@ -122,4 +123,3 @@ extension MPCManager: MCSessionDelegate {
         log.error("Receiving resources is not supported")
     }
 }
-

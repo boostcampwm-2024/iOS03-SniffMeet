@@ -13,7 +13,7 @@ final class HomeViewController: UIViewController {
 
     private var startSessionButton: UIButton = PrimaryButton(title: "메이트 연결하기")
     private var mpcManager: MPCManager?
-    private var niManager: NBInteractionManager?
+    private var niManager: NIManager?
     private var cancellables = Set<AnyCancellable>()
 
     override func viewDidLoad() {
@@ -89,7 +89,7 @@ final class HomeViewController: UIViewController {
 
     private func setupMPCManager() {
         mpcManager = MPCManager(yourName: UIDevice.current.name)
-        niManager = NBInteractionManager(mpcManager: mpcManager!)
+        niManager = NIManager(mpcManager: mpcManager!)
     }
 
     private func setupBindings() {
