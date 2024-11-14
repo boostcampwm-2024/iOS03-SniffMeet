@@ -7,7 +7,13 @@
 
 import UIKit
 
-final class ProfileInputView: UIViewController {
+protocol ProfileInputViewable: AnyObject {
+    var presenter: ProfileInputPresentable? { get set }
+}
+
+final class ProfileInputViewController: UIViewController, ProfileInputViewable {
+    var presenter: ProfileInputPresentable?
+
     private var titleLabel: UILabel = {
         let label = UILabel()
         label.text = Context.titleLabel
@@ -55,10 +61,26 @@ final class ProfileInputView: UIViewController {
                                 for: .editingChanged)
         ageTextField.addTarget(self, action: #selector(textFieldDidChange(_:)),
                                for: .editingChanged)
+        
+        setButtonAction()
+    }
+    
+    func setButtonAction() {
+        nextButton.addAction(UIAction { [weak self] _ in
+            guard let name = self?.nameTextField.text,
+                  let ageText = self?.ageTextField.text,
+                  let age = Int(ageText) else { return }
+            
+            let dogInfo = DogDetailInfo(name: name,
+                                        age: UInt8(age),
+                                        size: .small,
+                                        keywords: [.energetic])
+            self?.presenter?.moveToProfileCreateView(with: dogInfo)
+        }, for: .touchUpInside)
     }
 }
 
-private extension ProfileInputView {
+private extension ProfileInputViewController {
     enum Context {
         static let nextBtnTitle: String = "다음으로"
         static let titleLabel: String = "반가워요!\n당신의 반려견을 소개해주세요."
@@ -169,7 +191,7 @@ private extension ProfileInputView {
     }
 }
 
-extension ProfileInputView: UITextFieldDelegate {
+extension ProfileInputViewController: UITextFieldDelegate {
     @objc private func textFieldDidChange(_ textField: UITextField) {
         updateNextButtonState()
     }
