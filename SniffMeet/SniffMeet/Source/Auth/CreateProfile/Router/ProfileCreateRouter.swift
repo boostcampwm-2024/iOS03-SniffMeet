@@ -13,9 +13,14 @@ protocol ProfileCreateRoutable {
 
 final class ProfileCreateRouter: ProfileCreateRoutable {
     static func createProfileCreateModule(dogDetailInfo: DogDetailInfo) -> UIViewController {
+        let storeDogInfoUsecase: StoreDogInfoUseCase =
+        StoreDogInfoUserCaseImpl(localDataManager: LocalDataManager())
+
         let view: ProfileCreateViewable & UIViewController = ProfileCreateViewController()
-        var presenter: ProfileCreatePresentable = ProfileCreatePresenter()
-        let interactor: ProfileCreateInteractable = ProfileCreateInteractor()
+        let presenter: ProfileCreatePresentable & DogInfoInteractorOutput
+        = ProfileCreatePresenter(dogInfo: dogDetailInfo)
+        let interactor: ProfileCreateInteractable =
+        ProfileCreateInteractor(usecase: storeDogInfoUsecase)
         let router: ProfileCreateRoutable = ProfileCreateRouter()
 
         view.presenter = presenter
@@ -23,13 +28,13 @@ final class ProfileCreateRouter: ProfileCreateRoutable {
         presenter.router = router
         presenter.interactor = interactor
         interactor.presenter = presenter
-        interactor.dogDetailInfo = dogDetailInfo
-        print("전달완료: \(dogDetailInfo)")
 
         return view
     }
     
     func presentMainScreen(from view: any ProfileCreateViewable) {
-        
+#if DEBUG
+        print("여기까지 성공하셨습니다. ")
+#endif
     }
 }
