@@ -6,7 +6,6 @@
 //
 import Foundation
 
-//. dog(name, age, size, keyword, nickname, image)
 struct DogDetailInfo {
     let name: String
     let age: UInt8
@@ -14,14 +13,14 @@ struct DogDetailInfo {
     let keywords: [Keyword]
 }
 
-enum Size {
+enum Size: Codable {
     case superSmall
     case small
     case medium
     case big
 }
 
-enum Keyword: String  {
+enum Keyword: String, Codable  {
     case energetic = "활발한"
     case smart = "똑똑한"
     case active = "적극적인"
@@ -30,11 +29,11 @@ enum Keyword: String  {
 }
 
 
-struct Dog {
+struct Dog: Codable {
     let name: String
     let age: UInt8
     let size: Size
     let keywords: [Keyword]
     let nickname: String
-    let profileImage: Data
+    let profileImage: Data?
 }
