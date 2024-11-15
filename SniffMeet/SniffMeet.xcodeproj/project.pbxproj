@@ -170,6 +170,8 @@
 				995D94612CE598F0005A47BF /* NIManager.swift */,
 			);
 			path = NI;
+               sourceTree = "<group>";
+        };
 		320044512CE5995F00D08B6D /* Entity */ = {
 			isa = PBXGroup;
 			children = (
