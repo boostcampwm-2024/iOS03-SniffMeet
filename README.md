@@ -40,8 +40,8 @@
 - 반려동물 정보 입력만으로 앱 이용이 가능해요
 - 반려동물 정보는 홈 프로필 카드를 통해 확인 / 수정할 수 있어요
 
-<img src="https://github.com/user-attachments/assets/d86ca49e-f017-4c8e-b8b0-cdce988cd51c" width = 200 >
-<img src="https://github.com/user-attachments/assets/69232bf7-0352-4f88-970e-1929aa1681fd" width = 200 >
+<img src="https://github.com/user-attachments/assets/67aedbf5-9bce-4be9-891e-667a2f5b0d0d" width = 200 >
+<img src="https://github.com/user-attachments/assets/63888b64-b65b-410f-a73e-59aeddc04154" width = 200 >
 <img src="https://github.com/user-attachments/assets/f55fd88a-0e49-4843-b579-9df23e3e59c3" width = 200 >
 
 </br>
@@ -53,7 +53,7 @@
 - 수락시 메이트 관계가 형성되어 이후 함께 산책할 수 있어요
 - 거절도 가능해요
 
-<img src="https://github.com/user-attachments/assets/d86ca49e-f017-4c8e-b8b0-cdce988cd51c" width = 200 >
+<img src="https://github.com/user-attachments/assets/67aedbf5-9bce-4be9-891e-667a2f5b0d0d" width = 200 >
 <img src="https://github.com/user-attachments/assets/458bb507-f388-4471-8717-a06bb668fde0" width = 200 >
 <img src="https://github.com/user-attachments/assets/9a3f7743-73ee-4f9e-8cca-e5b01b544cca" width = 200 >
 
@@ -86,29 +86,31 @@
 
 ## **🛠** 기술 스택
 
-### 패턴
+### VIPER 패턴
 
-- VIPER
-- Repository
-- 위 패턴으로 진행하며 추가하고 싶은 내용 의논해보고 적용
+팀원들이 모두 사용해보고 싶었던 패턴이라 고려해보게 되었습니다. </br>
+구조가 전부 나눠져 있어 초기 설정이 부담된다는 점이 있지만 좀 더 각각의 역할을 명확하게 나누는 과정을 경험할 수 있습니다. </br>
+핵심기능 구현 이후로도 여러 기능들을 추가해볼 생각이기 때문에 역할을 잘 나눠둔다면 이후 추가 구현시 수정의 범위가 줄어든다는 이점도 존재할것으로 보입니다.
 
 ### Swift Concurrency
 
 동시성 프로그래밍을 위해서는 Swift Concurrency를 선택했습니다. </br>
 코드의 뎁스가 깊어지지 않는다는 점에서 가독성이 우수합니다. </br>
-또한 에러 핸들링할 때 GCD는 컴파일 에러가 발생하지 않는다는 점과 비교하면 에러 핸들링도 우수합니다.
+또한 에러 핸들링할 때 GCD는 컴파일 에러가 발생하지 않는다는 점과 비교하면 에러 핸들링도 우수합니다. </br>
+네트워크와 DB 처리 과정에서 주로 사용합니다.
 
 ### Combine
 
-비동기 이벤트를 처리하기 위해서 first-party 프레임워크인 Combine을 선택했습니다.
+비동기 이벤트를 처리하기 위해서 first-party 프레임워크인 Combine을 선택했습니다. </br>
+데이터 바인딩과 UI 처리 과정에서 주로 사용합니다.
 
 ### MapKit
 
 사용성이 편리하다는 점과 지도 커스텀이 비교적 쉬운 MapKit을 선택했습니다.
 
-### Firebase
+### Supabase
 
-필요한 익명 Auth, Messaging 기능을 사용하기 위해 선택했습니다.
+필요한 익명 Auth, DB 기능을 사용하기 위해 선택했습니다.
 
 ### Nearby Interaction
 
@@ -117,8 +119,29 @@ UWB를 지원하는 기기(iPhone 11+)에 제한되어 사용 가능합니다.
 
 ### Multipeer Connectivity
 
-Nearby Interaction에서 지원하지 않는 토근 교환을 위해 선택했습니다. </br>
+Nearby Interaction에서 지원하지 않는 데이터 교환을 위해 선택했습니다. </br>
 와이파이나 블루투스를 이용해 기기를 탐색하고 연결해 데이터를 전송할 수 있습니다.
+DiscoveryToken과 프로필 카드 정보를 교환하는 역할을 합니다.
+
+</br>
+</br>
+
+## **📱** 핵심 기능
+
+### NameDrop 기능
+NameDrop 형태의 방식으로 기기간 특정 액션에 대한 반응으로 반려견 프로필 카드를 공유할 수 있는 서비스를 제공합니다. </br>
+애플에서 공식으로 제공하는 NameDrop API가 없기 때문에
+NearbyInteraction + MultipeerConnectivity 이용하여 직접 비슷한 형태로 구현해보기로 했습니다.
+아래는 동작 방식에 대한 플로우입니다.
+
+![Screenshot 2024-11-14 at 1 48 06 AM](https://github.com/user-attachments/assets/0889a8d0-c4b1-4f50-a930-c633ada1140f)
+
+- 기기들은 각각 NISession과 MPCSession은 독립적으로 시작됩니다.
+- 각 기기들은 MPCSession을 통해 Advertising / Browsing -> Invite 하고 세션을 연결합니다.
+- NISession은 시작되면 자동으로 기기마다 DiscoveryToken을 생성합니다.
+- DiscoveryToken을 기기끼리 교환하기 위해서 MPCSession을 이용합니다.
+- DiscoveryToken이 정상적으로 교환되면 NISession으로 연결되고 기기의 거리와 방향을 파악할 수 있습니다.
+- 이후, 해당하는 거리와 방향에 있는 기기와 MPCSession을 통해 데이터(프로필 카드)를 교환하게 됩니다.
 
 </br>
 </br>
@@ -133,12 +156,6 @@ Nearby Interaction에서 지원하지 않는 토근 교환을 위해 선택했�
 | 코드 품질 관리 도구 | SwiftLint |
 | 의존성 관리 도구 | Swift Package Manager (SPM) |
 
-</br>
-</br>
-
-## **🔒** 라이센스
-
-- 미정
 
 </br>
 </br>
