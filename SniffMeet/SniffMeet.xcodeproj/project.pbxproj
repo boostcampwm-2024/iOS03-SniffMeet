@@ -22,8 +22,6 @@
 		3200441A2CE48A3D00D08B6D /* MPCBroswer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 320044192CE48A3100D08B6D /* MPCBroswer.swift */; };
 		3200441C2CE48C5C00D08B6D /* MPCAdvertiser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3200441B2CE48C5600D08B6D /* MPCAdvertiser.swift */; };
 		3200441E2CE48D3500D08B6D /* MPCManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3200441D2CE48D1F00D08B6D /* MPCManager.swift */; };
-		995D94622CE598FD005A47BF /* NIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 995D94612CE598F0005A47BF /* NIManager.swift */; };
-		3200441E2CE48D3500D08B6D /* MPConnectionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3200441D2CE48D1F00D08B6D /* MPConnectionManager.swift */; };
 		3200444E2CE595EA00D08B6D /* ProfileCreatePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3200444D2CE595DE00D08B6D /* ProfileCreatePresenter.swift */; };
 		320044502CE595F700D08B6D /* ProfileInputPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3200444F2CE595F000D08B6D /* ProfileInputPresenter.swift */; };
 		320044532CE59A8A00D08B6D /* Dog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 320044522CE59A8100D08B6D /* Dog.swift */; };
@@ -33,6 +31,7 @@
 		3200445E2CE5CA1B00D08B6D /* SaveInfoUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3200445D2CE5CA1A00D08B6D /* SaveInfoUseCase.swift */; };
 		320044672CE6125100D08B6D /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 320044662CE6124900D08B6D /* DataManager.swift */; };
 		995D94262CE32ECE005A47BF /* Extension + Keyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 995D94252CE32EC1005A47BF /* Extension + Keyboard.swift */; };
+		995D94622CE598FD005A47BF /* NIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 995D94612CE598F0005A47BF /* NIManager.swift */; };
 		99FA4E792CE0FBBF00553C2E /* ProfileInputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99FA4E782CE0FBBF00553C2E /* ProfileInputViewController.swift */; };
 		A21435F72CE20D2500564A4D /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A21435F62CE20D2500564A4D /* TabBarController.swift */; };
 		A288A63D2CDC595000D11C34 /* (null) in Resources */ = {isa = PBXBuildFile; };
@@ -86,8 +85,6 @@
 		320044192CE48A3100D08B6D /* MPCBroswer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MPCBroswer.swift; sourceTree = "<group>"; };
 		3200441B2CE48C5600D08B6D /* MPCAdvertiser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MPCAdvertiser.swift; sourceTree = "<group>"; };
 		3200441D2CE48D1F00D08B6D /* MPCManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MPCManager.swift; sourceTree = "<group>"; };
-		995D94612CE598F0005A47BF /* NIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NIManager.swift; sourceTree = "<group>"; };
-		3200441D2CE48D1F00D08B6D /* MPConnectionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MPConnectionManager.swift; sourceTree = "<group>"; };
 		3200444D2CE595DE00D08B6D /* ProfileCreatePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCreatePresenter.swift; sourceTree = "<group>"; };
 		3200444F2CE595F000D08B6D /* ProfileInputPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileInputPresenter.swift; sourceTree = "<group>"; };
 		320044522CE59A8100D08B6D /* Dog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dog.swift; sourceTree = "<group>"; };
@@ -97,6 +94,7 @@
 		3200445D2CE5CA1A00D08B6D /* SaveInfoUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveInfoUseCase.swift; sourceTree = "<group>"; };
 		320044662CE6124900D08B6D /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		995D94252CE32EC1005A47BF /* Extension + Keyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension + Keyboard.swift"; sourceTree = "<group>"; };
+		995D94612CE598F0005A47BF /* NIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NIManager.swift; sourceTree = "<group>"; };
 		99FA4E782CE0FBBF00553C2E /* ProfileInputViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileInputViewController.swift; sourceTree = "<group>"; };
 		A21435F62CE20D2500564A4D /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		A2C328852CE245AC00D255AB /* TabBarModuleBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarModuleBuilder.swift; sourceTree = "<group>"; };
@@ -164,20 +162,20 @@
 			path = MPC;
 			sourceTree = "<group>";
 		};
-		995D94602CE598E1005A47BF /* NI */ = {
-			isa = PBXGroup;
-			children = (
-				995D94612CE598F0005A47BF /* NIManager.swift */,
-			);
-			path = NI;
-               sourceTree = "<group>";
-        };
 		320044512CE5995F00D08B6D /* Entity */ = {
 			isa = PBXGroup;
 			children = (
 				320044522CE59A8100D08B6D /* Dog.swift */,
 			);
 			path = Entity;
+			sourceTree = "<group>";
+		};
+		995D94602CE598E1005A47BF /* NI */ = {
+			isa = PBXGroup;
+			children = (
+				995D94612CE598F0005A47BF /* NIManager.swift */,
+			);
+			path = NI;
 			sourceTree = "<group>";
 		};
 		A21435F52CE20CF600564A4D /* Tab */ = {
