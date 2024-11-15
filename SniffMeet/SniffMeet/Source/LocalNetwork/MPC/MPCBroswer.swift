@@ -50,14 +50,17 @@ final class MPCBrowser: NSObject {
     func invite() {
         guard let peer = availablePeers.first else { return }
         browser.invitePeer(peer, to: session, withContext: nil, timeout: 10)
+        log.info("invitePeer")
     }
-    
+
     func invite(peerID: MCPeerID) {
         browser.invitePeer(peerID, to: session, withContext: nil, timeout: 10)
+        log.info("invitePeer peerID")
     }
     
     func invite(peerID: MCPeerID, tokenData: Data) {
         browser.invitePeer(peerID, to: session, withContext: tokenData, timeout: 10)
+        log.info("invitePeer tokenData")
     }
 }
 
@@ -74,6 +77,8 @@ extension MPCBrowser: MCNearbyServiceBrowserDelegate {
         log.info("ServiceBrowser found peer: \(peerID)")
         guard !(self.availablePeers.contains(peerID)) else { return }
         self.availablePeers.append(peerID)
+
+        invite(peerID: peerID)
     }
     
     
@@ -82,4 +87,3 @@ extension MPCBrowser: MCNearbyServiceBrowserDelegate {
         self.availablePeers.remove(at: index)
     }
 }
-

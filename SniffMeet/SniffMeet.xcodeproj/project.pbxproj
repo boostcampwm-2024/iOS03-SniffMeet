@@ -21,6 +21,8 @@
 		320043972CDF493C00D08B6D /* Extension + UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 320043962CDF493600D08B6D /* Extension + UIView.swift */; };
 		3200441A2CE48A3D00D08B6D /* MPCBroswer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 320044192CE48A3100D08B6D /* MPCBroswer.swift */; };
 		3200441C2CE48C5C00D08B6D /* MPCAdvertiser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3200441B2CE48C5600D08B6D /* MPCAdvertiser.swift */; };
+		3200441E2CE48D3500D08B6D /* MPCManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3200441D2CE48D1F00D08B6D /* MPCManager.swift */; };
+		995D94622CE598FD005A47BF /* NIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 995D94612CE598F0005A47BF /* NIManager.swift */; };
 		3200441E2CE48D3500D08B6D /* MPConnectionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3200441D2CE48D1F00D08B6D /* MPConnectionManager.swift */; };
 		3200444E2CE595EA00D08B6D /* ProfileCreatePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3200444D2CE595DE00D08B6D /* ProfileCreatePresenter.swift */; };
 		320044502CE595F700D08B6D /* ProfileInputPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3200444F2CE595F000D08B6D /* ProfileInputPresenter.swift */; };
@@ -83,6 +85,8 @@
 		320043962CDF493600D08B6D /* Extension + UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension + UIView.swift"; sourceTree = "<group>"; };
 		320044192CE48A3100D08B6D /* MPCBroswer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MPCBroswer.swift; sourceTree = "<group>"; };
 		3200441B2CE48C5600D08B6D /* MPCAdvertiser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MPCAdvertiser.swift; sourceTree = "<group>"; };
+		3200441D2CE48D1F00D08B6D /* MPCManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MPCManager.swift; sourceTree = "<group>"; };
+		995D94612CE598F0005A47BF /* NIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NIManager.swift; sourceTree = "<group>"; };
 		3200441D2CE48D1F00D08B6D /* MPConnectionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MPConnectionManager.swift; sourceTree = "<group>"; };
 		3200444D2CE595DE00D08B6D /* ProfileCreatePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCreatePresenter.swift; sourceTree = "<group>"; };
 		3200444F2CE595F000D08B6D /* ProfileInputPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileInputPresenter.swift; sourceTree = "<group>"; };
@@ -144,6 +148,7 @@
 		320044172CE489A900D08B6D /* LocalNetwork */ = {
 			isa = PBXGroup;
 			children = (
+				995D94602CE598E1005A47BF /* NI */,
 				320044182CE48A1900D08B6D /* MPC */,
 			);
 			path = LocalNetwork;
@@ -152,13 +157,19 @@
 		320044182CE48A1900D08B6D /* MPC */ = {
 			isa = PBXGroup;
 			children = (
-				3200441D2CE48D1F00D08B6D /* MPConnectionManager.swift */,
+				3200441D2CE48D1F00D08B6D /* MPCManager.swift */,
 				3200441B2CE48C5600D08B6D /* MPCAdvertiser.swift */,
 				320044192CE48A3100D08B6D /* MPCBroswer.swift */,
 			);
 			path = MPC;
 			sourceTree = "<group>";
 		};
+		995D94602CE598E1005A47BF /* NI */ = {
+			isa = PBXGroup;
+			children = (
+				995D94612CE598F0005A47BF /* NIManager.swift */,
+			);
+			path = NI;
 		320044512CE5995F00D08B6D /* Entity */ = {
 			isa = PBXGroup;
 			children = (
@@ -1120,6 +1131,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				995D94622CE598FD005A47BF /* NIManager.swift in Sources */,
 				FDBFA9A12CE1E51500AA9220 /* SNMColor.swift in Sources */,
 				A2C844D12CDBE1E5007F2970 /* (null) in Sources */,
 				3200444E2CE595EA00D08B6D /* ProfileCreatePresenter.swift in Sources */,
@@ -1160,7 +1172,7 @@
 				A2C328862CE245AC00D255AB /* TabBarModuleBuilder.swift in Sources */,
 				FD69B1B52CE3BC7E009D71DC /* UserDefaultsManager.swift in Sources */,
 				320043722CDC9E5F00D08B6D /* (null) in Sources */,
-				3200441E2CE48D3500D08B6D /* MPConnectionManager.swift in Sources */,
+				3200441E2CE48D3500D08B6D /* MPCManager.swift in Sources */,
 				FD0634312CE62578003C9D6B /* AnyEncodable.swift in Sources */,
 				3200441A2CE48A3D00D08B6D /* MPCBroswer.swift in Sources */,
 				3200437C2CDCA6F300D08B6D /* (null) in Sources */,
