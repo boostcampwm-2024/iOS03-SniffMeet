@@ -17,7 +17,9 @@ public extension SNMRequestConvertible {
     var isValid: Bool {
         switch requestType {
         // method가 get이고 body가 있는 requestType을 정의하면 invalid로 판단합니다.
-        case .jsonEncodableBody where endpoint.method == .get:
+        case .compositeJSONEncodable,
+                .compositePlain,
+                .jsonEncodableBody where endpoint.method == .get:
             false
         default:
             true
@@ -40,6 +42,16 @@ public extension SNMRequestConvertible {
 
         case .jsonEncodableBody(let body):
             urlRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
+            try urlRequest.append(body: body)
+
+        case .compositePlain(let header, let body):
+            urlRequest.append(header: header)
+            urlRequest.httpBody = body
+
+        case .compositeJSONEncodable(let header, let body):
+            var header = header
+            header["Content-Type"] = "application/json"
+            urlRequest.append(header: header)
             try urlRequest.append(body: body)
         }
 

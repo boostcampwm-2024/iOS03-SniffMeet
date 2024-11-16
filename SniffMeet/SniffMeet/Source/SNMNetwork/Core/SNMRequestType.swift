@@ -12,5 +12,7 @@ public enum SNMRequestType {
     case header(with: [String: String])
     /// Content-Type: application/json이 자동으로 적용됩니다.
     case jsonEncodableBody(with: any Encodable)
+    case compositePlain(header: [String: String], body: Data)
+    case compositeJSONEncodable(header: [String: String], body: any Encodable)
     // TODO: MultipartFormData
 }
