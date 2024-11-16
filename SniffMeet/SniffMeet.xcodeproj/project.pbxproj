@@ -225,11 +225,9 @@
 		FD0634242CE596A7003C9D6B /* SNMNetwork */ = {
 			isa = PBXGroup;
 			children = (
-				FD0634302CE62573003C9D6B /* AnyEncodable.swift */,
-				FD0634292CE596C2003C9D6B /* NetworkProvider.swift */,
-				FD0634272CE596BA003C9D6B /* SNMRequestConvertible.swift */,
-				FD0634252CE596B2003C9D6B /* Endpoint.swift */,
-				FD06342B2CE59843003C9D6B /* SNMNetworkResponse.swift */,
+				FDE14A4B2CE8CED8001F7A9D /* Core */,
+				FDE14A4A2CE8CED1001F7A9D /* Helper */,
+				FDE14A4C2CE8CEDD001F7A9D /* Mock */,
 			);
 			path = SNMNetwork;
 			sourceTree = "<group>";
@@ -1019,6 +1017,32 @@
 			children = (
 			);
 			path = Router;
+			sourceTree = "<group>";
+		};
+		FDE14A4A2CE8CED1001F7A9D /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				FD0634302CE62573003C9D6B /* AnyEncodable.swift */,
+			);
+			path = Helper;
+			sourceTree = "<group>";
+		};
+		FDE14A4B2CE8CED8001F7A9D /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				FD0634292CE596C2003C9D6B /* NetworkProvider.swift */,
+				FD0634272CE596BA003C9D6B /* SNMRequestConvertible.swift */,
+				FD0634252CE596B2003C9D6B /* Endpoint.swift */,
+				FD06342B2CE59843003C9D6B /* SNMNetworkResponse.swift */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		FDE14A4C2CE8CEDD001F7A9D /* Mock */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Mock;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
