@@ -21,65 +21,40 @@ public final class SNMNetworkProvider: NetworkProvider {
     public func request(
         with request: any SNMRequestConvertible
     ) async throws -> SNMNetworkResponse {
-        let (data, response) = try await session.data(for: request.urlRequest())
-        guard let httpResponse = response as? HTTPURLResponse
-        else { throw SNMNetworkError.invalidResponse(response: response) }
-        try mapHttpStatusCode(statusCode: httpResponse.statusCode)
-        let snmResponse = SNMNetworkResponse(statusCode: httpResponse.statusCode, data: data)
-        return snmResponse
-    }
-    /// HTTPStatusCode에 따라 SNMNetworkError로 변경합니다.
-    private func mapHttpStatusCode(statusCode: Int) throws {
-        switch statusCode {
-        case 200...299: break
-        case 300...399:
-            throw SNMNetworkError.redirection
-        case 400:
-            throw SNMNetworkError.badRequest
-        case 401:
-            throw SNMNetworkError.unAuthorization
-        case 403:
-            throw SNMNetworkError.forbidden
-        case 404:
-            throw SNMNetworkError.notFound
-        case 405:
-            throw SNMNetworkError.methodNotAllowed
-        case 413:
-            throw SNMNetworkError.contentTooLarge
-        case 414:
-            throw SNMNetworkError.urlTooLong
-        case 415:
-            throw SNMNetworkError.unsupportMediaType
-        case 500...599:
-            throw SNMNetworkError.serverError
-        default:
-            throw SNMNetworkError.invalidStatusCode(statusCode: statusCode)
+        do {
+            let (data, response) = try await session.data(for: request.urlRequest())
+            guard let httpResponse = response as? HTTPURLResponse,
+                  let status = HTTPStatusCode(rawValue: httpResponse.statusCode)
+            else {
+                throw SNMNetworkError.invalidResponse(response: response)
+            }
+            guard status.isSuccess
+            else {
+                throw SNMNetworkError.failedStatusCode(reason: status)
+            }
+            let snmResponse = SNMNetworkResponse(statusCode: status, data: data)
+            return snmResponse
+        } catch let error as URLError {
+            throw SNMNetworkError.urlError(urlError: error)
+        }
+        catch let error as SNMNetworkError {
+            throw error
+        } catch {
+            throw SNMNetworkError.unknown(error: error)
         }
     }
 }
 
 public enum SNMNetworkError: LocalizedError {
-    // SNMNetwork Error
     case encodingError(with: any Encodable)
     case invalidRequest(request: any SNMRequestConvertible)
     case invalidURL(url: URL)
-    case invalidStatusCode(statusCode: Int)
+    case urlError(urlError: URLError)
     /// HTTPResponse로 변환 실패
     case invalidResponse(response: URLResponse)
-    // Status code 300번대
-    // TODO: Redirect는 따로 처리 과정이 필요함
-    case redirection
-    // Status code 400번대
-    case badRequest
-    case unAuthorization
-    case notFound
-    case forbidden
-    case methodNotAllowed
-    case contentTooLarge
-    case urlTooLong
-    case unsupportMediaType
-    // Status code 500번대
-    case serverError
+    /// 실패로 분류되는 StatusCode입니다.
+    case failedStatusCode(reason: HTTPStatusCode)
+    case unknown(error: any Error)
 
     public var errorDescription: String? {
         switch self {
@@ -89,30 +64,14 @@ public enum SNMNetworkError: LocalizedError {
             "잘못된 요청입니다. \(request)"
         case .invalidURL(let url):
             "URL이 잘못되었습니다. \(url)"
+        case .urlError(let urlError):
+            "URLError가 발생했습니다. \(urlError.localizedDescription)"
         case .invalidResponse(let response):
             "HTTP 응답이 아닙니다. \(response)"
-        case .invalidStatusCode(let statusCode):
-            "잘못된 status code입니다. \(statusCode)"
-        case .redirection:
-            "리디렉션"
-        case .badRequest:
-            "잘못된 요청입니다."
-        case .unAuthorization:
-            "권한이 없습니다."
-        case .notFound:
-            "요청한 콘텐츠를 찾을 수 없습니다."
-        case .forbidden:
-            "금지된 접근입니다."
-        case .methodNotAllowed:
-            "허용되지 않은 메서드입니다."
-        case .contentTooLarge:
-            "요청 본문이 서버에서 정의한 제한보다 큽니다."
-        case .urlTooLong:
-            "URL이 너무 길어서 요청이 실패하였습니다."
-        case .unsupportMediaType:
-            "요청된 데이터의 미디어 형식이 서버에서 지원되지 않습니다."
-        case .serverError:
-            "서버 에러입니다."
+        case .failedStatusCode(let reason):
+            "실패 코드를 반환했습니다. statusCode: \(reason.rawValue)"
+        case .unknown(let error):
+            "알 수없는 에러입니다. \(error.localizedDescription)"
         }
     }
 }
