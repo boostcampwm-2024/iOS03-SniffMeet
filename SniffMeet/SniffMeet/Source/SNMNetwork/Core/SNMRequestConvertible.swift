@@ -13,40 +13,36 @@ public protocol SNMRequestConvertible {
 }
 
 public extension SNMRequestConvertible {
+    /// Request가 유효한지 판단합니다.
+    var isValid: Bool {
+        switch requestType {
+        // method가 get이고 body가 있는 requestType을 정의하면 invalid로 판단합니다.
+        case .jsonEncodableBody where endpoint.method == .get:
+            false
+        default:
+            true
+        }
+    }
+
     func urlRequest() throws -> URLRequest {
         var urlRequest = URLRequest(url: endpoint.absoluteURL)
+        guard isValid
+        else {
+            throw SNMNetworkError.invalidRequest(request: self)
+        }
 
         switch requestType {
         case .plain:
             break
 
         case .header(let header):
-            header.forEach {
-                urlRequest.setValue($0, forHTTPHeaderField: $1)
-            }
+            urlRequest.append(header: header)
 
         case .jsonEncodableBody(let body):
-            // HTTP Method가 GET이면서 body가 존재하면 invalid로 처리
-            guard !(endpoint.method == .get)
-            else { throw SNMNetworkError.invalidRequest(request: self) }
             urlRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
-            do {
-                let anyEncodableBody = AnyEncodable(body)
-                let encodedData = try anyEncodableBody.encode()
-                urlRequest.httpBody = encodedData
-            } catch {
-                throw SNMNetworkError.encodingError(with: body)
-            }
+            try urlRequest.append(body: body)
         }
 
         return urlRequest
     }
-}
-
-public enum SNMRequestType {
-    case plain
-    case header(with: [String: String])
-    /// Content-Type: application/json이 자동으로 적용됩니다.
-    case jsonEncodableBody(with: Encodable)
-    // TODO: MultipartFormData
 }
