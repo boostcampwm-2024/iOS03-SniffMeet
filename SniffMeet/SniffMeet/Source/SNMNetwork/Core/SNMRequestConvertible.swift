@@ -19,7 +19,8 @@ public extension SNMRequestConvertible {
         // method가 get이고 body가 있는 requestType을 정의하면 invalid로 판단합니다.
         case .compositeJSONEncodable,
                 .compositePlain,
-                .jsonEncodableBody where endpoint.method == .get:
+                .jsonEncodableBody,
+                .multipartFormData where endpoint.method == .get:
             false
         default:
             true
@@ -53,6 +54,12 @@ public extension SNMRequestConvertible {
             header["Content-Type"] = "application/json"
             urlRequest.append(header: header)
             try urlRequest.append(body: body)
+
+        case .multipartFormData(let header, let multipartFormData):
+            var header = header
+            header["Content-Type"] = "multipart/form-data; boundary=\(multipartFormData.boundary)"
+            urlRequest.append(header: header)
+            urlRequest.httpBody = multipartFormData.compositeBody
         }
 
         return urlRequest

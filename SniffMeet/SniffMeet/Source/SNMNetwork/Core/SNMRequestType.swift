@@ -14,5 +14,5 @@ public enum SNMRequestType {
     case jsonEncodableBody(with: any Encodable)
     case compositePlain(header: [String: String], body: Data)
     case compositeJSONEncodable(header: [String: String], body: any Encodable)
-    // TODO: MultipartFormData
+    case multipartFormData(header: [String: String], multipartFormData: MultipartFormData)
 }
