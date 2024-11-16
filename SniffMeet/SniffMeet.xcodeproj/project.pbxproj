@@ -57,6 +57,11 @@
 		FD69B1C42CE3BCE4009D71DC /* KeychainManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD69B1B22CE3BC68009D71DC /* KeychainManager.swift */; };
 		FD69B1CB2CE3E9B4009D71DC /* UserDefaultsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD69B1CA2CE3E9B4009D71DC /* UserDefaultsTests.swift */; };
 		FD69B1CD2CE3E9BB009D71DC /* KeychainTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD69B1CC2CE3E9B8009D71DC /* KeychainTests.swift */; };
+		FDA04AA52CE91DBF002605AC /* MultipartFormData.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDA04AA42CE91DB7002605AC /* MultipartFormData.swift */; };
+		FDA04AA62CE91DBF002605AC /* MultipartFormData.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDA04AA42CE91DB7002605AC /* MultipartFormData.swift */; };
+		FDA04AA82CE91DF8002605AC /* Data + append.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDA04AA72CE91DF4002605AC /* Data + append.swift */; };
+		FDA04AA92CE91DF8002605AC /* Data + append.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDA04AA72CE91DF4002605AC /* Data + append.swift */; };
+		FDA04AAB2CE9235D002605AC /* MultipartFormDataTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDA04AAA2CE92358002605AC /* MultipartFormDataTests.swift */; };
 		FDBFA99F2CE1E50C00AA9220 /* SNMFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDBFA99E2CE1E50900AA9220 /* SNMFont.swift */; };
 		FDBFA9A12CE1E51500AA9220 /* SNMColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDBFA9A02CE1E51000AA9220 /* SNMColor.swift */; };
 		FDBFA9B12CE1FE5500AA9220 /* LayoutConstant.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDBFA9B02CE1FDED00AA9220 /* LayoutConstant.swift */; };
@@ -136,6 +141,9 @@
 		FD69B1BA2CE3BCDC009D71DC /* SNMPersistenceTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SNMPersistenceTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FD69B1CA2CE3E9B4009D71DC /* UserDefaultsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsTests.swift; sourceTree = "<group>"; };
 		FD69B1CC2CE3E9B8009D71DC /* KeychainTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainTests.swift; sourceTree = "<group>"; };
+		FDA04AA42CE91DB7002605AC /* MultipartFormData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultipartFormData.swift; sourceTree = "<group>"; };
+		FDA04AA72CE91DF4002605AC /* Data + append.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Data + append.swift"; sourceTree = "<group>"; };
+		FDA04AAA2CE92358002605AC /* MultipartFormDataTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultipartFormDataTests.swift; sourceTree = "<group>"; };
 		FDBFA99E2CE1E50900AA9220 /* SNMFont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SNMFont.swift; sourceTree = "<group>"; };
 		FDBFA9A02CE1E51000AA9220 /* SNMColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SNMColor.swift; sourceTree = "<group>"; };
 		FDBFA9B02CE1FDED00AA9220 /* LayoutConstant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LayoutConstant.swift; sourceTree = "<group>"; };
@@ -1058,6 +1066,7 @@
 		FDCD02D42CE9182200B627D8 /* SNMNetworkTests */ = {
 			isa = PBXGroup;
 			children = (
+				FDA04AAA2CE92358002605AC /* MultipartFormDataTests.swift */,
 				FDCD02D32CE9182200B627D8 /* SNMNetworkTests.swift */,
 				FDCD02D82CE9183200B627D8 /* EndpointTests.swift */,
 				FDCD02D62CE9182A00B627D8 /* AnyEncodableTests.swift */,
@@ -1068,6 +1077,7 @@
 		FDE14A4A2CE8CED1001F7A9D /* Helper */ = {
 			isa = PBXGroup;
 			children = (
+				FDA04AA72CE91DF4002605AC /* Data + append.swift */,
 				FDE14A4F2CE8D2E7001F7A9D /* URLRequest + append.swift */,
 				FD0634302CE62573003C9D6B /* AnyEncodable.swift */,
 			);
@@ -1077,6 +1087,7 @@
 		FDE14A4B2CE8CED8001F7A9D /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				FDA04AA42CE91DB7002605AC /* MultipartFormData.swift */,
 				FDE14A4D2CE8D13E001F7A9D /* HTTPStatusCode.swift */,
 				FD0634292CE596C2003C9D6B /* NetworkProvider.swift */,
 				FDE14A512CE8D331001F7A9D /* SNMRequestType.swift */,
@@ -1243,6 +1254,7 @@
 				FD3A03422CD8CF460047B7ED /* AppDelegate.swift in Sources */,
 				FD3A03432CD8CF460047B7ED /* SceneDelegate.swift in Sources */,
 				99FA4E792CE0FBBF00553C2E /* ProfileInputViewController.swift in Sources */,
+				FDA04AA92CE91DF8002605AC /* Data + append.swift in Sources */,
 				320044582CE5B04C00D08B6D /* ProfileCreateRouter.swift in Sources */,
 				FDEAEA7C2CE314A7005890FA /* BaseViewController.swift in Sources */,
 				A21435F72CE20D2500564A4D /* TabBarController.swift in Sources */,
@@ -1278,6 +1290,7 @@
 				3200438B2CDF3BEF00D08B6D /* ProfileCreateViewController.swift in Sources */,
 				320044672CE6125100D08B6D /* DataManager.swift in Sources */,
 				FDEAEA7A2CE3148D005890FA /* BaseView.swift in Sources */,
+				FDA04AA52CE91DBF002605AC /* MultipartFormData.swift in Sources */,
 				A2C328862CE245AC00D255AB /* TabBarModuleBuilder.swift in Sources */,
 				FD69B1B52CE3BC7E009D71DC /* UserDefaultsManager.swift in Sources */,
 				320043722CDC9E5F00D08B6D /* (null) in Sources */,
@@ -1309,12 +1322,15 @@
 			files = (
 				FDCD02D92CE9183700B627D8 /* EndpointTests.swift in Sources */,
 				FDCD02C52CE917A400B627D8 /* HTTPStatusCode.swift in Sources */,
+				FDA04AA82CE91DF8002605AC /* Data + append.swift in Sources */,
+				FDA04AA62CE91DBF002605AC /* MultipartFormData.swift in Sources */,
 				FDCD02D52CE9182200B627D8 /* SNMNetworkTests.swift in Sources */,
 				FDCD02C62CE917A400B627D8 /* NetworkProvider.swift in Sources */,
 				FDCD02D22CE917E600B627D8 /* MockURLProtocol.swift in Sources */,
 				FDCD02C72CE917A400B627D8 /* SNMRequestType.swift in Sources */,
 				FDCD02CE2CE917D800B627D8 /* MockRequest.swift in Sources */,
 				FDCD02D72CE9182F00B627D8 /* AnyEncodableTests.swift in Sources */,
+				FDA04AAB2CE9235D002605AC /* MultipartFormDataTests.swift in Sources */,
 				FDCD02C82CE917A400B627D8 /* SNMRequestConvertible.swift in Sources */,
 				FDCD02C92CE917A400B627D8 /* Endpoint.swift in Sources */,
 				FDCD02CA2CE917A400B627D8 /* SNMNetworkResponse.swift in Sources */,
