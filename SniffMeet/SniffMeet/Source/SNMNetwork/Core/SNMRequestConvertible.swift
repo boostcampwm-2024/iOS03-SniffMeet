@@ -17,9 +17,9 @@ public extension SNMRequestConvertible {
     var isValid: Bool {
         switch requestType {
         // method가 get이고 body가 있는 requestType을 정의하면 invalid로 판단합니다.
-        case .compositeJSONEncodable,
-                .compositePlain,
-                .jsonEncodableBody,
+        case .compositeJSONEncodable where endpoint.method == .get,
+                .compositePlain where endpoint.method == .get,
+                .jsonEncodableBody where endpoint.method == .get,
                 .multipartFormData where endpoint.method == .get:
             false
         default:
@@ -29,6 +29,7 @@ public extension SNMRequestConvertible {
 
     func urlRequest() throws -> URLRequest {
         var urlRequest = URLRequest(url: endpoint.absoluteURL)
+        urlRequest.httpMethod = endpoint.method.rawValue
         guard isValid
         else {
             throw SNMNetworkError.invalidRequest(request: self)
