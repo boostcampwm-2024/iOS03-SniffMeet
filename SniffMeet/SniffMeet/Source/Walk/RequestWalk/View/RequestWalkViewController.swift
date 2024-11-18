@@ -110,9 +110,8 @@ final class RequestWalkViewController: BaseViewController {
             
             mainImageView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 20),
             mainImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            mainImageView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 48),
-            mainImageView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -48),
-            mainImageView.heightAnchor.constraint(equalTo: mainImageView.widthAnchor),
+            mainImageView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.4),
+            mainImageView.widthAnchor.constraint(equalTo: mainImageView.heightAnchor),
             
             locationView.topAnchor.constraint(
                 equalTo: mainImageView.bottomAnchor,
