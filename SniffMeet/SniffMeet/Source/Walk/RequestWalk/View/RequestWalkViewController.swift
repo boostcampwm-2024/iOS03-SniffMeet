@@ -8,6 +8,12 @@
 import UIKit
 
 final class RequestWalkViewController: BaseViewController {
+    private var dismissButton: UIButton = {
+        let button = UIButton()
+        button.setImage(UIImage(systemName: "xmark"), for: .normal)
+        button.tintColor = SNMColor.mainNavy
+        return button
+    }()
     private var titleLabel: UILabel = {
         let label = UILabel()
         label.text = Context.mainTitle
@@ -68,6 +74,7 @@ final class RequestWalkViewController: BaseViewController {
     private var submitButton = PrimaryButton(title: Context.mainTitle)
     
     override func configureAttributes() {
+        setButtonActions()
     }
     override func configureHierachy() {
         locationView = UIView()
@@ -77,6 +84,7 @@ final class RequestWalkViewController: BaseViewController {
         }
         
         [titleLabel,
+         dismissButton,
          mainImageView,
          nameLabel,
          locationView,
@@ -91,6 +99,15 @@ final class RequestWalkViewController: BaseViewController {
             titleLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             titleLabel.topAnchor.constraint(equalTo: view.topAnchor,
                                             constant: LayoutConstant.xlargeVerticalPadding),
+            
+            dismissButton.topAnchor.constraint(equalTo: view.topAnchor,
+                                               constant: LayoutConstant.regularVerticalPadding),
+            dismissButton.trailingAnchor.constraint(
+                equalTo: view.trailingAnchor,
+                constant: -LayoutConstant.smallHorizontalPadding),
+            dismissButton.heightAnchor.constraint(equalToConstant: LayoutConstant.iconSize),
+            dismissButton.widthAnchor.constraint(equalToConstant: LayoutConstant.iconSize),
+            
             mainImageView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 20),
             mainImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             mainImageView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 48),
@@ -135,7 +152,8 @@ final class RequestWalkViewController: BaseViewController {
                 constant: -LayoutConstant.smallHorizontalPadding).isActive = true
         }
     }
-    override func bind() {}
+    override func bind() {
+    }
 }
 
 private extension RequestWalkViewController {
@@ -143,5 +161,11 @@ private extension RequestWalkViewController {
         static let mainTitle: String = "산책 요청 보내기"
         static let locationGuideTitle: String = "장소 선택"
         static let requestGuideTitle: String = "간단한 요청 메세지를 작성해주세요."
+    }
+    
+    func setButtonActions() {
+        dismissButton.addAction(UIAction(handler: {[weak self] _ in
+            self?.dismiss(animated: true)
+        }), for: .touchUpInside)
     }
 }
