@@ -57,9 +57,32 @@
 		FD69B1C42CE3BCE4009D71DC /* KeychainManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD69B1B22CE3BC68009D71DC /* KeychainManager.swift */; };
 		FD69B1CB2CE3E9B4009D71DC /* UserDefaultsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD69B1CA2CE3E9B4009D71DC /* UserDefaultsTests.swift */; };
 		FD69B1CD2CE3E9BB009D71DC /* KeychainTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD69B1CC2CE3E9B8009D71DC /* KeychainTests.swift */; };
+		FDA04AA52CE91DBF002605AC /* MultipartFormData.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDA04AA42CE91DB7002605AC /* MultipartFormData.swift */; };
+		FDA04AA62CE91DBF002605AC /* MultipartFormData.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDA04AA42CE91DB7002605AC /* MultipartFormData.swift */; };
+		FDA04AA82CE91DF8002605AC /* Data + append.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDA04AA72CE91DF4002605AC /* Data + append.swift */; };
+		FDA04AA92CE91DF8002605AC /* Data + append.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDA04AA72CE91DF4002605AC /* Data + append.swift */; };
+		FDA04AAB2CE9235D002605AC /* MultipartFormDataTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDA04AAA2CE92358002605AC /* MultipartFormDataTests.swift */; };
 		FDBFA99F2CE1E50C00AA9220 /* SNMFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDBFA99E2CE1E50900AA9220 /* SNMFont.swift */; };
 		FDBFA9A12CE1E51500AA9220 /* SNMColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDBFA9A02CE1E51000AA9220 /* SNMColor.swift */; };
 		FDBFA9B12CE1FE5500AA9220 /* LayoutConstant.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDBFA9B02CE1FDED00AA9220 /* LayoutConstant.swift */; };
+		FDCD02C52CE917A400B627D8 /* HTTPStatusCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDE14A4D2CE8D13E001F7A9D /* HTTPStatusCode.swift */; };
+		FDCD02C62CE917A400B627D8 /* NetworkProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD0634292CE596C2003C9D6B /* NetworkProvider.swift */; };
+		FDCD02C72CE917A400B627D8 /* SNMRequestType.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDE14A512CE8D331001F7A9D /* SNMRequestType.swift */; };
+		FDCD02C82CE917A400B627D8 /* SNMRequestConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD0634272CE596BA003C9D6B /* SNMRequestConvertible.swift */; };
+		FDCD02C92CE917A400B627D8 /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD0634252CE596B2003C9D6B /* Endpoint.swift */; };
+		FDCD02CA2CE917A400B627D8 /* SNMNetworkResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD06342B2CE59843003C9D6B /* SNMNetworkResponse.swift */; };
+		FDCD02CB2CE917A400B627D8 /* URLRequest + append.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDE14A4F2CE8D2E7001F7A9D /* URLRequest + append.swift */; };
+		FDCD02CC2CE917A400B627D8 /* AnyEncodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD0634302CE62573003C9D6B /* AnyEncodable.swift */; };
+		FDCD02CE2CE917D800B627D8 /* MockRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDCD02CD2CE917D400B627D8 /* MockRequest.swift */; };
+		FDCD02CF2CE917D800B627D8 /* MockRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDCD02CD2CE917D400B627D8 /* MockRequest.swift */; };
+		FDCD02D12CE917E600B627D8 /* MockURLProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDCD02D02CE917E200B627D8 /* MockURLProtocol.swift */; };
+		FDCD02D22CE917E600B627D8 /* MockURLProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDCD02D02CE917E200B627D8 /* MockURLProtocol.swift */; };
+		FDCD02D52CE9182200B627D8 /* SNMNetworkTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDCD02D32CE9182200B627D8 /* SNMNetworkTests.swift */; };
+		FDCD02D72CE9182F00B627D8 /* AnyEncodableTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDCD02D62CE9182A00B627D8 /* AnyEncodableTests.swift */; };
+		FDCD02D92CE9183700B627D8 /* EndpointTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDCD02D82CE9183200B627D8 /* EndpointTests.swift */; };
+		FDE14A4E2CE8D144001F7A9D /* HTTPStatusCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDE14A4D2CE8D13E001F7A9D /* HTTPStatusCode.swift */; };
+		FDE14A502CE8D2FB001F7A9D /* URLRequest + append.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDE14A4F2CE8D2E7001F7A9D /* URLRequest + append.swift */; };
+		FDE14A522CE8D338001F7A9D /* SNMRequestType.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDE14A512CE8D331001F7A9D /* SNMRequestType.swift */; };
 		FDEAEA7A2CE3148D005890FA /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDEAEA792CE3148C005890FA /* BaseView.swift */; };
 		FDEAEA7C2CE314A7005890FA /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDEAEA7B2CE314A3005890FA /* BaseViewController.swift */; };
 /* End PBXBuildFile section */
@@ -118,9 +141,21 @@
 		FD69B1BA2CE3BCDC009D71DC /* SNMPersistenceTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SNMPersistenceTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FD69B1CA2CE3E9B4009D71DC /* UserDefaultsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsTests.swift; sourceTree = "<group>"; };
 		FD69B1CC2CE3E9B8009D71DC /* KeychainTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainTests.swift; sourceTree = "<group>"; };
+		FDA04AA42CE91DB7002605AC /* MultipartFormData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultipartFormData.swift; sourceTree = "<group>"; };
+		FDA04AA72CE91DF4002605AC /* Data + append.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Data + append.swift"; sourceTree = "<group>"; };
+		FDA04AAA2CE92358002605AC /* MultipartFormDataTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultipartFormDataTests.swift; sourceTree = "<group>"; };
 		FDBFA99E2CE1E50900AA9220 /* SNMFont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SNMFont.swift; sourceTree = "<group>"; };
 		FDBFA9A02CE1E51000AA9220 /* SNMColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SNMColor.swift; sourceTree = "<group>"; };
 		FDBFA9B02CE1FDED00AA9220 /* LayoutConstant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LayoutConstant.swift; sourceTree = "<group>"; };
+		FDCD02BE2CE9172600B627D8 /* SNMNetworkTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SNMNetworkTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		FDCD02CD2CE917D400B627D8 /* MockRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockRequest.swift; sourceTree = "<group>"; };
+		FDCD02D02CE917E200B627D8 /* MockURLProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockURLProtocol.swift; sourceTree = "<group>"; };
+		FDCD02D32CE9182200B627D8 /* SNMNetworkTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SNMNetworkTests.swift; sourceTree = "<group>"; };
+		FDCD02D62CE9182A00B627D8 /* AnyEncodableTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnyEncodableTests.swift; sourceTree = "<group>"; };
+		FDCD02D82CE9183200B627D8 /* EndpointTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndpointTests.swift; sourceTree = "<group>"; };
+		FDE14A4D2CE8D13E001F7A9D /* HTTPStatusCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPStatusCode.swift; sourceTree = "<group>"; };
+		FDE14A4F2CE8D2E7001F7A9D /* URLRequest + append.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URLRequest + append.swift"; sourceTree = "<group>"; };
+		FDE14A512CE8D331001F7A9D /* SNMRequestType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SNMRequestType.swift; sourceTree = "<group>"; };
 		FDEAEA792CE3148C005890FA /* BaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseView.swift; sourceTree = "<group>"; };
 		FDEAEA7B2CE314A3005890FA /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -134,6 +169,13 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		FD69B1B72CE3BCDC009D71DC /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FDCD02BB2CE9172600B627D8 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -225,11 +267,9 @@
 		FD0634242CE596A7003C9D6B /* SNMNetwork */ = {
 			isa = PBXGroup;
 			children = (
-				FD0634302CE62573003C9D6B /* AnyEncodable.swift */,
-				FD0634292CE596C2003C9D6B /* NetworkProvider.swift */,
-				FD0634272CE596BA003C9D6B /* SNMRequestConvertible.swift */,
-				FD0634252CE596B2003C9D6B /* Endpoint.swift */,
-				FD06342B2CE59843003C9D6B /* SNMNetworkResponse.swift */,
+				FDE14A4B2CE8CED8001F7A9D /* Core */,
+				FDE14A4A2CE8CED1001F7A9D /* Helper */,
+				FDE14A4C2CE8CEDD001F7A9D /* Mock */,
 			);
 			path = SNMNetwork;
 			sourceTree = "<group>";
@@ -239,6 +279,7 @@
 			children = (
 				FD3A033E2CD8CF460047B7ED /* SniffMeet */,
 				FD69B1C62CE3BCED009D71DC /* SNMPersistenceTests */,
+				FDCD02D42CE9182200B627D8 /* SNMNetworkTests */,
 				FD3A03212CD8CDE50047B7ED /* Products */,
 			);
 			sourceTree = "<group>";
@@ -248,6 +289,7 @@
 			children = (
 				FD3A03202CD8CDE50047B7ED /* SniffMeet.app */,
 				FD69B1BA2CE3BCDC009D71DC /* SNMPersistenceTests.xctest */,
+				FDCD02BE2CE9172600B627D8 /* SNMNetworkTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1021,6 +1063,50 @@
 			path = Router;
 			sourceTree = "<group>";
 		};
+		FDCD02D42CE9182200B627D8 /* SNMNetworkTests */ = {
+			isa = PBXGroup;
+			children = (
+				FDA04AAA2CE92358002605AC /* MultipartFormDataTests.swift */,
+				FDCD02D32CE9182200B627D8 /* SNMNetworkTests.swift */,
+				FDCD02D82CE9183200B627D8 /* EndpointTests.swift */,
+				FDCD02D62CE9182A00B627D8 /* AnyEncodableTests.swift */,
+			);
+			path = SNMNetworkTests;
+			sourceTree = "<group>";
+		};
+		FDE14A4A2CE8CED1001F7A9D /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				FDA04AA72CE91DF4002605AC /* Data + append.swift */,
+				FDE14A4F2CE8D2E7001F7A9D /* URLRequest + append.swift */,
+				FD0634302CE62573003C9D6B /* AnyEncodable.swift */,
+			);
+			path = Helper;
+			sourceTree = "<group>";
+		};
+		FDE14A4B2CE8CED8001F7A9D /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				FDA04AA42CE91DB7002605AC /* MultipartFormData.swift */,
+				FDE14A4D2CE8D13E001F7A9D /* HTTPStatusCode.swift */,
+				FD0634292CE596C2003C9D6B /* NetworkProvider.swift */,
+				FDE14A512CE8D331001F7A9D /* SNMRequestType.swift */,
+				FD0634272CE596BA003C9D6B /* SNMRequestConvertible.swift */,
+				FD0634252CE596B2003C9D6B /* Endpoint.swift */,
+				FD06342B2CE59843003C9D6B /* SNMNetworkResponse.swift */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		FDE14A4C2CE8CEDD001F7A9D /* Mock */ = {
+			isa = PBXGroup;
+			children = (
+				FDCD02D02CE917E200B627D8 /* MockURLProtocol.swift */,
+				FDCD02CD2CE917D400B627D8 /* MockRequest.swift */,
+			);
+			path = Mock;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1064,6 +1150,25 @@
 			productReference = FD69B1BA2CE3BCDC009D71DC /* SNMPersistenceTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
+		FDCD02BD2CE9172600B627D8 /* SNMNetworkTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FDCD02C42CE9172600B627D8 /* Build configuration list for PBXNativeTarget "SNMNetworkTests" */;
+			buildPhases = (
+				FDCD02BA2CE9172600B627D8 /* Sources */,
+				FDCD02BB2CE9172600B627D8 /* Frameworks */,
+				FDCD02BC2CE9172600B627D8 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SNMNetworkTests;
+			packageProductDependencies = (
+			);
+			productName = SNMNetworkTests;
+			productReference = FDCD02BE2CE9172600B627D8 /* SNMNetworkTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -1080,6 +1185,9 @@
 					FD69B1B92CE3BCDC009D71DC = {
 						CreatedOnToolsVersion = 16.0;
 						TestTargetID = FD3A031F2CD8CDE50047B7ED;
+					};
+					FDCD02BD2CE9172600B627D8 = {
+						CreatedOnToolsVersion = 16.0;
 					};
 				};
 			};
@@ -1102,6 +1210,7 @@
 			targets = (
 				FD3A031F2CD8CDE50047B7ED /* SniffMeet */,
 				FD69B1B92CE3BCDC009D71DC /* SNMPersistenceTests */,
+				FDCD02BD2CE9172600B627D8 /* SNMNetworkTests */,
 			);
 		};
 /* End PBXProject section */
@@ -1124,6 +1233,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		FDCD02BC2CE9172600B627D8 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -1138,10 +1254,12 @@
 				FD3A03422CD8CF460047B7ED /* AppDelegate.swift in Sources */,
 				FD3A03432CD8CF460047B7ED /* SceneDelegate.swift in Sources */,
 				99FA4E792CE0FBBF00553C2E /* ProfileInputViewController.swift in Sources */,
+				FDA04AA92CE91DF8002605AC /* Data + append.swift in Sources */,
 				320044582CE5B04C00D08B6D /* ProfileCreateRouter.swift in Sources */,
 				FDEAEA7C2CE314A7005890FA /* BaseViewController.swift in Sources */,
 				A21435F72CE20D2500564A4D /* TabBarController.swift in Sources */,
 				320043762CDCA18E00D08B6D /* (null) in Sources */,
+				FDCD02CF2CE917D800B627D8 /* MockRequest.swift in Sources */,
 				A2F825DD2CDFBEB4000C5419 /* ProfileCardView.swift in Sources */,
 				A2C328882CE2481900D255AB /* HomeModuleBuilder.swift in Sources */,
 				995D94262CE32ECE005A47BF /* Extension + Keyboard.swift in Sources */,
@@ -1151,6 +1269,7 @@
 				320043972CDF493C00D08B6D /* Extension + UIView.swift in Sources */,
 				FD0634262CE596B5003C9D6B /* Endpoint.swift in Sources */,
 				320044502CE595F700D08B6D /* ProfileInputPresenter.swift in Sources */,
+				FDE14A522CE8D338001F7A9D /* SNMRequestType.swift in Sources */,
 				FD69B1B32CE3BC76009D71DC /* KeychainManager.swift in Sources */,
 				320043782CDCA49100D08B6D /* (null) in Sources */,
 				FD06342A2CE596D0003C9D6B /* NetworkProvider.swift in Sources */,
@@ -1158,9 +1277,11 @@
 				320043912CDF3D7F00D08B6D /* KeywordButton.swift in Sources */,
 				320043922CDF3D7F00D08B6D /* InputTextField.swift in Sources */,
 				320043932CDF3D7F00D08B6D /* KeywordView.swift in Sources */,
+				FDE14A502CE8D2FB001F7A9D /* URLRequest + append.swift in Sources */,
 				FD06342C2CE5984D003C9D6B /* SNMNetworkResponse.swift in Sources */,
 				3200445E2CE5CA1B00D08B6D /* SaveInfoUseCase.swift in Sources */,
 				320043942CDF3D7F00D08B6D /* PrimaryButton.swift in Sources */,
+				FDCD02D12CE917E600B627D8 /* MockURLProtocol.swift in Sources */,
 				320043952CDF3D7F00D08B6D /* Extension + Navigation.swift in Sources */,
 				FDBFA99F2CE1E50C00AA9220 /* SNMFont.swift in Sources */,
 				320044532CE59A8A00D08B6D /* Dog.swift in Sources */,
@@ -1169,9 +1290,11 @@
 				3200438B2CDF3BEF00D08B6D /* ProfileCreateViewController.swift in Sources */,
 				320044672CE6125100D08B6D /* DataManager.swift in Sources */,
 				FDEAEA7A2CE3148D005890FA /* BaseView.swift in Sources */,
+				FDA04AA52CE91DBF002605AC /* MultipartFormData.swift in Sources */,
 				A2C328862CE245AC00D255AB /* TabBarModuleBuilder.swift in Sources */,
 				FD69B1B52CE3BC7E009D71DC /* UserDefaultsManager.swift in Sources */,
 				320043722CDC9E5F00D08B6D /* (null) in Sources */,
+				FDE14A4E2CE8D144001F7A9D /* HTTPStatusCode.swift in Sources */,
 				3200441E2CE48D3500D08B6D /* MPCManager.swift in Sources */,
 				FD0634312CE62578003C9D6B /* AnyEncodable.swift in Sources */,
 				3200441A2CE48A3D00D08B6D /* MPCBroswer.swift in Sources */,
@@ -1190,6 +1313,29 @@
 				FD69B1C32CE3BCE4009D71DC /* UserDefaultsManager.swift in Sources */,
 				FD69B1C42CE3BCE4009D71DC /* KeychainManager.swift in Sources */,
 				FD69B1CD2CE3E9BB009D71DC /* KeychainTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FDCD02BA2CE9172600B627D8 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FDCD02D92CE9183700B627D8 /* EndpointTests.swift in Sources */,
+				FDCD02C52CE917A400B627D8 /* HTTPStatusCode.swift in Sources */,
+				FDA04AA82CE91DF8002605AC /* Data + append.swift in Sources */,
+				FDA04AA62CE91DBF002605AC /* MultipartFormData.swift in Sources */,
+				FDCD02D52CE9182200B627D8 /* SNMNetworkTests.swift in Sources */,
+				FDCD02C62CE917A400B627D8 /* NetworkProvider.swift in Sources */,
+				FDCD02D22CE917E600B627D8 /* MockURLProtocol.swift in Sources */,
+				FDCD02C72CE917A400B627D8 /* SNMRequestType.swift in Sources */,
+				FDCD02CE2CE917D800B627D8 /* MockRequest.swift in Sources */,
+				FDCD02D72CE9182F00B627D8 /* AnyEncodableTests.swift in Sources */,
+				FDA04AAB2CE9235D002605AC /* MultipartFormDataTests.swift in Sources */,
+				FDCD02C82CE917A400B627D8 /* SNMRequestConvertible.swift in Sources */,
+				FDCD02C92CE917A400B627D8 /* Endpoint.swift in Sources */,
+				FDCD02CA2CE917A400B627D8 /* SNMNetworkResponse.swift in Sources */,
+				FDCD02CB2CE917A400B627D8 /* URLRequest + append.swift in Sources */,
+				FDCD02CC2CE917A400B627D8 /* AnyEncodable.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1412,12 +1558,17 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = B3PWYBKFUK;
 				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = kr.codesquad.boostcamp9.SNMPersistenceTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SniffMeet.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/SniffMeet";
 			};
 			name = Debug;
@@ -1430,13 +1581,60 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = B3PWYBKFUK;
 				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = kr.codesquad.boostcamp9.SNMPersistenceTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SniffMeet.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/SniffMeet";
+			};
+			name = Release;
+		};
+		FDCD02C22CE9172600B627D8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = B3PWYBKFUK;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = kr.codesquad.boostcamp9.SNMNetworkTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		FDCD02C32CE9172600B627D8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = B3PWYBKFUK;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = kr.codesquad.boostcamp9.SNMNetworkTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
@@ -1466,6 +1664,15 @@
 			buildConfigurations = (
 				FD69B1C12CE3BCDC009D71DC /* Debug */,
 				FD69B1C22CE3BCDC009D71DC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		FDCD02C42CE9172600B627D8 /* Build configuration list for PBXNativeTarget "SNMNetworkTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FDCD02C22CE9172600B627D8 /* Debug */,
+				FDCD02C32CE9172600B627D8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

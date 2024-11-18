@@ -8,11 +8,11 @@
 import Foundation
 
 public final class SNMNetworkResponse {
-    public let statusCode: Int
+    public let statusCode: HTTPStatusCode
     public let data: Data
     public let response: HTTPURLResponse?
     
-    public init(statusCode: Int, data: Data, response: HTTPURLResponse? = nil) {
+    public init(statusCode: HTTPStatusCode, data: Data, response: HTTPURLResponse? = nil) {
         self.statusCode = statusCode
         self.data = data
         self.response = response
