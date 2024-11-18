@@ -15,7 +15,7 @@ extension UIControl {
 }
 
 struct UIControlEventPublisher: Publisher {
-    typealias Output = UIControl
+    typealias Output = Void
     typealias Failure = Never
     private let control: UIControl
     private let event: UIControl.Event
@@ -36,7 +36,7 @@ struct UIControlEventPublisher: Publisher {
 }
 
 final class UIControlEventSubscription<S>: Subscription where S: Subscriber,
-                                                              S.Input == UIControl,
+                                                              S.Input == Void,
                                                               S.Failure == Never {
     private weak var control: UIControl?
     private var subscriber: S?
@@ -53,7 +53,6 @@ final class UIControlEventSubscription<S>: Subscription where S: Subscriber,
         control?.removeTarget(self, action: #selector(processControlAction), for: .allEvents)
     }
     @objc func processControlAction() {
-        guard let control else { return }
-        _ = subscriber?.receive(control)
+        _ = subscriber?.receive(())
     }
 }
