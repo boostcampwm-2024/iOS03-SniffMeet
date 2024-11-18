@@ -51,9 +51,15 @@ final class CardPresentationController: UIPresentationController {
     
     override func containerViewWillLayoutSubviews() {
         super.containerViewWillLayoutSubviews()
-        
-        // 카드 형식의 뷰를 설정
-        presentedView?.layer.cornerRadius = 20
-        presentedView?.clipsToBounds = true
+
+        if let presentedView {
+            presentedView.layer.cornerRadius = 20
+            presentedView.clipsToBounds = true
+            
+            presentedView.layer.shadowColor = SNMColor.black.cgColor
+            presentedView.layer.shadowOpacity = 0.25
+            presentedView.layer.shadowOffset = CGSize(width: 0, height: 4)
+            presentedView.layer.shadowRadius = 4
+        }
     }
 }
