@@ -11,7 +11,6 @@ enum SupabaseRequest {
     case signInAnonymously
     case refreshToken(refreshToken: String)
     case refreshUser(accessToken: String)
-    // case refreshSession
 }
 
 extension SupabaseRequest: SNMRequestConvertible {
