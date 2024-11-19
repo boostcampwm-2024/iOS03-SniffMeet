@@ -72,7 +72,7 @@ final class RequestWalkViewController: BaseViewController, RequestWalkViewable {
         textView.font = SNMFont.subheadline
         textView.backgroundColor = SNMColor.subGray1
         textView.layer.cornerRadius = 10
-        let padding = LayoutConstant.textViewEdgePadding
+        let padding = LayoutConstant.edgePadding
         textView.textContainerInset = UIEdgeInsets(top: padding,
                                                    left: padding,
                                                    bottom: padding,
