@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct SupabaseRefreshTokenRequest: Encodable {
+struct SupabaseTokenRequest: Encodable {
     var refreshToken: String
 
     enum CodingKeys: String, CodingKey {

@@ -11,8 +11,10 @@ import Foundation
 protocol AuthManager {
     static var shared: AuthManager { get }
     var authStateSubject: PassthroughSubject<AuthState, Never> { get set }
+
     func signInAnonymously() async
-    func saveSession(for session: SupabaseSession) throws
+    func restoreSession() async
+    func refreshSession() async
 }
 
 enum AuthState: String, CaseIterable {
@@ -41,8 +43,15 @@ final class SupabaseAuthManager: AuthManager {
             let response = try await networkProvider.request(
                 with: SupabaseRequest.signInAnonymously
             )
-            let sessionResponse = try decoder.decode(SupabaseSessionResponse.self, from: response.data)
-            try saveSession(for: SupabaseSession(from: sessionResponse))
+            let sessionResponse = try decoder.decode(
+                SupabaseSessionResponse.self,
+                from: response.data)
+            try saveSession(for: SupabaseSession(
+                accessToken: sessionResponse.accessToken,
+                expiresAt: sessionResponse.expiresAt,
+                refreshToken: sessionResponse.refreshToken,
+                user: SupabaseUser(from: sessionResponse.user)
+            ))
             authStateSubject.send(.signInSucced)
         } catch {
             // TODO: 실패 처리 결정
@@ -50,38 +59,52 @@ final class SupabaseAuthManager: AuthManager {
         }
     }
 
-    func saveSession(for session: SupabaseSession) throws {
-        SupabaseConfig.session = session
-        try KeychainManager.shared.set(value: session.accessToken, forKey: "accessToken")
-        try KeychainManager.shared.set(value: session.refreshToken, forKey: "refreshToken")
-    }
-
-    func restoreSession() async {
+    func restoreSession() async { // 세션 복원
+        // 키체인에서 토큰 가져와서 일단 만료랑 상관없이 세션 업데이트
         do {
             let accessToken = try KeychainManager.shared.get(forKey: "accessToken")
             let refreshToken = try KeychainManager.shared.get(forKey: "refreshToken")
-            let response = try await networkProvider.request(
-                with: SupabaseRequest.refreshUser
+            let expiresAt = try UserDefaultsManager.shared.get(forKey: "expiresAt", type: Int.self)
+            SessionManager.shared.session = SupabaseSession(
+                accessToken: accessToken,
+                expiresAt: expiresAt,
+                refreshToken: refreshToken
             )
-            let userResponse = try decoder.decode(SupabaseUserResponse.self, from: response.data)
-            try saveSession(for: SupabaseSession(from: sessionResponse))
-            authStateSubject.send(.signInSucced)
         } catch {
-            // TODO: 실패 처리 결정
-            // 세션 복원 실패 -> 처음 실행
-            print(error)
+            // 키체인에 토큰 정보가 없음 -> 앱을 최초로 실행한 상태와 같음
+        }
+        await refreshSession() // 세션 갱신 진행
+    }
+
+    func refreshSession() async { // 세션 갱신
+        // 세션에서 토큰 가져옴
+        do {
+            let refreshToken = try KeychainManager.shared.get(forKey: "refreshToken")
+            // 가져온 토큰으로 갱신 요청
+            let response = try await networkProvider.request(
+                with: SupabaseRequest.refreshToken
+            )
+            let sessionResponse = try decoder.decode(
+                SupabaseSessionResponse.self,
+                from: response.data
+            )
+            // 새로 받아온 토큰으로 세션 업데이트
+            try saveSession(for: SupabaseSession(
+                accessToken: sessionResponse.accessToken,
+                expiresAt: sessionResponse.expiresAt,
+                refreshToken: sessionResponse.refreshToken,
+                user: SupabaseUser(from: sessionResponse.user)
+            ))
+        } catch {
+            // 갱신 실패
         }
     }
 
-    func refreshSession() {
-        // 세션 갱신
-        // method: POST
-        // url: https://lltjsznuclppbhxfwslo.supabase.co/auth/v1/token?grant_type=refresh_token
-        // Header:
-        //  Content-Type: application/json
-        //  Authorization: Bearer <access-token>
-        //  apikey: <anon-key>
-        // body: { "refresh_token": <refresh_token>}
-        //
+    private func saveSession(for session: SupabaseSession?) throws {
+        guard let session else { throw SupabaseAuthError.sessionNotExist }
+        SessionManager.shared.session = session
+        try KeychainManager.shared.set(value: session.accessToken, forKey: "accessToken")
+        try KeychainManager.shared.set(value: session.refreshToken, forKey: "refreshToken")
+        try UserDefaultsManager.shared.set(value: session.expiresAt, forKey: "expiresAt")
     }
 }

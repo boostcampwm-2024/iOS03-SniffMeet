@@ -7,21 +7,21 @@
 
 import Foundation
 
-struct supabaseRefreshTokenResponse: Codable {
+struct SupabaseRefreshTokenResponse: Codable {
     var accessToken: String
     var refreshToken: String
-    var expiresIn: Int
+    var expiresAt: Int
     var tokenType: String
 
-    enum codingKeys: String, CodingKey {
+    enum CodingKeys: String, CodingKey {
         case accessToken = "access_token"
         case refreshToken = "refresh_token"
-        case expiresIn = "expires_in"
+        case expiresAt = "expires_at"
         case tokenType = "token_type"
     }
 }
 
-struct supabaseRefreshUserResponse: Codable {
+struct SupabaseRefreshUserResponse: Codable {
     var id: String
     var userMetadata: SupabaseUserMetadata
 

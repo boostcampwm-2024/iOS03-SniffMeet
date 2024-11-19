@@ -29,7 +29,7 @@ extension SupabaseRequest: SNMRequestConvertible {
                 path: "auth/v1/token",
                 method: .post,
                 query: [
-                    "grant_type": SupabaseConfig.session!.refreshToken // force unwrapping
+                    "grant_type": SessionManager.shared.session!.refreshToken // force unwrapping
                 ]
             )
         case .refreshUser:
@@ -54,13 +54,22 @@ extension SupabaseRequest: SNMRequestConvertible {
                 body: Data("{}".utf8)
             )
         case .refreshToken:
-            header["Authorization"] = "Bearer \(SupabaseConfig.session!.refreshToken)" // forceUnwrapping
+            var refreshToken = ""
+            if let token = SessionManager.shared.session?.refreshToken {
+                refreshToken = token
+            } else {
+                do {
+                    refreshToken = try KeychainManager.shared.get(forKey: "refreshToken")
+                } catch {
+                    // TODO: refresh Token을 찾을 수 없는 오류
+                }
+            }
             return SNMRequestType.compositeJSONEncodable(
                 header: header,
-                body: SupabaseRefreshTokenRequest(refreshToken: SupabaseConfig.session!.refreshToken) // forceUnwrapping
+                body: SupabaseTokenRequest(refreshToken: refreshToken) // forceUnwrapping
             )
         case .refreshUser:
-            header["Authorization"] = "Bearer \(SupabaseConfig.session!.accessToken)" // forceUnwrapping
+            header["Authorization"] = "Bearer \(SessionManager.shared.session!.accessToken)" // forceUnwrapping
             return SNMRequestType.header(
                 with: header
             )
