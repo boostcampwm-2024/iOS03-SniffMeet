@@ -14,17 +14,16 @@ public struct Endpoint {
     public var query: [String: String]?
     /// path와 query를 조합한 URL입니다. 조합에 실패시 baseURL을 반환합니다. 
     public var absoluteURL: URL  {
-        var absoluteURLString: String = baseURL.absoluteString + "/"
-        // 의미없는 / 제거
-        let pathComponents = path.components(separatedBy: "/")
-                                .compactMap{ $0.isEmpty ? nil : $0 }
-        let queryPathString: String = query?.map{ "\($0)=\($1)" }.joined(separator: "&") ?? ""
-        absoluteURLString += pathComponents.joined(separator: "/")
-        if !queryPathString.isEmpty {
-            absoluteURLString += "?\(queryPathString)"
+        let absoluteURLString: String = baseURL.absoluteString.trimmingCharacters(
+            in: CharacterSet(charactersIn: "/")
+        )
+        var components = URLComponents(string: absoluteURLString)
+        components?.queryItems = query?.compactMap {
+            URLQueryItem(name: $0, value: $1)
         }
-    
-        return URL(string: absoluteURLString) ?? baseURL
+        let previousPath = components?.path ?? ""
+        components?.path = previousPath + "/\(path)"
+        return components?.url ?? baseURL
     }
 }
 
