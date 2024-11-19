@@ -4,7 +4,6 @@
 //
 //  Created by 윤지성 on 11/18/24.
 //
-
 import UIKit
 
 protocol RequestWalkViewable: AnyObject {
@@ -69,11 +68,16 @@ final class RequestWalkViewController: BaseViewController, RequestWalkViewable {
     private var locationView: UIView!
     private var messageTextView: UITextView = {
         let textView = UITextView()
-        textView.text = Context.requestGuideTitle
+        textView.text = Context.messagePlaceholder
         textView.font = SNMFont.subheadline
-        textView.textColor = SNMColor.black
         textView.backgroundColor = SNMColor.subGray1
         textView.layer.cornerRadius = 10
+        let padding = LayoutConstant.textViewEdgePadding
+        textView.textContainerInset = UIEdgeInsets(top: padding,
+                                                   left: padding,
+                                                   bottom: padding,
+                                                   right: padding)
+        textView.textColor = .lightGray
         return textView
     }()
     private var submitButton = PrimaryButton(title: Context.mainTitle)
@@ -81,6 +85,8 @@ final class RequestWalkViewController: BaseViewController, RequestWalkViewable {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        messageTextView.delegate = self
+        view.backgroundColor = .systemBackground
         presenter?.viewDidLoad()
     }
     override func configureAttributes() {
@@ -171,7 +177,8 @@ private extension RequestWalkViewController {
     enum Context {
         static let mainTitle: String = "산책 요청 보내기"
         static let locationGuideTitle: String = "장소 선택"
-        static let requestGuideTitle: String = "간단한 요청 메세지를 작성해주세요."
+        static let messagePlaceholder: String = "간단한 요청 메세지를 작성해주세요."
+        static let characterCountLimit: Int = 100
     }
     
     func setButtonActions() {
@@ -187,5 +194,29 @@ private extension RequestWalkViewController {
         print("location 뷰 탭!")
 #endif
         
+    }
+}
+
+extension RequestWalkViewController: UITextViewDelegate {
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        if textView.text == Context.messagePlaceholder {
+            textView.text = nil
+            textView.textColor = .black
+        }
+    }
+    func textViewDidEndEditing(_ textView: UITextView) {
+        if textView.text.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
+            textView.text = Context.messagePlaceholder
+            textView.textColor = .lightGray
+        }
+    }
+    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+        let inputString = text.trimmingCharacters(in: .whitespacesAndNewlines)
+        guard let oldString = textView.text, let newRange = Range(range, in: oldString) else { return true }
+        let newString = oldString.replacingCharacters(in: newRange, with: inputString).trimmingCharacters(in: .whitespacesAndNewlines)
+
+        let characterCount = newString.count
+        guard characterCount <= Context.characterCountLimit else { return false }
+        return true
     }
 }
