@@ -54,7 +54,6 @@ final class SupabaseAuthManager: AuthManager {
             authStateSubject.send(.signInSucced)
         } catch {
             // TODO: 실패 처리 결정
-            print(error)
         }
     }
 
