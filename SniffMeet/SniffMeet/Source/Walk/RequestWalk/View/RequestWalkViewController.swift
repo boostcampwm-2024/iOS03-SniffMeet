@@ -7,7 +7,12 @@
 
 import UIKit
 
-final class RequestWalkViewController: BaseViewController {
+protocol RequestWalkViewable: AnyObject {
+    var presenter: RequestWalkPresentable? { get set }
+}
+
+final class RequestWalkViewController: BaseViewController, RequestWalkViewable {
+    var presenter: RequestWalkPresentable?
     private var dismissButton: UIButton = {
         let button = UIButton()
         button.setImage(UIImage(systemName: "xmark"), for: .normal)
@@ -72,7 +77,12 @@ final class RequestWalkViewController: BaseViewController {
         return textView
     }()
     private var submitButton = PrimaryButton(title: Context.mainTitle)
+    private var locationTapGesture = UITapGestureRecognizer()
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        presenter?.viewDidLoad()
+    }
     override func configureAttributes() {
         setButtonActions()
     }
@@ -150,6 +160,8 @@ final class RequestWalkViewController: BaseViewController {
                 equalTo: view.trailingAnchor,
                 constant: -LayoutConstant.smallHorizontalPadding).isActive = true
         }
+        
+        locationView.addGestureRecognizer(locationTapGesture)
     }
     override func bind() {
     }
@@ -164,7 +176,16 @@ private extension RequestWalkViewController {
     
     func setButtonActions() {
         dismissButton.addAction(UIAction(handler: {[weak self] _ in
-            self?.dismiss(animated: true)
+            self?.presenter?.closeTheView()
         }), for: .touchUpInside)
+        
+        locationTapGesture.addTarget(self, action: #selector(locationDidTap))
+    }
+    
+    @objc func locationDidTap() {
+#if DEBUG
+        print("location 뷰 탭!")
+#endif
+        
     }
 }
