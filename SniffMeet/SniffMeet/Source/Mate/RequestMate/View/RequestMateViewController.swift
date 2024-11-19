@@ -7,7 +7,13 @@
 
 import UIKit
 
-final class RequestMateViewController: UIViewController {
+protocol RequestMateViewable: AnyObject {
+    func updateView(with profile: DogProfileInfo)
+}
+
+final class RequestMateViewController: BaseViewController, RequestMateViewable {
+    var presenter: RequestMatePresentable?
+
     private var zStackView = UIView()
     private var profileImageView = UIImageView()
     private var nameLabel = UILabel()
@@ -26,9 +32,10 @@ final class RequestMateViewController: UIViewController {
         configureHierachy()
         configureConstraints()
         bind()
+        presenter?.viewDidLoad()
     }
 
-    func configureAttributes() {
+    override func configureAttributes() {
         profileImageView.image = UIImage(named: "ImagePlaceholder")
         profileImageView.contentMode = .scaleAspectFill
         profileImageView.translatesAutoresizingMaskIntoConstraints = false
@@ -56,7 +63,7 @@ final class RequestMateViewController: UIViewController {
         declineButton = UIButton(configuration: declineConfig)
     }
 
-    func configureHierachy() {
+    override func configureHierachy() {
         for keyword in keywords {
             let keywordView = KeywordView(title: keyword.rawValue)
             keywordStackView.addArrangedSubview(keywordView)
@@ -76,7 +83,7 @@ final class RequestMateViewController: UIViewController {
         }
     }
 
-    func configureConstraints() {
+    override func configureConstraints() {
         let constraints = [
             profileImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             profileImageView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
@@ -120,7 +127,16 @@ final class RequestMateViewController: UIViewController {
         ]
         NSLayoutConstraint.activate(constraints)
     }
-    func bind() {}
+    override func bind() {}
+
+    func updateView(with profile: DogProfileInfo) {
+        if let profileImageData = profile.profileImage {
+            let uiImage = UIImage(data: profileImageData)
+            profileImageView.image = uiImage
+        }
+        nameLabel.text = profile.name
+        keywords = profile.keywords
+    }
 }
 
 private extension RequestMateViewController {
