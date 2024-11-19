@@ -38,6 +38,7 @@
 		320044772CEB4E1E00D08B6D /* RequestWalk.swift in Sources */ = {isa = PBXBuildFile; fileRef = 320044762CEB4E0F00D08B6D /* RequestWalk.swift */; };
 		995D94262CE32ECE005A47BF /* Extension + Keyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 995D94252CE32EC1005A47BF /* Extension + Keyboard.swift */; };
 		995D94622CE598FD005A47BF /* NIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 995D94612CE598F0005A47BF /* NIManager.swift */; };
+		995D94A82CECEF91005A47BF /* RequestMateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 995D94A72CECEF91005A47BF /* RequestMateViewController.swift */; };
 		99FA4E792CE0FBBF00553C2E /* ProfileInputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99FA4E782CE0FBBF00553C2E /* ProfileInputViewController.swift */; };
 		A21435F72CE20D2500564A4D /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A21435F62CE20D2500564A4D /* TabBarController.swift */; };
 		A288A63D2CDC595000D11C34 /* (null) in Resources */ = {isa = PBXBuildFile; };
@@ -136,6 +137,7 @@
 		320044762CEB4E0F00D08B6D /* RequestWalk.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestWalk.swift; sourceTree = "<group>"; };
 		995D94252CE32EC1005A47BF /* Extension + Keyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension + Keyboard.swift"; sourceTree = "<group>"; };
 		995D94612CE598F0005A47BF /* NIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NIManager.swift; sourceTree = "<group>"; };
+		995D94A72CECEF91005A47BF /* RequestMateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestMateViewController.swift; sourceTree = "<group>"; };
 		99FA4E782CE0FBBF00553C2E /* ProfileInputViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileInputViewController.swift; sourceTree = "<group>"; };
 		A21435F62CE20D2500564A4D /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		A2C328852CE245AC00D255AB /* TabBarModuleBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarModuleBuilder.swift; sourceTree = "<group>"; };
@@ -989,6 +991,7 @@
 		FDA491872CDA7C3000A36FB0 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				995D94A72CECEF91005A47BF /* RequestMateViewController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1280,6 +1283,7 @@
 				A2C844D12CDBE1E5007F2970 /* (null) in Sources */,
 				3200444E2CE595EA00D08B6D /* ProfileCreatePresenter.swift in Sources */,
 				FD3A03422CD8CF460047B7ED /* AppDelegate.swift in Sources */,
+				995D94A82CECEF91005A47BF /* RequestMateViewController.swift in Sources */,
 				FD3A03432CD8CF460047B7ED /* SceneDelegate.swift in Sources */,
 				99FA4E792CE0FBBF00553C2E /* ProfileInputViewController.swift in Sources */,
 				FDA04AA92CE91DF8002605AC /* Data + append.swift in Sources */,
