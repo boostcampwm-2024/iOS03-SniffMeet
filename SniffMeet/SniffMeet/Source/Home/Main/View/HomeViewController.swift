@@ -8,10 +8,13 @@
 import Combine
 import UIKit
 
-final class HomeViewController: UIViewController {
-    let profileCardView = ProfileCardView()
+protocol HomeViewable: AnyObject {
+    var presenter: (any HomePresentable)? { get }
+}
 
-    private var startSessionButton: UIButton = PrimaryButton(title: "메이트 연결하기")
+final class HomeViewController: BaseViewController, HomeViewable {
+    private let profileCardView = ProfileCardView()
+    private var startSessionButton: UIButton = PrimaryButton(title: Context.primaryButtonLabel)
     private var mpcManager: MPCManager?
     private var niManager: NIManager?
     private var cancellables = Set<AnyCancellable>()
