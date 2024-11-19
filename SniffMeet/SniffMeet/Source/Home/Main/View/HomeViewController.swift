@@ -13,6 +13,7 @@ protocol HomeViewable: AnyObject {
 }
 
 final class HomeViewController: BaseViewController, HomeViewable {
+    var presenter: (any HomePresentable)?
     private let profileCardView = ProfileCardView()
     private var startSessionButton: UIButton = PrimaryButton(title: Context.primaryButtonLabel)
     private var mpcManager: MPCManager?
@@ -20,18 +21,14 @@ final class HomeViewController: BaseViewController, HomeViewable {
     private var cancellables = Set<AnyCancellable>()
 
     override func viewDidLoad() {
-        super.viewDidLoad()
-        // presenter.viewDidLoad()
-        setupNavigationItem()
-        setupLayouts()
-        view.backgroundColor = .systemBackground
         setupMPCManager()
-        setupBindings()
+        super.viewDidLoad()
+        presenter?.viewDidLoad()
         startSessionButton.addTarget(self, action: #selector(goToStartSession), for: .touchUpInside)
     }
 
-    func setupNavigationItem() {
-        navigationItem.title = "SniffMEET"
+    override func configureAttributes() {
+        navigationItem.title = Context.title
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationItem.largeTitleDisplayMode = .always
         let notificationBarButtonItem = UIBarButtonItem(
@@ -43,23 +40,25 @@ final class HomeViewController: BaseViewController, HomeViewable {
         )
         navigationItem.rightBarButtonItem = notificationBarButtonItem
     }
-    func setupLayouts() {
-        profileCardView.translatesAutoresizingMaskIntoConstraints = false
-        startSessionButton.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(profileCardView)
-        view.addSubview(startSessionButton)
+    override func configureHierachy() {
+        [profileCardView, startSessionButton].forEach {
+            $0.translatesAutoresizingMaskIntoConstraints = false
+            view.addSubview($0)
+        }
+    }
+    override func configureConstraints() {
         NSLayoutConstraint.activate([
             profileCardView.topAnchor.constraint(
                 equalTo: view.safeAreaLayoutGuide.topAnchor,
-                constant: 30
+                constant: LayoutConstant.largeVerticalPadding
             ),
             profileCardView.leadingAnchor.constraint(
                 equalTo: view.safeAreaLayoutGuide.leadingAnchor,
-                constant: 24
+                constant: LayoutConstant.mediumVerticalPadding
             ),
             profileCardView.trailingAnchor.constraint(
                 equalTo: view.safeAreaLayoutGuide.trailingAnchor,
-                constant: -24
+                constant: -LayoutConstant.mediumVerticalPadding
             ),
             profileCardView.bottomAnchor.constraint(
                 equalTo: view.safeAreaLayoutGuide.bottomAnchor,
@@ -67,7 +66,7 @@ final class HomeViewController: BaseViewController, HomeViewable {
             ),
             startSessionButton.bottomAnchor.constraint(
                 equalTo: view.safeAreaLayoutGuide.bottomAnchor,
-                constant: -24
+                constant: -LayoutConstant.mediumVerticalPadding
             ),
             startSessionButton.leadingAnchor.constraint(
                 equalTo: view.leadingAnchor,
@@ -79,42 +78,45 @@ final class HomeViewController: BaseViewController, HomeViewable {
             )
         ])
     }
-    @objc func notificationBarButtonDidTap() {
-        // presenter.notificationBarButtonDidTap
-        // 혹은 action을 nil로 하고 아예 .touchUpInside 사용해서 Combine으로 처리할 수 있지 않을까요
-    }
+    override func bind() {
+        presenter?.output.dogInfo
+            .receive(on: RunLoop.main)
+            .sink { [weak self] dogInfo in
+                self?.profileCardView.setName(name: dogInfo.name)
+                self?.profileCardView.setKeywords(from: dogInfo.keywords.map{ $0.rawValue })
+                if let profileImageData = dogInfo.profileImage,
+                   let uiImage = UIImage(data: profileImageData) {
+                    self?.profileCardView.setProfileImage(profileImage: uiImage)
+                }
+            }
+            .store(in: &cancellables)
 
+        mpcManager?.$paired
+            .receive(on: RunLoop.main)
+            .sink { [weak self] isPaired in
+                self?.presenter?.changeIsPaired(with: isPaired)
+            }
+            .store(in: &cancellables)
+    }
+    @objc func notificationBarButtonDidTap() {
+        presenter?.notificationBarButtonDidTap()
+    }
     @objc func goToStartSession() {
         mpcManager?.isAvailableToBeConnected = true
         mpcManager?.browser.startBrowsing()
         mpcManager?.advertiser.startAdvertising()
     }
-
     private func setupMPCManager() {
         mpcManager = MPCManager(yourName: UIDevice.current.name)
         niManager = NIManager(mpcManager: mpcManager!)
     }
+}
 
-    private func setupBindings() {
-        mpcManager?.$paired
-            .receive(on: RunLoop.main)
-            .sink { [weak self] isPaired in
-                if isPaired {
-                    self?.showAlert(title: "Connected", message: "Successfully connected to peer.")
-                } else {
-                    self?.showAlert(title: "Disconnected", message: "Connection to peer lost.")
-                }
-            }
-            .store(in: &cancellables)
-    }
+// MARK: - HomeViewController+Context
 
-    private func showAlert(title: String, message: String) {
-        if let presentedVC = presentedViewController as? UIAlertController {
-            presentedVC.dismiss(animated: false)
-        }
-
-        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-        present(alert, animated: true, completion: nil)
+extension HomeViewController {
+    private enum Context {
+        static let title: String = "SniffMeet"
+        static let primaryButtonLabel: String = "메이트 연결하기"
     }
 }
