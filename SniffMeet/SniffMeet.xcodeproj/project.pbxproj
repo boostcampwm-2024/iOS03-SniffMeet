@@ -51,6 +51,11 @@
 		FD3A03412CD8CF460047B7ED /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FD3A033C2CD8CF460047B7ED /* LaunchScreen.storyboard */; };
 		FD3A03422CD8CF460047B7ED /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD3A03382CD8CF460047B7ED /* AppDelegate.swift */; };
 		FD3A03432CD8CF460047B7ED /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD3A033D2CD8CF460047B7ED /* SceneDelegate.swift */; };
+		FD5134192CEB7ADE002E76F3 /* HomeRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD5134182CEB7AD9002E76F3 /* HomeRouter.swift */; };
+		FD51341B2CEB7AE8002E76F3 /* HomePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD51341A2CEB7AE3002E76F3 /* HomePresenter.swift */; };
+		FD51341D2CEB7AF0002E76F3 /* HomeInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD51341C2CEB7AEC002E76F3 /* HomeInteractor.swift */; };
+		FD51341F2CEB7AFE002E76F3 /* LoadDogInfoUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD51341E2CEB7AF6002E76F3 /* LoadDogInfoUseCase.swift */; };
+		FD5134232CEC2BDE002E76F3 /* Routable.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD5134222CEC2BDB002E76F3 /* Routable.swift */; };
 		FD69B1B32CE3BC76009D71DC /* KeychainManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD69B1B22CE3BC68009D71DC /* KeychainManager.swift */; };
 		FD69B1B52CE3BC7E009D71DC /* UserDefaultsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD69B1B42CE3BC79009D71DC /* UserDefaultsManager.swift */; };
 		FD69B1C32CE3BCE4009D71DC /* UserDefaultsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD69B1B42CE3BC79009D71DC /* UserDefaultsManager.swift */; };
@@ -136,6 +141,11 @@
 		FD3A033A2CD8CF460047B7ED /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FD3A033B2CD8CF460047B7ED /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		FD3A033D2CD8CF460047B7ED /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		FD5134182CEB7AD9002E76F3 /* HomeRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeRouter.swift; sourceTree = "<group>"; };
+		FD51341A2CEB7AE3002E76F3 /* HomePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePresenter.swift; sourceTree = "<group>"; };
+		FD51341C2CEB7AEC002E76F3 /* HomeInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeInteractor.swift; sourceTree = "<group>"; };
+		FD51341E2CEB7AF6002E76F3 /* LoadDogInfoUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadDogInfoUseCase.swift; sourceTree = "<group>"; };
+		FD5134222CEC2BDB002E76F3 /* Routable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Routable.swift; sourceTree = "<group>"; };
 		FD69B1B22CE3BC68009D71DC /* KeychainManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainManager.swift; sourceTree = "<group>"; };
 		FD69B1B42CE3BC79009D71DC /* UserDefaultsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsManager.swift; sourceTree = "<group>"; };
 		FD69B1BA2CE3BCDC009D71DC /* SNMPersistenceTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SNMPersistenceTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -390,6 +400,7 @@
 				FD3A033D2CD8CF460047B7ED /* SceneDelegate.swift */,
 				FD3A03382CD8CF460047B7ED /* AppDelegate.swift */,
 				A2C328912CE3BEA000D255AB /* AppRouter.swift */,
+				FD5134222CEC2BDB002E76F3 /* Routable.swift */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -627,7 +638,6 @@
 				FDA491692CDA7C0B00A36FB0 /* View */,
 				FDA4916A2CDA7C0B00A36FB0 /* Interactor */,
 				FDA4916B2CDA7C0B00A36FB0 /* Presenter */,
-				FDA4916C2CDA7C0B00A36FB0 /* Entity */,
 				FDA4916D2CDA7C0B00A36FB0 /* Router */,
 			);
 			path = Main;
@@ -781,6 +791,8 @@
 		FDA4916A2CDA7C0B00A36FB0 /* Interactor */ = {
 			isa = PBXGroup;
 			children = (
+				FD51341E2CEB7AF6002E76F3 /* LoadDogInfoUseCase.swift */,
+				FD51341C2CEB7AEC002E76F3 /* HomeInteractor.swift */,
 			);
 			path = Interactor;
 			sourceTree = "<group>";
@@ -788,20 +800,15 @@
 		FDA4916B2CDA7C0B00A36FB0 /* Presenter */ = {
 			isa = PBXGroup;
 			children = (
+				FD51341A2CEB7AE3002E76F3 /* HomePresenter.swift */,
 			);
 			path = Presenter;
-			sourceTree = "<group>";
-		};
-		FDA4916C2CDA7C0B00A36FB0 /* Entity */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Entity;
 			sourceTree = "<group>";
 		};
 		FDA4916D2CDA7C0B00A36FB0 /* Router */ = {
 			isa = PBXGroup;
 			children = (
+				FD5134182CEB7AD9002E76F3 /* HomeRouter.swift */,
 			);
 			path = Router;
 			sourceTree = "<group>";
@@ -1261,10 +1268,12 @@
 				320043762CDCA18E00D08B6D /* (null) in Sources */,
 				FDCD02CF2CE917D800B627D8 /* MockRequest.swift in Sources */,
 				A2F825DD2CDFBEB4000C5419 /* ProfileCardView.swift in Sources */,
+				FD51341F2CEB7AFE002E76F3 /* LoadDogInfoUseCase.swift in Sources */,
 				A2C328882CE2481900D255AB /* HomeModuleBuilder.swift in Sources */,
 				995D94262CE32ECE005A47BF /* Extension + Keyboard.swift in Sources */,
 				3200441C2CE48C5C00D08B6D /* MPCAdvertiser.swift in Sources */,
 				A2F825D12CDF4BA6000C5419 /* HomeViewController.swift in Sources */,
+				FD5134232CEC2BDE002E76F3 /* Routable.swift in Sources */,
 				FD0634282CE596BD003C9D6B /* SNMRequestConvertible.swift in Sources */,
 				320043972CDF493C00D08B6D /* Extension + UIView.swift in Sources */,
 				FD0634262CE596B5003C9D6B /* Endpoint.swift in Sources */,
@@ -1280,10 +1289,13 @@
 				FDE14A502CE8D2FB001F7A9D /* URLRequest + append.swift in Sources */,
 				FD06342C2CE5984D003C9D6B /* SNMNetworkResponse.swift in Sources */,
 				3200445E2CE5CA1B00D08B6D /* SaveInfoUseCase.swift in Sources */,
+				FD51341B2CEB7AE8002E76F3 /* HomePresenter.swift in Sources */,
 				320043942CDF3D7F00D08B6D /* PrimaryButton.swift in Sources */,
 				FDCD02D12CE917E600B627D8 /* MockURLProtocol.swift in Sources */,
 				320043952CDF3D7F00D08B6D /* Extension + Navigation.swift in Sources */,
 				FDBFA99F2CE1E50C00AA9220 /* SNMFont.swift in Sources */,
+				FD5134192CEB7ADE002E76F3 /* HomeRouter.swift in Sources */,
+				FD51341D2CEB7AF0002E76F3 /* HomeInteractor.swift in Sources */,
 				320044532CE59A8A00D08B6D /* Dog.swift in Sources */,
 				320044562CE59DF500D08B6D /* ProfileInputRouter.swift in Sources */,
 				A2C844D72CDBEF8B007F2970 /* (null) in Sources */,
