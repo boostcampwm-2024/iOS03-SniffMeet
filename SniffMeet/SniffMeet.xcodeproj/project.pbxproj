@@ -57,12 +57,12 @@
 		FD3A03412CD8CF460047B7ED /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FD3A033C2CD8CF460047B7ED /* LaunchScreen.storyboard */; };
 		FD3A03422CD8CF460047B7ED /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD3A03382CD8CF460047B7ED /* AppDelegate.swift */; };
 		FD3A03432CD8CF460047B7ED /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD3A033D2CD8CF460047B7ED /* SceneDelegate.swift */; };
+		FD5134172CEB738D002E76F3 /* UIControl + Publisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD5134162CEB7388002E76F3 /* UIControl + Publisher.swift */; };
 		FD5134192CEB7ADE002E76F3 /* HomeRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD5134182CEB7AD9002E76F3 /* HomeRouter.swift */; };
 		FD51341B2CEB7AE8002E76F3 /* HomePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD51341A2CEB7AE3002E76F3 /* HomePresenter.swift */; };
 		FD51341D2CEB7AF0002E76F3 /* HomeInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD51341C2CEB7AEC002E76F3 /* HomeInteractor.swift */; };
 		FD51341F2CEB7AFE002E76F3 /* LoadDogInfoUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD51341E2CEB7AF6002E76F3 /* LoadDogInfoUseCase.swift */; };
 		FD5134232CEC2BDE002E76F3 /* Routable.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD5134222CEC2BDB002E76F3 /* Routable.swift */; };
-		FD5134172CEB738D002E76F3 /* UIControl + Publisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD5134162CEB7388002E76F3 /* UIControl + Publisher.swift */; };
 		FD69B1B32CE3BC76009D71DC /* KeychainManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD69B1B22CE3BC68009D71DC /* KeychainManager.swift */; };
 		FD69B1B52CE3BC7E009D71DC /* UserDefaultsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD69B1B42CE3BC79009D71DC /* UserDefaultsManager.swift */; };
 		FD69B1C32CE3BCE4009D71DC /* UserDefaultsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD69B1B42CE3BC79009D71DC /* UserDefaultsManager.swift */; };
@@ -154,12 +154,12 @@
 		FD3A033A2CD8CF460047B7ED /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FD3A033B2CD8CF460047B7ED /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		FD3A033D2CD8CF460047B7ED /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		FD5134162CEB7388002E76F3 /* UIControl + Publisher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIControl + Publisher.swift"; sourceTree = "<group>"; };
 		FD5134182CEB7AD9002E76F3 /* HomeRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeRouter.swift; sourceTree = "<group>"; };
 		FD51341A2CEB7AE3002E76F3 /* HomePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePresenter.swift; sourceTree = "<group>"; };
 		FD51341C2CEB7AEC002E76F3 /* HomeInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeInteractor.swift; sourceTree = "<group>"; };
 		FD51341E2CEB7AF6002E76F3 /* LoadDogInfoUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadDogInfoUseCase.swift; sourceTree = "<group>"; };
 		FD5134222CEC2BDB002E76F3 /* Routable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Routable.swift; sourceTree = "<group>"; };
-		FD5134162CEB7388002E76F3 /* UIControl + Publisher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIControl + Publisher.swift"; sourceTree = "<group>"; };
 		FD69B1B22CE3BC68009D71DC /* KeychainManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainManager.swift; sourceTree = "<group>"; };
 		FD69B1B42CE3BC79009D71DC /* UserDefaultsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsManager.swift; sourceTree = "<group>"; };
 		FD69B1BA2CE3BCDC009D71DC /* SNMPersistenceTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SNMPersistenceTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -240,6 +240,7 @@
 		320044782CEC48FB00D08B6D /* UseCase */ = {
 			isa = PBXGroup;
 			children = (
+				FD51341E2CEB7AF6002E76F3 /* LoadDogInfoUseCase.swift */,
 				3200445D2CE5CA1A00D08B6D /* SaveInfoUseCase.swift */,
 				320044762CEB4E0F00D08B6D /* RequestWalk.swift */,
 			);
@@ -824,7 +825,6 @@
 		FDA4916A2CDA7C0B00A36FB0 /* Interactor */ = {
 			isa = PBXGroup;
 			children = (
-				FD51341E2CEB7AF6002E76F3 /* LoadDogInfoUseCase.swift */,
 				FD51341C2CEB7AEC002E76F3 /* HomeInteractor.swift */,
 			);
 			path = Interactor;
