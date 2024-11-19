@@ -36,3 +36,9 @@ struct Dog: Codable {
     let nickname: String
     let profileImage: Data?
 }
+
+struct DogProfileInfo {
+    let name: String
+    let keywords: [Keyword]
+    let profileImage: Data?
+}
