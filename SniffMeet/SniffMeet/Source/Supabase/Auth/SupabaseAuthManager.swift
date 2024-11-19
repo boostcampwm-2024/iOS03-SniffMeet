@@ -11,7 +11,6 @@ import Foundation
 protocol AuthManager {
     static var shared: AuthManager { get }
     var authStateSubject: PassthroughSubject<AuthState, Never> { get set }
-    var isFirstRun: Bool { get }
     func signInAnonymously() async
     func restoreSession() async throws
     func refreshSession() async throws
@@ -26,15 +25,6 @@ enum AuthState: String, CaseIterable {
 
 final class SupabaseAuthManager: AuthManager {
     var authStateSubject: PassthroughSubject<AuthState, Never>
-    var isFirstRun: Bool {
-        do {
-            print(try KeychainManager.shared.get(forKey: "refreshToken"))
-        } catch {
-            print(error)
-            return false
-        }
-        return true
-    }
     private let networkProvider: SNMNetworkProvider
     private let decoder: JSONDecoder
     private var cancellables: Set<AnyCancellable>
