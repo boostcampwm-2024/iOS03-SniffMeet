@@ -138,8 +138,7 @@ private extension ProfileCreateViewController {
         submitButton.addAction(UIAction { [weak self] _ in
             // approuter를 통해서 화면전환을 수행한다. window를 다르게 설정해야 할듯
             guard let nickname = self?.nicknameTextField.text else { return }
-            self?.presenter?.saveDogInfo(nickname: nickname, imageData: nil)
-            
+            self?.presenter?.saveDogInfo(nickname: nickname, imageData: self?.profileImageView.image?.jpegData(compressionQuality: 0.7))
         }, for: .touchUpInside)
     }
 }
