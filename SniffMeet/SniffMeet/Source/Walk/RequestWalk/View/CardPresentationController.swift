@@ -10,7 +10,7 @@ final class CardPresentationController: UIPresentationController {
     override var frameOfPresentedViewInContainerView: CGRect {
         // 중앙에 카드처럼 보이게 할 크기 지정
         let width: CGFloat = containerView!.bounds.width * 0.9
-        let height: CGFloat = containerView!.bounds.height * 0.75
+        let height: CGFloat = containerView!.bounds.height * 0.8
         let xValue = (containerView!.bounds.width - width) / 2
         let yValue = (containerView!.bounds.height - height) / 2
         return CGRect(x: xValue, y: yValue, width: width, height: height)
