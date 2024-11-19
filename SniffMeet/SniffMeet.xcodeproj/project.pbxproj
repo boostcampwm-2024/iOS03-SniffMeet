@@ -174,14 +174,6 @@
 			path = MPC;
 			sourceTree = "<group>";
 		};
-		320044512CE5995F00D08B6D /* Entity */ = {
-			isa = PBXGroup;
-			children = (
-				320044522CE59A8100D08B6D /* Dog.swift */,
-			);
-			path = Entity;
-			sourceTree = "<group>";
-		};
 		320044692CEB182400D08B6D /* View */ = {
 			isa = PBXGroup;
 			children = (
@@ -189,6 +181,23 @@
 				3200446A2CEB182A00D08B6D /* RequestWalkViewController.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		320044782CEC48FB00D08B6D /* UseCase */ = {
+			isa = PBXGroup;
+			children = (
+				3200445D2CE5CA1A00D08B6D /* SaveInfoUseCase.swift */,
+				320044762CEB4E0F00D08B6D /* RequestWalk.swift */,
+			);
+			path = UseCase;
+			sourceTree = "<group>";
+		};
+		320044792CEC490600D08B6D /* Entity */ = {
+			isa = PBXGroup;
+			children = (
+				320044522CE59A8100D08B6D /* Dog.swift */,
+			);
+			path = Entity;
 			sourceTree = "<group>";
 		};
 		995D94602CE598E1005A47BF /* NI */ = {
@@ -313,6 +322,8 @@
 		FDA491332CD9FE7C00A36FB0 /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				320044792CEC490600D08B6D /* Entity */,
+				320044782CEC48FB00D08B6D /* UseCase */,
 				FD0634242CE596A7003C9D6B /* SNMNetwork */,
 				FD69B1B12CE3BC55009D71DC /* Persistence */,
 				A2C844CF2CDBE1CB007F2970 /* Common */,
@@ -416,6 +427,7 @@
 		FDA4913F2CDA05FE00A36FB0 /* Auth */ = {
 			isa = PBXGroup;
 			children = (
+				320044662CE6124900D08B6D /* DataManager.swift */,
 			);
 			path = Auth;
 			sourceTree = "<group>";
@@ -662,7 +674,6 @@
 				FDA491682CDA7C0300A36FB0 /* View */,
 				FDA491662CDA7BE500A36FB0 /* Interactor */,
 				FDA491642CDA7BD600A36FB0 /* Presenter */,
-				320044512CE5995F00D08B6D /* Entity */,
 				FDA491672CDA7BEB00A36FB0 /* Router */,
 			);
 			path = CreateProfile;
@@ -723,9 +734,7 @@
 		FDA491662CDA7BE500A36FB0 /* Interactor */ = {
 			isa = PBXGroup;
 			children = (
-				320044662CE6124900D08B6D /* DataManager.swift */,
 				320044592CE5B39A00D08B6D /* ProfileCreateInteractor.swift */,
-				3200445D2CE5CA1A00D08B6D /* SaveInfoUseCase.swift */,
 			);
 			path = Interactor;
 			sourceTree = "<group>";
@@ -1001,7 +1010,6 @@
 				320044692CEB182400D08B6D /* View */,
 				FDA491952CDA7C6A00A36FB0 /* Interactor */,
 				FDA491962CDA7C6A00A36FB0 /* Presenter */,
-				FDA491972CDA7C6A00A36FB0 /* Entity */,
 				FDA491982CDA7C6A00A36FB0 /* Router */,
 			);
 			path = RequestWalk;
@@ -1021,14 +1029,6 @@
 				320044702CEB45D600D08B6D /* RequestWalkPresenter.swift */,
 			);
 			path = Presenter;
-			sourceTree = "<group>";
-		};
-		FDA491972CDA7C6A00A36FB0 /* Entity */ = {
-			isa = PBXGroup;
-			children = (
-				320044762CEB4E0F00D08B6D /* RequestWalk.swift */,
-			);
-			path = Entity;
 			sourceTree = "<group>";
 		};
 		FDA491982CDA7C6A00A36FB0 /* Router */ = {
