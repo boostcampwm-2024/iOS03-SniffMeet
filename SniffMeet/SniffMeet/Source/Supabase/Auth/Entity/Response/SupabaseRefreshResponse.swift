@@ -16,7 +16,7 @@ struct SupabaseRefreshTokenResponse: Codable {
     enum CodingKeys: String, CodingKey {
         case accessToken = "access_token"
         case refreshToken = "refresh_token"
-        case expiresAt = "expires_at"
+        case expiresAt = "expires_At"
         case tokenType = "token_type"
     }
 }

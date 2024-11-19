@@ -11,10 +11,11 @@ import Foundation
 protocol AuthManager {
     static var shared: AuthManager { get }
     var authStateSubject: PassthroughSubject<AuthState, Never> { get set }
-
+    var isFirstRun: Bool { get }
     func signInAnonymously() async
-    func restoreSession() async
-    func refreshSession() async
+    func restoreSession() async throws
+    func refreshSession() async throws
+    func loadTokens() throws
 }
 
 enum AuthState: String, CaseIterable {
@@ -25,10 +26,18 @@ enum AuthState: String, CaseIterable {
 
 final class SupabaseAuthManager: AuthManager {
     var authStateSubject: PassthroughSubject<AuthState, Never>
+    var isFirstRun: Bool {
+        do {
+            print(try KeychainManager.shared.get(forKey: "refreshToken"))
+        } catch {
+            print(error)
+            return false
+        }
+        return true
+    }
     private let networkProvider: SNMNetworkProvider
     private let decoder: JSONDecoder
     private var cancellables: Set<AnyCancellable>
-
     static let shared: AuthManager = SupabaseAuthManager()
 
     private init() {
@@ -59,45 +68,43 @@ final class SupabaseAuthManager: AuthManager {
         }
     }
 
-    func restoreSession() async { // 세션 복원
+    func restoreSession() async throws { // 세션 복원
         // 키체인에서 토큰 가져와서 일단 만료랑 상관없이 세션 업데이트
-        do {
-            let accessToken = try KeychainManager.shared.get(forKey: "accessToken")
-            let refreshToken = try KeychainManager.shared.get(forKey: "refreshToken")
-            let expiresAt = try UserDefaultsManager.shared.get(forKey: "expiresAt", type: Int.self)
-            SessionManager.shared.session = SupabaseSession(
-                accessToken: accessToken,
-                expiresAt: expiresAt,
-                refreshToken: refreshToken
-            )
-        } catch {
-            // 키체인에 토큰 정보가 없음 -> 앱을 최초로 실행한 상태와 같음
-        }
-        await refreshSession() // 세션 갱신 진행
+        try loadTokens()
+        try await refreshSession() // 세션 갱신 진행
     }
 
-    func refreshSession() async { // 세션 갱신
+    func refreshSession() async throws { // 세션 갱신
         // 세션에서 토큰 가져옴
-        do {
-            let refreshToken = try KeychainManager.shared.get(forKey: "refreshToken")
-            // 가져온 토큰으로 갱신 요청
-            let response = try await networkProvider.request(
-                with: SupabaseRequest.refreshToken
-            )
-            let sessionResponse = try decoder.decode(
-                SupabaseSessionResponse.self,
-                from: response.data
-            )
-            // 새로 받아온 토큰으로 세션 업데이트
-            try saveSession(for: SupabaseSession(
-                accessToken: sessionResponse.accessToken,
-                expiresAt: sessionResponse.expiresAt,
-                refreshToken: sessionResponse.refreshToken,
-                user: SupabaseUser(from: sessionResponse.user)
-            ))
-        } catch {
-            // 갱신 실패
+        guard let refreshToken = SessionManager.shared.session?.refreshToken else {
+            throw SupabaseAuthError.sessionNotExist
         }
+        // 가져온 토큰으로 갱신 요청
+        let response = try await networkProvider.request(
+            with: SupabaseRequest.refreshToken(refreshToken: refreshToken)
+        )
+        let sessionResponse = try decoder.decode(
+            SupabaseSessionResponse.self,
+            from: response.data
+        )
+        // 새로 받아온 토큰으로 세션 업데이트
+        try saveSession(for: SupabaseSession(
+            accessToken: sessionResponse.accessToken,
+            expiresAt: sessionResponse.expiresAt,
+            refreshToken: sessionResponse.refreshToken,
+            user: SupabaseUser(from: sessionResponse.user)
+        ))
+    }
+
+    func loadTokens() throws {
+        let accessToken = try KeychainManager.shared.get(forKey: "accessToken")
+        let refreshToken = try KeychainManager.shared.get(forKey: "refreshToken")
+        let expiresAt = try UserDefaultsManager.shared.get(forKey: "expiresAt", type: Int.self)
+        SessionManager.shared.session = SupabaseSession(
+            accessToken: accessToken,
+            expiresAt: expiresAt,
+            refreshToken: refreshToken
+        )
     }
 
     private func saveSession(for session: SupabaseSession?) throws {

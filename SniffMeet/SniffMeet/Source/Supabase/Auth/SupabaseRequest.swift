@@ -9,8 +9,8 @@ import Foundation
 
 enum SupabaseRequest {
     case signInAnonymously
-    case refreshToken
-    case refreshUser
+    case refreshToken(refreshToken: String)
+    case refreshUser(accessToken: String)
     // case refreshSession
 }
 
@@ -29,7 +29,7 @@ extension SupabaseRequest: SNMRequestConvertible {
                 path: "auth/v1/token",
                 method: .post,
                 query: [
-                    "grant_type": SessionManager.shared.session!.refreshToken // force unwrapping
+                    "grant_type": "refreshToken"
                 ]
             )
         case .refreshUser:
@@ -53,23 +53,13 @@ extension SupabaseRequest: SNMRequestConvertible {
                 header: header,
                 body: Data("{}".utf8)
             )
-        case .refreshToken:
-            var refreshToken = ""
-            if let token = SessionManager.shared.session?.refreshToken {
-                refreshToken = token
-            } else {
-                do {
-                    refreshToken = try KeychainManager.shared.get(forKey: "refreshToken")
-                } catch {
-                    // TODO: refresh Token을 찾을 수 없는 오류
-                }
-            }
+        case .refreshToken(let refreshToken):
             return SNMRequestType.compositeJSONEncodable(
                 header: header,
-                body: SupabaseTokenRequest(refreshToken: refreshToken) // forceUnwrapping
+                body: SupabaseTokenRequest(refreshToken: refreshToken)
             )
-        case .refreshUser:
-            header["Authorization"] = "Bearer \(SessionManager.shared.session!.accessToken)" // forceUnwrapping
+        case .refreshUser(let accessToken):
+            header["Authorization"] = "Bearer \(accessToken)"
             return SNMRequestType.header(
                 with: header
             )
