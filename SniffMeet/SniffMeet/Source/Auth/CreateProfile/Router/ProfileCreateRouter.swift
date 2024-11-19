@@ -29,7 +29,7 @@ final class ProfileCreateRouter: ProfileCreateRoutable {
 extension ProfileCreateRouter: ProfileCreateBuildable {
     static func createProfileCreateModule(dogDetailInfo: DogDetailInfo) -> UIViewController {
         let storeDogInfoUsecase: StoreDogInfoUseCase =
-        StoreDogInfoUserCaseImpl(localDataManager: LocalDataManager())
+        StoreDogInfoUseCaseImpl(localDataManager: LocalDataManager())
 
         let view: ProfileCreateViewable & UIViewController = ProfileCreateViewController()
         let presenter: ProfileCreatePresentable & DogInfoInteractorOutput
