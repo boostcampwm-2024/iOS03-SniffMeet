@@ -10,12 +10,14 @@ import UIKit
 enum HomeModuleBuilder {
     static func build() -> UIViewController {
         let view = HomeViewController()
-        view.title = "SniffMeet"
-
-        // let router = HomeRouter(view: view)
-        // let interactor = HomeInteractor()
-        // view.presenter = HomePresenter(view: view, router: router, interactor: interactor)
-
+        let router = HomeRouter()
+        let interactor = HomeInteractor(
+            loadInfoUseCase: LoadDogInfoUseCaseImpl(
+                dataLoadable: LocalDataManager()
+            )
+        )
+        view.presenter = HomePresenter(view: view, router: router, interactor: interactor)
+        interactor.presenter = view.presenter
         return view
     }
 }
