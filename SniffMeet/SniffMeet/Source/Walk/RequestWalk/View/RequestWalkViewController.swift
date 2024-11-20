@@ -4,6 +4,8 @@
 //
 //  Created by 윤지성 on 11/18/24.
 //
+
+import Combine
 import UIKit
 
 protocol RequestWalkViewable: AnyObject {
@@ -12,6 +14,7 @@ protocol RequestWalkViewable: AnyObject {
 
 final class RequestWalkViewController: BaseViewController, RequestWalkViewable {
     var presenter: RequestWalkPresentable?
+    private var cancellables: Set<AnyCancellable> = []
     private var dismissButton: UIButton = {
         let button = UIButton()
         button.setImage(UIImage(systemName: "xmark"), for: .normal)
@@ -170,6 +173,12 @@ final class RequestWalkViewController: BaseViewController, RequestWalkViewable {
         locationView.addGestureRecognizer(locationTapGesture)
     }
     override func bind() {
+        presenter?.output.selectedLocation
+            .receive(on: RunLoop.main)
+            .sink { [weak self] address in
+                self?.locationLabel.text = address?.location ?? "장소 선택"
+            }
+            .store(in: &cancellables)
     }
 }
 
@@ -190,10 +199,7 @@ private extension RequestWalkViewController {
     }
     
     @objc func locationDidTap() {
-#if DEBUG
-        print("location 뷰 탭!")
-#endif
-        
+        presenter?.didTapLocationButton()
     }
 }
 
