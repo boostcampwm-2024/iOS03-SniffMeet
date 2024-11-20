@@ -14,6 +14,11 @@ class NIManager: NSObject {
     private var mpcManager: MPCManager
     private var cancellables = Set<AnyCancellable>()
 
+    private let minDistance: Float = 0.09
+    private let maxDistance: Float = 0.15
+    private let minDirection: simd_float3 = simd_float3(-0.6, -0.3, -1.0)
+    private let maxDirection: simd_float3 = simd_float3(0.6, 0.3, -0.8)
+
     init(mpcManager: MPCManager) {
         self.mpcManager = mpcManager
         super.init()
@@ -83,6 +88,14 @@ class NIManager: NSObject {
             print("Failed to decode discovery token: \(error)")
         }
     }
+
+    func isDirectionInRange(direction: simd_float3,
+                            minDirection: simd_float3,
+                            maxDirection: simd_float3) -> Bool {
+        return (minDirection.x...maxDirection.x).contains(direction.x) &&
+               (minDirection.y...maxDirection.y).contains(direction.y) &&
+               (minDirection.z...maxDirection.z).contains(direction.z)
+    }
 }
 
 // MARK: - NISessionDelegate
@@ -91,8 +104,14 @@ extension NIManager: NISessionDelegate {
         guard let nearbyObject = nearbyObjects.first else { return }
         let distance = nearbyObject.distance ?? 0
         let direction = nearbyObject.direction ?? simd_float3(0.0, 0.0, 0.0)
-        
+
         print("Distance and Direction to peer: \(distance) and \(direction)")
+
+        if distance > minDistance && distance < maxDistance && isDirectionInRange(direction: direction,
+                                                                                  minDirection: minDirection,
+                                                                                  maxDirection: maxDirection) {
+            print("거리와 방향 조건 만족")
+        }
     }
 
     func sessionWasSuspended(_ session: NISession) {
