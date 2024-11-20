@@ -21,17 +21,11 @@ final class RequestMateViewController: BaseViewController, RequestMateViewable {
     private var declineConfig = UIButton.Configuration.filled()
     private var declineButton: UIButton = UIButton(type: .system)
     private var acceptButton = PrimaryButton(title: Context.acceptTitle)
-    private var keywords: [Keyword] = [Keyword.energetic, Keyword.energetic]
+    private var keywords: [Keyword] = [.energetic, .independent]
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        view.backgroundColor = .white
-
-        configureAttributes()
-        configureHierachy()
-        configureConstraints()
-        bind()
         presenter?.viewDidLoad()
     }
 
