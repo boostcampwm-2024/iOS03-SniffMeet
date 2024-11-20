@@ -11,7 +11,7 @@ protocol ProfileInputViewable: AnyObject {
     var presenter: ProfileInputPresentable? { get set }
 }
 
-final class ProfileInputViewController: UIViewController, ProfileInputViewable {
+final class ProfileInputViewController: BaseViewController, ProfileInputViewable {
     var presenter: ProfileInputPresentable?
 
     private var titleLabel: UILabel = {
@@ -24,17 +24,45 @@ final class ProfileInputViewController: UIViewController, ProfileInputViewable {
     }()
     private var nameTextField: InputTextField = InputTextField(placeholder: Context.namePlaceholder)
     private var ageTextField: InputTextField = InputTextField(placeholder: Context.agePlaceholder)
+    
+    private var sexSelectionLabel: UILabel = {
+        let label = UILabel()
+        label.text = Context.sexLabel
+        label.font = .systemFont(ofSize: .init(16), weight: .regular)
+        return label
+    }()
+    
+    private var sexSegmentedControl: UISegmentedControl = {
+        let segmentedControl = UISegmentedControl(items: Context.sexArr)
+        segmentedControl.selectedSegmentIndex = 0
+        return segmentedControl
+    }()
+    
+    private var sexUponIntakeSelectionLabel: UILabel = {
+        let label = UILabel()
+        label.text = Context.sexUponIntakeLabel
+        label.font = .systemFont(ofSize: .init(16), weight: .regular)
+        return label
+    }()
+    private var sexUponIntakeSegmentedControl: UISegmentedControl = {
+        let segmentedControl = UISegmentedControl(items: Context.sexUponIntakeArr)
+        segmentedControl.selectedSegmentIndex = 0
+        return segmentedControl
+    }()
+    
     private var sizeSelectionLabel: UILabel = {
         let label = UILabel()
         label.text = Context.sizeLabel
         label.font = .systemFont(ofSize: .init(16), weight: .regular)
         return label
     }()
-    private var segmentedControl: UISegmentedControl = {
-        let segmentedControl = UISegmentedControl(items: [Context.smallSize, Context.mediumSize, Context.largeSize])
+    private var sizeSegmentedControl: UISegmentedControl = {
+        let segmentedControl = UISegmentedControl(items: Context.sizeArr)
         segmentedControl.selectedSegmentIndex = 0
         return segmentedControl
     }()
+    
+
     private var keywordSelectionLabel: UILabel = {
         let label = UILabel()
         label.text = Context.keywordLabel
@@ -51,9 +79,6 @@ final class ProfileInputViewController: UIViewController, ProfileInputViewable {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        view.backgroundColor = SNMColor.white
-        setSubveiws()
-        setSubviewsLayout()
         updateNextButtonState()
         hideKeyboardWhenTappedAround()
 
@@ -78,56 +103,39 @@ final class ProfileInputViewController: UIViewController, ProfileInputViewable {
             self?.presenter?.moveToProfileCreateView(with: dogInfo)
         }, for: .touchUpInside)
     }
-}
-
-private extension ProfileInputViewController {
-    enum Context {
-        static let nextBtnTitle: String = "다음으로"
-        static let titleLabel: String = "반가워요!\n당신의 반려견을 소개해주세요."
-        static let namePlaceholder: String = "반려견 이름을 입력해주세요."
-        static let agePlaceholder: String = "반려견 나이를 입력해주세요."
-        static let sizeLabel: String = "반려견의 크기를 선택해주세요."
-        static let smallSize: String = "소형"
-        static let mediumSize: String = "중형"
-        static let largeSize: String = "대형"
-        static let keywordLabel: String = "반려견에 해당되는 키워드를 선택해주세요."
-        static let activeKeywordLabel: String = "활발한"
-        static let smartKeywordLabel: String = "똑똑한"
-        static let friendlyKeywordLabel: String = "친화력 좋은"
-        static let shyKeywordLabel: String = "소심한"
-        static let independentKeywordLabel: String = "독립적인"
-        static let horizontalPadding: CGFloat = 24
-        static let smallVerticalPadding: CGFloat = 8
-        static let basicVerticalPadding: CGFloat = 16
-        static let largeVerticalPadding: CGFloat = 30
+    
+    override func configureAttributes() {
+        
     }
-
-    func setSubveiws() {
+    override func configureHierachy() {
         [titleLabel,
-        nameTextField,
-        ageTextField,
-        sizeSelectionLabel,
-        segmentedControl,
-        keywordSelectionLabel,
-        activeKeywordButton,
-        smartKeywordButton,
-        friendlyKeywordButton,
-        shyKeywordButton,
-        independentKeywordButton,
+         nameTextField,
+         ageTextField,
+         sexSelectionLabel,
+         sexSegmentedControl,
+         sexUponIntakeSelectionLabel,
+         sexUponIntakeSegmentedControl,
+         sizeSelectionLabel,
+         sizeSegmentedControl,
+         keywordSelectionLabel,
+         activeKeywordButton,
+         smartKeywordButton,
+         friendlyKeywordButton,
+         shyKeywordButton,
+         independentKeywordButton,
          nextButton].forEach {
             $0.translatesAutoresizingMaskIntoConstraints = false
             view.addSubview($0)
         }
     }
-
-    func setSubviewsLayout() {
+    override func configureConstraints() {
         NSLayoutConstraint.activate([
             titleLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor,
                                             constant: Context.basicVerticalPadding),
             titleLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor,
                                                 constant: Context.horizontalPadding),
 
-            nameTextField.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 80),
+            nameTextField.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: LayoutConstant.xlargeVerticalPadding),
             nameTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor,
                                                    constant: Context.horizontalPadding),
             nameTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor,
@@ -140,19 +148,44 @@ private extension ProfileInputViewController {
             ageTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor,
                                                    constant: -Context.horizontalPadding),
 
-            sizeSelectionLabel.topAnchor.constraint(equalTo: ageTextField.bottomAnchor,
+            sexSelectionLabel.topAnchor.constraint(equalTo: ageTextField.bottomAnchor,
+                                                    constant: 60),
+            sexSelectionLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor,
+                                                        constant: Context.horizontalPadding),
+
+            sexSegmentedControl.topAnchor.constraint(equalTo: sexSelectionLabel.bottomAnchor,
+                                                  constant: Context.basicVerticalPadding),
+            sexSegmentedControl.leadingAnchor.constraint(equalTo: view.leadingAnchor,
+                                                      constant: Context.horizontalPadding),
+            sexSegmentedControl.trailingAnchor.constraint(equalTo: view.trailingAnchor,
+                                                       constant: -Context.horizontalPadding),
+
+            
+            sexUponIntakeSelectionLabel.topAnchor.constraint(equalTo: sexSegmentedControl.bottomAnchor,
+                                                    constant: 60),
+            sexUponIntakeSelectionLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor,
+                                                        constant: Context.horizontalPadding),
+
+            sexUponIntakeSegmentedControl.topAnchor.constraint(equalTo: sexUponIntakeSelectionLabel.bottomAnchor,
+                                                  constant: Context.basicVerticalPadding),
+            sexUponIntakeSegmentedControl.leadingAnchor.constraint(equalTo: view.leadingAnchor,
+                                                      constant: Context.horizontalPadding),
+            sexUponIntakeSegmentedControl.trailingAnchor.constraint(equalTo: view.trailingAnchor,
+                                                       constant: -Context.horizontalPadding),
+
+            sizeSelectionLabel.topAnchor.constraint(equalTo: sexUponIntakeSegmentedControl.bottomAnchor,
                                                     constant: 60),
             sizeSelectionLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor,
                                                         constant: Context.horizontalPadding),
 
-            segmentedControl.topAnchor.constraint(equalTo: sizeSelectionLabel.bottomAnchor,
+            sizeSegmentedControl.topAnchor.constraint(equalTo: sizeSelectionLabel.bottomAnchor,
                                                   constant: Context.basicVerticalPadding),
-            segmentedControl.leadingAnchor.constraint(equalTo: view.leadingAnchor,
+            sizeSegmentedControl.leadingAnchor.constraint(equalTo: view.leadingAnchor,
                                                       constant: Context.horizontalPadding),
-            segmentedControl.trailingAnchor.constraint(equalTo: view.trailingAnchor,
+            sizeSegmentedControl.trailingAnchor.constraint(equalTo: view.trailingAnchor,
                                                        constant: -Context.horizontalPadding),
 
-            keywordSelectionLabel.topAnchor.constraint(equalTo: segmentedControl.bottomAnchor,
+            keywordSelectionLabel.topAnchor.constraint(equalTo: sizeSegmentedControl.bottomAnchor,
                                                        constant: Context.largeVerticalPadding),
             keywordSelectionLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor,
                                                            constant: Context.horizontalPadding),
@@ -188,6 +221,31 @@ private extension ProfileInputViewController {
                                                 constant: Context.horizontalPadding),
             nextButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -Context.horizontalPadding)
         ])
+    }
+}
+
+private extension ProfileInputViewController {
+    enum Context {
+        static let nextBtnTitle: String = "다음으로"
+        static let titleLabel: String = "반가워요!\n당신의 반려견을 소개해주세요."
+        static let namePlaceholder: String = "반려견 이름을 입력해주세요."
+        static let agePlaceholder: String = "반려견 나이를 입력해주세요."
+        static let sexLabel: String = "반려견의 성별을 선택해주세요."
+        static let sexUponIntakeLabel: String = "반려견 중성화 여부를 입력해주세요."
+        static let sizeLabel: String = "반려견의 크기를 선택해주세요."
+        static let sexUponIntakeArr: [String] = ["완료", "미완료"]
+        static let sexArr: [String] = ["남", "여"]
+        static let sizeArr: [String] = ["소형", "중형", "대형"]
+        static let keywordLabel: String = "반려견에 해당되는 키워드를 선택해주세요."
+        static let activeKeywordLabel: String = "활발한"
+        static let smartKeywordLabel: String = "똑똑한"
+        static let friendlyKeywordLabel: String = "친화력 좋은"
+        static let shyKeywordLabel: String = "소심한"
+        static let independentKeywordLabel: String = "독립적인"
+        static let horizontalPadding: CGFloat = 24
+        static let smallVerticalPadding: CGFloat = 8
+        static let basicVerticalPadding: CGFloat = 16
+        static let largeVerticalPadding: CGFloat = 30
     }
 }
 
