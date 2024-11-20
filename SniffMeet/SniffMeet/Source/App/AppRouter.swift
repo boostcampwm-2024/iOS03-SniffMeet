@@ -13,13 +13,17 @@ final class AppRouter {
     init(window: UIWindow?) {
         self.window = window
     }
-    func displayInitialScreen(isLoggedIn: Bool) {
-        if isLoggedIn {
+
+    @MainActor
+    func displayInitialScreen() async {
+        do {
+            try await SupabaseAuthManager.shared.restoreSession()
             displayTabBar()
-        } else {
+        } catch {
             displayProfileSetupView()
         }
     }
+    
     private func displayTabBar() {
         let submodules = (
             home: UINavigationController(rootViewController:  HomeModuleBuilder.build()),

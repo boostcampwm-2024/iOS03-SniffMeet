@@ -43,7 +43,18 @@
 		995D94AC2CECFA30005A47BF /* RequestMatePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 995D94AB2CECFA24005A47BF /* RequestMatePresenter.swift */; };
 		995D94AE2CED00A4005A47BF /* RequestMateRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 995D94AD2CED0093005A47BF /* RequestMateRouter.swift */; };
 		99FA4E792CE0FBBF00553C2E /* ProfileInputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99FA4E782CE0FBBF00553C2E /* ProfileInputViewController.swift */; };
+		A20E71502CEC595C00272B25 /* SupabaseAuthError.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20E714F2CEC595C00272B25 /* SupabaseAuthError.swift */; };
+		A20E71522CEC5FE900272B25 /* SupabaseUserResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20E71512CEC5FE900272B25 /* SupabaseUserResponse.swift */; };
 		A21435F72CE20D2500564A4D /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A21435F62CE20D2500564A4D /* TabBarController.swift */; };
+		A24082612CEB244C009109A0 /* SupabaseConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = A24082602CEB244C009109A0 /* SupabaseConfig.swift */; };
+		A24082642CEB2470009109A0 /* SupabaseAuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A24082632CEB2470009109A0 /* SupabaseAuthManager.swift */; };
+		A24082672CEB2539009109A0 /* SupabaseSessionResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = A24082662CEB2539009109A0 /* SupabaseSessionResponse.swift */; };
+		A24082702CEB27DE009109A0 /* SupabaseRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A240826F2CEB27DE009109A0 /* SupabaseRequest.swift */; };
+		A24082722CEB36B8009109A0 /* SupabaseTokenRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A24082712CEB36B8009109A0 /* SupabaseTokenRequest.swift */; };
+		A25BE4522CEBB5A900886763 /* SupabaseSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = A25BE4512CEBB5A900886763 /* SupabaseSession.swift */; };
+		A25BE4562CEBB63A00886763 /* SupabaseUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = A25BE4552CEBB63A00886763 /* SupabaseUser.swift */; };
+		A25BE4582CEBB95C00886763 /* SupabaseRefreshResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = A25BE4572CEBB95C00886763 /* SupabaseRefreshResponse.swift */; };
+		A25BE45A2CEC2BA300886763 /* SessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A25BE4592CEC2BA300886763 /* SessionManager.swift */; };
 		A288A63D2CDC595000D11C34 /* (null) in Resources */ = {isa = PBXBuildFile; };
 		A2C328862CE245AC00D255AB /* TabBarModuleBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2C328852CE245AC00D255AB /* TabBarModuleBuilder.swift */; };
 		A2C328882CE2481900D255AB /* HomeModuleBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2C328872CE2481900D255AB /* HomeModuleBuilder.swift */; };
@@ -73,6 +84,7 @@
 		FD69B1C42CE3BCE4009D71DC /* KeychainManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD69B1B22CE3BC68009D71DC /* KeychainManager.swift */; };
 		FD69B1CB2CE3E9B4009D71DC /* UserDefaultsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD69B1CA2CE3E9B4009D71DC /* UserDefaultsTests.swift */; };
 		FD69B1CD2CE3E9BB009D71DC /* KeychainTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD69B1CC2CE3E9B8009D71DC /* KeychainTests.swift */; };
+		FD880B5A2CECE8FC0093BEB9 /* SNMLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD880B592CECE8F90093BEB9 /* SNMLogger.swift */; };
 		FDA04AA52CE91DBF002605AC /* MultipartFormData.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDA04AA42CE91DB7002605AC /* MultipartFormData.swift */; };
 		FDA04AA62CE91DBF002605AC /* MultipartFormData.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDA04AA42CE91DB7002605AC /* MultipartFormData.swift */; };
 		FDA04AA82CE91DF8002605AC /* Data + append.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDA04AA72CE91DF4002605AC /* Data + append.swift */; };
@@ -145,7 +157,18 @@
 		995D94AB2CECFA24005A47BF /* RequestMatePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestMatePresenter.swift; sourceTree = "<group>"; };
 		995D94AD2CED0093005A47BF /* RequestMateRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestMateRouter.swift; sourceTree = "<group>"; };
 		99FA4E782CE0FBBF00553C2E /* ProfileInputViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileInputViewController.swift; sourceTree = "<group>"; };
+		A20E714F2CEC595C00272B25 /* SupabaseAuthError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupabaseAuthError.swift; sourceTree = "<group>"; };
+		A20E71512CEC5FE900272B25 /* SupabaseUserResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupabaseUserResponse.swift; sourceTree = "<group>"; };
 		A21435F62CE20D2500564A4D /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
+		A24082602CEB244C009109A0 /* SupabaseConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupabaseConfig.swift; sourceTree = "<group>"; };
+		A24082632CEB2470009109A0 /* SupabaseAuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupabaseAuthManager.swift; sourceTree = "<group>"; };
+		A24082662CEB2539009109A0 /* SupabaseSessionResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupabaseSessionResponse.swift; sourceTree = "<group>"; };
+		A240826F2CEB27DE009109A0 /* SupabaseRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupabaseRequest.swift; sourceTree = "<group>"; };
+		A24082712CEB36B8009109A0 /* SupabaseTokenRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupabaseTokenRequest.swift; sourceTree = "<group>"; };
+		A25BE4512CEBB5A900886763 /* SupabaseSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupabaseSession.swift; sourceTree = "<group>"; };
+		A25BE4552CEBB63A00886763 /* SupabaseUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupabaseUser.swift; sourceTree = "<group>"; };
+		A25BE4572CEBB95C00886763 /* SupabaseRefreshResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupabaseRefreshResponse.swift; sourceTree = "<group>"; };
+		A25BE4592CEC2BA300886763 /* SessionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionManager.swift; sourceTree = "<group>"; };
 		A2C328852CE245AC00D255AB /* TabBarModuleBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarModuleBuilder.swift; sourceTree = "<group>"; };
 		A2C328872CE2481900D255AB /* HomeModuleBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeModuleBuilder.swift; sourceTree = "<group>"; };
 		A2C328912CE3BEA000D255AB /* AppRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppRouter.swift; sourceTree = "<group>"; };
@@ -173,6 +196,7 @@
 		FD69B1BA2CE3BCDC009D71DC /* SNMPersistenceTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SNMPersistenceTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FD69B1CA2CE3E9B4009D71DC /* UserDefaultsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsTests.swift; sourceTree = "<group>"; };
 		FD69B1CC2CE3E9B8009D71DC /* KeychainTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainTests.swift; sourceTree = "<group>"; };
+		FD880B592CECE8F90093BEB9 /* SNMLogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SNMLogger.swift; sourceTree = "<group>"; };
 		FDA04AA42CE91DB7002605AC /* MultipartFormData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultipartFormData.swift; sourceTree = "<group>"; };
 		FDA04AA72CE91DF4002605AC /* Data + append.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Data + append.swift"; sourceTree = "<group>"; };
 		FDA04AAA2CE92358002605AC /* MultipartFormDataTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultipartFormDataTests.swift; sourceTree = "<group>"; };
@@ -281,6 +305,56 @@
 			path = Tab;
 			sourceTree = "<group>";
 		};
+		A24082622CEB2464009109A0 /* Supabase */ = {
+			isa = PBXGroup;
+			children = (
+				A24082602CEB244C009109A0 /* SupabaseConfig.swift */,
+				A24082652CEB2475009109A0 /* Auth */,
+			);
+			path = Supabase;
+			sourceTree = "<group>";
+		};
+		A24082652CEB2475009109A0 /* Auth */ = {
+			isa = PBXGroup;
+			children = (
+				A24082632CEB2470009109A0 /* SupabaseAuthManager.swift */,
+				A25BE4592CEC2BA300886763 /* SessionManager.swift */,
+				A240826F2CEB27DE009109A0 /* SupabaseRequest.swift */,
+				A20E714F2CEC595C00272B25 /* SupabaseAuthError.swift */,
+				A25BE4532CEBB60200886763 /* Entity */,
+			);
+			path = Auth;
+			sourceTree = "<group>";
+		};
+		A24082732CEBB511009109A0 /* Response */ = {
+			isa = PBXGroup;
+			children = (
+				A24082662CEB2539009109A0 /* SupabaseSessionResponse.swift */,
+				A20E71512CEC5FE900272B25 /* SupabaseUserResponse.swift */,
+				A25BE4572CEBB95C00886763 /* SupabaseRefreshResponse.swift */,
+			);
+			path = Response;
+			sourceTree = "<group>";
+		};
+		A25BE4532CEBB60200886763 /* Entity */ = {
+			isa = PBXGroup;
+			children = (
+				A25BE4512CEBB5A900886763 /* SupabaseSession.swift */,
+				A25BE4552CEBB63A00886763 /* SupabaseUser.swift */,
+				A24082732CEBB511009109A0 /* Response */,
+				A25BE4542CEBB61C00886763 /* Request */,
+			);
+			path = Entity;
+			sourceTree = "<group>";
+		};
+		A25BE4542CEBB61C00886763 /* Request */ = {
+			isa = PBXGroup;
+			children = (
+				A24082712CEB36B8009109A0 /* SupabaseTokenRequest.swift */,
+			);
+			path = Request;
+			sourceTree = "<group>";
+		};
 		A2C328892CE2F4F600D255AB /* Router */ = {
 			isa = PBXGroup;
 			children = (
@@ -299,6 +373,7 @@
 		A2C844CF2CDBE1CB007F2970 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				FD880B592CECE8F90093BEB9 /* SNMLogger.swift */,
 				FD5134162CEB7388002E76F3 /* UIControl + Publisher.swift */,
 				FDEAEA792CE3148C005890FA /* BaseView.swift */,
 				FDEAEA7B2CE314A3005890FA /* BaseViewController.swift */,
@@ -399,6 +474,7 @@
 				FDA4913E2CDA05F900A36FB0 /* Mate */,
 				FDA4913A2CDA04BB00A36FB0 /* Repository */,
 				320044172CE489A900D08B6D /* LocalNetwork */,
+				A24082622CEB2464009109A0 /* Supabase */,
 			);
 			path = Source;
 			sourceTree = "<group>";
@@ -1289,6 +1365,7 @@
 			files = (
 				995D94622CE598FD005A47BF /* NIManager.swift in Sources */,
 				FDBFA9A12CE1E51500AA9220 /* SNMColor.swift in Sources */,
+				A24082702CEB27DE009109A0 /* SupabaseRequest.swift in Sources */,
 				A2C844D12CDBE1E5007F2970 /* (null) in Sources */,
 				3200444E2CE595EA00D08B6D /* ProfileCreatePresenter.swift in Sources */,
 				FD3A03422CD8CF460047B7ED /* AppDelegate.swift in Sources */,
@@ -1296,10 +1373,13 @@
 				FD3A03432CD8CF460047B7ED /* SceneDelegate.swift in Sources */,
 				99FA4E792CE0FBBF00553C2E /* ProfileInputViewController.swift in Sources */,
 				FDA04AA92CE91DF8002605AC /* Data + append.swift in Sources */,
+				A20E71522CEC5FE900272B25 /* SupabaseUserResponse.swift in Sources */,
 				320044582CE5B04C00D08B6D /* ProfileCreateRouter.swift in Sources */,
+				A25BE4582CEBB95C00886763 /* SupabaseRefreshResponse.swift in Sources */,
 				FDEAEA7C2CE314A7005890FA /* BaseViewController.swift in Sources */,
 				A21435F72CE20D2500564A4D /* TabBarController.swift in Sources */,
 				320043762CDCA18E00D08B6D /* (null) in Sources */,
+				A20E71502CEC595C00272B25 /* SupabaseAuthError.swift in Sources */,
 				FDCD02CF2CE917D800B627D8 /* MockRequest.swift in Sources */,
 				A2F825DD2CDFBEB4000C5419 /* ProfileCardView.swift in Sources */,
 				FD51341F2CEB7AFE002E76F3 /* LoadDogInfoUseCase.swift in Sources */,
@@ -1308,6 +1388,7 @@
 				320044712CEB45E000D08B6D /* RequestWalkPresenter.swift in Sources */,
 				995D94262CE32ECE005A47BF /* Extension + Keyboard.swift in Sources */,
 				3200441C2CE48C5C00D08B6D /* MPCAdvertiser.swift in Sources */,
+				FD880B5A2CECE8FC0093BEB9 /* SNMLogger.swift in Sources */,
 				A2F825D12CDF4BA6000C5419 /* HomeViewController.swift in Sources */,
 				FD5134232CEC2BDE002E76F3 /* Routable.swift in Sources */,
 				FD0634282CE596BD003C9D6B /* SNMRequestConvertible.swift in Sources */,
@@ -1318,11 +1399,13 @@
 				FDE14A522CE8D338001F7A9D /* SNMRequestType.swift in Sources */,
 				FD69B1B32CE3BC76009D71DC /* KeychainManager.swift in Sources */,
 				320043782CDCA49100D08B6D /* (null) in Sources */,
+				A24082612CEB244C009109A0 /* SupabaseConfig.swift in Sources */,
 				FD06342A2CE596D0003C9D6B /* NetworkProvider.swift in Sources */,
 				FDBFA9B12CE1FE5500AA9220 /* LayoutConstant.swift in Sources */,
 				320044752CEB4D6900D08B6D /* RequestWalkRouter.swift in Sources */,
 				320043912CDF3D7F00D08B6D /* KeywordButton.swift in Sources */,
 				320043922CDF3D7F00D08B6D /* InputTextField.swift in Sources */,
+				A25BE4522CEBB5A900886763 /* SupabaseSession.swift in Sources */,
 				3200446F2CEB23A700D08B6D /* CardPresentationController.swift in Sources */,
 				320043932CDF3D7F00D08B6D /* KeywordView.swift in Sources */,
 				320044772CEB4E1E00D08B6D /* RequestWalk.swift in Sources */,
@@ -1331,6 +1414,8 @@
 				FD06342C2CE5984D003C9D6B /* SNMNetworkResponse.swift in Sources */,
 				3200445E2CE5CA1B00D08B6D /* SaveInfoUseCase.swift in Sources */,
 				995D94AA2CECF8DD005A47BF /* RequestMateInteractor.swift in Sources */,
+				A25BE45A2CEC2BA300886763 /* SessionManager.swift in Sources */,
+				A24082672CEB2539009109A0 /* SupabaseSessionResponse.swift in Sources */,
 				FD51341B2CEB7AE8002E76F3 /* HomePresenter.swift in Sources */,
 				320043942CDF3D7F00D08B6D /* PrimaryButton.swift in Sources */,
 				FDCD02D12CE917E600B627D8 /* MockURLProtocol.swift in Sources */,
@@ -1339,6 +1424,7 @@
 				FD5134192CEB7ADE002E76F3 /* HomeRouter.swift in Sources */,
 				FD51341D2CEB7AF0002E76F3 /* HomeInteractor.swift in Sources */,
 				320044532CE59A8A00D08B6D /* Dog.swift in Sources */,
+				A24082642CEB2470009109A0 /* SupabaseAuthManager.swift in Sources */,
 				320044562CE59DF500D08B6D /* ProfileInputRouter.swift in Sources */,
 				A2C844D72CDBEF8B007F2970 /* (null) in Sources */,
 				3200438B2CDF3BEF00D08B6D /* ProfileCreateViewController.swift in Sources */,
@@ -1353,6 +1439,8 @@
 				3200441E2CE48D3500D08B6D /* MPCManager.swift in Sources */,
 				FD0634312CE62578003C9D6B /* AnyEncodable.swift in Sources */,
 				3200441A2CE48A3D00D08B6D /* MPCBroswer.swift in Sources */,
+				A25BE4562CEBB63A00886763 /* SupabaseUser.swift in Sources */,
+				A24082722CEB36B8009109A0 /* SupabaseTokenRequest.swift in Sources */,
 				3200437C2CDCA6F300D08B6D /* (null) in Sources */,
 				3200445A2CE5B3AA00D08B6D /* ProfileCreateInteractor.swift in Sources */,
 				A2C328922CE3BEA000D255AB /* AppRouter.swift in Sources */,
