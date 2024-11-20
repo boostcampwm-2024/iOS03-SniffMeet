@@ -88,10 +88,11 @@ class NIManager: NSObject {
 // MARK: - NISessionDelegate
 extension NIManager: NISessionDelegate {
     func session(_ session: NISession, didUpdate nearbyObjects: [NINearbyObject]) {
-        for nearbyObject in nearbyObjects {
-
-            print("Distance to peer: \(nearbyObject.distance ?? 0)")
-        }
+        guard let nearbyObject = nearbyObjects.first else { return }
+        let distance = nearbyObject.distance ?? 0
+        let direction = nearbyObject.direction ?? simd_float3(0.0, 0.0, 0.0)
+        
+        print("Distance and Direction to peer: \(distance) and \(direction)")
     }
 
     func sessionWasSuspended(_ session: NISession) {
