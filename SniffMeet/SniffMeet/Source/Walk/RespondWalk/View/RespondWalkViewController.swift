@@ -8,6 +8,9 @@ import UIKit
 
 final class RespondWalkViewController: BaseViewController {
     var presenter: RequestWalkPresentable?
+    private let scrollView = UIScrollView()
+    private let contentView = UIView()
+    
     private var dismissButton: UIButton = {
         let button = UIButton()
         button.setImage(UIImage(systemName: "xmark"), for: .normal)
@@ -33,7 +36,7 @@ final class RespondWalkViewController: BaseViewController {
         let label = AllPaddingLabel()
         label.backgroundColor = SNMColor.subGray1
         label.textColor = SNMColor.subBlack1
-        label.font = SNMFont.subheadline
+        label.font = SNMFont.body
         label.layer.cornerRadius = 10
         label.clipsToBounds = true
         label.numberOfLines = 4
@@ -58,6 +61,12 @@ final class RespondWalkViewController: BaseViewController {
         messageLabel.text = "HomeView에서 dogInfo의 변경을 알아야 하더라구요. Presenter에서 HomePresenterOutput 프로토콜을 채택하도록 설정해줬습니다."
     }
     override func configureHierachy() {
+        view.addSubview(scrollView)
+        scrollView.addSubview(contentView)
+        
+        [scrollView, contentView].forEach{
+            $0.translatesAutoresizingMaskIntoConstraints = false
+        }
         [titleLabel,
         dismissButton,
          profileView,
@@ -65,28 +74,43 @@ final class RespondWalkViewController: BaseViewController {
          messageLabel,
          warningLabel,
          acceptButton].forEach{
-            view.addSubview($0)
+            contentView.addSubview($0)
             $0.translatesAutoresizingMaskIntoConstraints = false
         }
     }
     override func configureConstraints() {
+        
         NSLayoutConstraint.activate([
-            dismissButton.topAnchor.constraint(equalTo: view.topAnchor,
+            scrollView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            scrollView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+            
+            contentView.topAnchor.constraint(equalTo: scrollView.contentLayoutGuide.topAnchor),
+            contentView.leadingAnchor.constraint(equalTo: scrollView.contentLayoutGuide.leadingAnchor),
+            contentView.trailingAnchor.constraint(equalTo: scrollView.contentLayoutGuide.trailingAnchor),
+            contentView.bottomAnchor.constraint(equalTo: scrollView.contentLayoutGuide.bottomAnchor),
+            contentView.widthAnchor.constraint(equalTo: scrollView.frameLayoutGuide.widthAnchor),
+            contentView.heightAnchor.constraint(equalToConstant: 650)
+        ])
+        
+        NSLayoutConstraint.activate([
+            dismissButton.topAnchor.constraint(equalTo: contentView.topAnchor,
                                                constant: LayoutConstant.regularVerticalPadding),
             dismissButton.trailingAnchor.constraint(
-                equalTo: view.trailingAnchor,
+                equalTo: contentView.trailingAnchor,
                 constant: -LayoutConstant.smallHorizontalPadding),
             dismissButton.heightAnchor.constraint(equalToConstant: LayoutConstant.iconSize),
             dismissButton.widthAnchor.constraint(equalToConstant: LayoutConstant.iconSize),
             
-            titleLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            titleLabel.topAnchor.constraint(equalTo: view.topAnchor,
+            titleLabel.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
+            titleLabel.topAnchor.constraint(equalTo: contentView.topAnchor,
                                             constant: LayoutConstant.xlargeVerticalPadding),
             titleLabel.heightAnchor.constraint(equalToConstant: 30),
             
             profileView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 20),
-            profileView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            profileView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.4),
+            profileView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
+            profileView.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: 0.4),
             profileView.widthAnchor.constraint(equalTo: profileView.heightAnchor),
             
             locationView.topAnchor.constraint(
@@ -104,18 +128,18 @@ final class RespondWalkViewController: BaseViewController {
             warningLabel.bottomAnchor.constraint(
                 equalTo: acceptButton.topAnchor,
                 constant: -LayoutConstant.smallVerticalPadding),
-            warningLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            warningLabel.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
             
-            acceptButton.bottomAnchor.constraint(equalTo: view.bottomAnchor,
+            acceptButton.bottomAnchor.constraint(equalTo: contentView.bottomAnchor,
                                                  constant: -LayoutConstant.xlargeVerticalPadding)
         ])
-       
+        
         [locationView, messageLabel, warningLabel, acceptButton].forEach {
             $0.leadingAnchor.constraint(
-                equalTo: view.leadingAnchor,
+                equalTo: contentView.leadingAnchor,
                 constant: LayoutConstant.smallHorizontalPadding).isActive = true
             $0.trailingAnchor.constraint(
-                equalTo: view.trailingAnchor,
+                equalTo: contentView.trailingAnchor,
                 constant: -LayoutConstant.smallHorizontalPadding).isActive = true
         }
     }
