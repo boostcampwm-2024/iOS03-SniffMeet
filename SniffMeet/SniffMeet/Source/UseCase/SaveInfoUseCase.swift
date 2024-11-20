@@ -11,7 +11,7 @@ protocol StoreDogInfoUseCase {
 }
 
 
-final class StoreDogInfoUseCaseImpl: StoreDogInfoUseCase {
+struct StoreDogInfoUseCaseImpl: StoreDogInfoUseCase {
     let localDataManager: DataStorable
     
     init(localDataManager: DataStorable) {

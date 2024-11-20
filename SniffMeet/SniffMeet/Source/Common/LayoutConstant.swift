@@ -23,5 +23,5 @@ enum LayoutConstant {
     static let tagHorizontalSpacing: CGFloat = 8
     static let navigationItemSpacing: CGFloat = 4
     
-    static let textViewEdgePadding: CGFloat = 12
+    static let edgePadding: CGFloat = 12
 }
