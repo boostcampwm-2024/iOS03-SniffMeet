@@ -103,7 +103,8 @@ final class RespondWalkViewController: BaseViewController, RespondWalkViewable {
             contentView.bottomAnchor.constraint(equalTo:
                                                     scrollView.contentLayoutGuide.bottomAnchor),
             contentView.widthAnchor.constraint(equalTo: scrollView.frameLayoutGuide.widthAnchor),
-            contentView.heightAnchor.constraint(equalToConstant: 650)
+            contentView.heightAnchor.constraint(equalToConstant:
+                                                    max(650, view.bounds.size.height * 0.8))
         ])
         
         NSLayoutConstraint.activate([
