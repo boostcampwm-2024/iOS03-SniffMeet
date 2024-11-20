@@ -36,3 +36,13 @@ struct Dog: Codable {
     let nickname: String
     let profileImage: Data?
 }
+ 
+extension Dog {
+    static let example: Dog = Dog(name: "후추",
+                                  age: 6,
+                                  size: .medium,
+                                  keywords: [.shy],
+                                  nickname: "pear",
+                                  profileImage: nil)
+}
+
