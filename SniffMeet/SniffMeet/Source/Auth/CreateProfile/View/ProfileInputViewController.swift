@@ -14,6 +14,8 @@ protocol ProfileInputViewable: AnyObject {
 final class ProfileInputViewController: BaseViewController, ProfileInputViewable {
     var presenter: ProfileInputPresentable?
 
+    private let scrollView = UIScrollView()
+    private let contentView = UIView()
     private var titleLabel: UILabel = {
         let label = UILabel()
         label.text = Context.titleLabel
@@ -62,6 +64,10 @@ final class ProfileInputViewController: BaseViewController, ProfileInputViewable
         return segmentedControl
     }()
     
+    private var topbarHeight: CGFloat {
+        return (view.window?.windowScene?.statusBarManager?.statusBarFrame.height ?? 0.0) +
+        (self.navigationController?.navigationBar.frame.height ?? 0.0)
+    }
 
     private var keywordSelectionLabel: UILabel = {
         let label = UILabel()
@@ -78,15 +84,13 @@ final class ProfileInputViewController: BaseViewController, ProfileInputViewable
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         updateNextButtonState()
         hideKeyboardWhenTappedAround()
-
         nameTextField.addTarget(self, action: #selector(textFieldDidChange(_:)),
                                 for: .editingChanged)
         ageTextField.addTarget(self, action: #selector(textFieldDidChange(_:)),
                                for: .editingChanged)
-        
         setButtonAction()
     }
     
@@ -108,6 +112,13 @@ final class ProfileInputViewController: BaseViewController, ProfileInputViewable
         
     }
     override func configureHierachy() {
+        view.addSubview(scrollView)
+        scrollView.addSubview(contentView)
+        
+        [scrollView, contentView].forEach{
+            $0.translatesAutoresizingMaskIntoConstraints = false
+        }
+        
         [titleLabel,
          nameTextField,
          ageTextField,
@@ -125,102 +136,38 @@ final class ProfileInputViewController: BaseViewController, ProfileInputViewable
          independentKeywordButton,
          nextButton].forEach {
             $0.translatesAutoresizingMaskIntoConstraints = false
-            view.addSubview($0)
+            contentView.addSubview($0)
         }
     }
+    
     override func configureConstraints() {
+        var height = view.safeAreaLayoutGuide.owningView?.bounds.height ?? view.bounds.height
+        height -= topbarHeight
+        
         NSLayoutConstraint.activate([
-            titleLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor,
+            scrollView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            contentView.topAnchor.constraint(equalTo: scrollView.contentLayoutGuide.topAnchor),
+            contentView.leadingAnchor.constraint(equalTo:
+                                                    scrollView.contentLayoutGuide.leadingAnchor),
+            contentView.trailingAnchor.constraint(equalTo:
+                                                    scrollView.contentLayoutGuide.trailingAnchor),
+            contentView.bottomAnchor.constraint(equalTo:
+                                                    scrollView.contentLayoutGuide.bottomAnchor),
+            contentView.widthAnchor.constraint(equalTo: scrollView.frameLayoutGuide.widthAnchor),
+            contentView.heightAnchor.constraint(
+                equalToConstant: max(Context.contentViewHeight, height - 100)),
+            titleLabel.topAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.topAnchor,
                                             constant: Context.basicVerticalPadding),
-            titleLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor,
-                                                constant: Context.horizontalPadding),
-
-            nameTextField.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: LayoutConstant.xlargeVerticalPadding),
-            nameTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor,
-                                                   constant: Context.horizontalPadding),
-            nameTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor,
-                                                    constant: -Context.horizontalPadding),
-
-            ageTextField.topAnchor.constraint(equalTo: nameTextField.bottomAnchor,
-                                              constant: Context.largeVerticalPadding),
-            ageTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor,
-                                                  constant: Context.horizontalPadding),
-            ageTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor,
-                                                   constant: -Context.horizontalPadding),
-
-            sexSelectionLabel.topAnchor.constraint(equalTo: ageTextField.bottomAnchor,
-                                                    constant: 60),
-            sexSelectionLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor,
-                                                        constant: Context.horizontalPadding),
-
-            sexSegmentedControl.topAnchor.constraint(equalTo: sexSelectionLabel.bottomAnchor,
-                                                  constant: Context.basicVerticalPadding),
-            sexSegmentedControl.leadingAnchor.constraint(equalTo: view.leadingAnchor,
-                                                      constant: Context.horizontalPadding),
-            sexSegmentedControl.trailingAnchor.constraint(equalTo: view.trailingAnchor,
-                                                       constant: -Context.horizontalPadding),
-
-            
-            sexUponIntakeSelectionLabel.topAnchor.constraint(equalTo: sexSegmentedControl.bottomAnchor,
-                                                    constant: 60),
-            sexUponIntakeSelectionLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor,
-                                                        constant: Context.horizontalPadding),
-
-            sexUponIntakeSegmentedControl.topAnchor.constraint(equalTo: sexUponIntakeSelectionLabel.bottomAnchor,
-                                                  constant: Context.basicVerticalPadding),
-            sexUponIntakeSegmentedControl.leadingAnchor.constraint(equalTo: view.leadingAnchor,
-                                                      constant: Context.horizontalPadding),
-            sexUponIntakeSegmentedControl.trailingAnchor.constraint(equalTo: view.trailingAnchor,
-                                                       constant: -Context.horizontalPadding),
-
-            sizeSelectionLabel.topAnchor.constraint(equalTo: sexUponIntakeSegmentedControl.bottomAnchor,
-                                                    constant: 60),
-            sizeSelectionLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor,
-                                                        constant: Context.horizontalPadding),
-
-            sizeSegmentedControl.topAnchor.constraint(equalTo: sizeSelectionLabel.bottomAnchor,
-                                                  constant: Context.basicVerticalPadding),
-            sizeSegmentedControl.leadingAnchor.constraint(equalTo: view.leadingAnchor,
-                                                      constant: Context.horizontalPadding),
-            sizeSegmentedControl.trailingAnchor.constraint(equalTo: view.trailingAnchor,
-                                                       constant: -Context.horizontalPadding),
-
-            keywordSelectionLabel.topAnchor.constraint(equalTo: sizeSegmentedControl.bottomAnchor,
-                                                       constant: Context.largeVerticalPadding),
-            keywordSelectionLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor,
-                                                           constant: Context.horizontalPadding),
-
-            activeKeywordButton.topAnchor.constraint(equalTo: keywordSelectionLabel.bottomAnchor,
-                                                     constant: Context.basicVerticalPadding),
-            activeKeywordButton.leadingAnchor.constraint(equalTo: view.leadingAnchor,
-                                                         constant: Context.horizontalPadding),
-
-            smartKeywordButton.topAnchor.constraint(equalTo: keywordSelectionLabel.bottomAnchor,
-                                                    constant: Context.basicVerticalPadding),
-            smartKeywordButton.leadingAnchor.constraint(equalTo: activeKeywordButton.trailingAnchor,
-                                                        constant: Context.smallVerticalPadding),
-
-            friendlyKeywordButton.topAnchor.constraint(equalTo: keywordSelectionLabel.bottomAnchor,
-                                                       constant: Context.basicVerticalPadding),
-            friendlyKeywordButton.leadingAnchor.constraint(
-                equalTo: smartKeywordButton.trailingAnchor, constant: Context.smallVerticalPadding),
-
-            shyKeywordButton.topAnchor.constraint(equalTo: keywordSelectionLabel.bottomAnchor,
-                                                  constant: Context.basicVerticalPadding),
-            shyKeywordButton.leadingAnchor.constraint(
-                equalTo: friendlyKeywordButton.trailingAnchor, constant: Context.smallVerticalPadding),
-
-            independentKeywordButton.topAnchor.constraint(
-                equalTo: keywordSelectionLabel.bottomAnchor, constant: Context.basicVerticalPadding),
-            independentKeywordButton.leadingAnchor.constraint(
-                equalTo: shyKeywordButton.trailingAnchor, constant: Context.smallVerticalPadding),
-
-            nextButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor,
-                                               constant: -32),
-            nextButton.leadingAnchor.constraint(equalTo: view.leadingAnchor,
-                                                constant: Context.horizontalPadding),
-            nextButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -Context.horizontalPadding)
+            titleLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor,
+                                                constant: Context.horizontalPadding)
         ])
+        
+        configureTextFieldConstraints()
+        configureSelectionViewConstraints()
+        configureButtonConstraints()
     }
 }
 
@@ -246,6 +193,7 @@ private extension ProfileInputViewController {
         static let smallVerticalPadding: CGFloat = 8
         static let basicVerticalPadding: CGFloat = 16
         static let largeVerticalPadding: CGFloat = 30
+        static let contentViewHeight: CGFloat = 750
     }
 }
 
@@ -259,4 +207,125 @@ extension ProfileInputViewController: UITextFieldDelegate {
         let isAgeFilled = !(ageTextField.text ?? "").isEmpty
         nextButton.isEnabled = isNameFilled && isAgeFilled
     }
+    private func configureTextFieldConstraints() {
+        NSLayoutConstraint.activate([
+        nameTextField.topAnchor.constraint(equalTo: titleLabel.bottomAnchor,
+                                           constant: LayoutConstant.xlargeVerticalPadding),
+        nameTextField.leadingAnchor.constraint(equalTo: contentView.leadingAnchor,
+                                               constant: Context.horizontalPadding),
+        nameTextField.trailingAnchor.constraint(equalTo: contentView.trailingAnchor,
+                                                constant: -Context.horizontalPadding),
+        ageTextField.topAnchor.constraint(equalTo: nameTextField.bottomAnchor,
+                                          constant: Context.largeVerticalPadding),
+        ageTextField.leadingAnchor.constraint(equalTo: contentView.leadingAnchor,
+                                              constant: Context.horizontalPadding),
+        ageTextField.trailingAnchor.constraint(equalTo: contentView.trailingAnchor,
+                                               constant: -Context.horizontalPadding)
+        ])
+    }
+    func configureSelectionViewConstraints() {
+        NSLayoutConstraint.activate([
+            sexSelectionLabel.topAnchor.constraint(equalTo: ageTextField.bottomAnchor,
+                                                    constant: Context.largeVerticalPadding),
+            sexSelectionLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor,
+                                                        constant: Context.horizontalPadding),
+
+            sexSegmentedControl.topAnchor.constraint(equalTo: sexSelectionLabel.bottomAnchor,
+                                                  constant: Context.basicVerticalPadding),
+            sexSegmentedControl.leadingAnchor.constraint(equalTo: contentView.leadingAnchor,
+                                                      constant: Context.horizontalPadding),
+            sexSegmentedControl.trailingAnchor.constraint(equalTo: contentView.trailingAnchor,
+                                                       constant: -Context.horizontalPadding),
+
+            sexUponIntakeSelectionLabel.topAnchor.constraint(
+                equalTo: sexSegmentedControl.bottomAnchor,
+                constant: Context.largeVerticalPadding),
+            sexUponIntakeSelectionLabel.leadingAnchor.constraint(
+                equalTo: contentView.leadingAnchor,
+                constant: Context.horizontalPadding),
+
+            sexUponIntakeSegmentedControl.topAnchor.constraint(
+                equalTo: sexUponIntakeSelectionLabel.bottomAnchor,
+                constant: Context.basicVerticalPadding),
+            sexUponIntakeSegmentedControl.leadingAnchor.constraint(
+                equalTo: contentView.leadingAnchor,
+                constant: Context.horizontalPadding),
+            sexUponIntakeSegmentedControl.trailingAnchor.constraint(
+                equalTo: contentView.trailingAnchor,
+                constant: -Context.horizontalPadding),
+
+            sizeSelectionLabel.topAnchor.constraint(
+                equalTo: sexUponIntakeSegmentedControl.bottomAnchor,
+                constant: Context.largeVerticalPadding),
+            sizeSelectionLabel.leadingAnchor.constraint(
+                equalTo: contentView.leadingAnchor,
+                constant: Context.horizontalPadding),
+
+            sizeSegmentedControl.topAnchor.constraint(
+                equalTo: sizeSelectionLabel.bottomAnchor,
+                constant: Context.basicVerticalPadding),
+            sizeSegmentedControl.leadingAnchor.constraint(
+                equalTo: contentView.leadingAnchor,
+                constant: Context.horizontalPadding),
+            sizeSegmentedControl.trailingAnchor.constraint(
+                equalTo: contentView.trailingAnchor,
+                constant: -Context.horizontalPadding)
+        ])
+    }
+    func configureButtonConstraints() {
+       NSLayoutConstraint.activate([
+           keywordSelectionLabel.topAnchor.constraint(
+               equalTo: sizeSegmentedControl.bottomAnchor,
+               constant: Context.largeVerticalPadding),
+           keywordSelectionLabel.leadingAnchor.constraint(
+               equalTo: contentView.leadingAnchor,
+               constant: Context.horizontalPadding),
+
+           activeKeywordButton.topAnchor.constraint(
+               equalTo: keywordSelectionLabel.bottomAnchor,
+               constant: Context.basicVerticalPadding),
+           activeKeywordButton.leadingAnchor.constraint(
+               equalTo: contentView.leadingAnchor,
+               constant: Context.horizontalPadding),
+
+           smartKeywordButton.topAnchor.constraint(
+               equalTo: keywordSelectionLabel.bottomAnchor,
+               constant: Context.basicVerticalPadding),
+           smartKeywordButton.leadingAnchor.constraint(
+               equalTo: activeKeywordButton.trailingAnchor,
+               constant: Context.smallVerticalPadding),
+
+           friendlyKeywordButton.topAnchor.constraint(
+               equalTo: keywordSelectionLabel.bottomAnchor,
+               constant: Context.basicVerticalPadding),
+           friendlyKeywordButton.leadingAnchor.constraint(
+               equalTo: smartKeywordButton.trailingAnchor,
+               constant: Context.smallVerticalPadding),
+
+           shyKeywordButton.topAnchor.constraint(
+               equalTo: keywordSelectionLabel.bottomAnchor,
+               constant: Context.basicVerticalPadding),
+           shyKeywordButton.leadingAnchor.constraint(
+               equalTo: friendlyKeywordButton.trailingAnchor,
+               constant: Context.smallVerticalPadding),
+
+           independentKeywordButton.topAnchor.constraint(
+               equalTo: keywordSelectionLabel.bottomAnchor,
+               constant: Context.basicVerticalPadding),
+           independentKeywordButton.leadingAnchor.constraint(
+               equalTo: shyKeywordButton.trailingAnchor,
+               constant: Context.smallVerticalPadding),
+
+           nextButton.bottomAnchor.constraint(
+               equalTo: contentView.bottomAnchor,
+               constant: -32),
+           nextButton.leadingAnchor.constraint(
+               equalTo: contentView.leadingAnchor,
+               constant: Context.horizontalPadding),
+           nextButton.trailingAnchor.constraint(
+               equalTo: contentView.trailingAnchor,
+               constant: -Context.horizontalPadding),
+           nextButton.heightAnchor.constraint(equalToConstant: 52)
+       ])
+   }
 }
