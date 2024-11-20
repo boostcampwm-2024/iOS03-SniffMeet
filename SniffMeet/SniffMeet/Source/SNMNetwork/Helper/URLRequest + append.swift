@@ -10,7 +10,7 @@ import Foundation
 extension URLRequest {
     mutating func append(header: [String: String]) {
         header.forEach {
-            self.setValue($0, forHTTPHeaderField: $1)
+            self.setValue($1, forHTTPHeaderField: $0)
         }
     }
     mutating func append(body: any Encodable) throws {

@@ -20,7 +20,9 @@ final class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         window = UIWindow(windowScene: windowScene)
         appRouter = AppRouter(window: window)
-
-        appRouter?.displayInitialScreen(isLoggedIn: false)
+        // appRouter 안으로 들어갈 로직
+        Task {
+            await appRouter?.displayInitialScreen()
+        }
     }
 }

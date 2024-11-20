@@ -46,3 +46,9 @@ extension Dog {
                                   profileImage: nil)
 }
 
+
+struct DogProfileInfo {
+    let name: String
+    let keywords: [Keyword]
+    let profileImage: Data?
+}
