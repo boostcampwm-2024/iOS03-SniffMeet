@@ -53,6 +53,15 @@
 		FD06342A2CE596D0003C9D6B /* NetworkProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD0634292CE596C2003C9D6B /* NetworkProvider.swift */; };
 		FD06342C2CE5984D003C9D6B /* SNMNetworkResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD06342B2CE59843003C9D6B /* SNMNetworkResponse.swift */; };
 		FD0634312CE62578003C9D6B /* AnyEncodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD0634302CE62573003C9D6B /* AnyEncodable.swift */; };
+		FD119F422CED865B00BE22BD /* SelectLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD119F412CED865000BE22BD /* SelectLocationViewController.swift */; };
+		FD119F462CED868D00BE22BD /* ConvertLocationToTextUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD119F452CED867600BE22BD /* ConvertLocationToTextUseCase.swift */; };
+		FD119F482CED872C00BE22BD /* RequestLocationAuthUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD119F472CED872500BE22BD /* RequestLocationAuthUseCase.swift */; };
+		FD119F4A2CED875F00BE22BD /* RequestUserLocationUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD119F492CED875800BE22BD /* RequestUserLocationUseCase.swift */; };
+		FD119F4C2CED87B000BE22BD /* SelectLocationInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD119F4B2CED87AA00BE22BD /* SelectLocationInteractor.swift */; };
+		FD119F4E2CED87C200BE22BD /* SelectLocationPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD119F4D2CED87BC00BE22BD /* SelectLocationPresenter.swift */; };
+		FD119F502CED87E500BE22BD /* SelectLocationRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD119F4F2CED87DD00BE22BD /* SelectLocationRouter.swift */; };
+		FD119F522CED881300BE22BD /* SelectLocationModuleBuildable.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD119F512CED880A00BE22BD /* SelectLocationModuleBuildable.swift */; };
+		FD119F542CEDC14700BE22BD /* Address.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD119F532CEDC14400BE22BD /* Address.swift */; };
 		FD3A033F2CD8CF460047B7ED /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FD3A03392CD8CF460047B7ED /* Assets.xcassets */; };
 		FD3A03412CD8CF460047B7ED /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FD3A033C2CD8CF460047B7ED /* LaunchScreen.storyboard */; };
 		FD3A03422CD8CF460047B7ED /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD3A03382CD8CF460047B7ED /* AppDelegate.swift */; };
@@ -149,6 +158,15 @@
 		FD0634292CE596C2003C9D6B /* NetworkProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkProvider.swift; sourceTree = "<group>"; };
 		FD06342B2CE59843003C9D6B /* SNMNetworkResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SNMNetworkResponse.swift; sourceTree = "<group>"; };
 		FD0634302CE62573003C9D6B /* AnyEncodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnyEncodable.swift; sourceTree = "<group>"; };
+		FD119F412CED865000BE22BD /* SelectLocationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectLocationViewController.swift; sourceTree = "<group>"; };
+		FD119F452CED867600BE22BD /* ConvertLocationToTextUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConvertLocationToTextUseCase.swift; sourceTree = "<group>"; };
+		FD119F472CED872500BE22BD /* RequestLocationAuthUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestLocationAuthUseCase.swift; sourceTree = "<group>"; };
+		FD119F492CED875800BE22BD /* RequestUserLocationUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestUserLocationUseCase.swift; sourceTree = "<group>"; };
+		FD119F4B2CED87AA00BE22BD /* SelectLocationInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectLocationInteractor.swift; sourceTree = "<group>"; };
+		FD119F4D2CED87BC00BE22BD /* SelectLocationPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectLocationPresenter.swift; sourceTree = "<group>"; };
+		FD119F4F2CED87DD00BE22BD /* SelectLocationRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectLocationRouter.swift; sourceTree = "<group>"; };
+		FD119F512CED880A00BE22BD /* SelectLocationModuleBuildable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectLocationModuleBuildable.swift; sourceTree = "<group>"; };
+		FD119F532CEDC14400BE22BD /* Address.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Address.swift; sourceTree = "<group>"; };
 		FD3A03202CD8CDE50047B7ED /* SniffMeet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SniffMeet.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FD3A03382CD8CF460047B7ED /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FD3A03392CD8CF460047B7ED /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -233,6 +251,7 @@
 		320044692CEB182400D08B6D /* View */ = {
 			isa = PBXGroup;
 			children = (
+				FD119F412CED865000BE22BD /* SelectLocationViewController.swift */,
 				3200446E2CEB239D00D08B6D /* CardPresentationController.swift */,
 				3200446A2CEB182A00D08B6D /* RequestWalkViewController.swift */,
 			);
@@ -242,6 +261,9 @@
 		320044782CEC48FB00D08B6D /* UseCase */ = {
 			isa = PBXGroup;
 			children = (
+				FD119F492CED875800BE22BD /* RequestUserLocationUseCase.swift */,
+				FD119F472CED872500BE22BD /* RequestLocationAuthUseCase.swift */,
+				FD119F452CED867600BE22BD /* ConvertLocationToTextUseCase.swift */,
 				FD51341E2CEB7AF6002E76F3 /* LoadDogInfoUseCase.swift */,
 				3200445D2CE5CA1A00D08B6D /* SaveInfoUseCase.swift */,
 				320044762CEB4E0F00D08B6D /* RequestWalk.swift */,
@@ -252,6 +274,7 @@
 		320044792CEC490600D08B6D /* Entity */ = {
 			isa = PBXGroup;
 			children = (
+				FD119F532CEDC14400BE22BD /* Address.swift */,
 				320044522CE59A8100D08B6D /* Dog.swift */,
 			);
 			path = Entity;
@@ -1062,6 +1085,7 @@
 		FDA491932CDA7C6200A36FB0 /* RequestWalk */ = {
 			isa = PBXGroup;
 			children = (
+				FD119F512CED880A00BE22BD /* SelectLocationModuleBuildable.swift */,
 				320044692CEB182400D08B6D /* View */,
 				FDA491952CDA7C6A00A36FB0 /* Interactor */,
 				FDA491962CDA7C6A00A36FB0 /* Presenter */,
@@ -1073,6 +1097,7 @@
 		FDA491952CDA7C6A00A36FB0 /* Interactor */ = {
 			isa = PBXGroup;
 			children = (
+				FD119F4B2CED87AA00BE22BD /* SelectLocationInteractor.swift */,
 				320044722CEB47A600D08B6D /* RequestWalkInteractor.swift */,
 			);
 			path = Interactor;
@@ -1081,6 +1106,7 @@
 		FDA491962CDA7C6A00A36FB0 /* Presenter */ = {
 			isa = PBXGroup;
 			children = (
+				FD119F4D2CED87BC00BE22BD /* SelectLocationPresenter.swift */,
 				320044702CEB45D600D08B6D /* RequestWalkPresenter.swift */,
 			);
 			path = Presenter;
@@ -1090,6 +1116,7 @@
 			isa = PBXGroup;
 			children = (
 				320044742CEB4D6200D08B6D /* RequestWalkRouter.swift */,
+				FD119F4F2CED87DD00BE22BD /* SelectLocationRouter.swift */,
 			);
 			path = Router;
 			sourceTree = "<group>";
@@ -1286,6 +1313,7 @@
 				FD3A03432CD8CF460047B7ED /* SceneDelegate.swift in Sources */,
 				99FA4E792CE0FBBF00553C2E /* ProfileInputViewController.swift in Sources */,
 				FDA04AA92CE91DF8002605AC /* Data + append.swift in Sources */,
+				FD119F462CED868D00BE22BD /* ConvertLocationToTextUseCase.swift in Sources */,
 				320044582CE5B04C00D08B6D /* ProfileCreateRouter.swift in Sources */,
 				FDEAEA7C2CE314A7005890FA /* BaseViewController.swift in Sources */,
 				A21435F72CE20D2500564A4D /* TabBarController.swift in Sources */,
@@ -1297,12 +1325,14 @@
 				A2C328882CE2481900D255AB /* HomeModuleBuilder.swift in Sources */,
 				320044712CEB45E000D08B6D /* RequestWalkPresenter.swift in Sources */,
 				995D94262CE32ECE005A47BF /* Extension + Keyboard.swift in Sources */,
+				FD119F542CEDC14700BE22BD /* Address.swift in Sources */,
 				3200441C2CE48C5C00D08B6D /* MPCAdvertiser.swift in Sources */,
 				FD880B5A2CECE8FC0093BEB9 /* SNMLogger.swift in Sources */,
 				A2F825D12CDF4BA6000C5419 /* HomeViewController.swift in Sources */,
 				FD5134232CEC2BDE002E76F3 /* Routable.swift in Sources */,
 				FD0634282CE596BD003C9D6B /* SNMRequestConvertible.swift in Sources */,
 				320043972CDF493C00D08B6D /* Extension + UIView.swift in Sources */,
+				FD119F4A2CED875F00BE22BD /* RequestUserLocationUseCase.swift in Sources */,
 				FD0634262CE596B5003C9D6B /* Endpoint.swift in Sources */,
 				320044502CE595F700D08B6D /* ProfileInputPresenter.swift in Sources */,
 				FDE14A522CE8D338001F7A9D /* SNMRequestType.swift in Sources */,
@@ -1312,7 +1342,10 @@
 				FDBFA9B12CE1FE5500AA9220 /* LayoutConstant.swift in Sources */,
 				320044752CEB4D6900D08B6D /* RequestWalkRouter.swift in Sources */,
 				320043912CDF3D7F00D08B6D /* KeywordButton.swift in Sources */,
+				FD119F4C2CED87B000BE22BD /* SelectLocationInteractor.swift in Sources */,
 				320043922CDF3D7F00D08B6D /* InputTextField.swift in Sources */,
+				FD119F482CED872C00BE22BD /* RequestLocationAuthUseCase.swift in Sources */,
+				FD119F422CED865B00BE22BD /* SelectLocationViewController.swift in Sources */,
 				3200446F2CEB23A700D08B6D /* CardPresentationController.swift in Sources */,
 				320043932CDF3D7F00D08B6D /* KeywordView.swift in Sources */,
 				320044772CEB4E1E00D08B6D /* RequestWalk.swift in Sources */,
@@ -1324,15 +1357,18 @@
 				FDCD02D12CE917E600B627D8 /* MockURLProtocol.swift in Sources */,
 				320043952CDF3D7F00D08B6D /* Extension + Navigation.swift in Sources */,
 				FDBFA99F2CE1E50C00AA9220 /* SNMFont.swift in Sources */,
+				FD119F4E2CED87C200BE22BD /* SelectLocationPresenter.swift in Sources */,
 				FD5134192CEB7ADE002E76F3 /* HomeRouter.swift in Sources */,
 				FD51341D2CEB7AF0002E76F3 /* HomeInteractor.swift in Sources */,
 				320044532CE59A8A00D08B6D /* Dog.swift in Sources */,
 				320044562CE59DF500D08B6D /* ProfileInputRouter.swift in Sources */,
 				A2C844D72CDBEF8B007F2970 /* (null) in Sources */,
 				3200438B2CDF3BEF00D08B6D /* ProfileCreateViewController.swift in Sources */,
+				FD119F502CED87E500BE22BD /* SelectLocationRouter.swift in Sources */,
 				320044672CE6125100D08B6D /* DataManager.swift in Sources */,
 				FDEAEA7A2CE3148D005890FA /* BaseView.swift in Sources */,
 				FDA04AA52CE91DBF002605AC /* MultipartFormData.swift in Sources */,
+				FD119F522CED881300BE22BD /* SelectLocationModuleBuildable.swift in Sources */,
 				A2C328862CE245AC00D255AB /* TabBarModuleBuilder.swift in Sources */,
 				320044732CEB47B100D08B6D /* RequestWalkInteractor.swift in Sources */,
 				FD69B1B52CE3BC7E009D71DC /* UserDefaultsManager.swift in Sources */,
@@ -1420,6 +1456,9 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SniffMeet/Resource/Info.plist;
 				INFOPLIST_KEY_NSLocalNetworkUsageDescription = "메이트 맺기 기능에는 로컬 네트워크 사용이 필요합니다.  \\n 로컬 네트워크를 사용하시겠습니까?";
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "산책하기 기능에는 GPS 사용이 필요합니다. ";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "산책하기 기능에는 GPS 사용이 필요합니다. ";
+				INFOPLIST_KEY_NSNearbyInteractionUsageDescription = "This app demonstrates the NearbyInteraction framework. Supply a value for this string to explain how the user benefits when they allow the app to use NearbyInteraction.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
@@ -1453,6 +1492,9 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SniffMeet/Resource/Info.plist;
 				INFOPLIST_KEY_NSLocalNetworkUsageDescription = "메이트 맺기 기능에는 로컬 네트워크 사용이 필요합니다.  \\n 로컬 네트워크를 사용하시겠습니까?";
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "산책하기 기능에는 GPS 사용이 필요합니다. ";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "산책하기 기능에는 GPS 사용이 필요합니다. ";
+				INFOPLIST_KEY_NSNearbyInteractionUsageDescription = "This app demonstrates the NearbyInteraction framework. Supply a value for this string to explain how the user benefits when they allow the app to use NearbyInteraction.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
