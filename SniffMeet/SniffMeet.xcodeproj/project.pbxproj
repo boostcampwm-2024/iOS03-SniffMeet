@@ -35,7 +35,17 @@
 		320044712CEB45E000D08B6D /* RequestWalkPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 320044702CEB45D600D08B6D /* RequestWalkPresenter.swift */; };
 		320044732CEB47B100D08B6D /* RequestWalkInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 320044722CEB47A600D08B6D /* RequestWalkInteractor.swift */; };
 		320044752CEB4D6900D08B6D /* RequestWalkRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 320044742CEB4D6200D08B6D /* RequestWalkRouter.swift */; };
-		320044772CEB4E1E00D08B6D /* RequestWalk.swift in Sources */ = {isa = PBXBuildFile; fileRef = 320044762CEB4E0F00D08B6D /* RequestWalk.swift */; };
+		320044772CEB4E1E00D08B6D /* RequestWalkUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 320044762CEB4E0F00D08B6D /* RequestWalkUseCase.swift */; };
+		320044852CEC836400D08B6D /* PaddingLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 320044842CEC836000D08B6D /* PaddingLabel.swift */; };
+		320044872CEC85CB00D08B6D /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 320044862CEC85C600D08B6D /* ProfileView.swift */; };
+		320044892CEC862D00D08B6D /* LocationSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 320044882CEC862400D08B6D /* LocationSelectionView.swift */; };
+		3200448D2CEC878300D08B6D /* RespondWalkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3200448C2CEC877C00D08B6D /* RespondWalkViewController.swift */; };
+		320044922CED78D200D08B6D /* RespondWalkPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 320044912CED78C100D08B6D /* RespondWalkPresenter.swift */; };
+		320044942CED80B700D08B6D /* RespondWalkInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 320044932CED80B000D08B6D /* RespondWalkInteractor.swift */; };
+		320044962CED80DA00D08B6D /* RespondWalkRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 320044952CED80D100D08B6D /* RespondWalkRouter.swift */; };
+		320044982CED81F400D08B6D /* WalkRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 320044972CED81EF00D08B6D /* WalkRequest.swift */; };
+		3200449A2CEDA80900D08B6D /* FetchRequestUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 320044992CEDA80400D08B6D /* FetchRequestUseCase.swift */; };
+		3200449C2CEDA87800D08B6D /* RespondWalkRequestUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3200449B2CEDA86B00D08B6D /* RespondWalkRequestUseCase.swift */; };
 		995D94262CE32ECE005A47BF /* Extension + Keyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 995D94252CE32EC1005A47BF /* Extension + Keyboard.swift */; };
 		995D94622CE598FD005A47BF /* NIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 995D94612CE598F0005A47BF /* NIManager.swift */; };
 		99FA4E792CE0FBBF00553C2E /* ProfileInputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99FA4E782CE0FBBF00553C2E /* ProfileInputViewController.swift */; };
@@ -128,7 +138,17 @@
 		320044702CEB45D600D08B6D /* RequestWalkPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestWalkPresenter.swift; sourceTree = "<group>"; };
 		320044722CEB47A600D08B6D /* RequestWalkInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestWalkInteractor.swift; sourceTree = "<group>"; };
 		320044742CEB4D6200D08B6D /* RequestWalkRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestWalkRouter.swift; sourceTree = "<group>"; };
-		320044762CEB4E0F00D08B6D /* RequestWalk.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestWalk.swift; sourceTree = "<group>"; };
+		320044762CEB4E0F00D08B6D /* RequestWalkUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestWalkUseCase.swift; sourceTree = "<group>"; };
+		320044842CEC836000D08B6D /* PaddingLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaddingLabel.swift; sourceTree = "<group>"; };
+		320044862CEC85C600D08B6D /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
+		320044882CEC862400D08B6D /* LocationSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationSelectionView.swift; sourceTree = "<group>"; };
+		3200448C2CEC877C00D08B6D /* RespondWalkViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RespondWalkViewController.swift; sourceTree = "<group>"; };
+		320044912CED78C100D08B6D /* RespondWalkPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RespondWalkPresenter.swift; sourceTree = "<group>"; };
+		320044932CED80B000D08B6D /* RespondWalkInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RespondWalkInteractor.swift; sourceTree = "<group>"; };
+		320044952CED80D100D08B6D /* RespondWalkRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RespondWalkRouter.swift; sourceTree = "<group>"; };
+		320044972CED81EF00D08B6D /* WalkRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalkRequest.swift; sourceTree = "<group>"; };
+		320044992CEDA80400D08B6D /* FetchRequestUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchRequestUseCase.swift; sourceTree = "<group>"; };
+		3200449B2CEDA86B00D08B6D /* RespondWalkRequestUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RespondWalkRequestUseCase.swift; sourceTree = "<group>"; };
 		995D94252CE32EC1005A47BF /* Extension + Keyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension + Keyboard.swift"; sourceTree = "<group>"; };
 		995D94612CE598F0005A47BF /* NIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NIManager.swift; sourceTree = "<group>"; };
 		99FA4E782CE0FBBF00553C2E /* ProfileInputViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileInputViewController.swift; sourceTree = "<group>"; };
@@ -221,6 +241,8 @@
 		320044692CEB182400D08B6D /* View */ = {
 			isa = PBXGroup;
 			children = (
+				320044882CEC862400D08B6D /* LocationSelectionView.swift */,
+				320044862CEC85C600D08B6D /* ProfileView.swift */,
 				3200446E2CEB239D00D08B6D /* CardPresentationController.swift */,
 				3200446A2CEB182A00D08B6D /* RequestWalkViewController.swift */,
 			);
@@ -230,8 +252,10 @@
 		320044782CEC48FB00D08B6D /* UseCase */ = {
 			isa = PBXGroup;
 			children = (
+				3200449B2CEDA86B00D08B6D /* RespondWalkRequestUseCase.swift */,
+				320044992CEDA80400D08B6D /* FetchRequestUseCase.swift */,
 				3200445D2CE5CA1A00D08B6D /* SaveInfoUseCase.swift */,
-				320044762CEB4E0F00D08B6D /* RequestWalk.swift */,
+				320044762CEB4E0F00D08B6D /* RequestWalkUseCase.swift */,
 			);
 			path = UseCase;
 			sourceTree = "<group>";
@@ -239,9 +263,53 @@
 		320044792CEC490600D08B6D /* Entity */ = {
 			isa = PBXGroup;
 			children = (
+				320044972CED81EF00D08B6D /* WalkRequest.swift */,
 				320044522CE59A8100D08B6D /* Dog.swift */,
 			);
 			path = Entity;
+			sourceTree = "<group>";
+		};
+		3200448A2CEC872D00D08B6D /* RespondWalk */ = {
+			isa = PBXGroup;
+			children = (
+				3200448B2CEC877500D08B6D /* View */,
+				3200448E2CED778600D08B6D /* Interactor */,
+				3200448F2CED77AC00D08B6D /* Presenter */,
+				320044902CED77B200D08B6D /* Router */,
+			);
+			path = RespondWalk;
+			sourceTree = "<group>";
+		};
+		3200448B2CEC877500D08B6D /* View */ = {
+			isa = PBXGroup;
+			children = (
+				3200448C2CEC877C00D08B6D /* RespondWalkViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		3200448E2CED778600D08B6D /* Interactor */ = {
+			isa = PBXGroup;
+			children = (
+				320044932CED80B000D08B6D /* RespondWalkInteractor.swift */,
+			);
+			path = Interactor;
+			sourceTree = "<group>";
+		};
+		3200448F2CED77AC00D08B6D /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				320044912CED78C100D08B6D /* RespondWalkPresenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		320044902CED77B200D08B6D /* Router */ = {
+			isa = PBXGroup;
+			children = (
+				320044952CED80D100D08B6D /* RespondWalkRouter.swift */,
+			);
+			path = Router;
 			sourceTree = "<group>";
 		};
 		995D94602CE598E1005A47BF /* NI */ = {
@@ -280,6 +348,7 @@
 		A2C844CF2CDBE1CB007F2970 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				320044842CEC836000D08B6D /* PaddingLabel.swift */,
 				FD5134162CEB7388002E76F3 /* UIControl + Publisher.swift */,
 				FDEAEA792CE3148C005890FA /* BaseView.swift */,
 				FDEAEA7B2CE314A3005890FA /* BaseViewController.swift */,
@@ -452,6 +521,7 @@
 		FDA4913C2CDA056400A36FB0 /* Walk */ = {
 			isa = PBXGroup;
 			children = (
+				3200448A2CEC872D00D08B6D /* RespondWalk */,
 				FDA491932CDA7C6200A36FB0 /* RequestWalk */,
 				FDA4914B2CDA65E200A36FB0 /* WalkLog */,
 				FDA4914A2CDA077100A36FB0 /* RecordWalk */,
@@ -1272,9 +1342,11 @@
 				FDBFA9A12CE1E51500AA9220 /* SNMColor.swift in Sources */,
 				A2C844D12CDBE1E5007F2970 /* (null) in Sources */,
 				3200444E2CE595EA00D08B6D /* ProfileCreatePresenter.swift in Sources */,
+				320044922CED78D200D08B6D /* RespondWalkPresenter.swift in Sources */,
 				FD3A03422CD8CF460047B7ED /* AppDelegate.swift in Sources */,
 				FD3A03432CD8CF460047B7ED /* SceneDelegate.swift in Sources */,
 				99FA4E792CE0FBBF00553C2E /* ProfileInputViewController.swift in Sources */,
+				3200448D2CEC878300D08B6D /* RespondWalkViewController.swift in Sources */,
 				FDA04AA92CE91DF8002605AC /* Data + append.swift in Sources */,
 				320044582CE5B04C00D08B6D /* ProfileCreateRouter.swift in Sources */,
 				FDEAEA7C2CE314A7005890FA /* BaseViewController.swift in Sources */,
@@ -1283,6 +1355,7 @@
 				FDCD02CF2CE917D800B627D8 /* MockRequest.swift in Sources */,
 				A2F825DD2CDFBEB4000C5419 /* ProfileCardView.swift in Sources */,
 				FD5134172CEB738D002E76F3 /* UIControl + Publisher.swift in Sources */,
+				320044852CEC836400D08B6D /* PaddingLabel.swift in Sources */,
 				A2C328882CE2481900D255AB /* HomeModuleBuilder.swift in Sources */,
 				320044712CEB45E000D08B6D /* RequestWalkPresenter.swift in Sources */,
 				995D94262CE32ECE005A47BF /* Extension + Keyboard.swift in Sources */,
@@ -1291,6 +1364,7 @@
 				FD0634282CE596BD003C9D6B /* SNMRequestConvertible.swift in Sources */,
 				320043972CDF493C00D08B6D /* Extension + UIView.swift in Sources */,
 				FD0634262CE596B5003C9D6B /* Endpoint.swift in Sources */,
+				320044872CEC85CB00D08B6D /* ProfileView.swift in Sources */,
 				320044502CE595F700D08B6D /* ProfileInputPresenter.swift in Sources */,
 				FDE14A522CE8D338001F7A9D /* SNMRequestType.swift in Sources */,
 				FD69B1B32CE3BC76009D71DC /* KeychainManager.swift in Sources */,
@@ -1298,12 +1372,15 @@
 				FD06342A2CE596D0003C9D6B /* NetworkProvider.swift in Sources */,
 				FDBFA9B12CE1FE5500AA9220 /* LayoutConstant.swift in Sources */,
 				320044752CEB4D6900D08B6D /* RequestWalkRouter.swift in Sources */,
+				320044962CED80DA00D08B6D /* RespondWalkRouter.swift in Sources */,
 				320043912CDF3D7F00D08B6D /* KeywordButton.swift in Sources */,
 				320043922CDF3D7F00D08B6D /* InputTextField.swift in Sources */,
 				3200446F2CEB23A700D08B6D /* CardPresentationController.swift in Sources */,
 				320043932CDF3D7F00D08B6D /* KeywordView.swift in Sources */,
-				320044772CEB4E1E00D08B6D /* RequestWalk.swift in Sources */,
+				320044772CEB4E1E00D08B6D /* RequestWalkUseCase.swift in Sources */,
+				320044982CED81F400D08B6D /* WalkRequest.swift in Sources */,
 				FDE14A502CE8D2FB001F7A9D /* URLRequest + append.swift in Sources */,
+				3200449A2CEDA80900D08B6D /* FetchRequestUseCase.swift in Sources */,
 				FD06342C2CE5984D003C9D6B /* SNMNetworkResponse.swift in Sources */,
 				3200445E2CE5CA1B00D08B6D /* SaveInfoUseCase.swift in Sources */,
 				320043942CDF3D7F00D08B6D /* PrimaryButton.swift in Sources */,
@@ -1315,10 +1392,13 @@
 				A2C844D72CDBEF8B007F2970 /* (null) in Sources */,
 				3200438B2CDF3BEF00D08B6D /* ProfileCreateViewController.swift in Sources */,
 				320044672CE6125100D08B6D /* DataManager.swift in Sources */,
+				3200449C2CEDA87800D08B6D /* RespondWalkRequestUseCase.swift in Sources */,
 				FDEAEA7A2CE3148D005890FA /* BaseView.swift in Sources */,
 				FDA04AA52CE91DBF002605AC /* MultipartFormData.swift in Sources */,
 				A2C328862CE245AC00D255AB /* TabBarModuleBuilder.swift in Sources */,
 				320044732CEB47B100D08B6D /* RequestWalkInteractor.swift in Sources */,
+				320044942CED80B700D08B6D /* RespondWalkInteractor.swift in Sources */,
+				320044892CEC862D00D08B6D /* LocationSelectionView.swift in Sources */,
 				FD69B1B52CE3BC7E009D71DC /* UserDefaultsManager.swift in Sources */,
 				320043722CDC9E5F00D08B6D /* (null) in Sources */,
 				FDE14A4E2CE8D144001F7A9D /* HTTPStatusCode.swift in Sources */,
