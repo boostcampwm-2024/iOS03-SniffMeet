@@ -66,13 +66,13 @@ final class HomePresenter: HomePresentable {
             router?.showAlert(
                 homeView: view,
                 title: "Connected",
-                message: "Successfully connected to peer."
+                message: "성공적으로 연결되었습니다.\n핸드폰끼리 카메라 방향으로 가까이하여 프로필을 교환해보세요."
             )
         } else {
             router?.showAlert(
                 homeView: view,
                 title: "Disconnected",
-                message: "Connection to peer lost."
+                message: "메이트 찾기 실패하였습니다.\n 와이파이와 블루투스가 켜져있는 상태인지 확인해주세요."
             )
         }
     }
