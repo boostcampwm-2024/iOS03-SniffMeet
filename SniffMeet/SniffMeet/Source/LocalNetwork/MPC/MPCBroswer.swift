@@ -13,7 +13,9 @@ final class MPCBrowser: NSObject {
     let browser: MCNearbyServiceBrowser
     let session: MCSession
     let myPeerId: MCPeerID
-    
+
+    static var sharedBrowser: MCNearbyServiceBrowser?
+
     @Published var paired: Bool = false
     @Published var availablePeers = [MCPeerID]()
     
@@ -30,11 +32,23 @@ final class MPCBrowser: NSObject {
     }
     
     convenience init(session: MCSession, myPeerID: MCPeerID, serviceType: String) {
-        self.init(browser: MCNearbyServiceBrowser(peer: myPeerID, serviceType: serviceType),
-                  session: session,
-                  myPeerId: myPeerID)
+        if let existingBrowser = MPCBrowser.sharedBrowser {
+            self.init(browser: existingBrowser, session: session, myPeerId: myPeerID)
+        } else {
+            let newBrowser = MCNearbyServiceBrowser(peer: myPeerID,
+                                                    serviceType: serviceType)
+            MPCBrowser.sharedBrowser = newBrowser
+            self.init(browser: newBrowser, session: session, myPeerId: myPeerID)
+        }
     }
-    
+
+    deinit {
+        if MPCBrowser.sharedBrowser === browser {
+            MPCBrowser.sharedBrowser = nil
+            log.log("MPCBrowser deinit")
+        }
+    }
+
     func startBrowsing() {
         browser.startBrowsingForPeers()
         log.log("start Browsing")
@@ -78,7 +92,12 @@ extension MPCBrowser: MCNearbyServiceBrowserDelegate {
         guard !(self.availablePeers.contains(peerID)) else { return }
         self.availablePeers.append(peerID)
 
-        invite(peerID: peerID)
+        if !session.connectedPeers.contains(peerID) {
+            invite(peerID: peerID)
+        }
+        else {
+            log.info("Peer is already connected : \(peerID)")
+        }
     }
     
     

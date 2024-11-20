@@ -14,6 +14,8 @@ final class MPCAdvertiser: NSObject {
     let session: MCSession
     let myPeerID: MCPeerID
 
+    static var sharedAdvertiser: MCNearbyServiceAdvertiser?
+
     @Published var receivedInvite: Bool = false
     @Published var receivedInviteFrom: MCPeerID?
     @Published var invitationHandler: ((Bool, MCSession?) -> Void)?
@@ -37,13 +39,25 @@ final class MPCAdvertiser: NSObject {
     convenience init(session: MCSession, myPeerID: MCPeerID, serviceType: String) {
         /// 이렇게 메타데이터와 함께 advertiser를 만들면 advertising할 때 정보 전달 가능
         ///let advertiser = MCNearbyServiceAdvertiser(peer: myPeerID, discoveryInfo: discoveryInfo, serviceType: "my-service")
-        self.init(advertiser: MCNearbyServiceAdvertiser(peer: myPeerID,
-                                                        discoveryInfo: nil,
-                                                        serviceType: serviceType),
-                  session: session,
-                  myPeerID: myPeerID)
+        if let existingAdvertiser = MPCAdvertiser.sharedAdvertiser {
+            self.init(advertiser: existingAdvertiser, session: session, myPeerID: myPeerID)
+        } else {
+            let newAdvertiser = MCNearbyServiceAdvertiser(peer: myPeerID,
+                                                          discoveryInfo: nil,
+                                                          serviceType: serviceType)
+            MPCAdvertiser.sharedAdvertiser = newAdvertiser
+            self.init(advertiser: newAdvertiser, session: session, myPeerID: myPeerID)
+            log.log("Created new MCNearbyServiceAdvertiser instance")
+        }
     }
-    
+
+    deinit {
+        if MPCAdvertiser.sharedAdvertiser === advertiser {
+            MPCAdvertiser.sharedAdvertiser = nil
+            log.log("MPCAdvertiser deinit")
+        }
+    }
+
     func startAdvertising() {
         advertiser.startAdvertisingPeer()
         log.log("start advertising")
@@ -56,6 +70,11 @@ final class MPCAdvertiser: NSObject {
 }
 
 extension MPCAdvertiser: MCNearbyServiceAdvertiserDelegate {
+    func advertiser(_ advertiser: MCNearbyServiceAdvertiser,
+                    didNotStartAdvertisingPeer error: Error) {
+        print("Advertiser failed to start: \(error)")
+    }
+
     func advertiser(_ advertiser: MCNearbyServiceAdvertiser,
                     didReceiveInvitationFromPeer peerID: MCPeerID,
                     withContext context: Data?,

@@ -28,10 +28,13 @@ final class MPCManager: NSObject {
     var receivedTokenPublisher = PassthroughSubject<Data, Never>()
     var isAvailableToBeConnected: Bool = false {
         didSet {
-            if isAvailableToBeConnected {
+            guard oldValue != isAvailableToBeConnected else { return }
+            if connectedPeers.isEmpty && isAvailableToBeConnected {
                 advertiser.startAdvertising()
+                browser.startBrowsing()
             } else {
                 advertiser.stopAdvertising()
+                browser.stopBrowsing()
             }
         }
     }
@@ -87,17 +90,26 @@ extension MPCManager: MCSessionDelegate {
             Task { @MainActor in
                 self.paired = false
                 self.isAvailableToBeConnected = true
+                if let idx = connectedPeers.firstIndex(of: peerID) {
+                    connectedPeers.remove(at: idx)
+                }
+            }
+        case .connecting:
+            Task { @MainActor in
+                self.paired = false
+                self.isAvailableToBeConnected = false
             }
         case .connected:
             Task { @MainActor in
                 self.paired = true
                 self.isAvailableToBeConnected = false
+                connectedPeers.append(peerID)
                 log.log("successfully connected to MPCSession")
             }
         default:
             Task { @MainActor in
                 self.paired = false
-                self.isAvailableToBeConnected = true
+                self.isAvailableToBeConnected = false
             }
         }
     }

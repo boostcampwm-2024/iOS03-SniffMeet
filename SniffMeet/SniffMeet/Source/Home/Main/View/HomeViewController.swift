@@ -103,11 +103,9 @@ final class HomeViewController: BaseViewController, HomeViewable {
     }
     @objc func goToStartSession() {
         mpcManager?.isAvailableToBeConnected = true
-        mpcManager?.browser.startBrowsing()
-        mpcManager?.advertiser.startAdvertising()
     }
     private func setupMPCManager() {
-        mpcManager = MPCManager(yourName: UIDevice.current.name)
+        mpcManager = MPCManager(yourName: UIDevice.current.name + UUID().uuidString)
         niManager = NIManager(mpcManager: mpcManager!)
     }
 }
