@@ -4,10 +4,19 @@
 //
 //  Created by 윤지성 on 11/19/24.
 //
+import Combine
 import UIKit
 
-final class RespondWalkViewController: BaseViewController {
-    var presenter: RequestWalkPresentable?
+protocol RespondWalkViewable: AnyObject {
+    var presenter: RespondWalkPresentable? { get set }
+    
+    func showRequestDetail(request: WalkRequest)
+    func showTimeOut()
+    func showError()
+}
+
+final class RespondWalkViewController: BaseViewController, RespondWalkViewable {
+    var presenter: (any RespondWalkPresentable)?
     private let scrollView = UIScrollView()
     private let contentView = UIView()
     
@@ -73,23 +82,26 @@ final class RespondWalkViewController: BaseViewController {
          locationView,
          messageLabel,
          warningLabel,
-         acceptButton].forEach{
+         acceptButton].forEach
+        {
             contentView.addSubview($0)
             $0.translatesAutoresizingMaskIntoConstraints = false
         }
     }
     override func configureConstraints() {
-        
         NSLayoutConstraint.activate([
             scrollView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             scrollView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
-            
-            contentView.topAnchor.constraint(equalTo: scrollView.contentLayoutGuide.topAnchor),
-            contentView.leadingAnchor.constraint(equalTo: scrollView.contentLayoutGuide.leadingAnchor),
-            contentView.trailingAnchor.constraint(equalTo: scrollView.contentLayoutGuide.trailingAnchor),
-            contentView.bottomAnchor.constraint(equalTo: scrollView.contentLayoutGuide.bottomAnchor),
+            contentView.topAnchor.constraint(equalTo:
+                                                scrollView.contentLayoutGuide.topAnchor),
+            contentView.leadingAnchor.constraint(equalTo:
+                                                    scrollView.contentLayoutGuide.leadingAnchor),
+            contentView.trailingAnchor.constraint(equalTo:
+                                                    scrollView.contentLayoutGuide.trailingAnchor),
+            contentView.bottomAnchor.constraint(equalTo:
+                                                    scrollView.contentLayoutGuide.bottomAnchor),
             contentView.widthAnchor.constraint(equalTo: scrollView.frameLayoutGuide.widthAnchor),
             contentView.heightAnchor.constraint(equalToConstant: 650)
         ])
@@ -102,26 +114,21 @@ final class RespondWalkViewController: BaseViewController {
                 constant: -LayoutConstant.smallHorizontalPadding),
             dismissButton.heightAnchor.constraint(equalToConstant: LayoutConstant.iconSize),
             dismissButton.widthAnchor.constraint(equalToConstant: LayoutConstant.iconSize),
-            
             titleLabel.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
             titleLabel.topAnchor.constraint(equalTo: contentView.topAnchor,
                                             constant: LayoutConstant.xlargeVerticalPadding),
             titleLabel.heightAnchor.constraint(equalToConstant: 30),
-            
             profileView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 20),
             profileView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
             profileView.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: 0.4),
             profileView.widthAnchor.constraint(equalTo: profileView.heightAnchor),
-            
             locationView.topAnchor.constraint(
                 equalTo: profileView.bottomAnchor,
                 constant: LayoutConstant.mediumVerticalPadding),
             locationView.heightAnchor.constraint(equalToConstant: 25),
-            
             messageLabel.topAnchor.constraint(
                 equalTo: locationView.bottomAnchor,
                 constant: LayoutConstant.regularVerticalPadding),
-            
             warningLabel.topAnchor.constraint(
                 equalTo: messageLabel.bottomAnchor,
                 constant: LayoutConstant.mediumVerticalPadding),
@@ -129,9 +136,9 @@ final class RespondWalkViewController: BaseViewController {
                 equalTo: acceptButton.topAnchor,
                 constant: -LayoutConstant.smallVerticalPadding),
             warningLabel.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
-            
             acceptButton.bottomAnchor.constraint(equalTo: contentView.bottomAnchor,
-                                                 constant: -LayoutConstant.xlargeVerticalPadding)
+                                                 constant: -LayoutConstant.xlargeVerticalPadding),
+            acceptButton.heightAnchor.constraint(equalToConstant: 50)
         ])
         
         [locationView, messageLabel, warningLabel, acceptButton].forEach {
@@ -157,8 +164,25 @@ private extension RespondWalkViewController {
     
     func setButtonActions() {
         dismissButton.addAction(UIAction(handler: {[weak self] _ in
-            self?.presenter?.closeTheView()
+            self?.presenter?.dismissView()
         }), for: .touchUpInside)
+        
+    }
+}
+
+
+// MARK: - RespondWalkViewable
+extension RespondWalkViewController {
+    func showRequestDetail(request: WalkRequest) {
+        messageLabel.text = request.message
+        locationView.setAddress(address: request.address.location)
+        profileView.configure(dog: request.dog)
+    }
+    
+    func showTimeOut() {
+        
+    }
+    func showError() {
         
     }
 }

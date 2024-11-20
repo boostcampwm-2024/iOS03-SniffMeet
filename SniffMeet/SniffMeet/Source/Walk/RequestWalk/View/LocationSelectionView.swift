@@ -52,8 +52,8 @@ final class LocationSelectionView: BaseView {
             $0.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
         }
     }
-    override func bind() {
-        
+    func setAddress(address: String) {
+        locationLabel.text = address
     }
 
 }

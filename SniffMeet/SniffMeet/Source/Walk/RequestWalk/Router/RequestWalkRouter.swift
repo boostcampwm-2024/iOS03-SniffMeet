@@ -41,6 +41,5 @@ extension RequestWalkRouter: RequestWalkBuildable {
 
         return view
     }
-    
 }
 

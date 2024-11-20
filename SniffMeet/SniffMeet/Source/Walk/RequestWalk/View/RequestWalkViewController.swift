@@ -58,7 +58,7 @@ final class RequestWalkViewController: BaseViewController, RequestWalkViewable {
     }
     override func configureAttributes() {
         setButtonActions()
-        profileView.configure(dog: Dog(name: "진돌이", age: 12, size: .big, keywords: [.energetic, .friendly], nickname: "지성", profileImage: UIImage.imagePlaceholder.pngData()))
+        profileView.configure(dog: Dog.example)
     }
     override func configureHierachy() {
         
