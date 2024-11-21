@@ -79,7 +79,8 @@ final class ProfileInputViewController: BaseViewController, ProfileInputViewable
     private var smartKeywordButton: UIButton = KeywordButton(title: Context.smartKeywordLabel)
     private var friendlyKeywordButton: UIButton = KeywordButton(title: Context.friendlyKeywordLabel)
     private var shyKeywordButton: UIButton = KeywordButton(title: Context.shyKeywordLabel)
-    private var independentKeywordButton: UIButton = KeywordButton(title: Context.independentKeywordLabel)
+    private var independentKeywordButton: UIButton = KeywordButton(
+        title: Context.independentKeywordLabel)
     private var nextButton: UIButton = PrimaryButton(title: Context.nextBtnTitle)
 
     override func viewDidLoad() {
@@ -87,25 +88,8 @@ final class ProfileInputViewController: BaseViewController, ProfileInputViewable
         
         updateNextButtonState()
         hideKeyboardWhenTappedAround()
-        nameTextField.addTarget(self, action: #selector(textFieldDidChange(_:)),
-                                for: .editingChanged)
-        ageTextField.addTarget(self, action: #selector(textFieldDidChange(_:)),
-                               for: .editingChanged)
         setButtonAction()
-    }
-    
-    func setButtonAction() {
-        nextButton.addAction(UIAction { [weak self] _ in
-            guard let name = self?.nameTextField.text,
-                  let ageText = self?.ageTextField.text,
-                  let age = Int(ageText) else { return }
-            
-            let dogInfo = DogDetailInfo(name: name,
-                                        age: UInt8(age),
-                                        size: .small,
-                                        keywords: [.energetic])
-            self?.presenter?.moveToProfileCreateView(with: dogInfo)
-        }, for: .touchUpInside)
+        setTextFields()
     }
     
     override func configureAttributes() {
@@ -172,42 +156,7 @@ final class ProfileInputViewController: BaseViewController, ProfileInputViewable
 }
 
 private extension ProfileInputViewController {
-    enum Context {
-        static let nextBtnTitle: String = "다음으로"
-        static let titleLabel: String = "반가워요!\n당신의 반려견을 소개해주세요."
-        static let namePlaceholder: String = "반려견 이름을 입력해주세요."
-        static let agePlaceholder: String = "반려견 나이를 입력해주세요."
-        static let sexLabel: String = "반려견의 성별을 선택해주세요."
-        static let sexUponIntakeLabel: String = "반려견 중성화 여부를 입력해주세요."
-        static let sizeLabel: String = "반려견의 크기를 선택해주세요."
-        static let sexUponIntakeArr: [String] = ["완료", "미완료"]
-        static let sexArr: [String] = ["남", "여"]
-        static let sizeArr: [String] = ["소형", "중형", "대형"]
-        static let keywordLabel: String = "반려견에 해당되는 키워드를 선택해주세요."
-        static let activeKeywordLabel: String = "활발한"
-        static let smartKeywordLabel: String = "똑똑한"
-        static let friendlyKeywordLabel: String = "친화력 좋은"
-        static let shyKeywordLabel: String = "소심한"
-        static let independentKeywordLabel: String = "독립적인"
-        static let horizontalPadding: CGFloat = 24
-        static let smallVerticalPadding: CGFloat = 8
-        static let basicVerticalPadding: CGFloat = 16
-        static let largeVerticalPadding: CGFloat = 30
-        static let contentViewHeight: CGFloat = 750
-    }
-}
-
-extension ProfileInputViewController: UITextFieldDelegate {
-    @objc private func textFieldDidChange(_ textField: UITextField) {
-        updateNextButtonState()
-    }
-
-    private func updateNextButtonState() {
-        let isNameFilled = !(nameTextField.text ?? "").isEmpty
-        let isAgeFilled = !(ageTextField.text ?? "").isEmpty
-        nextButton.isEnabled = isNameFilled && isAgeFilled
-    }
-    private func configureTextFieldConstraints() {
+    func configureTextFieldConstraints() {
         NSLayoutConstraint.activate([
         nameTextField.topAnchor.constraint(equalTo: titleLabel.bottomAnchor,
                                            constant: LayoutConstant.xlargeVerticalPadding),
@@ -328,4 +277,71 @@ extension ProfileInputViewController: UITextFieldDelegate {
            nextButton.heightAnchor.constraint(equalToConstant: 52)
        ])
    }
+    func setButtonAction() {
+        nextButton.addAction(UIAction { [weak self] _ in
+            guard let name = self?.nameTextField.text,
+                  let ageText = self?.ageTextField.text,
+                  let age = Int(ageText) else { return }
+            
+            let dogInfo = DogDetailInfo.example
+            self?.presenter?.moveToProfileCreateView(with: dogInfo)
+        }, for: .touchUpInside)
+    }
+    private func updateNextButtonState() {
+        let isNameFilled = !(nameTextField.text ?? "").isEmpty
+        let isAgeFilled = !(ageTextField.text ?? "").isEmpty
+        nextButton.isEnabled = isNameFilled && isAgeFilled
+    }
+    private func setTextFields() {
+        nameTextField.addTarget(self, action: #selector(textFieldDidChange(_:)),
+                                for: .editingChanged)
+        ageTextField.addTarget(self, action: #selector(textFieldDidChange(_:)),
+                               for: .editingChanged)
+        ageTextField.delegate = self
+        ageTextField.keyboardType = .numberPad
+    }
+}
+
+
+// MARK: - Context
+extension ProfileInputViewController {
+    enum Context {
+        static let nextBtnTitle: String = "다음으로"
+        static let titleLabel: String = "반가워요!\n당신의 반려견을 소개해주세요."
+        static let namePlaceholder: String = "반려견 이름을 입력해주세요."
+        static let agePlaceholder: String = "반려견 나이를 입력해주세요."
+        static let sexLabel: String = "반려견의 성별을 선택해주세요."
+        static let sexUponIntakeLabel: String = "반려견 중성화 여부를 입력해주세요."
+        static let sizeLabel: String = "반려견의 크기를 선택해주세요."
+        static let sexUponIntakeArr: [String] = ["완료", "미완료"]
+        static let sexArr: [String] = ["남", "여"]
+        static let sizeArr: [String] = ["소형", "중형", "대형"]
+        static let keywordLabel: String = "반려견에 해당되는 키워드를 선택해주세요."
+        static let activeKeywordLabel: String = "활발한"
+        static let smartKeywordLabel: String = "똑똑한"
+        static let friendlyKeywordLabel: String = "친화력 좋은"
+        static let shyKeywordLabel: String = "소심한"
+        static let independentKeywordLabel: String = "독립적인"
+        static let horizontalPadding: CGFloat = 24
+        static let smallVerticalPadding: CGFloat = 8
+        static let basicVerticalPadding: CGFloat = 16
+        static let largeVerticalPadding: CGFloat = 30
+        static let contentViewHeight: CGFloat = 750
+    }
+}
+
+extension ProfileInputViewController: UITextFieldDelegate {
+    @objc private func textFieldDidChange(_ textField: UITextField) {
+        updateNextButtonState()
+    }
+    
+    func textField(_ textField: UITextField,
+                   shouldChangeCharactersIn range: NSRange,
+                   replacementString string: String) -> Bool
+    {
+        guard let text = textField.text else { return true }
+        let newLength = text.count + string.count - range.length
+        return newLength <= 2
+        
+    }
 }
