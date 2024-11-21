@@ -29,53 +29,21 @@ final class RequestWalkViewController: BaseViewController, RequestWalkViewable {
         return label
     }()
     
-    private var mainImageView: UIImageView = {
-        let imageView = UIImageView()
-        imageView.layer.cornerRadius = 15
-        imageView.contentMode = .scaleAspectFill
-        imageView.image = UIImage.imagePlaceholder
-        imageView.clipsToBounds = true
-        return imageView
+    private var profileView: ProfileView = {
+        let view = ProfileView()
+        view.layer.cornerRadius = 15
+        view.clipsToBounds = true
+        return view
     }()
     
-    private var nameLabel: UILabel = {
-        let label = UILabel()
-        label.text = "진돌이"
-        label.font = SNMFont.title3
-        label.textColor = SNMColor.mainWhite
-        return label
-    }()
-    
-    private var locationGuideLabel: UILabel = {
-        let label = UILabel()
-        label.text = Context.locationGuideTitle
-        label.font = SNMFont.subheadline
-        label.textColor = SNMColor.mainNavy
-        return label
-    }()
-    
-    private var locationLabel: UILabel = {
-        let label = UILabel()
-        label.font = SNMFont.subheadline
-        label.textColor = SNMColor.subGray2
-        label.text = "잠원 한강 공원"
-        return label
-    }()
-    
-    private var chevronImageView: UIImageView = {
-        let imageView = UIImageView()
-        imageView.image = UIImage(systemName: "chevron.right")
-        imageView.tintColor = SNMColor.subGray2
-        return imageView
-    }()
-    private var locationView: UIView!
+    private var locationView = LocationSelectionView()
     private var messageTextView: UITextView = {
         let textView = UITextView()
         textView.text = Context.messagePlaceholder
         textView.font = SNMFont.subheadline
         textView.backgroundColor = SNMColor.subGray1
         textView.layer.cornerRadius = 10
-        let padding = LayoutConstant.textViewEdgePadding
+        let padding = LayoutConstant.edgePadding
         textView.textContainerInset = UIEdgeInsets(top: padding,
                                                    left: padding,
                                                    bottom: padding,
@@ -84,7 +52,6 @@ final class RequestWalkViewController: BaseViewController, RequestWalkViewable {
         return textView
     }()
     private var submitButton = PrimaryButton(title: Context.mainTitle)
-    private var locationTapGesture = UITapGestureRecognizer()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -94,18 +61,13 @@ final class RequestWalkViewController: BaseViewController, RequestWalkViewable {
     }
     override func configureAttributes() {
         setButtonActions()
+        profileView.configure(dog: Dog.example)
     }
     override func configureHierachy() {
-        locationView = UIView()
-        [locationGuideLabel, locationLabel, chevronImageView].forEach{
-            locationView.addSubview($0)
-            $0.translatesAutoresizingMaskIntoConstraints = false
-        }
         
         [titleLabel,
          dismissButton,
-         mainImageView,
-         nameLabel,
+         profileView,
          locationView,
          messageTextView,
          submitButton].forEach{
@@ -127,40 +89,27 @@ final class RequestWalkViewController: BaseViewController, RequestWalkViewable {
             dismissButton.heightAnchor.constraint(equalToConstant: LayoutConstant.iconSize),
             dismissButton.widthAnchor.constraint(equalToConstant: LayoutConstant.iconSize),
             
-            mainImageView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 20),
-            mainImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            mainImageView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.4),
-            mainImageView.widthAnchor.constraint(equalTo: mainImageView.heightAnchor),
+            profileView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 20),
+            profileView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            profileView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.4),
+            profileView.widthAnchor.constraint(equalTo: profileView.heightAnchor),
             
             locationView.topAnchor.constraint(
-                equalTo: mainImageView.bottomAnchor,
+                equalTo: profileView.bottomAnchor,
                 constant: LayoutConstant.mediumVerticalPadding),
             locationView.bottomAnchor.constraint(
                 equalTo: messageTextView.topAnchor,
                 constant: -LayoutConstant.regularVerticalPadding),
-            
-            locationGuideLabel.leadingAnchor.constraint(equalTo: locationView.leadingAnchor),
-            locationLabel.trailingAnchor.constraint(equalTo: chevronImageView.leadingAnchor,
-                                                constant: -LayoutConstant.navigationItemSpacing),
-            chevronImageView.trailingAnchor.constraint(equalTo: locationView.trailingAnchor),
+            locationView.heightAnchor.constraint(equalToConstant: 25),
             
             messageTextView.bottomAnchor.constraint(
                 equalTo: submitButton.topAnchor,
                 constant: -LayoutConstant.xlargeVerticalPadding),
             
             submitButton.bottomAnchor.constraint(equalTo: view.bottomAnchor,
-                                                 constant: -LayoutConstant.xlargeVerticalPadding),
+                                                 constant: -LayoutConstant.xlargeVerticalPadding)
         ])
-        
-        [locationGuideLabel, locationLabel,chevronImageView].forEach{
-            $0.topAnchor.constraint(
-                equalTo: mainImageView.bottomAnchor,
-                constant: LayoutConstant.mediumVerticalPadding).isActive = true
-            $0.bottomAnchor.constraint(
-                equalTo: messageTextView.topAnchor,
-                constant: -LayoutConstant.regularVerticalPadding).isActive = true
-        }
-        
+       
         [locationView, messageTextView, submitButton].forEach {
             $0.leadingAnchor.constraint(
                 equalTo: view.leadingAnchor,
@@ -169,8 +118,6 @@ final class RequestWalkViewController: BaseViewController, RequestWalkViewable {
                 equalTo: view.trailingAnchor,
                 constant: -LayoutConstant.smallHorizontalPadding).isActive = true
         }
-        
-        locationView.addGestureRecognizer(locationTapGesture)
     }
     override func bind() {
         presenter?.output.selectedLocation
@@ -195,7 +142,7 @@ private extension RequestWalkViewController {
             self?.presenter?.closeTheView()
         }), for: .touchUpInside)
         
-        locationTapGesture.addTarget(self, action: #selector(locationDidTap))
+       // locationTapGesture.addTarget(self, action: #selector(locationDidTap))
     }
     
     @objc func locationDidTap() {

@@ -12,7 +12,8 @@ enum LayoutConstant {
 
     static let horizontalPadding: CGFloat = 24
 
-    static let smallVerticalPadding: CGFloat = 8
+    static let xsmallVerticalPadding: CGFloat = 8
+    static let smallVerticalPadding: CGFloat = 12
     static let regularVerticalPadding: CGFloat = 16
     static let mediumVerticalPadding: CGFloat = 24
     static let largeVerticalPadding: CGFloat = 30
@@ -22,5 +23,5 @@ enum LayoutConstant {
     static let tagHorizontalSpacing: CGFloat = 8
     static let navigationItemSpacing: CGFloat = 4
     
-    static let textViewEdgePadding: CGFloat = 12
+    static let edgePadding: CGFloat = 12
 }

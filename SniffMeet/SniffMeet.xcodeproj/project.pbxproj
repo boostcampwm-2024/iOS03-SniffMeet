@@ -35,11 +35,36 @@
 		320044712CEB45E000D08B6D /* RequestWalkPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 320044702CEB45D600D08B6D /* RequestWalkPresenter.swift */; };
 		320044732CEB47B100D08B6D /* RequestWalkInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 320044722CEB47A600D08B6D /* RequestWalkInteractor.swift */; };
 		320044752CEB4D6900D08B6D /* RequestWalkRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 320044742CEB4D6200D08B6D /* RequestWalkRouter.swift */; };
-		320044772CEB4E1E00D08B6D /* RequestWalk.swift in Sources */ = {isa = PBXBuildFile; fileRef = 320044762CEB4E0F00D08B6D /* RequestWalk.swift */; };
+		320044772CEB4E1E00D08B6D /* RequestWalkUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 320044762CEB4E0F00D08B6D /* RequestWalkUseCase.swift */; };
+		320044852CEC836400D08B6D /* PaddingLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 320044842CEC836000D08B6D /* PaddingLabel.swift */; };
+		320044872CEC85CB00D08B6D /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 320044862CEC85C600D08B6D /* ProfileView.swift */; };
+		320044892CEC862D00D08B6D /* LocationSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 320044882CEC862400D08B6D /* LocationSelectionView.swift */; };
+		3200448D2CEC878300D08B6D /* RespondWalkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3200448C2CEC877C00D08B6D /* RespondWalkViewController.swift */; };
+		320044922CED78D200D08B6D /* RespondWalkPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 320044912CED78C100D08B6D /* RespondWalkPresenter.swift */; };
+		320044942CED80B700D08B6D /* RespondWalkInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 320044932CED80B000D08B6D /* RespondWalkInteractor.swift */; };
+		320044962CED80DA00D08B6D /* RespondWalkRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 320044952CED80D100D08B6D /* RespondWalkRouter.swift */; };
+		320044982CED81F400D08B6D /* WalkRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 320044972CED81EF00D08B6D /* WalkRequest.swift */; };
+		3200449A2CEDA80900D08B6D /* FetchRequestUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 320044992CEDA80400D08B6D /* FetchRequestUseCase.swift */; };
+		3200449C2CEDA87800D08B6D /* RespondWalkRequestUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3200449B2CEDA86B00D08B6D /* RespondWalkRequestUseCase.swift */; };
 		995D94262CE32ECE005A47BF /* Extension + Keyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 995D94252CE32EC1005A47BF /* Extension + Keyboard.swift */; };
 		995D94622CE598FD005A47BF /* NIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 995D94612CE598F0005A47BF /* NIManager.swift */; };
+		995D94A82CECEF91005A47BF /* RequestMateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 995D94A72CECEF91005A47BF /* RequestMateViewController.swift */; };
+		995D94AA2CECF8DD005A47BF /* RequestMateInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 995D94A92CECF8C4005A47BF /* RequestMateInteractor.swift */; };
+		995D94AC2CECFA30005A47BF /* RequestMatePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 995D94AB2CECFA24005A47BF /* RequestMatePresenter.swift */; };
+		995D94AE2CED00A4005A47BF /* RequestMateRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 995D94AD2CED0093005A47BF /* RequestMateRouter.swift */; };
 		99FA4E792CE0FBBF00553C2E /* ProfileInputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99FA4E782CE0FBBF00553C2E /* ProfileInputViewController.swift */; };
+		A20E71502CEC595C00272B25 /* SupabaseAuthError.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20E714F2CEC595C00272B25 /* SupabaseAuthError.swift */; };
+		A20E71522CEC5FE900272B25 /* SupabaseUserResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20E71512CEC5FE900272B25 /* SupabaseUserResponse.swift */; };
 		A21435F72CE20D2500564A4D /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A21435F62CE20D2500564A4D /* TabBarController.swift */; };
+		A24082612CEB244C009109A0 /* SupabaseConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = A24082602CEB244C009109A0 /* SupabaseConfig.swift */; };
+		A24082642CEB2470009109A0 /* SupabaseAuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A24082632CEB2470009109A0 /* SupabaseAuthManager.swift */; };
+		A24082672CEB2539009109A0 /* SupabaseSessionResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = A24082662CEB2539009109A0 /* SupabaseSessionResponse.swift */; };
+		A24082702CEB27DE009109A0 /* SupabaseRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A240826F2CEB27DE009109A0 /* SupabaseRequest.swift */; };
+		A24082722CEB36B8009109A0 /* SupabaseTokenRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A24082712CEB36B8009109A0 /* SupabaseTokenRequest.swift */; };
+		A25BE4522CEBB5A900886763 /* SupabaseSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = A25BE4512CEBB5A900886763 /* SupabaseSession.swift */; };
+		A25BE4562CEBB63A00886763 /* SupabaseUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = A25BE4552CEBB63A00886763 /* SupabaseUser.swift */; };
+		A25BE4582CEBB95C00886763 /* SupabaseRefreshResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = A25BE4572CEBB95C00886763 /* SupabaseRefreshResponse.swift */; };
+		A25BE45A2CEC2BA300886763 /* SessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A25BE4592CEC2BA300886763 /* SessionManager.swift */; };
 		A288A63D2CDC595000D11C34 /* (null) in Resources */ = {isa = PBXBuildFile; };
 		A2C328862CE245AC00D255AB /* TabBarModuleBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2C328852CE245AC00D255AB /* TabBarModuleBuilder.swift */; };
 		A2C328882CE2481900D255AB /* HomeModuleBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2C328872CE2481900D255AB /* HomeModuleBuilder.swift */; };
@@ -143,11 +168,36 @@
 		320044702CEB45D600D08B6D /* RequestWalkPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestWalkPresenter.swift; sourceTree = "<group>"; };
 		320044722CEB47A600D08B6D /* RequestWalkInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestWalkInteractor.swift; sourceTree = "<group>"; };
 		320044742CEB4D6200D08B6D /* RequestWalkRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestWalkRouter.swift; sourceTree = "<group>"; };
-		320044762CEB4E0F00D08B6D /* RequestWalk.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestWalk.swift; sourceTree = "<group>"; };
+		320044762CEB4E0F00D08B6D /* RequestWalkUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestWalkUseCase.swift; sourceTree = "<group>"; };
+		320044842CEC836000D08B6D /* PaddingLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaddingLabel.swift; sourceTree = "<group>"; };
+		320044862CEC85C600D08B6D /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
+		320044882CEC862400D08B6D /* LocationSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationSelectionView.swift; sourceTree = "<group>"; };
+		3200448C2CEC877C00D08B6D /* RespondWalkViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RespondWalkViewController.swift; sourceTree = "<group>"; };
+		320044912CED78C100D08B6D /* RespondWalkPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RespondWalkPresenter.swift; sourceTree = "<group>"; };
+		320044932CED80B000D08B6D /* RespondWalkInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RespondWalkInteractor.swift; sourceTree = "<group>"; };
+		320044952CED80D100D08B6D /* RespondWalkRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RespondWalkRouter.swift; sourceTree = "<group>"; };
+		320044972CED81EF00D08B6D /* WalkRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalkRequest.swift; sourceTree = "<group>"; };
+		320044992CEDA80400D08B6D /* FetchRequestUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchRequestUseCase.swift; sourceTree = "<group>"; };
+		3200449B2CEDA86B00D08B6D /* RespondWalkRequestUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RespondWalkRequestUseCase.swift; sourceTree = "<group>"; };
 		995D94252CE32EC1005A47BF /* Extension + Keyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension + Keyboard.swift"; sourceTree = "<group>"; };
 		995D94612CE598F0005A47BF /* NIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NIManager.swift; sourceTree = "<group>"; };
+		995D94A72CECEF91005A47BF /* RequestMateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestMateViewController.swift; sourceTree = "<group>"; };
+		995D94A92CECF8C4005A47BF /* RequestMateInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestMateInteractor.swift; sourceTree = "<group>"; };
+		995D94AB2CECFA24005A47BF /* RequestMatePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestMatePresenter.swift; sourceTree = "<group>"; };
+		995D94AD2CED0093005A47BF /* RequestMateRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestMateRouter.swift; sourceTree = "<group>"; };
 		99FA4E782CE0FBBF00553C2E /* ProfileInputViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileInputViewController.swift; sourceTree = "<group>"; };
+		A20E714F2CEC595C00272B25 /* SupabaseAuthError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupabaseAuthError.swift; sourceTree = "<group>"; };
+		A20E71512CEC5FE900272B25 /* SupabaseUserResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupabaseUserResponse.swift; sourceTree = "<group>"; };
 		A21435F62CE20D2500564A4D /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
+		A24082602CEB244C009109A0 /* SupabaseConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupabaseConfig.swift; sourceTree = "<group>"; };
+		A24082632CEB2470009109A0 /* SupabaseAuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupabaseAuthManager.swift; sourceTree = "<group>"; };
+		A24082662CEB2539009109A0 /* SupabaseSessionResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupabaseSessionResponse.swift; sourceTree = "<group>"; };
+		A240826F2CEB27DE009109A0 /* SupabaseRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupabaseRequest.swift; sourceTree = "<group>"; };
+		A24082712CEB36B8009109A0 /* SupabaseTokenRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupabaseTokenRequest.swift; sourceTree = "<group>"; };
+		A25BE4512CEBB5A900886763 /* SupabaseSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupabaseSession.swift; sourceTree = "<group>"; };
+		A25BE4552CEBB63A00886763 /* SupabaseUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupabaseUser.swift; sourceTree = "<group>"; };
+		A25BE4572CEBB95C00886763 /* SupabaseRefreshResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupabaseRefreshResponse.swift; sourceTree = "<group>"; };
+		A25BE4592CEC2BA300886763 /* SessionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionManager.swift; sourceTree = "<group>"; };
 		A2C328852CE245AC00D255AB /* TabBarModuleBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarModuleBuilder.swift; sourceTree = "<group>"; };
 		A2C328872CE2481900D255AB /* HomeModuleBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeModuleBuilder.swift; sourceTree = "<group>"; };
 		A2C328912CE3BEA000D255AB /* AppRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppRouter.swift; sourceTree = "<group>"; };
@@ -252,6 +302,8 @@
 			isa = PBXGroup;
 			children = (
 				FD119F412CED865000BE22BD /* SelectLocationViewController.swift */,
+				320044882CEC862400D08B6D /* LocationSelectionView.swift */,
+				320044862CEC85C600D08B6D /* ProfileView.swift */,
 				3200446E2CEB239D00D08B6D /* CardPresentationController.swift */,
 				3200446A2CEB182A00D08B6D /* RequestWalkViewController.swift */,
 			);
@@ -265,8 +317,10 @@
 				FD119F472CED872500BE22BD /* RequestLocationAuthUseCase.swift */,
 				FD119F452CED867600BE22BD /* ConvertLocationToTextUseCase.swift */,
 				FD51341E2CEB7AF6002E76F3 /* LoadDogInfoUseCase.swift */,
+				3200449B2CEDA86B00D08B6D /* RespondWalkRequestUseCase.swift */,
+				320044992CEDA80400D08B6D /* FetchRequestUseCase.swift */,
 				3200445D2CE5CA1A00D08B6D /* SaveInfoUseCase.swift */,
-				320044762CEB4E0F00D08B6D /* RequestWalk.swift */,
+				320044762CEB4E0F00D08B6D /* RequestWalkUseCase.swift */,
 			);
 			path = UseCase;
 			sourceTree = "<group>";
@@ -275,9 +329,53 @@
 			isa = PBXGroup;
 			children = (
 				FD119F532CEDC14400BE22BD /* Address.swift */,
+				320044972CED81EF00D08B6D /* WalkRequest.swift */,
 				320044522CE59A8100D08B6D /* Dog.swift */,
 			);
 			path = Entity;
+			sourceTree = "<group>";
+		};
+		3200448A2CEC872D00D08B6D /* RespondWalk */ = {
+			isa = PBXGroup;
+			children = (
+				3200448B2CEC877500D08B6D /* View */,
+				3200448E2CED778600D08B6D /* Interactor */,
+				3200448F2CED77AC00D08B6D /* Presenter */,
+				320044902CED77B200D08B6D /* Router */,
+			);
+			path = RespondWalk;
+			sourceTree = "<group>";
+		};
+		3200448B2CEC877500D08B6D /* View */ = {
+			isa = PBXGroup;
+			children = (
+				3200448C2CEC877C00D08B6D /* RespondWalkViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		3200448E2CED778600D08B6D /* Interactor */ = {
+			isa = PBXGroup;
+			children = (
+				320044932CED80B000D08B6D /* RespondWalkInteractor.swift */,
+			);
+			path = Interactor;
+			sourceTree = "<group>";
+		};
+		3200448F2CED77AC00D08B6D /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				320044912CED78C100D08B6D /* RespondWalkPresenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		320044902CED77B200D08B6D /* Router */ = {
+			isa = PBXGroup;
+			children = (
+				320044952CED80D100D08B6D /* RespondWalkRouter.swift */,
+			);
+			path = Router;
 			sourceTree = "<group>";
 		};
 		995D94602CE598E1005A47BF /* NI */ = {
@@ -298,6 +396,56 @@
 			path = Tab;
 			sourceTree = "<group>";
 		};
+		A24082622CEB2464009109A0 /* Supabase */ = {
+			isa = PBXGroup;
+			children = (
+				A24082602CEB244C009109A0 /* SupabaseConfig.swift */,
+				A24082652CEB2475009109A0 /* Auth */,
+			);
+			path = Supabase;
+			sourceTree = "<group>";
+		};
+		A24082652CEB2475009109A0 /* Auth */ = {
+			isa = PBXGroup;
+			children = (
+				A24082632CEB2470009109A0 /* SupabaseAuthManager.swift */,
+				A25BE4592CEC2BA300886763 /* SessionManager.swift */,
+				A240826F2CEB27DE009109A0 /* SupabaseRequest.swift */,
+				A20E714F2CEC595C00272B25 /* SupabaseAuthError.swift */,
+				A25BE4532CEBB60200886763 /* Entity */,
+			);
+			path = Auth;
+			sourceTree = "<group>";
+		};
+		A24082732CEBB511009109A0 /* Response */ = {
+			isa = PBXGroup;
+			children = (
+				A24082662CEB2539009109A0 /* SupabaseSessionResponse.swift */,
+				A20E71512CEC5FE900272B25 /* SupabaseUserResponse.swift */,
+				A25BE4572CEBB95C00886763 /* SupabaseRefreshResponse.swift */,
+			);
+			path = Response;
+			sourceTree = "<group>";
+		};
+		A25BE4532CEBB60200886763 /* Entity */ = {
+			isa = PBXGroup;
+			children = (
+				A25BE4512CEBB5A900886763 /* SupabaseSession.swift */,
+				A25BE4552CEBB63A00886763 /* SupabaseUser.swift */,
+				A24082732CEBB511009109A0 /* Response */,
+				A25BE4542CEBB61C00886763 /* Request */,
+			);
+			path = Entity;
+			sourceTree = "<group>";
+		};
+		A25BE4542CEBB61C00886763 /* Request */ = {
+			isa = PBXGroup;
+			children = (
+				A24082712CEB36B8009109A0 /* SupabaseTokenRequest.swift */,
+			);
+			path = Request;
+			sourceTree = "<group>";
+		};
 		A2C328892CE2F4F600D255AB /* Router */ = {
 			isa = PBXGroup;
 			children = (
@@ -316,6 +464,7 @@
 		A2C844CF2CDBE1CB007F2970 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				320044842CEC836000D08B6D /* PaddingLabel.swift */,
 				FD880B592CECE8F90093BEB9 /* SNMLogger.swift */,
 				FD5134162CEB7388002E76F3 /* UIControl + Publisher.swift */,
 				FDEAEA792CE3148C005890FA /* BaseView.swift */,
@@ -417,6 +566,7 @@
 				FDA4913E2CDA05F900A36FB0 /* Mate */,
 				FDA4913A2CDA04BB00A36FB0 /* Repository */,
 				320044172CE489A900D08B6D /* LocalNetwork */,
+				A24082622CEB2464009109A0 /* Supabase */,
 			);
 			path = Source;
 			sourceTree = "<group>";
@@ -490,6 +640,7 @@
 		FDA4913C2CDA056400A36FB0 /* Walk */ = {
 			isa = PBXGroup;
 			children = (
+				3200448A2CEC872D00D08B6D /* RespondWalk */,
 				FDA491932CDA7C6200A36FB0 /* RequestWalk */,
 				FDA4914B2CDA65E200A36FB0 /* WalkLog */,
 				FDA4914A2CDA077100A36FB0 /* RecordWalk */,
@@ -1015,6 +1166,7 @@
 		FDA491872CDA7C3000A36FB0 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				995D94A72CECEF91005A47BF /* RequestMateViewController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1022,6 +1174,7 @@
 		FDA491882CDA7C3000A36FB0 /* Interactor */ = {
 			isa = PBXGroup;
 			children = (
+				995D94A92CECF8C4005A47BF /* RequestMateInteractor.swift */,
 			);
 			path = Interactor;
 			sourceTree = "<group>";
@@ -1029,6 +1182,7 @@
 		FDA491892CDA7C3000A36FB0 /* Presenter */ = {
 			isa = PBXGroup;
 			children = (
+				995D94AB2CECFA24005A47BF /* RequestMatePresenter.swift */,
 			);
 			path = Presenter;
 			sourceTree = "<group>";
@@ -1043,6 +1197,7 @@
 		FDA4918B2CDA7C3000A36FB0 /* Router */ = {
 			isa = PBXGroup;
 			children = (
+				995D94AD2CED0093005A47BF /* RequestMateRouter.swift */,
 			);
 			path = Router;
 			sourceTree = "<group>";
@@ -1307,21 +1462,29 @@
 			files = (
 				995D94622CE598FD005A47BF /* NIManager.swift in Sources */,
 				FDBFA9A12CE1E51500AA9220 /* SNMColor.swift in Sources */,
+				A24082702CEB27DE009109A0 /* SupabaseRequest.swift in Sources */,
 				A2C844D12CDBE1E5007F2970 /* (null) in Sources */,
 				3200444E2CE595EA00D08B6D /* ProfileCreatePresenter.swift in Sources */,
+				320044922CED78D200D08B6D /* RespondWalkPresenter.swift in Sources */,
 				FD3A03422CD8CF460047B7ED /* AppDelegate.swift in Sources */,
+				995D94A82CECEF91005A47BF /* RequestMateViewController.swift in Sources */,
 				FD3A03432CD8CF460047B7ED /* SceneDelegate.swift in Sources */,
 				99FA4E792CE0FBBF00553C2E /* ProfileInputViewController.swift in Sources */,
+				3200448D2CEC878300D08B6D /* RespondWalkViewController.swift in Sources */,
 				FDA04AA92CE91DF8002605AC /* Data + append.swift in Sources */,
 				FD119F462CED868D00BE22BD /* ConvertLocationToTextUseCase.swift in Sources */,
+				A20E71522CEC5FE900272B25 /* SupabaseUserResponse.swift in Sources */,
 				320044582CE5B04C00D08B6D /* ProfileCreateRouter.swift in Sources */,
+				A25BE4582CEBB95C00886763 /* SupabaseRefreshResponse.swift in Sources */,
 				FDEAEA7C2CE314A7005890FA /* BaseViewController.swift in Sources */,
 				A21435F72CE20D2500564A4D /* TabBarController.swift in Sources */,
 				320043762CDCA18E00D08B6D /* (null) in Sources */,
+				A20E71502CEC595C00272B25 /* SupabaseAuthError.swift in Sources */,
 				FDCD02CF2CE917D800B627D8 /* MockRequest.swift in Sources */,
 				A2F825DD2CDFBEB4000C5419 /* ProfileCardView.swift in Sources */,
 				FD51341F2CEB7AFE002E76F3 /* LoadDogInfoUseCase.swift in Sources */,
 				FD5134172CEB738D002E76F3 /* UIControl + Publisher.swift in Sources */,
+				320044852CEC836400D08B6D /* PaddingLabel.swift in Sources */,
 				A2C328882CE2481900D255AB /* HomeModuleBuilder.swift in Sources */,
 				320044712CEB45E000D08B6D /* RequestWalkPresenter.swift in Sources */,
 				995D94262CE32ECE005A47BF /* Extension + Keyboard.swift in Sources */,
@@ -1333,25 +1496,36 @@
 				FD0634282CE596BD003C9D6B /* SNMRequestConvertible.swift in Sources */,
 				320043972CDF493C00D08B6D /* Extension + UIView.swift in Sources */,
 				FD119F4A2CED875F00BE22BD /* RequestUserLocationUseCase.swift in Sources */,
+				995D94AC2CECFA30005A47BF /* RequestMatePresenter.swift in Sources */,
 				FD0634262CE596B5003C9D6B /* Endpoint.swift in Sources */,
+				320044872CEC85CB00D08B6D /* ProfileView.swift in Sources */,
 				320044502CE595F700D08B6D /* ProfileInputPresenter.swift in Sources */,
 				FDE14A522CE8D338001F7A9D /* SNMRequestType.swift in Sources */,
 				FD69B1B32CE3BC76009D71DC /* KeychainManager.swift in Sources */,
 				320043782CDCA49100D08B6D /* (null) in Sources */,
+				A24082612CEB244C009109A0 /* SupabaseConfig.swift in Sources */,
 				FD06342A2CE596D0003C9D6B /* NetworkProvider.swift in Sources */,
 				FDBFA9B12CE1FE5500AA9220 /* LayoutConstant.swift in Sources */,
 				320044752CEB4D6900D08B6D /* RequestWalkRouter.swift in Sources */,
+				320044962CED80DA00D08B6D /* RespondWalkRouter.swift in Sources */,
 				320043912CDF3D7F00D08B6D /* KeywordButton.swift in Sources */,
 				FD119F4C2CED87B000BE22BD /* SelectLocationInteractor.swift in Sources */,
 				320043922CDF3D7F00D08B6D /* InputTextField.swift in Sources */,
 				FD119F482CED872C00BE22BD /* RequestLocationAuthUseCase.swift in Sources */,
 				FD119F422CED865B00BE22BD /* SelectLocationViewController.swift in Sources */,
+				A25BE4522CEBB5A900886763 /* SupabaseSession.swift in Sources */,
 				3200446F2CEB23A700D08B6D /* CardPresentationController.swift in Sources */,
 				320043932CDF3D7F00D08B6D /* KeywordView.swift in Sources */,
-				320044772CEB4E1E00D08B6D /* RequestWalk.swift in Sources */,
+				320044772CEB4E1E00D08B6D /* RequestWalkUseCase.swift in Sources */,
+				320044982CED81F400D08B6D /* WalkRequest.swift in Sources */,
 				FDE14A502CE8D2FB001F7A9D /* URLRequest + append.swift in Sources */,
+				3200449A2CEDA80900D08B6D /* FetchRequestUseCase.swift in Sources */,
+				995D94AE2CED00A4005A47BF /* RequestMateRouter.swift in Sources */,
 				FD06342C2CE5984D003C9D6B /* SNMNetworkResponse.swift in Sources */,
 				3200445E2CE5CA1B00D08B6D /* SaveInfoUseCase.swift in Sources */,
+				995D94AA2CECF8DD005A47BF /* RequestMateInteractor.swift in Sources */,
+				A25BE45A2CEC2BA300886763 /* SessionManager.swift in Sources */,
+				A24082672CEB2539009109A0 /* SupabaseSessionResponse.swift in Sources */,
 				FD51341B2CEB7AE8002E76F3 /* HomePresenter.swift in Sources */,
 				320043942CDF3D7F00D08B6D /* PrimaryButton.swift in Sources */,
 				FDCD02D12CE917E600B627D8 /* MockURLProtocol.swift in Sources */,
@@ -1361,22 +1535,28 @@
 				FD5134192CEB7ADE002E76F3 /* HomeRouter.swift in Sources */,
 				FD51341D2CEB7AF0002E76F3 /* HomeInteractor.swift in Sources */,
 				320044532CE59A8A00D08B6D /* Dog.swift in Sources */,
+				A24082642CEB2470009109A0 /* SupabaseAuthManager.swift in Sources */,
 				320044562CE59DF500D08B6D /* ProfileInputRouter.swift in Sources */,
 				A2C844D72CDBEF8B007F2970 /* (null) in Sources */,
 				3200438B2CDF3BEF00D08B6D /* ProfileCreateViewController.swift in Sources */,
 				FD119F502CED87E500BE22BD /* SelectLocationRouter.swift in Sources */,
 				320044672CE6125100D08B6D /* DataManager.swift in Sources */,
+				3200449C2CEDA87800D08B6D /* RespondWalkRequestUseCase.swift in Sources */,
 				FDEAEA7A2CE3148D005890FA /* BaseView.swift in Sources */,
 				FDA04AA52CE91DBF002605AC /* MultipartFormData.swift in Sources */,
 				FD119F522CED881300BE22BD /* SelectLocationModuleBuildable.swift in Sources */,
 				A2C328862CE245AC00D255AB /* TabBarModuleBuilder.swift in Sources */,
 				320044732CEB47B100D08B6D /* RequestWalkInteractor.swift in Sources */,
+				320044942CED80B700D08B6D /* RespondWalkInteractor.swift in Sources */,
+				320044892CEC862D00D08B6D /* LocationSelectionView.swift in Sources */,
 				FD69B1B52CE3BC7E009D71DC /* UserDefaultsManager.swift in Sources */,
 				320043722CDC9E5F00D08B6D /* (null) in Sources */,
 				FDE14A4E2CE8D144001F7A9D /* HTTPStatusCode.swift in Sources */,
 				3200441E2CE48D3500D08B6D /* MPCManager.swift in Sources */,
 				FD0634312CE62578003C9D6B /* AnyEncodable.swift in Sources */,
 				3200441A2CE48A3D00D08B6D /* MPCBroswer.swift in Sources */,
+				A25BE4562CEBB63A00886763 /* SupabaseUser.swift in Sources */,
+				A24082722CEB36B8009109A0 /* SupabaseTokenRequest.swift in Sources */,
 				3200437C2CDCA6F300D08B6D /* (null) in Sources */,
 				3200445A2CE5B3AA00D08B6D /* ProfileCreateInteractor.swift in Sources */,
 				A2C328922CE3BEA000D255AB /* AppRouter.swift in Sources */,

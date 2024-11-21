@@ -12,7 +12,7 @@ protocol RequestWalkUseCase {
 }
 
 
-final class RequestWalkUseCaseImpl: RequestWalkUseCase {
+struct RequestWalkUseCaseImpl: RequestWalkUseCase {
     func execute(dog: Dog) throws {
     }
 }
