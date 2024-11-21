@@ -39,12 +39,7 @@ final class ProfileCreatePresenter: ProfileCreatePresentable {
     }
     
     func saveDogInfo(nickname: String, imageData: Data?) {
-        interactor?.saveDogInfo(dogInfo: Dog(name: dogInfo.name,
-                                             age: dogInfo.age,
-                                             size: dogInfo.size,
-                                             keywords: dogInfo.keywords,
-                                             nickname: nickname,
-                                             profileImage: imageData))
+        interactor?.saveDogInfo(dogInfo: Dog.example)
         
     }
 }

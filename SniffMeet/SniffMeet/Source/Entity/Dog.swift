@@ -9,8 +9,24 @@ import Foundation
 struct DogDetailInfo {
     let name: String
     let age: UInt8
+    let sex: Sex
+    let sexUponIntake: Bool
     let size: Size
     let keywords: [Keyword]
+}
+
+extension DogDetailInfo {
+    static let example = DogDetailInfo(name: "후추",
+                             age: 6,
+                             sex: .female,
+                             sexUponIntake: true,
+                             size: .medium,
+                             keywords: [.shy])
+}
+
+enum Sex: String, Codable {
+    case male = "남"
+    case female = "여"
 }
 
 enum Size: Codable {
@@ -31,6 +47,8 @@ enum Keyword: String, Codable  {
 struct Dog: Codable {
     let name: String
     let age: UInt8
+    let sex: Sex
+    let sexUponIntake: Bool
     let size: Size
     let keywords: [Keyword]
     let nickname: String
@@ -40,6 +58,8 @@ struct Dog: Codable {
 extension Dog {
     static let example: Dog = Dog(name: "후추",
                                   age: 6,
+                                  sex: .female,
+                                  sexUponIntake: true,
                                   size: .medium,
                                   keywords: [.shy],
                                   nickname: "pear",

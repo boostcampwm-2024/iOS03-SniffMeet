@@ -45,14 +45,7 @@ final class HomePresenter: HomePresentable {
             }
         } catch {
             // TODO: have to fill - alert or placeholder info
-            let placeHolderInfo: Dog = Dog(
-                name: "SniffMeet",
-                age: 0,
-                size: .small,
-                keywords: [],
-                nickname: "",
-                profileImage: nil
-            )
+            let placeHolderInfo: Dog = Dog.example
             output.dogInfo.send(placeHolderInfo)
         }
     }
