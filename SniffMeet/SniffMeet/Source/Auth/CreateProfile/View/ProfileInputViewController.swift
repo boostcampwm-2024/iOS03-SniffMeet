@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Combine
 
 protocol ProfileInputViewable: AnyObject {
     var presenter: ProfileInputPresentable? { get set }
@@ -13,6 +14,7 @@ protocol ProfileInputViewable: AnyObject {
 
 final class ProfileInputViewController: BaseViewController, ProfileInputViewable {
     var presenter: ProfileInputPresentable?
+    private var cancellables = Set<AnyCancellable>()
 
     private let scrollView = UIScrollView()
     private let contentView = UIView()
@@ -76,19 +78,21 @@ final class ProfileInputViewController: BaseViewController, ProfileInputViewable
         return label
     }()
     private var keywordStackView = UIStackView()
+    
     private var activeKeywordButton = KeywordButton(title: Context.activeKeywordLabel)
     private var smartKeywordButton = KeywordButton(title: Context.smartKeywordLabel)
     private var friendlyKeywordButton = KeywordButton(title: Context.friendlyKeywordLabel)
     private var shyKeywordButton = KeywordButton(title: Context.shyKeywordLabel)
     private var independentKeywordButton = KeywordButton(title: Context.independentKeywordLabel)
+    
     private var nextButton = PrimaryButton(title: Context.nextBtnTitle)
     
-    var selectedKeywordButtons: [KeywordButton] {
+    private var keywordButtons: [KeywordButton] {
         [activeKeywordButton,
          smartKeywordButton,
          friendlyKeywordButton,
          shyKeywordButton,
-         independentKeywordButton].filter{ $0.isSelected }
+         independentKeywordButton]
     }
 
     override func viewDidLoad() {
@@ -273,6 +277,7 @@ private extension ProfileInputViewController {
        ])
    }
     func setButtonAction() {
+        // MARK: - submit(다음으로) 버튼에 대한 액션
         nextButton.addAction(UIAction { [weak self] _ in
             guard let selectedSexIdx = self?.sexSegmentedControl.selectedSegmentIndex,
                   var selectedSexUponIntakeIdx = self?.sexSegmentedControl.selectedSegmentIndex,
@@ -290,8 +295,8 @@ private extension ProfileInputViewController {
                   let size = Size(rawValue: Context.sizeArr[selectedSizeIdx])
             else { return }
             
-            guard let selectedKeywordButtons = self?.selectedKeywordButtons else { return }
-            let keywords: [Keyword] = selectedKeywordButtons.compactMap{
+            guard let keywordButtons = self?.keywordButtons else { return }
+            let keywords: [Keyword] = keywordButtons.filter{ $0.isSelected }.compactMap{
                 guard let text = $0.titleLabel?.text else { return nil }
                 return Keyword(rawValue: text)
             }
@@ -304,11 +309,37 @@ private extension ProfileInputViewController {
                                         keywords: keywords)
             self?.presenter?.moveToProfileCreateView(with: dogInfo)
         }, for: .touchUpInside)
+        
+        // MARK: - keyword 버튼에 대한 액션
+        keywordStackView.subviews.forEach{
+            guard let button = $0 as? KeywordButton else {
+                return
+            }
+            button.publisher(event: .touchUpInside).sink{ [weak self] in
+                guard let keywordButtons = self?.keywordButtons else {return}
+                var selectedKeywordButtons: [KeywordButton] = []
+                var unSelectedKeywordButtons: [KeywordButton] = []
+                
+                keywordButtons.forEach{
+                    if $0.isSelected {selectedKeywordButtons.append($0)}
+                    else {unSelectedKeywordButtons.append($0)}
+                }
+                if selectedKeywordButtons.count == 2 {
+                    unSelectedKeywordButtons.forEach{ $0.isEnabled = false }
+                } else if selectedKeywordButtons.count < 2 {
+                    unSelectedKeywordButtons.filter{ $0.isEnabled == false }.forEach{
+                        $0.isEnabled = true
+                    }
+                }
+                self?.updateNextButtonState()
+            }.store(in: &cancellables)
+        }
     }
     func updateNextButtonState() {
         let isNameFilled = !(nameTextField.text ?? "").isEmpty
         let isAgeFilled = !(ageTextField.text ?? "").isEmpty
-        nextButton.isEnabled = isNameFilled && isAgeFilled
+        let isKeywordSelected = !(keywordButtons.filter{ $0.isSelected }.isEmpty)
+        nextButton.isEnabled = isNameFilled && isAgeFilled && isKeywordSelected
     }
     func setTextFields() {
         nameTextField.addTarget(self, action: #selector(textFieldDidChange(_:)),
@@ -334,7 +365,7 @@ extension ProfileInputViewController {
         static let sexUponIntakeArr: [String] = ["완료", "미완료"]
         static let sexArr: [String] = [Sex.male.rawValue, Sex.female.rawValue]
         static let sizeArr: [String] = [Size.small.rawValue, Size.medium.rawValue, Size.big.rawValue]
-        static let keywordLabel: String = "반려견에 해당되는 키워드를 선택해주세요."
+        static let keywordLabel: String = "반려견에 해당되는 키워드를 선택해주세요.(최대 2개)"
         static let activeKeywordLabel: String = Keyword.energetic.rawValue
         static let smartKeywordLabel: String = Keyword.smart.rawValue
         static let friendlyKeywordLabel: String = Keyword.friendly.rawValue
