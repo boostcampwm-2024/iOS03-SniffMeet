@@ -66,7 +66,7 @@ final class SupabaseAuthManager: AuthManager {
     func refreshSession() async throws { // 세션 갱신
         // 세션에서 토큰 가져옴
         guard let refreshToken = SessionManager.shared.session?.refreshToken else {
-            throw SupabaseAuthError.sessionNotExist
+            throw SupabaseError.sessionNotExist
         }
         // 가져온 토큰으로 갱신 요청
         let response = try await networkProvider.request(
@@ -97,7 +97,7 @@ final class SupabaseAuthManager: AuthManager {
     }
 
     private func saveSession(for session: SupabaseSession?) throws {
-        guard let session else { throw SupabaseAuthError.sessionNotExist }
+        guard let session else { throw SupabaseError.sessionNotExist }
         SessionManager.shared.session = session
         try KeychainManager.shared.set(value: session.accessToken, forKey: "accessToken")
         try KeychainManager.shared.set(value: session.refreshToken, forKey: "refreshToken")

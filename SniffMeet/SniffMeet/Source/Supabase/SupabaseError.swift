@@ -7,6 +7,6 @@
 
 import Foundation
 
-enum SupabaseAuthError: Error {
+enum SupabaseError: Error {
     case sessionNotExist
 }
