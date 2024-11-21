@@ -10,31 +10,29 @@ import Foundation
 
 protocol RemoteDatabaseManager {
     static var shared: RemoteDatabaseManager { get }
-    func fetchValue(from table: String) async throws -> Data
-    func insertValue(into table: String, with value: Data) async throws
-    // func updateValue()
+    func fetchData(from table: String) async throws -> Data
+    func insertData(into table: String, with data: Data) async throws
+    // func updateData()
 }
 
 enum DatabaseState: String, CaseIterable {
-    case fetchValue
-    case insertValue
+    case fetchData
+    case insertData
 }
 
 final class SupabaseDatabaseManager: RemoteDatabaseManager {
-    var storageStateSubject: PassthroughSubject<DatabaseState, Never>
+    static let shared: RemoteDatabaseManager = SupabaseDatabaseManager()
+    var databaseStateSubject: PassthroughSubject<DatabaseState, Never>
     private let networkProvider: SNMNetworkProvider
     private let decoder: JSONDecoder
-    private var cancellables: Set<AnyCancellable>
-    static let shared: RemoteDatabaseManager = SupabaseDatabaseManager()
 
     private init() {
-        storageStateSubject = PassthroughSubject<DatabaseState, Never>()
+        databaseStateSubject = PassthroughSubject<DatabaseState, Never>()
         networkProvider = SNMNetworkProvider()
         decoder = JSONDecoder()
-        cancellables = Set<AnyCancellable>()
     }
 
-    func fetchValue(from table: String) async throws -> Data {
+    func fetchData(from table: String) async throws -> Data {
         if SessionManager.shared.isExpired {
             try await SupabaseAuthManager.shared.refreshSession()
         }
@@ -42,15 +40,16 @@ final class SupabaseDatabaseManager: RemoteDatabaseManager {
             throw SupabaseError.sessionNotExist
         }
         let response = try await networkProvider.request(
-            with: SupabaseDatabaseRequest.fetchValue(
+            with: SupabaseDatabaseRequest.fetchData(
                 table: table,
                 accessToken: session.accessToken
             )
         )
+        databaseStateSubject.send(.fetchData)
         return response.data
     }
 
-    func insertValue(into table: String, with value: Data) async throws {
+    func insertData(into table: String, with data: Data) async throws {
         if SessionManager.shared.isExpired {
             try await SupabaseAuthManager.shared.refreshSession()
         }
@@ -58,11 +57,12 @@ final class SupabaseDatabaseManager: RemoteDatabaseManager {
             throw SupabaseError.sessionNotExist
         }
         _ = try await networkProvider.request(
-            with: SupabaseDatabaseRequest.insertValue(
+            with: SupabaseDatabaseRequest.insertData(
                 table: table,
                 accessToken: session.accessToken,
-                data: value
+                data: data
             )
         )
+        databaseStateSubject.send(.insertData)
     }
 }
