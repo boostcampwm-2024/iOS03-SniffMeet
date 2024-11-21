@@ -9,13 +9,12 @@ import Combine
 import Foundation
 
 protocol RemoteDatabaseManager {
-    static var shared: RemoteDatabaseManager { get }
     func fetchData(from table: String) async throws -> Data
     func insertData(into table: String, with data: Data) async throws
     // func updateData()
 }
 
-enum DatabaseState: String, CaseIterable {
+enum DatabaseState {
     case fetchData
     case insertData
 }
