@@ -75,13 +75,12 @@ final class ProfileInputViewController: BaseViewController, ProfileInputViewable
         label.font = .systemFont(ofSize: .init(16), weight: .regular)
         return label
     }()
-    private var activeKeywordButton: UIButton = KeywordButton(title: Context.activeKeywordLabel)
-    private var smartKeywordButton: UIButton = KeywordButton(title: Context.smartKeywordLabel)
-    private var friendlyKeywordButton: UIButton = KeywordButton(title: Context.friendlyKeywordLabel)
-    private var shyKeywordButton: UIButton = KeywordButton(title: Context.shyKeywordLabel)
-    private var independentKeywordButton: UIButton = KeywordButton(
-        title: Context.independentKeywordLabel)
-    private var nextButton: UIButton = PrimaryButton(title: Context.nextBtnTitle)
+    private var activeKeywordButton = KeywordButton(title: Context.activeKeywordLabel)
+    private var smartKeywordButton = KeywordButton(title: Context.smartKeywordLabel)
+    private var friendlyKeywordButton = KeywordButton(title: Context.friendlyKeywordLabel)
+    private var shyKeywordButton = KeywordButton(title: Context.shyKeywordLabel)
+    private var independentKeywordButton = KeywordButton(title: Context.independentKeywordLabel)
+    private var nextButton = PrimaryButton(title: Context.nextBtnTitle)
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -277,22 +276,52 @@ private extension ProfileInputViewController {
            nextButton.heightAnchor.constraint(equalToConstant: 52)
        ])
    }
+    var selectedKeywordButtons: [KeywordButton] {
+        [activeKeywordButton,
+         smartKeywordButton,
+         friendlyKeywordButton,
+         shyKeywordButton,
+         independentKeywordButton].filter{ $0.isSelected }
+    }
     func setButtonAction() {
         nextButton.addAction(UIAction { [weak self] _ in
+            guard let selectedSexIdx: Int = self?.sexSegmentedControl.selectedSegmentIndex,
+                  var selectedSexUponIntakeIdx: Int = self?.sexSegmentedControl.selectedSegmentIndex,
+                  let selectedSizeIdx: Int = self?.sizeSegmentedControl.selectedSegmentIndex
+            else {
+                SNMLogger.error("ProfileInputViewController: SelectedIdx Error")
+                return
+            }
+
+            var sexUponIntake: Bool = selectedSexUponIntakeIdx > 0 ? false : true
             guard let name = self?.nameTextField.text,
                   let ageText = self?.ageTextField.text,
-                  let age = Int(ageText) else { return }
+                  let age = UInt8(ageText),
+                  let sex = Sex(rawValue: Context.sexArr[selectedSexIdx]),
+                  let size = Size(rawValue: Context.sizeArr[selectedSizeIdx])
+            else { return }
             
-            let dogInfo = DogDetailInfo.example
+            guard let selectedKeywordButtons = self?.selectedKeywordButtons else { return }
+            let keywords: [Keyword] = selectedKeywordButtons.compactMap{
+                guard let text = $0.titleLabel?.text else { return nil }
+                return Keyword(rawValue: text)
+            }
+            
+            let dogInfo = DogDetailInfo(name: name,
+                                        age: age,
+                                        sex: sex,
+                                        sexUponIntake: sexUponIntake,
+                                        size: size,
+                                        keywords: keywords)
             self?.presenter?.moveToProfileCreateView(with: dogInfo)
         }, for: .touchUpInside)
     }
-    private func updateNextButtonState() {
+    func updateNextButtonState() {
         let isNameFilled = !(nameTextField.text ?? "").isEmpty
         let isAgeFilled = !(ageTextField.text ?? "").isEmpty
         nextButton.isEnabled = isNameFilled && isAgeFilled
     }
-    private func setTextFields() {
+    func setTextFields() {
         nameTextField.addTarget(self, action: #selector(textFieldDidChange(_:)),
                                 for: .editingChanged)
         ageTextField.addTarget(self, action: #selector(textFieldDidChange(_:)),
@@ -314,14 +343,14 @@ extension ProfileInputViewController {
         static let sexUponIntakeLabel: String = "반려견 중성화 여부를 입력해주세요."
         static let sizeLabel: String = "반려견의 크기를 선택해주세요."
         static let sexUponIntakeArr: [String] = ["완료", "미완료"]
-        static let sexArr: [String] = ["남", "여"]
-        static let sizeArr: [String] = ["소형", "중형", "대형"]
+        static let sexArr: [String] = [Sex.male.rawValue, Sex.female.rawValue]
+        static let sizeArr: [String] = [Size.small.rawValue, Size.medium.rawValue, Size.big.rawValue]
         static let keywordLabel: String = "반려견에 해당되는 키워드를 선택해주세요."
-        static let activeKeywordLabel: String = "활발한"
-        static let smartKeywordLabel: String = "똑똑한"
-        static let friendlyKeywordLabel: String = "친화력 좋은"
-        static let shyKeywordLabel: String = "소심한"
-        static let independentKeywordLabel: String = "독립적인"
+        static let activeKeywordLabel: String = Keyword.energetic.rawValue
+        static let smartKeywordLabel: String = Keyword.smart.rawValue
+        static let friendlyKeywordLabel: String = Keyword.friendly.rawValue
+        static let shyKeywordLabel: String = Keyword.shy.rawValue
+        static let independentKeywordLabel: String = Keyword.independent.rawValue
         static let horizontalPadding: CGFloat = 24
         static let smallVerticalPadding: CGFloat = 8
         static let basicVerticalPadding: CGFloat = 16

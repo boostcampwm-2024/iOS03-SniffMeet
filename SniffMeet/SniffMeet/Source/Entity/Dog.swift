@@ -29,10 +29,10 @@ enum Sex: String, Codable {
     case female = "여"
 }
 
-enum Size: Codable {
-    case small
-    case medium
-    case big
+enum Size: String, Codable {
+    case small = "소형"
+    case medium = "중형"
+    case big = "대형"
 }
 
 enum Keyword: String, Codable  {
