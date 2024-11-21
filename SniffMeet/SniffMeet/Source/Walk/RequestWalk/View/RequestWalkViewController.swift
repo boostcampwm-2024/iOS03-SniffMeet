@@ -123,7 +123,9 @@ final class RequestWalkViewController: BaseViewController, RequestWalkViewable {
         presenter?.output.selectedLocation
             .receive(on: RunLoop.main)
             .sink { [weak self] address in
-                self?.locationLabel.text = address?.location ?? "장소 선택"
+                self?.locationView.setAddress(
+                    address: address?.location ?? Context.locationGuideTitle
+                )
             }
             .store(in: &cancellables)
     }

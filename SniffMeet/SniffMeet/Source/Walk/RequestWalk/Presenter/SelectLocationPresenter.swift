@@ -57,8 +57,8 @@ final class SelectLocationPresenter: SelectLocationPresentable {
     func didTapSelectCompleteButton() {
         guard let view else { return }
         let address: Address = Address(
+            longtitude: output.selectedCoordinate.coordinate.latitude,
             latitude: output.selectedCoordinate.coordinate.latitude,
-            longitude: output.selectedCoordinate.coordinate.latitude,
             location: output.locationLabel.value ?? ""
         )
         router?.pop(from: view, with: address)
