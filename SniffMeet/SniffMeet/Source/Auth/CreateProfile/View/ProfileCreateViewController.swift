@@ -26,6 +26,7 @@ final class ProfileCreateViewController: UIViewController, ProfileCreateViewable
     private var profileImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.image = UIImage(named: "ImagePlaceholder")
+        imageView.contentMode = .scaleAspectFill
         return imageView
     }()
     private var addPhotoButton: UIButton = {
@@ -60,6 +61,7 @@ final class ProfileCreateViewController: UIViewController, ProfileCreateViewable
         setDelegate()
         setButtonAction()
         hideKeyboardWhenTappedAround()
+        navigationController?.navigationBar.configureBackButton()
     }
     override func viewDidLayoutSubviews() {
         profileImageView.makeViewCircular()
