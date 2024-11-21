@@ -75,12 +75,21 @@ final class ProfileInputViewController: BaseViewController, ProfileInputViewable
         label.font = .systemFont(ofSize: .init(16), weight: .regular)
         return label
     }()
+    private var keywordStackView = UIStackView()
     private var activeKeywordButton = KeywordButton(title: Context.activeKeywordLabel)
     private var smartKeywordButton = KeywordButton(title: Context.smartKeywordLabel)
     private var friendlyKeywordButton = KeywordButton(title: Context.friendlyKeywordLabel)
     private var shyKeywordButton = KeywordButton(title: Context.shyKeywordLabel)
     private var independentKeywordButton = KeywordButton(title: Context.independentKeywordLabel)
     private var nextButton = PrimaryButton(title: Context.nextBtnTitle)
+    
+    var selectedKeywordButtons: [KeywordButton] {
+        [activeKeywordButton,
+         smartKeywordButton,
+         friendlyKeywordButton,
+         shyKeywordButton,
+         independentKeywordButton].filter{ $0.isSelected }
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -101,6 +110,15 @@ final class ProfileInputViewController: BaseViewController, ProfileInputViewable
         [scrollView, contentView].forEach{
             $0.translatesAutoresizingMaskIntoConstraints = false
         }
+
+        [activeKeywordButton,
+         smartKeywordButton,
+         friendlyKeywordButton,
+         shyKeywordButton,
+         independentKeywordButton].forEach {
+            $0.translatesAutoresizingMaskIntoConstraints = false
+            keywordStackView.addArrangedSubview($0)
+        }
         
         [titleLabel,
          nameTextField,
@@ -112,11 +130,7 @@ final class ProfileInputViewController: BaseViewController, ProfileInputViewable
          sizeSelectionLabel,
          sizeSegmentedControl,
          keywordSelectionLabel,
-         activeKeywordButton,
-         smartKeywordButton,
-         friendlyKeywordButton,
-         shyKeywordButton,
-         independentKeywordButton,
+         keywordStackView,
          nextButton].forEach {
             $0.translatesAutoresizingMaskIntoConstraints = false
             contentView.addSubview($0)
@@ -221,49 +235,31 @@ private extension ProfileInputViewController {
         ])
     }
     func configureButtonConstraints() {
+        keywordStackView.spacing = Context.smallVerticalPadding
+        keywordStackView.axis = .horizontal
+        keywordStackView.distribution = .fillProportionally
+        
+        NSLayoutConstraint.activate([
+            keywordSelectionLabel.topAnchor.constraint(
+                equalTo: sizeSegmentedControl.bottomAnchor,
+                constant: Context.largeVerticalPadding),
+            keywordSelectionLabel.leadingAnchor.constraint(
+                equalTo: contentView.leadingAnchor,
+                constant: Context.horizontalPadding),
+            
+            keywordStackView.leadingAnchor.constraint(
+                equalTo: contentView.leadingAnchor,
+                constant: Context.horizontalPadding),
+            keywordStackView.trailingAnchor.constraint(
+                equalTo: contentView.trailingAnchor,
+                constant: -Context.horizontalPadding),
+            keywordStackView.topAnchor.constraint(
+                equalTo: keywordSelectionLabel.bottomAnchor,
+                constant: Context.basicVerticalPadding),
+            keywordStackView.heightAnchor.constraint(equalToConstant: 30)
+            
+        ])
        NSLayoutConstraint.activate([
-           keywordSelectionLabel.topAnchor.constraint(
-               equalTo: sizeSegmentedControl.bottomAnchor,
-               constant: Context.largeVerticalPadding),
-           keywordSelectionLabel.leadingAnchor.constraint(
-               equalTo: contentView.leadingAnchor,
-               constant: Context.horizontalPadding),
-
-           activeKeywordButton.topAnchor.constraint(
-               equalTo: keywordSelectionLabel.bottomAnchor,
-               constant: Context.basicVerticalPadding),
-           activeKeywordButton.leadingAnchor.constraint(
-               equalTo: contentView.leadingAnchor,
-               constant: Context.horizontalPadding),
-
-           smartKeywordButton.topAnchor.constraint(
-               equalTo: keywordSelectionLabel.bottomAnchor,
-               constant: Context.basicVerticalPadding),
-           smartKeywordButton.leadingAnchor.constraint(
-               equalTo: activeKeywordButton.trailingAnchor,
-               constant: Context.smallVerticalPadding),
-
-           friendlyKeywordButton.topAnchor.constraint(
-               equalTo: keywordSelectionLabel.bottomAnchor,
-               constant: Context.basicVerticalPadding),
-           friendlyKeywordButton.leadingAnchor.constraint(
-               equalTo: smartKeywordButton.trailingAnchor,
-               constant: Context.smallVerticalPadding),
-
-           shyKeywordButton.topAnchor.constraint(
-               equalTo: keywordSelectionLabel.bottomAnchor,
-               constant: Context.basicVerticalPadding),
-           shyKeywordButton.leadingAnchor.constraint(
-               equalTo: friendlyKeywordButton.trailingAnchor,
-               constant: Context.smallVerticalPadding),
-
-           independentKeywordButton.topAnchor.constraint(
-               equalTo: keywordSelectionLabel.bottomAnchor,
-               constant: Context.basicVerticalPadding),
-           independentKeywordButton.leadingAnchor.constraint(
-               equalTo: shyKeywordButton.trailingAnchor,
-               constant: Context.smallVerticalPadding),
-
            nextButton.bottomAnchor.constraint(
                equalTo: contentView.bottomAnchor,
                constant: -32),
@@ -276,24 +272,17 @@ private extension ProfileInputViewController {
            nextButton.heightAnchor.constraint(equalToConstant: 52)
        ])
    }
-    var selectedKeywordButtons: [KeywordButton] {
-        [activeKeywordButton,
-         smartKeywordButton,
-         friendlyKeywordButton,
-         shyKeywordButton,
-         independentKeywordButton].filter{ $0.isSelected }
-    }
     func setButtonAction() {
         nextButton.addAction(UIAction { [weak self] _ in
-            guard let selectedSexIdx: Int = self?.sexSegmentedControl.selectedSegmentIndex,
-                  var selectedSexUponIntakeIdx: Int = self?.sexSegmentedControl.selectedSegmentIndex,
-                  let selectedSizeIdx: Int = self?.sizeSegmentedControl.selectedSegmentIndex
+            guard let selectedSexIdx = self?.sexSegmentedControl.selectedSegmentIndex,
+                  var selectedSexUponIntakeIdx = self?.sexSegmentedControl.selectedSegmentIndex,
+                  let selectedSizeIdx = self?.sizeSegmentedControl.selectedSegmentIndex
             else {
                 SNMLogger.error("ProfileInputViewController: SelectedIdx Error")
                 return
             }
 
-            var sexUponIntake: Bool = selectedSexUponIntakeIdx > 0 ? false : true
+            let sexUponIntake: Bool = selectedSexUponIntakeIdx > 0 ? false : true
             guard let name = self?.nameTextField.text,
                   let ageText = self?.ageTextField.text,
                   let age = UInt8(ageText),
