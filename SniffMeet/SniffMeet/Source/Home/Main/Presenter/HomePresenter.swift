@@ -44,7 +44,7 @@ final class HomePresenter: HomePresentable {
                 output.dogInfo.send(dog)
             }
         } catch {
-            // TODO: have to fill - alert or placeholder info
+            SNMLogger.error("이미지 실패?: \(error.localizedDescription)")
             let placeHolderInfo: Dog = Dog.example
             output.dogInfo.send(placeHolderInfo)
         }
