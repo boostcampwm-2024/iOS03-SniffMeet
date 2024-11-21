@@ -13,7 +13,7 @@ protocol ProfileInputViewable: AnyObject {
 }
 
 final class ProfileInputViewController: BaseViewController, ProfileInputViewable {
-    typealias keywordButtonsTuple = (selected: [KeywordButton], unselected: [KeywordButton])
+    typealias KeywordButtonsTuple = (selected: [KeywordButton], unselected: [KeywordButton])
     var presenter: ProfileInputPresentable?
     private var cancellables = Set<AnyCancellable>()
 
@@ -95,7 +95,7 @@ final class ProfileInputViewController: BaseViewController, ProfileInputViewable
          shyKeywordButton,
          independentKeywordButton]
     }
-    private var keywordButtonsSplitBySelected: keywordButtonsTuple {
+    private var keywordButtonsSplitBySelected: KeywordButtonsTuple {
         var selectedKeywordButtons: [KeywordButton] = []
         var unselectedKeywordButtons: [KeywordButton] = []
         
