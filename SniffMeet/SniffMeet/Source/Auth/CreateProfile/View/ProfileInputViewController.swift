@@ -5,14 +5,15 @@
 //  Created by 배현진 on 11/10/24.
 //
 
-import UIKit
 import Combine
+import UIKit
 
 protocol ProfileInputViewable: AnyObject {
     var presenter: ProfileInputPresentable? { get set }
 }
 
 final class ProfileInputViewController: BaseViewController, ProfileInputViewable {
+    typealias keywordButtonsTuple = (selected: [KeywordButton], unselected: [KeywordButton])
     var presenter: ProfileInputPresentable?
     private var cancellables = Set<AnyCancellable>()
 
@@ -93,6 +94,16 @@ final class ProfileInputViewController: BaseViewController, ProfileInputViewable
          friendlyKeywordButton,
          shyKeywordButton,
          independentKeywordButton]
+    }
+    private var keywordButtonsSplitBySelected: keywordButtonsTuple {
+        var selectedKeywordButtons: [KeywordButton] = []
+        var unselectedKeywordButtons: [KeywordButton] = []
+        
+        keywordButtons.forEach {
+            if $0.isSelected { selectedKeywordButtons.append($0) }
+            else { unselectedKeywordButtons.append($0) }
+        }
+        return (selected: selectedKeywordButtons, unselected: unselectedKeywordButtons)
     }
 
     override func viewDidLoad() {
@@ -316,29 +327,32 @@ private extension ProfileInputViewController {
                 return
             }
             button.publisher(event: .touchUpInside).sink{ [weak self] in
-                guard let keywordButtons = self?.keywordButtons else {return}
-                var selectedKeywordButtons: [KeywordButton] = []
-                var unSelectedKeywordButtons: [KeywordButton] = []
+                guard let selectedKeywordButtons = self?.keywordButtonsSplitBySelected.selected,
+                      let unselectedKeywordButtons = self?.keywordButtonsSplitBySelected.unselected
+                else { return }
                 
-                keywordButtons.forEach{
-                    if $0.isSelected {selectedKeywordButtons.append($0)}
-                    else {unSelectedKeywordButtons.append($0)}
-                }
-                if selectedKeywordButtons.count == 2 {
-                    unSelectedKeywordButtons.forEach{ $0.isEnabled = false }
-                } else if selectedKeywordButtons.count < 2 {
-                    unSelectedKeywordButtons.filter{ $0.isEnabled == false }.forEach{
+                let selectedKeywordButtonsCount = selectedKeywordButtons.count
+                if selectedKeywordButtonsCount == 2 {
+                    unselectedKeywordButtons.forEach{ $0.isEnabled = false }
+                } else if selectedKeywordButtonsCount < 2 {
+                    unselectedKeywordButtons.filter{ $0.isEnabled == false }.forEach{
                         $0.isEnabled = true
                     }
                 }
-                self?.updateNextButtonState()
+                self?.updateNextButtonState(keywordBtnSelected: !selectedKeywordButtons.isEmpty)
             }.store(in: &cancellables)
         }
     }
+    func updateNextButtonState(keywordBtnSelected: Bool) {
+        let isNameFilled = !(nameTextField.text ?? "").isEmpty
+        let isAgeFilled = !(ageTextField.text ?? "").isEmpty
+        nextButton.isEnabled =  isNameFilled && isAgeFilled && keywordBtnSelected
+    }
+    
     func updateNextButtonState() {
         let isNameFilled = !(nameTextField.text ?? "").isEmpty
         let isAgeFilled = !(ageTextField.text ?? "").isEmpty
-        let isKeywordSelected = !(keywordButtons.filter{ $0.isSelected }.isEmpty)
+        let isKeywordSelected = !(keywordButtonsSplitBySelected.selected.isEmpty)
         nextButton.isEnabled = isNameFilled && isAgeFilled && isKeywordSelected
     }
     func setTextFields() {
