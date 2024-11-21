@@ -61,6 +61,7 @@ final class ProfileCreateViewController: UIViewController, ProfileCreateViewable
         setDelegate()
         setButtonAction()
         hideKeyboardWhenTappedAround()
+        navigationController?.navigationBar.configureBackButton()
     }
     override func viewDidLayoutSubviews() {
         profileImageView.makeViewCircular()

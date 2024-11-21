@@ -20,3 +20,15 @@ extension UINavigationItem {
         scrollEdgeAppearance = appearance
     }
 }
+
+extension UINavigationBar {
+    // chevrom 색을 mainNavy로 설정 및 'back' title을 제거한 back 버튼
+    func configureBackButton() {
+        configureBackButton(color: SNMColor.mainNavy, title: "")
+    }
+    
+    func configureBackButton(color: UIColor, title: String ) {
+        tintColor = color
+        topItem?.title = title
+    }
+}
