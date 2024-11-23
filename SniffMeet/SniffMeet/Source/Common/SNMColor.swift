@@ -17,6 +17,7 @@ enum SNMColor {
     static let subGray1: UIColor = UIColor.subGray1
     static let subGray2: UIColor = UIColor(hex: 0xC0C0C0)
     static let text1: UIColor = UIColor(hex: 0xCCD7DC)
+    static let text2: UIColor = UIColor(hex: 0x8E8E93)
     static let disabledGray: UIColor = UIColor(hex: 0xE6EAEC)
     static let warningRed: UIColor = UIColor(hex: 0xF64545)
     static let subBlack1: UIColor = UIColor(hex: 0x383838)
