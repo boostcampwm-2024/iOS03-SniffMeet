@@ -68,6 +68,7 @@
 		A25BE4582CEBB95C00886763 /* SupabaseRefreshResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = A25BE4572CEBB95C00886763 /* SupabaseRefreshResponse.swift */; };
 		A25BE45A2CEC2BA300886763 /* SessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A25BE4592CEC2BA300886763 /* SessionManager.swift */; };
 		A288A63D2CDC595000D11C34 /* (null) in Resources */ = {isa = PBXBuildFile; };
+		A2BA1B922CF1E8C60080575A /* MateListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2BA1B912CF1E8C60080575A /* MateListViewController.swift */; };
 		A2C328862CE245AC00D255AB /* TabBarModuleBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2C328852CE245AC00D255AB /* TabBarModuleBuilder.swift */; };
 		A2C328882CE2481900D255AB /* HomeModuleBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2C328872CE2481900D255AB /* HomeModuleBuilder.swift */; };
 		A2C328922CE3BEA000D255AB /* AppRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2C328912CE3BEA000D255AB /* AppRouter.swift */; };
@@ -201,6 +202,7 @@
 		A25BE4552CEBB63A00886763 /* SupabaseUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupabaseUser.swift; sourceTree = "<group>"; };
 		A25BE4572CEBB95C00886763 /* SupabaseRefreshResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupabaseRefreshResponse.swift; sourceTree = "<group>"; };
 		A25BE4592CEC2BA300886763 /* SessionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionManager.swift; sourceTree = "<group>"; };
+		A2BA1B912CF1E8C60080575A /* MateListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MateListViewController.swift; sourceTree = "<group>"; };
 		A2C328852CE245AC00D255AB /* TabBarModuleBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarModuleBuilder.swift; sourceTree = "<group>"; };
 		A2C328872CE2481900D255AB /* HomeModuleBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeModuleBuilder.swift; sourceTree = "<group>"; };
 		A2C328912CE3BEA000D255AB /* AppRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppRouter.swift; sourceTree = "<group>"; };
@@ -743,6 +745,7 @@
 		FDA491492CDA074E00A36FB0 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				A2BA1B912CF1E8C60080575A /* MateListViewController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1568,6 +1571,7 @@
 				FD0634312CE62578003C9D6B /* AnyEncodable.swift in Sources */,
 				3200441A2CE48A3D00D08B6D /* MPCBroswer.swift in Sources */,
 				A25BE4562CEBB63A00886763 /* SupabaseUser.swift in Sources */,
+				A2BA1B922CF1E8C60080575A /* MateListViewController.swift in Sources */,
 				A24082722CEB36B8009109A0 /* SupabaseTokenRequest.swift in Sources */,
 				3200437C2CDCA6F300D08B6D /* (null) in Sources */,
 				3200445A2CE5B3AA00D08B6D /* ProfileCreateInteractor.swift in Sources */,
