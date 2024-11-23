@@ -88,6 +88,8 @@
 		FD119F4E2CED87C200BE22BD /* SelectLocationPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD119F4D2CED87BC00BE22BD /* SelectLocationPresenter.swift */; };
 		FD119F502CED87E500BE22BD /* SelectLocationRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD119F4F2CED87DD00BE22BD /* SelectLocationRouter.swift */; };
 		FD119F522CED881300BE22BD /* SelectLocationModuleBuildable.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD119F512CED880A00BE22BD /* SelectLocationModuleBuildable.swift */; };
+		FD331A4D2CF235A100F39426 /* SNMLineTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD331A4C2CF2359D00F39426 /* SNMLineTabBar.swift */; };
+		FD331A502CF235C400F39426 /* WalkLogPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD331A4F2CF235B900F39426 /* WalkLogPageViewController.swift */; };
 		FD3A033F2CD8CF460047B7ED /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FD3A03392CD8CF460047B7ED /* Assets.xcassets */; };
 		FD3A03412CD8CF460047B7ED /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FD3A033C2CD8CF460047B7ED /* LaunchScreen.storyboard */; };
 		FD3A03422CD8CF460047B7ED /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD3A03382CD8CF460047B7ED /* AppDelegate.swift */; };
@@ -219,6 +221,8 @@
 		FD119F4D2CED87BC00BE22BD /* SelectLocationPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectLocationPresenter.swift; sourceTree = "<group>"; };
 		FD119F4F2CED87DD00BE22BD /* SelectLocationRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectLocationRouter.swift; sourceTree = "<group>"; };
 		FD119F512CED880A00BE22BD /* SelectLocationModuleBuildable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectLocationModuleBuildable.swift; sourceTree = "<group>"; };
+		FD331A4C2CF2359D00F39426 /* SNMLineTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SNMLineTabBar.swift; sourceTree = "<group>"; };
+		FD331A4F2CF235B900F39426 /* WalkLogPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalkLogPageViewController.swift; sourceTree = "<group>"; };
 		FD3A03202CD8CDE50047B7ED /* SniffMeet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SniffMeet.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FD3A03382CD8CF460047B7ED /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FD3A03392CD8CF460047B7ED /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -475,6 +479,7 @@
 		A2C844CF2CDBE1CB007F2970 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				FD331A4C2CF2359D00F39426 /* SNMLineTabBar.swift */,
 				320044842CEC836000D08B6D /* PaddingLabel.swift */,
 				FD880B592CECE8F90093BEB9 /* SNMLogger.swift */,
 				FD5134162CEB7388002E76F3 /* UIControl + Publisher.swift */,
@@ -502,6 +507,14 @@
 				FDE14A4C2CE8CEDD001F7A9D /* Mock */,
 			);
 			path = SNMNetwork;
+			sourceTree = "<group>";
+		};
+		FD331A4E2CF235B600F39426 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				FD331A4F2CF235B900F39426 /* WalkLogPageViewController.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		FD3A03172CD8CDE50047B7ED = {
@@ -766,13 +779,6 @@
 			path = WalkLog;
 			sourceTree = "<group>";
 		};
-		FDA4914C2CDA65E900A36FB0 /* View */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
 		FDA4914D2CDA65EE00A36FB0 /* Interactor */ = {
 			isa = PBXGroup;
 			children = (
@@ -871,7 +877,7 @@
 		FDA491582CDA749100A36FB0 /* WalkLogList */ = {
 			isa = PBXGroup;
 			children = (
-				FDA4914C2CDA65E900A36FB0 /* View */,
+				FD331A4E2CF235B600F39426 /* View */,
 				FDA4914D2CDA65EE00A36FB0 /* Interactor */,
 				FDA4914E2CDA65F400A36FB0 /* Presenter */,
 				FDA4914F2CDA65F900A36FB0 /* Entity */,
@@ -1524,6 +1530,7 @@
 				FD119F4C2CED87B000BE22BD /* SelectLocationInteractor.swift in Sources */,
 				320043922CDF3D7F00D08B6D /* InputTextField.swift in Sources */,
 				FD119F482CED872C00BE22BD /* RequestLocationAuthUseCase.swift in Sources */,
+				FD331A502CF235C400F39426 /* WalkLogPageViewController.swift in Sources */,
 				FD119F422CED865B00BE22BD /* SelectLocationViewController.swift in Sources */,
 				A25BE4522CEBB5A900886763 /* SupabaseSession.swift in Sources */,
 				3200446F2CEB23A700D08B6D /* CardPresentationController.swift in Sources */,
@@ -1561,6 +1568,7 @@
 				320044732CEB47B100D08B6D /* RequestWalkInteractor.swift in Sources */,
 				320044942CED80B700D08B6D /* RespondWalkInteractor.swift in Sources */,
 				320044892CEC862D00D08B6D /* LocationSelectionView.swift in Sources */,
+				FD331A4D2CF235A100F39426 /* SNMLineTabBar.swift in Sources */,
 				FD69B1B52CE3BC7E009D71DC /* UserDefaultsManager.swift in Sources */,
 				320043722CDC9E5F00D08B6D /* (null) in Sources */,
 				FDE14A4E2CE8D144001F7A9D /* HTTPStatusCode.swift in Sources */,
