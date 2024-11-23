@@ -18,14 +18,16 @@ final class WalkLogPageViewController: BaseViewController {
     )
     // TODO: 실제 ViewController로 대체 필요
     private var dataSource: [UIViewController] = [
-        ProfileCreateViewController(),
+        WalkLogListViewController(),
         HomeViewController()
     ]
 
     override func configureAttributes() {
+        navigationItem.title = Context.navigationTitle
+        navigationItem.largeTitleDisplayMode = .never
+
         pageViewController.delegate = self
         pageViewController.dataSource = self
-
         pageViewController.setViewControllers(
             [dataSource[currentIndex]],
             direction: .forward,
@@ -86,11 +88,12 @@ final class WalkLogPageViewController: BaseViewController {
     }
 }
 
-//MARK: - WalkLogPageViewController+Context
+// MARK: - WalkLogPageViewController+Context
 
 private extension WalkLogPageViewController {
     enum Context {
         static let tabBarTitles: [String] = ["로그", "리포트"]
+        static let navigationTitle: String = "기록"
     }
 }
 
