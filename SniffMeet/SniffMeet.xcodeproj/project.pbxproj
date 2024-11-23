@@ -90,6 +90,9 @@
 		FD119F522CED881300BE22BD /* SelectLocationModuleBuildable.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD119F512CED880A00BE22BD /* SelectLocationModuleBuildable.swift */; };
 		FD331A4D2CF235A100F39426 /* SNMLineTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD331A4C2CF2359D00F39426 /* SNMLineTabBar.swift */; };
 		FD331A502CF235C400F39426 /* WalkLogPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD331A4F2CF235B900F39426 /* WalkLogPageViewController.swift */; };
+		FD331A522CF23BD000F39426 /* WalkLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD331A512CF23BCE00F39426 /* WalkLog.swift */; };
+		FD331A562CF23C5300F39426 /* WalkLogListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD331A552CF23C4E00F39426 /* WalkLogListViewController.swift */; };
+		FD331A582CF23CEC00F39426 /* WalkLogCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD331A572CF23CE900F39426 /* WalkLogCell.swift */; };
 		FD3A033F2CD8CF460047B7ED /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FD3A03392CD8CF460047B7ED /* Assets.xcassets */; };
 		FD3A03412CD8CF460047B7ED /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FD3A033C2CD8CF460047B7ED /* LaunchScreen.storyboard */; };
 		FD3A03422CD8CF460047B7ED /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD3A03382CD8CF460047B7ED /* AppDelegate.swift */; };
@@ -223,6 +226,9 @@
 		FD119F512CED880A00BE22BD /* SelectLocationModuleBuildable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectLocationModuleBuildable.swift; sourceTree = "<group>"; };
 		FD331A4C2CF2359D00F39426 /* SNMLineTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SNMLineTabBar.swift; sourceTree = "<group>"; };
 		FD331A4F2CF235B900F39426 /* WalkLogPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalkLogPageViewController.swift; sourceTree = "<group>"; };
+		FD331A512CF23BCE00F39426 /* WalkLog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalkLog.swift; sourceTree = "<group>"; };
+		FD331A552CF23C4E00F39426 /* WalkLogListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalkLogListViewController.swift; sourceTree = "<group>"; };
+		FD331A572CF23CE900F39426 /* WalkLogCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalkLogCell.swift; sourceTree = "<group>"; };
 		FD3A03202CD8CDE50047B7ED /* SniffMeet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SniffMeet.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FD3A03382CD8CF460047B7ED /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FD3A03392CD8CF460047B7ED /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -334,6 +340,7 @@
 		320044792CEC490600D08B6D /* Entity */ = {
 			isa = PBXGroup;
 			children = (
+				FD331A512CF23BCE00F39426 /* WalkLog.swift */,
 				320044972CED81EF00D08B6D /* WalkRequest.swift */,
 				320044522CE59A8100D08B6D /* Dog.swift */,
 			);
@@ -512,6 +519,8 @@
 		FD331A4E2CF235B600F39426 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				FD331A572CF23CE900F39426 /* WalkLogCell.swift */,
+				FD331A552CF23C4E00F39426 /* WalkLogListViewController.swift */,
 				FD331A4F2CF235B900F39426 /* WalkLogPageViewController.swift */,
 			);
 			path = View;
@@ -1502,6 +1511,7 @@
 				FDCD02CF2CE917D800B627D8 /* MockRequest.swift in Sources */,
 				A2F825DD2CDFBEB4000C5419 /* ProfileCardView.swift in Sources */,
 				FD51341F2CEB7AFE002E76F3 /* LoadDogInfoUseCase.swift in Sources */,
+				FD331A582CF23CEC00F39426 /* WalkLogCell.swift in Sources */,
 				FD5134172CEB738D002E76F3 /* UIControl + Publisher.swift in Sources */,
 				320044852CEC836400D08B6D /* PaddingLabel.swift in Sources */,
 				A2C328882CE2481900D255AB /* HomeModuleBuilder.swift in Sources */,
@@ -1559,11 +1569,13 @@
 				A2C844D72CDBEF8B007F2970 /* (null) in Sources */,
 				3200438B2CDF3BEF00D08B6D /* ProfileCreateViewController.swift in Sources */,
 				FD119F502CED87E500BE22BD /* SelectLocationRouter.swift in Sources */,
+				FD331A562CF23C5300F39426 /* WalkLogListViewController.swift in Sources */,
 				320044672CE6125100D08B6D /* DataManager.swift in Sources */,
 				3200449C2CEDA87800D08B6D /* RespondWalkRequestUseCase.swift in Sources */,
 				FDEAEA7A2CE3148D005890FA /* BaseView.swift in Sources */,
 				FDA04AA52CE91DBF002605AC /* MultipartFormData.swift in Sources */,
 				FD119F522CED881300BE22BD /* SelectLocationModuleBuildable.swift in Sources */,
+				FD331A522CF23BD000F39426 /* WalkLog.swift in Sources */,
 				A2C328862CE245AC00D255AB /* TabBarModuleBuilder.swift in Sources */,
 				320044732CEB47B100D08B6D /* RequestWalkInteractor.swift in Sources */,
 				320044942CED80B700D08B6D /* RespondWalkInteractor.swift in Sources */,
