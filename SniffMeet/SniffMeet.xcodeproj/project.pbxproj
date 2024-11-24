@@ -88,6 +88,36 @@
 		FD119F4E2CED87C200BE22BD /* SelectLocationPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD119F4D2CED87BC00BE22BD /* SelectLocationPresenter.swift */; };
 		FD119F502CED87E500BE22BD /* SelectLocationRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD119F4F2CED87DD00BE22BD /* SelectLocationRouter.swift */; };
 		FD119F522CED881300BE22BD /* SelectLocationModuleBuildable.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD119F512CED880A00BE22BD /* SelectLocationModuleBuildable.swift */; };
+		FD331A602CF339B000F39426 /* SupabaseStorageRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD331A5F2CF339AA00F39426 /* SupabaseStorageRequest.swift */; };
+		FD331A722CF33C8400F39426 /* SupabaseStorageTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD331A712CF33C7F00F39426 /* SupabaseStorageTests.swift */; };
+		FD331A732CF33CF200F39426 /* MultipartFormData.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDA04AA42CE91DB7002605AC /* MultipartFormData.swift */; };
+		FD331A742CF33CF200F39426 /* HTTPStatusCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDE14A4D2CE8D13E001F7A9D /* HTTPStatusCode.swift */; };
+		FD331A752CF33CF200F39426 /* NetworkProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD0634292CE596C2003C9D6B /* NetworkProvider.swift */; };
+		FD331A762CF33CF200F39426 /* SNMRequestType.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDE14A512CE8D331001F7A9D /* SNMRequestType.swift */; };
+		FD331A772CF33CF200F39426 /* SNMRequestConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD0634272CE596BA003C9D6B /* SNMRequestConvertible.swift */; };
+		FD331A782CF33CF200F39426 /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD0634252CE596B2003C9D6B /* Endpoint.swift */; };
+		FD331A792CF33CF200F39426 /* SNMNetworkResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD06342B2CE59843003C9D6B /* SNMNetworkResponse.swift */; };
+		FD331A7A2CF33CF200F39426 /* Data + append.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDA04AA72CE91DF4002605AC /* Data + append.swift */; };
+		FD331A7B2CF33CF200F39426 /* URLRequest + append.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDE14A4F2CE8D2E7001F7A9D /* URLRequest + append.swift */; };
+		FD331A7C2CF33CF200F39426 /* AnyEncodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD0634302CE62573003C9D6B /* AnyEncodable.swift */; };
+		FD331A7D2CF33D0500F39426 /* SupabaseStorageRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD331A5F2CF339AA00F39426 /* SupabaseStorageRequest.swift */; };
+		FD331A7E2CF33D0500F39426 /* SupabaseConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = A24082602CEB244C009109A0 /* SupabaseConfig.swift */; };
+		FD331A7F2CF33D0500F39426 /* SupabaseError.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20E714F2CEC595C00272B25 /* SupabaseError.swift */; };
+		FD331A802CF33D0500F39426 /* SupabaseAuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A24082632CEB2470009109A0 /* SupabaseAuthManager.swift */; };
+		FD331A812CF33D0500F39426 /* SessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A25BE4592CEC2BA300886763 /* SessionManager.swift */; };
+		FD331A822CF33D0500F39426 /* SupabaseRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A240826F2CEB27DE009109A0 /* SupabaseRequest.swift */; };
+		FD331A832CF33D0500F39426 /* SupabaseSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = A25BE4512CEBB5A900886763 /* SupabaseSession.swift */; };
+		FD331A842CF33D0500F39426 /* SupabaseUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = A25BE4552CEBB63A00886763 /* SupabaseUser.swift */; };
+		FD331A852CF33D0500F39426 /* SupabaseSessionResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = A24082662CEB2539009109A0 /* SupabaseSessionResponse.swift */; };
+		FD331A862CF33D0500F39426 /* SupabaseUserResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20E71512CEC5FE900272B25 /* SupabaseUserResponse.swift */; };
+		FD331A872CF33D0500F39426 /* SupabaseRefreshResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = A25BE4572CEBB95C00886763 /* SupabaseRefreshResponse.swift */; };
+		FD331A882CF33D0500F39426 /* SupabaseTokenRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A24082712CEB36B8009109A0 /* SupabaseTokenRequest.swift */; };
+		FD331A892CF33D0500F39426 /* SupabaseDatabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A202A1142CEDD50700B98203 /* SupabaseDatabaseManager.swift */; };
+		FD331A8A2CF33D0500F39426 /* SupabaseDatabaseRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A202A1162CEDD5EF00B98203 /* SupabaseDatabaseRequest.swift */; };
+		FD331A8B2CF33E7100F39426 /* UserDefaultsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD69B1B42CE3BC79009D71DC /* UserDefaultsManager.swift */; };
+		FD331A8C2CF33E7100F39426 /* KeychainManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD69B1B22CE3BC68009D71DC /* KeychainManager.swift */; };
+		FD331A8E2CF33F6700F39426 /* SupabaseStorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD331A8D2CF33F6100F39426 /* SupabaseStorageManager.swift */; };
+		FD331A8F2CF33F6700F39426 /* SupabaseStorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD331A8D2CF33F6100F39426 /* SupabaseStorageManager.swift */; };
 		FD3A033F2CD8CF460047B7ED /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FD3A03392CD8CF460047B7ED /* Assets.xcassets */; };
 		FD3A03412CD8CF460047B7ED /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FD3A033C2CD8CF460047B7ED /* LaunchScreen.storyboard */; };
 		FD3A03422CD8CF460047B7ED /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD3A03382CD8CF460047B7ED /* AppDelegate.swift */; };
@@ -136,6 +166,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		FD331A692CF33C6700F39426 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = FD3A03182CD8CDE50047B7ED /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = FD3A031F2CD8CDE50047B7ED;
+			remoteInfo = SniffMeet;
+		};
 		FD69B1BE2CE3BCDC009D71DC /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = FD3A03182CD8CDE50047B7ED /* Project object */;
@@ -219,6 +256,10 @@
 		FD119F4D2CED87BC00BE22BD /* SelectLocationPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectLocationPresenter.swift; sourceTree = "<group>"; };
 		FD119F4F2CED87DD00BE22BD /* SelectLocationRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectLocationRouter.swift; sourceTree = "<group>"; };
 		FD119F512CED880A00BE22BD /* SelectLocationModuleBuildable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectLocationModuleBuildable.swift; sourceTree = "<group>"; };
+		FD331A5F2CF339AA00F39426 /* SupabaseStorageRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupabaseStorageRequest.swift; sourceTree = "<group>"; };
+		FD331A652CF33C6700F39426 /* SupabaseTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SupabaseTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		FD331A712CF33C7F00F39426 /* SupabaseStorageTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupabaseStorageTests.swift; sourceTree = "<group>"; };
+		FD331A8D2CF33F6100F39426 /* SupabaseStorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupabaseStorageManager.swift; sourceTree = "<group>"; };
 		FD3A03202CD8CDE50047B7ED /* SniffMeet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SniffMeet.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FD3A03382CD8CF460047B7ED /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FD3A03392CD8CF460047B7ED /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -257,6 +298,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		FD331A622CF33C6700F39426 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		FD3A031D2CD8CDE50047B7ED /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -409,6 +457,7 @@
 		A24082622CEB2464009109A0 /* Supabase */ = {
 			isa = PBXGroup;
 			children = (
+				FD331A5E2CF339A400F39426 /* Storage */,
 				A24082602CEB244C009109A0 /* SupabaseConfig.swift */,
 				A20E714F2CEC595C00272B25 /* SupabaseError.swift */,
 				A24082652CEB2475009109A0 /* Auth */,
@@ -504,12 +553,30 @@
 			path = SNMNetwork;
 			sourceTree = "<group>";
 		};
+		FD331A5E2CF339A400F39426 /* Storage */ = {
+			isa = PBXGroup;
+			children = (
+				FD331A8D2CF33F6100F39426 /* SupabaseStorageManager.swift */,
+				FD331A5F2CF339AA00F39426 /* SupabaseStorageRequest.swift */,
+			);
+			path = Storage;
+			sourceTree = "<group>";
+		};
+		FD331A6F2CF33C7B00F39426 /* SupabaseTests */ = {
+			isa = PBXGroup;
+			children = (
+				FD331A712CF33C7F00F39426 /* SupabaseStorageTests.swift */,
+			);
+			path = SupabaseTests;
+			sourceTree = "<group>";
+		};
 		FD3A03172CD8CDE50047B7ED = {
 			isa = PBXGroup;
 			children = (
 				FD3A033E2CD8CF460047B7ED /* SniffMeet */,
 				FD69B1C62CE3BCED009D71DC /* SNMPersistenceTests */,
 				FDCD02D42CE9182200B627D8 /* SNMNetworkTests */,
+				FD331A6F2CF33C7B00F39426 /* SupabaseTests */,
 				FD3A03212CD8CDE50047B7ED /* Products */,
 			);
 			sourceTree = "<group>";
@@ -520,6 +587,7 @@
 				FD3A03202CD8CDE50047B7ED /* SniffMeet.app */,
 				FD69B1BA2CE3BCDC009D71DC /* SNMPersistenceTests.xctest */,
 				FDCD02BE2CE9172600B627D8 /* SNMNetworkTests.xctest */,
+				FD331A652CF33C6700F39426 /* SupabaseTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1334,6 +1402,26 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		FD331A642CF33C6700F39426 /* SupabaseTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FD331A6B2CF33C6700F39426 /* Build configuration list for PBXNativeTarget "SupabaseTests" */;
+			buildPhases = (
+				FD331A612CF33C6700F39426 /* Sources */,
+				FD331A622CF33C6700F39426 /* Frameworks */,
+				FD331A632CF33C6700F39426 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				FD331A6A2CF33C6700F39426 /* PBXTargetDependency */,
+			);
+			name = SupabaseTests;
+			packageProductDependencies = (
+			);
+			productName = SupabaseTests;
+			productReference = FD331A652CF33C6700F39426 /* SupabaseTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		FD3A031F2CD8CDE50047B7ED /* SniffMeet */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = FD3A03332CD8CDE60047B7ED /* Build configuration list for PBXNativeTarget "SniffMeet" */;
@@ -1400,9 +1488,12 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 1600;
+				LastSwiftUpdateCheck = 1610;
 				LastUpgradeCheck = 1600;
 				TargetAttributes = {
+					FD331A642CF33C6700F39426 = {
+						CreatedOnToolsVersion = 16.1;
+					};
 					FD3A031F2CD8CDE50047B7ED = {
 						CreatedOnToolsVersion = 16.0;
 					};
@@ -1435,11 +1526,19 @@
 				FD3A031F2CD8CDE50047B7ED /* SniffMeet */,
 				FD69B1B92CE3BCDC009D71DC /* SNMPersistenceTests */,
 				FDCD02BD2CE9172600B627D8 /* SNMNetworkTests */,
+				FD331A642CF33C6700F39426 /* SupabaseTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		FD331A632CF33C6700F39426 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		FD3A031E2CD8CDE50047B7ED /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1467,6 +1566,41 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		FD331A612CF33C6700F39426 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FD331A8B2CF33E7100F39426 /* UserDefaultsManager.swift in Sources */,
+				FD331A8C2CF33E7100F39426 /* KeychainManager.swift in Sources */,
+				FD331A7D2CF33D0500F39426 /* SupabaseStorageRequest.swift in Sources */,
+				FD331A7E2CF33D0500F39426 /* SupabaseConfig.swift in Sources */,
+				FD331A7F2CF33D0500F39426 /* SupabaseError.swift in Sources */,
+				FD331A802CF33D0500F39426 /* SupabaseAuthManager.swift in Sources */,
+				FD331A812CF33D0500F39426 /* SessionManager.swift in Sources */,
+				FD331A8E2CF33F6700F39426 /* SupabaseStorageManager.swift in Sources */,
+				FD331A822CF33D0500F39426 /* SupabaseRequest.swift in Sources */,
+				FD331A832CF33D0500F39426 /* SupabaseSession.swift in Sources */,
+				FD331A842CF33D0500F39426 /* SupabaseUser.swift in Sources */,
+				FD331A852CF33D0500F39426 /* SupabaseSessionResponse.swift in Sources */,
+				FD331A862CF33D0500F39426 /* SupabaseUserResponse.swift in Sources */,
+				FD331A872CF33D0500F39426 /* SupabaseRefreshResponse.swift in Sources */,
+				FD331A882CF33D0500F39426 /* SupabaseTokenRequest.swift in Sources */,
+				FD331A892CF33D0500F39426 /* SupabaseDatabaseManager.swift in Sources */,
+				FD331A8A2CF33D0500F39426 /* SupabaseDatabaseRequest.swift in Sources */,
+				FD331A732CF33CF200F39426 /* MultipartFormData.swift in Sources */,
+				FD331A742CF33CF200F39426 /* HTTPStatusCode.swift in Sources */,
+				FD331A752CF33CF200F39426 /* NetworkProvider.swift in Sources */,
+				FD331A762CF33CF200F39426 /* SNMRequestType.swift in Sources */,
+				FD331A772CF33CF200F39426 /* SNMRequestConvertible.swift in Sources */,
+				FD331A782CF33CF200F39426 /* Endpoint.swift in Sources */,
+				FD331A792CF33CF200F39426 /* SNMNetworkResponse.swift in Sources */,
+				FD331A7A2CF33CF200F39426 /* Data + append.swift in Sources */,
+				FD331A7B2CF33CF200F39426 /* URLRequest + append.swift in Sources */,
+				FD331A7C2CF33CF200F39426 /* AnyEncodable.swift in Sources */,
+				FD331A722CF33C8400F39426 /* SupabaseStorageTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		FD3A031C2CD8CDE50047B7ED /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1478,6 +1612,7 @@
 				A2C844D12CDBE1E5007F2970 /* (null) in Sources */,
 				3200444E2CE595EA00D08B6D /* ProfileCreatePresenter.swift in Sources */,
 				320044922CED78D200D08B6D /* RespondWalkPresenter.swift in Sources */,
+				FD331A8F2CF33F6700F39426 /* SupabaseStorageManager.swift in Sources */,
 				FD3A03422CD8CF460047B7ED /* AppDelegate.swift in Sources */,
 				995D94A82CECEF91005A47BF /* RequestMateViewController.swift in Sources */,
 				A202A1172CEDD5EF00B98203 /* SupabaseDatabaseRequest.swift in Sources */,
@@ -1560,6 +1695,7 @@
 				A2C328862CE245AC00D255AB /* TabBarModuleBuilder.swift in Sources */,
 				320044732CEB47B100D08B6D /* RequestWalkInteractor.swift in Sources */,
 				320044942CED80B700D08B6D /* RespondWalkInteractor.swift in Sources */,
+				FD331A602CF339B000F39426 /* SupabaseStorageRequest.swift in Sources */,
 				320044892CEC862D00D08B6D /* LocationSelectionView.swift in Sources */,
 				FD69B1B52CE3BC7E009D71DC /* UserDefaultsManager.swift in Sources */,
 				320043722CDC9E5F00D08B6D /* (null) in Sources */,
@@ -1614,6 +1750,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		FD331A6A2CF33C6700F39426 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = FD3A031F2CD8CDE50047B7ED /* SniffMeet */;
+			targetProxy = FD331A692CF33C6700F39426 /* PBXContainerItemProxy */;
+		};
 		FD3A03472CD8D2C90047B7ED /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			productRef = FD3A03462CD8D2C90047B7ED /* SwiftLintBuildToolPlugin */;
@@ -1637,6 +1778,48 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		FD331A6C2CF33C6700F39426 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = B3PWYBKFUK;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.sole.SupabaseTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		FD331A6D2CF33C6700F39426 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = B3PWYBKFUK;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.sole.SupabaseTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
 		FD3A03342CD8CDE60047B7ED /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1919,6 +2102,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		FD331A6B2CF33C6700F39426 /* Build configuration list for PBXNativeTarget "SupabaseTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FD331A6C2CF33C6700F39426 /* Debug */,
+				FD331A6D2CF33C6700F39426 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		FD3A031B2CD8CDE50047B7ED /* Build configuration list for PBXProject "SniffMeet" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
