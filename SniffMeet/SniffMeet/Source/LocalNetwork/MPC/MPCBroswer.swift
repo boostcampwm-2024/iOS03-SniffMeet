@@ -16,9 +16,8 @@ final class MPCBrowser: NSObject {
 
     static var sharedBrowser: MCNearbyServiceBrowser?
 
-    @Published var paired: Bool = false
-    @Published var availablePeers = [MCPeerID]()
-    
+    var availablePeers = Set<MCPeerID>()
+
     init(browser: MCNearbyServiceBrowser,
          session: MCSession,
          myPeerId: MCPeerID)
@@ -63,18 +62,18 @@ final class MPCBrowser: NSObject {
     
     func invite() {
         guard let peer = availablePeers.first else { return }
-        browser.invitePeer(peer, to: session, withContext: nil, timeout: 10)
-        log.info("invitePeer")
+        browser.invitePeer(peer, to: session, withContext: nil, timeout: 30)
+        log.log("invitePeer")
     }
 
     func invite(peerID: MCPeerID) {
-        browser.invitePeer(peerID, to: session, withContext: nil, timeout: 10)
-        log.info("invitePeer peerID")
+        browser.invitePeer(peerID, to: session, withContext: nil, timeout: 30)
+        log.log("invitePeer peerID")
     }
     
     func invite(peerID: MCPeerID, tokenData: Data) {
-        browser.invitePeer(peerID, to: session, withContext: tokenData, timeout: 10)
-        log.info("invitePeer tokenData")
+        browser.invitePeer(peerID, to: session, withContext: tokenData, timeout: 30)
+        log.log("invitePeer tokenData")
     }
 }
 
@@ -84,20 +83,20 @@ extension MPCBrowser: MCNearbyServiceBrowserDelegate {
                  withDiscoveryInfo info: [String : String]?)
     {
         if let info = info {
-            print("Found peer with info: \(info)")
+            log.info("Found peer with info: \(info)")
         }
         
         // info에 해당되는 peer에 대해서만 availablepeers에 넣을 수 있다
         log.info("ServiceBrowser found peer: \(peerID)")
         guard !(self.availablePeers.contains(peerID)) else { return }
-        self.availablePeers.append(peerID)
+        self.availablePeers.insert(peerID)
 
-        if !session.connectedPeers.contains(peerID) {
-            invite(peerID: peerID)
+        let timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: false) { [weak self] _ in
+            if (self?.session.connectedPeers.contains(peerID) == false) {
+                self?.invite(peerID: peerID)
+            }
         }
-        else {
-            log.info("Peer is already connected : \(peerID)")
-        }
+        log.info("availablePeers: \(self.availablePeers)")
     }
     
     

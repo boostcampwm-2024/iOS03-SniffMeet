@@ -47,7 +47,7 @@ extension Dog {
 }
 
 
-struct DogProfileInfo {
+struct DogProfileInfo: Codable {
     let name: String
     let keywords: [Keyword]
     let profileImage: Data?

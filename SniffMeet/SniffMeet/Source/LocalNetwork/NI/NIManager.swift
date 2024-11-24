@@ -19,6 +19,8 @@ class NIManager: NSObject {
     private let minDirection: simd_float3 = simd_float3(-0.6, -0.3, -1.0)
     private let maxDirection: simd_float3 = simd_float3(0.6, 0.3, -0.8)
 
+    @Published var niPaired: Bool = false
+
     init(mpcManager: MPCManager) {
         self.mpcManager = mpcManager
         super.init()
@@ -63,7 +65,7 @@ class NIManager: NSObject {
                 withRootObject: discoveryToken,
                 requiringSecureCoding: true
             )
-            mpcManager.send(mateData: tokenData)
+            mpcManager.sendToken(discoveryToken: tokenData)
             print("Discovery token sent to peer.")
         } catch {
             print("Failed to encode discovery token: \(error)")
@@ -83,18 +85,17 @@ class NIManager: NSObject {
 
             let config = NINearbyPeerConfiguration(peerToken: token)
             niSession?.run(config)
+            niPaired = true
             print("NearbyInteraction session started with received discovery token.")
         } catch {
             print("Failed to decode discovery token: \(error)")
         }
     }
 
-    func isDirectionInRange(direction: simd_float3,
-                            minDirection: simd_float3,
-                            maxDirection: simd_float3) -> Bool {
-        return (minDirection.x...maxDirection.x).contains(direction.x) &&
-               (minDirection.y...maxDirection.y).contains(direction.y) &&
-               (minDirection.z...maxDirection.z).contains(direction.z)
+    func endSession() {
+        print("NI 세션 종료")
+        niSession?.invalidate()
+        niPaired = false
     }
 }
 
@@ -102,15 +103,18 @@ class NIManager: NSObject {
 extension NIManager: NISessionDelegate {
     func session(_ session: NISession, didUpdate nearbyObjects: [NINearbyObject]) {
         guard let nearbyObject = nearbyObjects.first else { return }
-        let distance = nearbyObject.distance ?? 0
-        let direction = nearbyObject.direction ?? simd_float3(0.0, 0.0, 0.0)
+        let distance = nearbyObject.distance ?? 1
+        let direction = nearbyObject.direction ?? simd_float3(0.1, 0.1, 0.1)
 
         print("Distance and Direction to peer: \(distance) and \(direction)")
 
-        if distance > minDistance && distance < maxDistance && isDirectionInRange(direction: direction,
-                                                                                  minDirection: minDirection,
-                                                                                  maxDirection: maxDirection) {
+        if distance > minDistance && distance < maxDistance {
             print("거리와 방향 조건 만족")
+            let testProfile = DogProfileInfo(name: "두식",
+                                             keywords: [.energetic, .friendly],
+                                             profileImage: nil)
+            mpcManager.sendData(profile: testProfile)
+            endSession()
         }
     }
 

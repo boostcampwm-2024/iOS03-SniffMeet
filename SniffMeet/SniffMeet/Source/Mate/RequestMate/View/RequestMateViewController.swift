@@ -21,7 +21,13 @@ final class RequestMateViewController: BaseViewController, RequestMateViewable {
     private var declineConfig = UIButton.Configuration.filled()
     private var declineButton: UIButton = UIButton(type: .system)
     private var acceptButton = PrimaryButton(title: Context.acceptTitle)
-    private var keywords: [Keyword] = [.energetic, .independent]
+    private var keywords: [Keyword] = []
+    private let profile: DogProfileInfo
+
+    init(profile: DogProfileInfo) {
+        self.profile = profile
+        super.init()
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,10 +36,12 @@ final class RequestMateViewController: BaseViewController, RequestMateViewable {
     }
 
     override func configureAttributes() {
-        profileImageView.image = UIImage(named: "ImagePlaceholder")
+//        let placeholderImage = UIImage(named: "placeholder")
+//        profileImageView.image = UIImage(data: profile.profileImage!)
+        profileImageView.image = UIImage(named: "placeholder")
         profileImageView.contentMode = .scaleAspectFill
         profileImageView.translatesAutoresizingMaskIntoConstraints = false
-        nameLabel.text = "이름"
+        nameLabel.text = profile.name
         nameLabel.textColor = SNMColor.white
         nameLabel.font = SNMFont.title1
         keywordStackView.axis = .horizontal
@@ -58,6 +66,7 @@ final class RequestMateViewController: BaseViewController, RequestMateViewable {
     }
 
     override func configureHierachy() {
+        keywords = profile.keywords
         for keyword in keywords {
             let keywordView = KeywordView(title: keyword.rawValue)
             keywordStackView.addArrangedSubview(keywordView)

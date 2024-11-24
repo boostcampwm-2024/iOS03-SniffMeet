@@ -19,23 +19,32 @@ final class MPCManager: NSObject {
     let browser: MPCBrowser
     let session: MCSession
     let mypeerID: MCPeerID
-    var connectedPeers = [MCPeerID]()
-    
+    private var cancellables = Set<AnyCancellable>()
+
     @Published var paired: Bool = false
 
     private let log = Logger()
 
     var receivedTokenPublisher = PassthroughSubject<Data, Never>()
+    var receivedDataPublisher = PassthroughSubject<DogProfileInfo, Never>()
     var isAvailableToBeConnected: Bool = false {
         didSet {
-            guard oldValue != isAvailableToBeConnected else { return }
-            if connectedPeers.isEmpty && isAvailableToBeConnected {
+            if isAvailableToBeConnected {
                 advertiser.startAdvertising()
                 browser.startBrowsing()
             } else {
+                log.error("isAvailableToBeConnected is changed")
                 advertiser.stopAdvertising()
                 browser.stopBrowsing()
             }
+
+            advertiser.receivedInvite
+                .sink { [weak self] bool in
+                    if bool {
+                        self?.browser.stopBrowsing()
+                    }
+                }
+                .store(in: &cancellables)
         }
     }
     
@@ -54,7 +63,7 @@ final class MPCManager: NSObject {
         let peerID = MCPeerID(displayName: yourName)
         let serviceType = String.serviceName
         let session = MCSession(peer: peerID)
-        
+
         self.init(advertiser: MPCAdvertiser(session: session,
                                             myPeerID: peerID,
                                             serviceType: serviceType),
@@ -70,13 +79,33 @@ final class MPCManager: NSObject {
         browser.stopBrowsing()
     }
     
-    func send(mateData: Data) {
-        if !session.connectedPeers.isEmpty {
-            do {
-                try session.send(mateData, toPeers: session.connectedPeers, with: .reliable)
-            } catch {
-                print("error sending \(error.localizedDescription)")
-            }
+    func sendToken(discoveryToken: Data) {
+        guard !session.connectedPeers.isEmpty else { return }
+
+        do {
+            let dataToSend = ReceiveData(token: discoveryToken, profile: nil)
+            let encodedData = try JSONEncoder().encode(dataToSend)
+            log.info("encodedToken is  \(encodedData)")
+            try session.send(encodedData, toPeers: session.connectedPeers, with: .reliable)
+        } catch {
+            log.error("error sending \(error.localizedDescription)")
+        }
+    }
+
+    func sendData(profile: DogProfileInfo) {
+        guard !session.connectedPeers.isEmpty else {
+            log.log("no one is connected")
+            return
+        }
+
+        do {
+            let dataToSend = ReceiveData(token: nil, profile: profile)
+            let encodedData = try JSONEncoder().encode(dataToSend)
+            log.info("encodedData is  \(encodedData)")
+            try session.send(encodedData, toPeers: session.connectedPeers, with: .reliable)
+            log.log("DogProfileInfo 전송 성공")
+        } catch {
+            log.error("DogProfileInfo 전송 실패: \(error.localizedDescription)")
         }
     }
 }
@@ -88,38 +117,42 @@ extension MPCManager: MCSessionDelegate {
         switch state {
         case .notConnected:
             Task { @MainActor in
+                log.log("notConnected to MPCSession")
+                log.info("notConnected: \(session.connectedPeers)")
                 self.paired = false
                 self.isAvailableToBeConnected = true
-                if let idx = connectedPeers.firstIndex(of: peerID) {
-                    connectedPeers.remove(at: idx)
-                }
-            }
-        case .connecting:
-            Task { @MainActor in
-                self.paired = false
-                self.isAvailableToBeConnected = false
             }
         case .connected:
             Task { @MainActor in
+                log.log("successfully connected to MPCSession")
                 self.paired = true
                 self.isAvailableToBeConnected = false
-                connectedPeers.append(peerID)
-                log.log("successfully connected to MPCSession")
+                log.info("ConnectedPeers: \(session.connectedPeers)")
             }
         default:
             Task { @MainActor in
                 self.paired = false
-                self.isAvailableToBeConnected = false
             }
         }
     }
 
     func session(_ session: MCSession, didReceive data: Data, fromPeer peerID: MCPeerID) {
         log.info("didReceive bytes \(data.count) bytes")
-        Task { @MainActor in
-            self.session.disconnect()
-            self.isAvailableToBeConnected = true
-            receivedTokenPublisher.send(data)
+
+        do {
+            let receivedData = try JSONDecoder().decode(ReceiveData.self, from: data)
+
+            if let tokenData = receivedData.token {
+                Task { @MainActor in
+                    receivedTokenPublisher.send(tokenData)
+                }
+            } else if let profile = receivedData.profile {
+                Task { @MainActor in
+                    receivedDataPublisher.send(profile)
+                }
+            }
+        } catch {
+            log.error("Failed to decode received data: \(error)")
         }
     }
 

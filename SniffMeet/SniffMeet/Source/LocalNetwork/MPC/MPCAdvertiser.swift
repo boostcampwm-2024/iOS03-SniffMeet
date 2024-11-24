@@ -4,6 +4,7 @@
 //
 //  Created by 윤지성 on 11/13/24.
 //
+import Combine
 import MultipeerConnectivity
 import os
 
@@ -16,7 +17,9 @@ final class MPCAdvertiser: NSObject {
 
     static var sharedAdvertiser: MCNearbyServiceAdvertiser?
 
-    @Published var receivedInvite: Bool = false
+//    @Published var receivedInvite: Bool = false
+    var receivedInvite = PassthroughSubject<Bool, Never>()
+
     @Published var receivedInviteFrom: MCPeerID?
     @Published var invitationHandler: ((Bool, MCSession?) -> Void)?
 
@@ -65,6 +68,7 @@ final class MPCAdvertiser: NSObject {
     
     func stopAdvertising() {
         advertiser.stopAdvertisingPeer()
+        receivedInvite.send(true)
         log.log("stop advertising")
     }
 }
@@ -72,7 +76,7 @@ final class MPCAdvertiser: NSObject {
 extension MPCAdvertiser: MCNearbyServiceAdvertiserDelegate {
     func advertiser(_ advertiser: MCNearbyServiceAdvertiser,
                     didNotStartAdvertisingPeer error: Error) {
-        print("Advertiser failed to start: \(error)")
+        log.info("Advertiser failed to start: \(error)")
     }
 
     func advertiser(_ advertiser: MCNearbyServiceAdvertiser,
@@ -80,11 +84,8 @@ extension MPCAdvertiser: MCNearbyServiceAdvertiserDelegate {
                     withContext context: Data?,
                     invitationHandler: @escaping (Bool, MCSession?) -> Void)
     {
-        self.receivedInvite = true
-        self.receivedInviteFrom = peerID
-        self.invitationHandler = invitationHandler
-
         log.info("Received invitation from \(peerID)")
         invitationHandler(true, session)
+        receivedInvite.send(true)
     }
 }

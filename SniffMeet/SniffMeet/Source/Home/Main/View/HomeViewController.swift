@@ -19,6 +19,7 @@ final class HomeViewController: BaseViewController, HomeViewable {
     private var mpcManager: MPCManager?
     private var niManager: NIManager?
     private var cancellables = Set<AnyCancellable>()
+    private var count: Int = 0
 
     override func viewDidLoad() {
         setupMPCManager()
@@ -94,7 +95,19 @@ final class HomeViewController: BaseViewController, HomeViewable {
         mpcManager?.$paired
             .receive(on: RunLoop.main)
             .sink { [weak self] isPaired in
-                self?.presenter?.changeIsPaired(with: isPaired)
+                if self?.count ?? 0 < 4 && self?.count ?? 0 > 0{
+                    self?.presenter?.changeIsPaired(with: isPaired)
+                    self?.count += 1
+                }
+                self?.count += 1
+            }
+            .store(in: &cancellables)
+
+        mpcManager?.receivedDataPublisher
+            .receive(on: RunLoop.main)
+            .sink { [weak self] profile in
+                print("HomeViewController received data: \(profile)")
+                self?.presenter?.profileData(profile)
             }
             .store(in: &cancellables)
     }
@@ -103,9 +116,10 @@ final class HomeViewController: BaseViewController, HomeViewable {
     }
     @objc func goToStartSession() {
         mpcManager?.isAvailableToBeConnected = true
+        count = 1
     }
     private func setupMPCManager() {
-        mpcManager = MPCManager(yourName: UIDevice.current.name + UUID().uuidString)
+        mpcManager = MPCManager(yourName: String(UUID().uuidString.suffix(8)))
         niManager = NIManager(mpcManager: mpcManager!)
     }
 }
