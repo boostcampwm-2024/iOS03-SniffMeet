@@ -14,7 +14,7 @@ final class NotificationCell: UITableViewCell {
     private let dateLabel: UILabel = UILabel()
 
     init(
-        notification: Notification,
+        notification: PushNotification,
         style: UITableViewCell.CellStyle,
         reuseIdentifier: String?
     ) {
@@ -71,7 +71,7 @@ final class NotificationCell: UITableViewCell {
         ])
     }
     
-    func configure(notification: Notification) {
+    func configure(notification: PushNotification) {
         sectionLabel.text = notification.section
         descriptionLabel.text = notification.description
         dateLabel.text = notification.date

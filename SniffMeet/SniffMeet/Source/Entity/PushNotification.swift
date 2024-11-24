@@ -5,7 +5,7 @@
 //  Created by sole on 11/24/24.
 //
 
-struct Notification {
+struct PushNotification {
     let section: String
     let description: String
     let date: String

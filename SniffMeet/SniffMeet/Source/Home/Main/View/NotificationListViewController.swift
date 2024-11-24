@@ -77,7 +77,7 @@ extension NotificationListViewController: UITableViewDataSource {
         cellForRowAt indexPath: IndexPath
     ) -> UITableViewCell {
         // FIXME: 실제 데이터로 변경 필요
-        let notification: Notification = Notification(
+        let notification: PushNotification = PushNotification(
             section: "산책 요청",
             description: "허거덩 친구가 산책 요청을 보냈어요",
             date: "14시간 전"
