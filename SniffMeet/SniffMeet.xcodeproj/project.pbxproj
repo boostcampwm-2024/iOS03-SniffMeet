@@ -88,6 +88,9 @@
 		FD119F4E2CED87C200BE22BD /* SelectLocationPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD119F4D2CED87BC00BE22BD /* SelectLocationPresenter.swift */; };
 		FD119F502CED87E500BE22BD /* SelectLocationRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD119F4F2CED87DD00BE22BD /* SelectLocationRouter.swift */; };
 		FD119F522CED881300BE22BD /* SelectLocationModuleBuildable.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD119F512CED880A00BE22BD /* SelectLocationModuleBuildable.swift */; };
+		FD331A912CF3461B00F39426 /* NotificationListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD331A902CF3461600F39426 /* NotificationListViewController.swift */; };
+		FD331A932CF3463200F39426 /* NotificationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD331A922CF3462E00F39426 /* NotificationCell.swift */; };
+		FD331A952CF3464000F39426 /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD331A942CF3463E00F39426 /* Notification.swift */; };
 		FD3A033F2CD8CF460047B7ED /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FD3A03392CD8CF460047B7ED /* Assets.xcassets */; };
 		FD3A03412CD8CF460047B7ED /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FD3A033C2CD8CF460047B7ED /* LaunchScreen.storyboard */; };
 		FD3A03422CD8CF460047B7ED /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD3A03382CD8CF460047B7ED /* AppDelegate.swift */; };
@@ -219,6 +222,9 @@
 		FD119F4D2CED87BC00BE22BD /* SelectLocationPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectLocationPresenter.swift; sourceTree = "<group>"; };
 		FD119F4F2CED87DD00BE22BD /* SelectLocationRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectLocationRouter.swift; sourceTree = "<group>"; };
 		FD119F512CED880A00BE22BD /* SelectLocationModuleBuildable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectLocationModuleBuildable.swift; sourceTree = "<group>"; };
+		FD331A902CF3461600F39426 /* NotificationListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationListViewController.swift; sourceTree = "<group>"; };
+		FD331A922CF3462E00F39426 /* NotificationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationCell.swift; sourceTree = "<group>"; };
+		FD331A942CF3463E00F39426 /* Notification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notification.swift; sourceTree = "<group>"; };
 		FD3A03202CD8CDE50047B7ED /* SniffMeet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SniffMeet.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FD3A03382CD8CF460047B7ED /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FD3A03392CD8CF460047B7ED /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -330,6 +336,7 @@
 		320044792CEC490600D08B6D /* Entity */ = {
 			isa = PBXGroup;
 			children = (
+				FD331A942CF3463E00F39426 /* Notification.swift */,
 				320044972CED81EF00D08B6D /* WalkRequest.swift */,
 				320044522CE59A8100D08B6D /* Dog.swift */,
 			);
@@ -1004,6 +1011,8 @@
 		FDA491692CDA7C0B00A36FB0 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				FD331A922CF3462E00F39426 /* NotificationCell.swift */,
+				FD331A902CF3461600F39426 /* NotificationListViewController.swift */,
 				A2F825D02CDF4BA6000C5419 /* HomeViewController.swift */,
 				A2F825DC2CDFBEB4000C5419 /* ProfileCardView.swift */,
 			);
@@ -1481,9 +1490,11 @@
 				FD3A03422CD8CF460047B7ED /* AppDelegate.swift in Sources */,
 				995D94A82CECEF91005A47BF /* RequestMateViewController.swift in Sources */,
 				A202A1172CEDD5EF00B98203 /* SupabaseDatabaseRequest.swift in Sources */,
+				FD331A952CF3464000F39426 /* Notification.swift in Sources */,
 				FD3A03432CD8CF460047B7ED /* SceneDelegate.swift in Sources */,
 				99FA4E792CE0FBBF00553C2E /* ProfileInputViewController.swift in Sources */,
 				3200448D2CEC878300D08B6D /* RespondWalkViewController.swift in Sources */,
+				FD331A932CF3463200F39426 /* NotificationCell.swift in Sources */,
 				FDA04AA92CE91DF8002605AC /* Data + append.swift in Sources */,
 				FD119F462CED868D00BE22BD /* ConvertLocationToTextUseCase.swift in Sources */,
 				A20E71522CEC5FE900272B25 /* SupabaseUserResponse.swift in Sources */,
@@ -1560,6 +1571,7 @@
 				A2C328862CE245AC00D255AB /* TabBarModuleBuilder.swift in Sources */,
 				320044732CEB47B100D08B6D /* RequestWalkInteractor.swift in Sources */,
 				320044942CED80B700D08B6D /* RespondWalkInteractor.swift in Sources */,
+				FD331A912CF3461B00F39426 /* NotificationListViewController.swift in Sources */,
 				320044892CEC862D00D08B6D /* LocationSelectionView.swift in Sources */,
 				FD69B1B52CE3BC7E009D71DC /* UserDefaultsManager.swift in Sources */,
 				320043722CDC9E5F00D08B6D /* (null) in Sources */,
