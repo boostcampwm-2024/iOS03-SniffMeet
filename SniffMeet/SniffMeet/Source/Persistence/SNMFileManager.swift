@@ -52,7 +52,7 @@ struct SNMFileManager: ImageManagable {
         do {
             try imageData.write(to: fileURL)
         } catch {
-            print(error.localizedDescription)
+            SNMLogger.log(error.localizedDescription)
             throw FileManagerError.writeError
         }
     }
