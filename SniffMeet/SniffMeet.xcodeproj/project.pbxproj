@@ -46,6 +46,10 @@
 		320044982CED81F400D08B6D /* WalkRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 320044972CED81EF00D08B6D /* WalkRequest.swift */; };
 		3200449A2CEDA80900D08B6D /* FetchRequestUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 320044992CEDA80400D08B6D /* FetchRequestUseCase.swift */; };
 		3200449C2CEDA87800D08B6D /* RespondWalkRequestUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3200449B2CEDA86B00D08B6D /* RespondWalkRequestUseCase.swift */; };
+		320045352CF4353900D08B6D /* SNMFileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 320045342CF4353400D08B6D /* SNMFileManager.swift */; };
+		320045362CF4353900D08B6D /* SNMFileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 320045342CF4353400D08B6D /* SNMFileManager.swift */; };
+		3200453A2CF43F3800D08B6D /* FileManagerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 320045392CF43F3800D08B6D /* FileManagerTest.swift */; };
+		3200453B2CF442D500D08B6D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FD3A03392CD8CF460047B7ED /* Assets.xcassets */; };
 		995D94262CE32ECE005A47BF /* Extension + Keyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 995D94252CE32EC1005A47BF /* Extension + Keyboard.swift */; };
 		995D94622CE598FD005A47BF /* NIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 995D94612CE598F0005A47BF /* NIManager.swift */; };
 		995D94A82CECEF91005A47BF /* RequestMateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 995D94A72CECEF91005A47BF /* RequestMateViewController.swift */; };
@@ -180,6 +184,8 @@
 		320044972CED81EF00D08B6D /* WalkRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalkRequest.swift; sourceTree = "<group>"; };
 		320044992CEDA80400D08B6D /* FetchRequestUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchRequestUseCase.swift; sourceTree = "<group>"; };
 		3200449B2CEDA86B00D08B6D /* RespondWalkRequestUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RespondWalkRequestUseCase.swift; sourceTree = "<group>"; };
+		320045342CF4353400D08B6D /* SNMFileManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SNMFileManager.swift; sourceTree = "<group>"; };
+		320045392CF43F3800D08B6D /* FileManagerTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileManagerTest.swift; sourceTree = "<group>"; };
 		995D94252CE32EC1005A47BF /* Extension + Keyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension + Keyboard.swift"; sourceTree = "<group>"; };
 		995D94612CE598F0005A47BF /* NIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NIManager.swift; sourceTree = "<group>"; };
 		995D94A72CECEF91005A47BF /* RequestMateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestMateViewController.swift; sourceTree = "<group>"; };
@@ -536,6 +542,7 @@
 		FD69B1B12CE3BC55009D71DC /* Persistence */ = {
 			isa = PBXGroup;
 			children = (
+				320045342CF4353400D08B6D /* SNMFileManager.swift */,
 				FD69B1B42CE3BC79009D71DC /* UserDefaultsManager.swift */,
 				FD69B1B22CE3BC68009D71DC /* KeychainManager.swift */,
 			);
@@ -547,6 +554,7 @@
 			children = (
 				FD69B1CC2CE3E9B8009D71DC /* KeychainTests.swift */,
 				FD69B1CA2CE3E9B4009D71DC /* UserDefaultsTests.swift */,
+				320045392CF43F3800D08B6D /* FileManagerTest.swift */,
 			);
 			path = SNMPersistenceTests;
 			sourceTree = "<group>";
@@ -1454,6 +1462,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3200453B2CF442D500D08B6D /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1487,6 +1496,7 @@
 				FDA04AA92CE91DF8002605AC /* Data + append.swift in Sources */,
 				FD119F462CED868D00BE22BD /* ConvertLocationToTextUseCase.swift in Sources */,
 				A20E71522CEC5FE900272B25 /* SupabaseUserResponse.swift in Sources */,
+				320045362CF4353900D08B6D /* SNMFileManager.swift in Sources */,
 				320044582CE5B04C00D08B6D /* ProfileCreateRouter.swift in Sources */,
 				A25BE4582CEBB95C00886763 /* SupabaseRefreshResponse.swift in Sources */,
 				FDEAEA7C2CE314A7005890FA /* BaseViewController.swift in Sources */,
@@ -1583,6 +1593,8 @@
 			files = (
 				FD69B1CB2CE3E9B4009D71DC /* UserDefaultsTests.swift in Sources */,
 				FD69B1C32CE3BCE4009D71DC /* UserDefaultsManager.swift in Sources */,
+				320045352CF4353900D08B6D /* SNMFileManager.swift in Sources */,
+				3200453A2CF43F3800D08B6D /* FileManagerTest.swift in Sources */,
 				FD69B1C42CE3BCE4009D71DC /* KeychainManager.swift in Sources */,
 				FD69B1CD2CE3E9BB009D71DC /* KeychainTests.swift in Sources */,
 			);
