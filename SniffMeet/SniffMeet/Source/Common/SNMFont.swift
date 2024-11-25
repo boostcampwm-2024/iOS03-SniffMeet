@@ -28,4 +28,6 @@ enum SNMFont {
     static let callout2: UIFont = UIFont.systemFont(ofSize: 16, weight: .bold)
     /// size: 12, weight: regular
     static let caption: UIFont = UIFont.systemFont(ofSize: 12, weight: .regular)
+    /// size: 12, weight: semibold
+    static let caption2: UIFont = UIFont.systemFont(ofSize: 12, weight: .semibold)
 }
