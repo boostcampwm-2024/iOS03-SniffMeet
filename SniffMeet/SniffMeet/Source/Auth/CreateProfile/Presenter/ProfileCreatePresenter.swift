@@ -5,6 +5,7 @@
 //  Created by 윤지성 on 11/14/24.
 //
 import Foundation
+import UIKit
 
 protocol ProfileCreatePresentable : AnyObject{
     var dogInfo: DogDetailInfo { get set }
@@ -12,7 +13,7 @@ protocol ProfileCreatePresentable : AnyObject{
     var interactor: ProfileCreateInteractable? { get set }
     var router: ProfileCreateRoutable? { get set }
     
-    func didTapSubmitButton(nickname: String, imageData: Data?)
+    func didTapSubmitButton(nickname: String, image: UIImage?)
 }
 
 protocol DogInfoInteractorOutput: AnyObject {
@@ -38,7 +39,8 @@ final class ProfileCreatePresenter: ProfileCreatePresentable {
         self.router = router
     }
 
-    func didTapSubmitButton(nickname: String, imageData: Data?) {
+    func didTapSubmitButton(nickname: String, image: UIImage?) {
+        let imageData = interactor?.convertImageToData(image: image)
         let dogInfo = Dog(name: dogInfo.name,
                       age: dogInfo.age,
                       sex: dogInfo.sex,

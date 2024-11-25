@@ -143,7 +143,7 @@ private extension ProfileCreateViewController {
             guard let nickname = self?.nicknameTextField.text else { return }
             self?.presenter?.didTapSubmitButton(
                 nickname: nickname,
-                imageData: self?.profileImageView.image?.pngData()
+                image: self?.profileImageView.image
             )
         }, for: .touchUpInside)
     }

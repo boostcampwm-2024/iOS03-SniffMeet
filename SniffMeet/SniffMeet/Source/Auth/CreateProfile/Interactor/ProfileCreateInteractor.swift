@@ -5,12 +5,16 @@
 //  Created by 윤지성 on 11/14/24.
 //
 
+import Foundation
+import UIKit
+
 protocol ProfileCreateInteractable: AnyObject {
     var presenter: DogInfoInteractorOutput? { get set }
     var storeDogInfoUseCase: StoreDogInfoUseCase { get set }
     var saveProfileImageUseCase: SaveProfileImageUseCase { get }
 
     func signInWithProfileData(dogInfo: Dog)
+    func convertImageToData(image: UIImage?) -> Data?
 }
 
 final class ProfileCreateInteractor: ProfileCreateInteractable {
@@ -41,5 +45,9 @@ final class ProfileCreateInteractor: ProfileCreateInteractable {
                 presenter?.didFailToSaveDogInfo(error: error)
             }
         }
+    }
+    func convertImageToData(image: UIImage?) -> Data? {
+        guard let image else { return nil }
+        return image.pngData()
     }
 }
