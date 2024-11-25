@@ -17,7 +17,6 @@ final class MPCAdvertiser: NSObject {
 
     static var sharedAdvertiser: MCNearbyServiceAdvertiser?
 
-//    @Published var receivedInvite: Bool = false
     var receivedInvite = PassthroughSubject<Bool, Never>()
 
     @Published var receivedInviteFrom: MCPeerID?
@@ -40,8 +39,6 @@ final class MPCAdvertiser: NSObject {
     }
     
     convenience init(session: MCSession, myPeerID: MCPeerID, serviceType: String) {
-        /// 이렇게 메타데이터와 함께 advertiser를 만들면 advertising할 때 정보 전달 가능
-        ///let advertiser = MCNearbyServiceAdvertiser(peer: myPeerID, discoveryInfo: discoveryInfo, serviceType: "my-service")
         if let existingAdvertiser = MPCAdvertiser.sharedAdvertiser {
             self.init(advertiser: existingAdvertiser, session: session, myPeerID: myPeerID)
         } else {
@@ -68,7 +65,7 @@ final class MPCAdvertiser: NSObject {
     
     func stopAdvertising() {
         advertiser.stopAdvertisingPeer()
-        receivedInvite.send(true)
+        receivedInvite.send(false)
         log.log("stop advertising")
     }
 }

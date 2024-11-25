@@ -20,6 +20,7 @@ final class HomeViewController: BaseViewController, HomeViewable {
     private var niManager: NIManager?
     private var cancellables = Set<AnyCancellable>()
     private var count: Int = 0
+    var dogProfile: DogProfileInfo?
 
     override func viewDidLoad() {
         setupMPCManager()
@@ -95,9 +96,8 @@ final class HomeViewController: BaseViewController, HomeViewable {
         mpcManager?.$paired
             .receive(on: RunLoop.main)
             .sink { [weak self] isPaired in
-                if self?.count ?? 0 < 4 && self?.count ?? 0 > 0{
+                if self?.count ?? 0 < 3 && self?.count ?? 0 > 0{
                     self?.presenter?.changeIsPaired(with: isPaired)
-                    self?.count += 1
                 }
                 self?.count += 1
             }
@@ -107,7 +107,21 @@ final class HomeViewController: BaseViewController, HomeViewable {
             .receive(on: RunLoop.main)
             .sink { [weak self] profile in
                 print("HomeViewController received data: \(profile)")
-                self?.presenter?.profileData(profile)
+                self?.dogProfile = profile
+            }
+            .store(in: &cancellables)
+
+        niManager?.isViewTransitioning
+            .receive(on: RunLoop.main)
+            .sink { [weak self] bool in
+                guard let profile = self?.dogProfile else {
+                    SNMLogger.error("No exist profile")
+                    return
+                }
+                if bool {
+                    print("isViewTransitioning")
+                    self?.presenter?.profileData(profile)
+                }
             }
             .store(in: &cancellables)
     }

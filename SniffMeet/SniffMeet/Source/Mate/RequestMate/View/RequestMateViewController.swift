@@ -23,7 +23,7 @@ final class RequestMateViewController: BaseViewController, RequestMateViewable {
     private var acceptButton = PrimaryButton(title: Context.acceptTitle)
     private var keywords: [Keyword] = []
     private let profile: DogProfileInfo
-
+    
     init(profile: DogProfileInfo) {
         self.profile = profile
         super.init()

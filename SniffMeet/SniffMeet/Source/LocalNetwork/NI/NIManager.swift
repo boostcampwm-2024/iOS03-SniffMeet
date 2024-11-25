@@ -20,6 +20,8 @@ class NIManager: NSObject {
     private let maxDirection: simd_float3 = simd_float3(0.6, 0.3, -0.8)
 
     @Published var niPaired: Bool = false
+    var isViewTransitioning = PassthroughSubject<Bool, Never>()
+    var viewTransitionInfo = Set<String>()
 
     init(mpcManager: MPCManager) {
         self.mpcManager = mpcManager
@@ -49,6 +51,13 @@ class NIManager: NSObject {
         mpcManager.receivedTokenPublisher
             .sink { [weak self] token in
                 self?.handleReceivedDiscoveryToken(token)
+            }
+            .store(in: &cancellables)
+
+        mpcManager.receivedViewTransitionPublisher
+            .sink { [weak self] isViewTransitioning in
+                self?.viewTransitionInfo.insert(isViewTransitioning)
+                print("viewTrnasitionInfo: \(self?.viewTransitionInfo ?? [])")
             }
             .store(in: &cancellables)
     }
@@ -95,6 +104,9 @@ class NIManager: NSObject {
     func endSession() {
         print("NI 세션 종료")
         niSession?.invalidate()
+        mpcManager.session.disconnect()
+        mpcManager.isAvailableToBeConnected = false
+        print("MPC 세션 종료")
         niPaired = false
     }
 }
@@ -110,11 +122,15 @@ extension NIManager: NISessionDelegate {
 
         if distance > minDistance && distance < maxDistance {
             print("거리와 방향 조건 만족")
-            let testProfile = DogProfileInfo(name: "두식",
-                                             keywords: [.energetic, .friendly],
-                                             profileImage: nil)
-            mpcManager.sendData(profile: testProfile)
-            endSession()
+            Task { @MainActor in
+                isViewTransitioning.send(true)
+                viewTransitionInfo.insert("send")
+                mpcManager.send(viewTransitionInfo: "receive")
+            }
+
+            if viewTransitionInfo.count == 2 {
+                endSession()
+            }
         }
     }
 

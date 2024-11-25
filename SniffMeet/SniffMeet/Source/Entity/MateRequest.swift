@@ -10,4 +10,5 @@ import Foundation
 struct ReceiveData: Codable {
     let token: Data?
     let profile: DogProfileInfo?
+    let transitionMessage: String?
 }

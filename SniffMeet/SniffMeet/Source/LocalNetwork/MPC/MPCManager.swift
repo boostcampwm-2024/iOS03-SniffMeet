@@ -19,6 +19,11 @@ final class MPCManager: NSObject {
     let browser: MPCBrowser
     let session: MCSession
     let mypeerID: MCPeerID
+    var timer: Timer?
+    let testProfile = DogProfileInfo(name: "두식",
+                                     keywords: [.energetic, .friendly],
+                                     profileImage: nil)
+
     private var cancellables = Set<AnyCancellable>()
 
     @Published var paired: Bool = false
@@ -27,6 +32,7 @@ final class MPCManager: NSObject {
 
     var receivedTokenPublisher = PassthroughSubject<Data, Never>()
     var receivedDataPublisher = PassthroughSubject<DogProfileInfo, Never>()
+    var receivedViewTransitionPublisher = PassthroughSubject<String, Never>()
     var isAvailableToBeConnected: Bool = false {
         didSet {
             if isAvailableToBeConnected {
@@ -40,6 +46,7 @@ final class MPCManager: NSObject {
 
             advertiser.receivedInvite
                 .sink { [weak self] bool in
+                    SNMLogger.info("receivedInvite : \(bool)")
                     if bool {
                         self?.browser.stopBrowsing()
                     }
@@ -53,7 +60,7 @@ final class MPCManager: NSObject {
         self.browser = browser
         self.session = session
         self.mypeerID = mypeerID
-       
+
         super.init()
 
         session.delegate = self
@@ -83,7 +90,7 @@ final class MPCManager: NSObject {
         guard !session.connectedPeers.isEmpty else { return }
 
         do {
-            let dataToSend = ReceiveData(token: discoveryToken, profile: nil)
+            let dataToSend = ReceiveData(token: discoveryToken, profile: nil, transitionMessage: nil)
             let encodedData = try JSONEncoder().encode(dataToSend)
             log.info("encodedToken is  \(encodedData)")
             try session.send(encodedData, toPeers: session.connectedPeers, with: .reliable)
@@ -99,13 +106,34 @@ final class MPCManager: NSObject {
         }
 
         do {
-            let dataToSend = ReceiveData(token: nil, profile: profile)
+            let dataToSend = ReceiveData(token: nil, profile: profile, transitionMessage: nil)
             let encodedData = try JSONEncoder().encode(dataToSend)
             log.info("encodedData is  \(encodedData)")
-            try session.send(encodedData, toPeers: session.connectedPeers, with: .reliable)
-            log.log("DogProfileInfo 전송 성공")
+            timer = Timer.scheduledTimer(withTimeInterval: 3.0, repeats: true) { [weak self] _ in
+                do {
+                    guard let session = self?.session else { return }
+                    try self?.session.send(encodedData, toPeers: session.connectedPeers, with: .reliable)
+                    SNMLogger.log("DogProfileInfo 전송 성공")
+                } catch {
+                    SNMLogger.error("DogProfileInfo 전송 실패 \(error.localizedDescription)")
+                }
+
+            }
         } catch {
             log.error("DogProfileInfo 전송 실패: \(error.localizedDescription)")
+        }
+    }
+
+    func send(viewTransitionInfo: String) {
+        guard !session.connectedPeers.isEmpty else { return }
+
+        do {
+            let dataToSend = ReceiveData(token: nil, profile: nil, transitionMessage: viewTransitionInfo)
+            let encodedData = try JSONEncoder().encode(dataToSend)
+            log.info("encodedToken is  \(encodedData)")
+            try session.send(encodedData, toPeers: session.connectedPeers, with: .reliable)
+        } catch {
+            log.error("error sending \(error.localizedDescription)")
         }
     }
 }
@@ -120,7 +148,7 @@ extension MPCManager: MCSessionDelegate {
                 log.log("notConnected to MPCSession")
                 log.info("notConnected: \(session.connectedPeers)")
                 self.paired = false
-                self.isAvailableToBeConnected = true
+                timer?.invalidate()
             }
         case .connected:
             Task { @MainActor in
@@ -128,6 +156,7 @@ extension MPCManager: MCSessionDelegate {
                 self.paired = true
                 self.isAvailableToBeConnected = false
                 log.info("ConnectedPeers: \(session.connectedPeers)")
+                sendData(profile: testProfile)
             }
         default:
             Task { @MainActor in
@@ -149,6 +178,10 @@ extension MPCManager: MCSessionDelegate {
             } else if let profile = receivedData.profile {
                 Task { @MainActor in
                     receivedDataPublisher.send(profile)
+                }
+            } else if let message = receivedData.transitionMessage {
+                Task { @MainActor in
+                    receivedViewTransitionPublisher.send(message)
                 }
             }
         } catch {
