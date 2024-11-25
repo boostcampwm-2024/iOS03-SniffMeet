@@ -8,7 +8,7 @@
 import Foundation
 
 struct SupabaseUserResponse: Codable {
-    var id: String
+    var id: UUID
     var role: String
     var userMetadata: SupabaseUserMetadata
 
