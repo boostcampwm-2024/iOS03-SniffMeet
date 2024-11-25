@@ -6,6 +6,12 @@
 //
 import UIKit
 
+protocol ImageManagable {
+    func get(forKey: String) throws -> UIImage?
+    func set(image: UIImage, forKey: String) throws
+    func delete(forKey: String) throws
+}
+
 enum FileManagerError: LocalizedError {
     case directoryNotFound
     case fileNotFound
