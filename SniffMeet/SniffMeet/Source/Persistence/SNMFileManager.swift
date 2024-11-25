@@ -19,9 +19,7 @@ struct SNMFileManager: ImageManagable {
     }
     
     func fileExists(forKey path: String) -> Bool {
-        guard let documentsDir else {
-            return false
-        }
+        guard let documentsDir else { return false}
         let fileURL = documentsDir.appendingPathComponent(path, conformingTo: .png)
         if #available(iOS 16.0, *) {
             return fileManager.fileExists(atPath: fileURL.path())
@@ -47,7 +45,6 @@ struct SNMFileManager: ImageManagable {
         }
         /// key 값을 받아 해당 키 값이 파일 이름인 파일을 생성한다.
         let fileURL = documentsDir.appendingPathComponent(forKey, conformingTo: .png)
-       // SNMLogger.info(fileURL.absoluteString)
         
         guard let imageData = image.pngData() else {
             throw FileManagerError.dataConversionError
