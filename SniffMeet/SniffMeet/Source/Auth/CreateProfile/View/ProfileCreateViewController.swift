@@ -141,9 +141,9 @@ private extension ProfileCreateViewController {
             // approuter를 통해서 화면전환을 수행한다. window를 다르게 설정해야 할듯
             // FIXME: File 저장 방식 변경 필요
             guard let nickname = self?.nicknameTextField.text else { return }
-            self?.presenter?.saveDogInfo(
+            self?.presenter?.didTapSubmitButton(
                 nickname: nickname,
-                imageData: self?.profileImageView.image?.jpegData(compressionQuality: 1)
+                imageData: self?.profileImageView.image?.pngData()
             )
         }, for: .touchUpInside)
     }

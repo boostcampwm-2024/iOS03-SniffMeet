@@ -12,7 +12,7 @@ protocol ProfileCreatePresentable : AnyObject{
     var interactor: ProfileCreateInteractable? { get set }
     var router: ProfileCreateRoutable? { get set }
     
-    func saveDogInfo(nickname: String, imageData: Data?)
+    func didTapSubmitButton(nickname: String, imageData: Data?)
 }
 
 protocol DogInfoInteractorOutput: AnyObject {
@@ -37,9 +37,9 @@ final class ProfileCreatePresenter: ProfileCreatePresentable {
         self.interactor = interactor
         self.router = router
     }
-    
-    func saveDogInfo(nickname: String, imageData: Data?) {
-        let dog = Dog(name: dogInfo.name,
+
+    func didTapSubmitButton(nickname: String, imageData: Data?) {
+        let dogInfo = Dog(name: dogInfo.name,
                       age: dogInfo.age,
                       sex: dogInfo.sex,
                       sexUponIntake: dogInfo.sexUponIntake,
@@ -47,17 +47,20 @@ final class ProfileCreatePresenter: ProfileCreatePresentable {
                       keywords: dogInfo.keywords,
                       nickname: nickname,
                       profileImage: imageData)
-        interactor?.saveDogInfo(dogInfo: dog)
+        // TODO: SubmitButton disable 필요
+        interactor?.signInWithProfileData(dogInfo: dogInfo)
     }
 }
 
 extension ProfileCreatePresenter: DogInfoInteractorOutput {
     func didSaveDogInfo() {
+        // TODO: submit button enable
         guard let view else { return }
         router?.presentMainScreen(from: view)
     }
     
     func didFailToSaveDogInfo(error: any Error) {
         // TODO: -  alert 올리는데 어떻게 올릴지 정하기
+        // TODO: submit button enable
     }
 }
