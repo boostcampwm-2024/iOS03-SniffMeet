@@ -16,11 +16,13 @@ protocol ProfileCreateBuildable {
 
 final class ProfileCreateRouter: ProfileCreateRoutable {
     func presentMainScreen(from view: any ProfileCreateViewable) {
-        if let sceneDelegate = UIApplication.shared.connectedScenes
-            .first(where: { $0.activationState == .foregroundActive })?
-            .delegate as? SceneDelegate {
-            if let router = sceneDelegate.appRouter {
-                router.moveToHomeScreen()
+        Task { @MainActor in
+            if let sceneDelegate = UIApplication.shared.connectedScenes
+                .first(where: { $0.activationState == .foregroundActive })?
+                .delegate as? SceneDelegate {
+                if let router = sceneDelegate.appRouter {
+                    router.moveToHomeScreen()
+                }
             }
         }
     }
