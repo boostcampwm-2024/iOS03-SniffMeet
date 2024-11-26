@@ -4,33 +4,47 @@
 //
 //  Created by 윤지성 on 11/20/24.
 //
+import CoreLocation
+import Foundation
+
 protocol RespondWalkInteractable: AnyObject {
     var presenter: RespondWalkInteractorOutput? { get set }
-    var fetchRequestUseCase: FetchRequestUseCase { get }
+    var fetchUserUseCase: FetchUserInfoUseCase { get }
     var respondUseCase: RespondWalkRequestUseCase { get }
+    var calculateTimeLimitUseCase: CalculateTimeLimitUseCase { get }
+    var convertLocationToTextUseCase: ConvertLocationToTextUseCase { get }
     
-    func fetchRequest(requestNum: Int)
+    func fetchSenderInfo(userId: UUID)
     func respondWalkRequest(requestNum: Int, isAccepted: Bool)
+    func calculateTimeLimit(requestTime: Date)
+    func convertLocationToText(latitude: Double, longtitude: Double) async
 }
 
 final class RespondWalkInteractor: RespondWalkInteractable {
     weak var presenter: (any RespondWalkInteractorOutput)?
-    var fetchRequestUseCase: FetchRequestUseCase
+    var fetchUserUseCase: FetchUserInfoUseCase
     var respondUseCase: RespondWalkRequestUseCase
+    var calculateTimeLimitUseCase: CalculateTimeLimitUseCase
+    var convertLocationToTextUseCase: ConvertLocationToTextUseCase
     
     init(presenter: (any RespondWalkInteractorOutput)? = nil,
-         fetchRequestUseCase: FetchRequestUseCase,
-         respondUseCase: RespondWalkRequestUseCase)
+         fetchUserUseCase: FetchUserInfoUseCase,
+         respondUseCase: RespondWalkRequestUseCase,
+         calculateTimeLimitUseCase: CalculateTimeLimitUseCase,
+         convertLocationToTextUseCase: ConvertLocationToTextUseCase
+    )
     {
         self.presenter = presenter
-        self.fetchRequestUseCase = fetchRequestUseCase
+        self.fetchUserUseCase = fetchUserUseCase
         self.respondUseCase = respondUseCase
+        self.calculateTimeLimitUseCase = calculateTimeLimitUseCase
+        self.convertLocationToTextUseCase = convertLocationToTextUseCase
     }
     
-    func fetchRequest(requestNum: Int) {
+    func fetchSenderInfo(userId: UUID) {
         do {
-           let request = try fetchRequestUseCase.execute(requestNum: requestNum) // 아마 await
-            presenter?.didFetchWalkRequest(walkRequest: request)
+            let senderInfo = try fetchUserUseCase.execute(userId: userId) // 아마 await
+            presenter?.didFetchUserInfo(senderInfo: senderInfo)
         } catch {
             presenter?.didFailToFetchWalkRequest(error: error)
         }
@@ -48,4 +62,19 @@ final class RespondWalkInteractor: RespondWalkInteractable {
             presenter?.didFailToSendWalkRequest(error: error)
         }
     }
+    
+    func calculateTimeLimit(requestTime: Date) {
+        let timeDifference = calculateTimeLimitUseCase.execute(requestTime: requestTime)
+        presenter?.didCalculateTimeLimit(secondDifference: timeDifference)
+        
+    }
+    func convertLocationToText(latitude: Double, longtitude: Double) async {
+        Task {
+            let locationText: String? = await convertLocationToTextUseCase.execute(
+                location: CLLocation(latitude: latitude, longitude: longtitude)
+            )
+            presenter?.didConvertLocationToText(with: locationText)
+        }
+    }
+
 }

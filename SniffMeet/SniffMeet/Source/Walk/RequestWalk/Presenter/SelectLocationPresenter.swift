@@ -58,8 +58,7 @@ final class SelectLocationPresenter: SelectLocationPresentable {
         guard let view else { return }
         let address: Address = Address(
             longtitude: output.selectedCoordinate.coordinate.latitude,
-            latitude: output.selectedCoordinate.coordinate.latitude,
-            location: output.locationLabel.value ?? ""
+            latitude: output.selectedCoordinate.coordinate.latitude
         )
         router?.pop(from: view, with: address)
     }
