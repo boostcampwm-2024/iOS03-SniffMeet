@@ -11,7 +11,7 @@ protocol RespondWalkRoutable: AnyObject {
 }
 
 protocol RespondWalkBuildable {
-    static func createRequestWalkModule(requestNumber: Int) -> UIViewController
+    static func createRespondtWalkModule(walkNoti: WalkNoti) -> UIViewController
 }
 
 final class RespondWalkRouter: RespondWalkRoutable {
@@ -22,16 +22,18 @@ final class RespondWalkRouter: RespondWalkRoutable {
 }
 
 extension RespondWalkRouter: RespondWalkBuildable {
-    static func createRequestWalkModule(requestNumber: Int) -> UIViewController {
-        let fetchRequestUseCase: FetchRequestUseCase = FetchRequestUseCaseImpl()
+    static func createRespondtWalkModule(walkNoti: WalkNoti) -> UIViewController {
+        let fetchUseCase: FetchUserInfoUseCase = FetchUserInfoUsecaseImpl()
         let respondUseCase: RespondWalkRequestUseCase = RespondWalkRequestUseCaseImpl()
+        let calculateTimeUseCase: CalculateTimeLimitUseCase = CalculateTimeLimitUseCaseImpl()
 
         let view: RespondWalkViewable & UIViewController = RespondWalkViewController()
         let presenter: RespondWalkPresentable & RespondWalkInteractorOutput =
-        RespondWalkPresenter(requestNum: requestNumber)
-        let interactor: RespondWalkInteractable = RespondWalkInteractor(
-            fetchRequestUseCase: fetchRequestUseCase,
-            respondUseCase: respondUseCase)
+        RespondWalkPresenter(noti: walkNoti)
+        let interactor: RespondWalkInteractable =
+        RespondWalkInteractor(fetchUserUseCase: fetchUseCase,
+                              respondUseCase: respondUseCase,
+                              calculateTimeLimitUseCase: calculateTimeUseCase)
         
         let router: RespondWalkRoutable & RespondWalkBuildable = RespondWalkRouter()
 
@@ -43,6 +45,4 @@ extension RespondWalkRouter: RespondWalkBuildable {
 
         return view
     }
-    
-    
 }
