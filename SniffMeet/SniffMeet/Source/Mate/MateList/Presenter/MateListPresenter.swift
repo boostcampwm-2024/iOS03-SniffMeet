@@ -13,7 +13,7 @@ protocol MateListPresentable: AnyObject {
     var router: (any MateListRoutable)? { get set }
     var interactor: (any MateListInteractable)? { get set }
     var output: any MateListPresenterOutput { get }
-
+    
     func viewDidLoad()
     func didTableViewCellLoad(index: Int, urlString: String?)
 }
@@ -41,7 +41,8 @@ final class MateListPresenter: MateListPresentable {
     func viewDidLoad() {
         guard let userID = SessionManager.shared.session?.user?.userID else {
             SNMLogger.error("세션 없음")
-            return // FIXME: 세션 없음 예외 처리 -> 앱 라우터에서 로그인으로 튕기게 하거나 해야할듯
+            // FIXME: 세션 없음 - 앱 라우터에서 로그인으로 튕기게 하거나 해야할듯
+            return
         }
         interactor?.requestMateList(userID: userID)
     }
@@ -57,7 +58,7 @@ extension MateListPresenter: MateListInteractorOutput {
     }
 
     func didFetchProfileImage(index: Int, imageData: Data?) {
-        guard let imageData else { return } // 무한 루프 방지
+        guard let imageData else { return }
         output.profileImageData.send((index, imageData))
     }
 }
@@ -65,11 +66,11 @@ extension MateListPresenter: MateListInteractorOutput {
 // MARK: - MateListPresenterOutput
 
 protocol MateListPresenterOutput {
-    var mates: PassthroughSubject<[Mate], Never> { get }
+    var mates: CurrentValueSubject<[Mate], Never> { get }
     var profileImageData: PassthroughSubject<(Int, Data?), Never> { get }
 }
 
 struct DefaultMateListPresenterOutput: MateListPresenterOutput {
-    var mates = PassthroughSubject<[Mate], Never>()
+    var mates = CurrentValueSubject<[Mate], Never>([])
     var profileImageData = PassthroughSubject<(Int, Data?), Never>()
 }

@@ -54,6 +54,9 @@ final class ProfileCreatePresenter: ProfileCreatePresentable {
 extension ProfileCreatePresenter: DogInfoInteractorOutput {
     func didSaveDogInfo() {
         guard let view else { return }
+        Task {
+            await SupabaseAuthManager.shared.signInAnonymously()
+        }
         router?.presentMainScreen(from: view)
     }
     

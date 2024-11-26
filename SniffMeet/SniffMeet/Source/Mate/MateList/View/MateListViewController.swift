@@ -16,10 +16,7 @@ final class MateListViewController: BaseViewController, MateListViewable {
     var presenter: (any MateListPresentable)?
     var dataSource: [Mate] = []
     private var cancellables: Set<AnyCancellable> = []
-    private let tableView: UITableView = {
-        let tableView = UITableView()
-        return tableView
-    }()
+    private let tableView: UITableView = UITableView()
 
     override func viewDidLoad() {
         presenter?.viewDidLoad()
@@ -63,15 +60,11 @@ final class MateListViewController: BaseViewController, MateListViewable {
             }
             .store(in: &cancellables)
         presenter?.output.profileImageData
-//            .removeDuplicates { previous, current in
-//                return previous.0 == current.0 && previous.1 == current.1
-//            }
             .receive(on: RunLoop.main)
             .sink { [weak self] (index, imageData) in
                 self?.dataSource[index].profileImageData = imageData
                 let indexPath = IndexPath(item: index, section: 0)
                 self?.tableView.reloadRows(at: [indexPath], with: .none)
-                SNMLogger.info("리로드 셀")
             }
             .store(in: &cancellables)
     }
@@ -88,7 +81,7 @@ final class MateListViewController: BaseViewController, MateListViewable {
 
 extension MateListViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return dataSource.count
+        dataSource.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -113,7 +106,7 @@ extension MateListViewController: UITableViewDelegate, UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return ItemSize.cellHeight
+        ItemSize.cellHeight
     }
 
     private func createAccessoryButton() -> UIButton {
