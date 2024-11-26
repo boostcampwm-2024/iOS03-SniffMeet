@@ -156,30 +156,6 @@ final class RespondWalkViewController: BaseViewController, RespondWalkViewable {
                 constant: -LayoutConstant.smallHorizontalPadding).isActive = true
         }
     }
-
-    func startTimer(countDownValue: Int) {
-        timerPublisher = Publishers.Merge(
-            Just(countDownValue), // 즉시 첫 값 발행
-            Timer.publish(every: 1.0, on: RunLoop.main, in: RunLoop.Mode.common)
-                .autoconnect()
-                .scan(countDownValue) { current, _ in
-                    max(current - 1, 0)
-                }
-        )
-        .prefix(while: { $0 >= 0 }) // 값이 0일 때까지 이벤트 발행
-        .eraseToAnyPublisher()
-        
-        cancellable = timerPublisher?.sink { [weak self] value in
-            guard let self else { return }
-            self.timeLimitLabel.text = String(value) + Context.remainingTimeLimitTitle
-            if value == 0 {
-                self.timeLimitLabel.text = Context.timeoutTitle
-                self.cancellable?.cancel()
-                self.cancellable = nil
-                self.submitButton.isEnabled = false
-            }
-        }
-    }
 }
 
 private extension RespondWalkViewController {
@@ -211,5 +187,28 @@ extension RespondWalkViewController {
     }
     func showError() {
         
+    }
+    func startTimer(countDownValue: Int) {
+        timerPublisher = Publishers.Merge(
+            Just(countDownValue), // 즉시 첫 값 발행
+            Timer.publish(every: 1.0, on: RunLoop.main, in: RunLoop.Mode.common)
+                .autoconnect()
+                .scan(countDownValue) { current, _ in
+                    max(current - 1, 0)
+                }
+        )
+        .prefix(while: { $0 >= 0 }) // 값이 0일 때까지 이벤트 발행
+        .eraseToAnyPublisher()
+        
+        cancellable = timerPublisher?.sink { [weak self] value in
+            guard let self else { return }
+            self.timeLimitLabel.text = String(value) + Context.remainingTimeLimitTitle
+            if value == 0 {
+                self.timeLimitLabel.text = Context.timeoutTitle
+                self.cancellable?.cancel()
+                self.cancellable = nil
+                self.submitButton.isEnabled = false
+            }
+        }
     }
 }
