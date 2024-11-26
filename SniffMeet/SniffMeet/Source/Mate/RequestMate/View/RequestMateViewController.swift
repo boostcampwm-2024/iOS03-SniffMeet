@@ -8,7 +8,7 @@
 import UIKit
 
 protocol RequestMateViewable: AnyObject {
-    func updateView(with profile: DogProfileInfo)
+    var presenter: RequestMatePresentable? { get set }
 }
 
 final class RequestMateViewController: BaseViewController, RequestMateViewable {
@@ -36,10 +36,8 @@ final class RequestMateViewController: BaseViewController, RequestMateViewable {
     }
 
     override func configureAttributes() {
-//        let placeholderImage = UIImage(named: "placeholder")
-//        profileImageView.image = UIImage(data: profile.profileImage!)
-        profileImageView.image = UIImage(named: "placeholder")
-        profileImageView.contentMode = .scaleAspectFill
+        profileImageView.image = UIImage(data: profile.profileImage!)
+        profileImageView.contentMode = .scaleToFill
         profileImageView.translatesAutoresizingMaskIntoConstraints = false
         nameLabel.text = profile.name
         nameLabel.textColor = SNMColor.white
@@ -131,15 +129,6 @@ final class RequestMateViewController: BaseViewController, RequestMateViewable {
         NSLayoutConstraint.activate(constraints)
     }
     override func bind() {}
-
-    func updateView(with profile: DogProfileInfo) {
-        if let profileImageData = profile.profileImage {
-            let uiImage = UIImage(data: profileImageData)
-            profileImageView.image = uiImage
-        }
-        nameLabel.text = profile.name
-        keywords = profile.keywords
-    }
 }
 
 private extension RequestMateViewController {
