@@ -56,6 +56,7 @@
 		995D94AA2CECF8DD005A47BF /* RequestMateInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 995D94A92CECF8C4005A47BF /* RequestMateInteractor.swift */; };
 		995D94AC2CECFA30005A47BF /* RequestMatePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 995D94AB2CECFA24005A47BF /* RequestMatePresenter.swift */; };
 		995D94AE2CED00A4005A47BF /* RequestMateRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 995D94AD2CED0093005A47BF /* RequestMateRouter.swift */; };
+		995D94D22CEDF037005A47BF /* MateRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 995D94D12CEDF031005A47BF /* MateRequest.swift */; };
 		99FA4E792CE0FBBF00553C2E /* ProfileInputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99FA4E782CE0FBBF00553C2E /* ProfileInputViewController.swift */; };
 		A202A1152CEDD50700B98203 /* SupabaseDatabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A202A1142CEDD50700B98203 /* SupabaseDatabaseManager.swift */; };
 		A202A1172CEDD5EF00B98203 /* SupabaseDatabaseRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A202A1162CEDD5EF00B98203 /* SupabaseDatabaseRequest.swift */; };
@@ -237,6 +238,7 @@
 		995D94A92CECF8C4005A47BF /* RequestMateInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestMateInteractor.swift; sourceTree = "<group>"; };
 		995D94AB2CECFA24005A47BF /* RequestMatePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestMatePresenter.swift; sourceTree = "<group>"; };
 		995D94AD2CED0093005A47BF /* RequestMateRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestMateRouter.swift; sourceTree = "<group>"; };
+		995D94D12CEDF031005A47BF /* MateRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MateRequest.swift; sourceTree = "<group>"; };
 		99FA4E782CE0FBBF00553C2E /* ProfileInputViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileInputViewController.swift; sourceTree = "<group>"; };
 		A202A1142CEDD50700B98203 /* SupabaseDatabaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupabaseDatabaseManager.swift; sourceTree = "<group>"; };
 		A202A1162CEDD5EF00B98203 /* SupabaseDatabaseRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupabaseDatabaseRequest.swift; sourceTree = "<group>"; };
@@ -401,6 +403,7 @@
 		320044792CEC490600D08B6D /* Entity */ = {
 			isa = PBXGroup;
 			children = (
+				995D94D12CEDF031005A47BF /* MateRequest.swift */,
 				FD331A512CF23BCE00F39426 /* WalkLog.swift */,
 				320044972CED81EF00D08B6D /* WalkRequest.swift */,
 				320044522CE59A8100D08B6D /* Dog.swift */,
@@ -1661,6 +1664,8 @@
 				FDEAEA7C2CE314A7005890FA /* BaseViewController.swift in Sources */,
 				A21435F72CE20D2500564A4D /* TabBarController.swift in Sources */,
 				320043762CDCA18E00D08B6D /* (null) in Sources */,
+				995D94D22CEDF037005A47BF /* MateRequest.swift in Sources */,
+				A20E71502CEC595C00272B25 /* SupabaseAuthError.swift in Sources */,
 				A20E71502CEC595C00272B25 /* SupabaseError.swift in Sources */,
 				FDCD02CF2CE917D800B627D8 /* MockRequest.swift in Sources */,
 				A2F825DD2CDFBEB4000C5419 /* ProfileCardView.swift in Sources */,
