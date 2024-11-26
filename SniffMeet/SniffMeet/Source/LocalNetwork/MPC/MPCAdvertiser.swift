@@ -45,7 +45,7 @@ final class MPCAdvertiser: NSObject {
                                                           serviceType: serviceType)
             MPCAdvertiser.sharedAdvertiser = newAdvertiser
             self.init(advertiser: newAdvertiser, session: session, myPeerID: myPeerID)
-            lSNMLoggerog.log("Created new MCNearbyServiceAdvertiser instance")
+            SNMLogger.log("Created new MCNearbyServiceAdvertiser instance")
         }
     }
 
