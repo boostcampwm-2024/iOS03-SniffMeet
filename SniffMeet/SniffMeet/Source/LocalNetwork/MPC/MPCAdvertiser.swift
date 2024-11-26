@@ -8,8 +8,6 @@ import Combine
 import MultipeerConnectivity
 import os
 
-fileprivate let log = Logger()
-
 final class MPCAdvertiser: NSObject {
     let advertiser: MCNearbyServiceAdvertiser
     let session: MCSession
@@ -47,33 +45,33 @@ final class MPCAdvertiser: NSObject {
                                                           serviceType: serviceType)
             MPCAdvertiser.sharedAdvertiser = newAdvertiser
             self.init(advertiser: newAdvertiser, session: session, myPeerID: myPeerID)
-            log.log("Created new MCNearbyServiceAdvertiser instance")
+            lSNMLoggerog.log("Created new MCNearbyServiceAdvertiser instance")
         }
     }
 
     deinit {
         if MPCAdvertiser.sharedAdvertiser === advertiser {
             MPCAdvertiser.sharedAdvertiser = nil
-            log.log("MPCAdvertiser deinit")
+            SNMLogger.log("MPCAdvertiser deinit")
         }
     }
 
     func startAdvertising() {
         advertiser.startAdvertisingPeer()
-        log.log("start advertising")
+        SNMLogger.log("start advertising")
     }
     
     func stopAdvertising() {
         advertiser.stopAdvertisingPeer()
         receivedInvite.send(false)
-        log.log("stop advertising")
+        SNMLogger.log("stop advertising")
     }
 }
 
 extension MPCAdvertiser: MCNearbyServiceAdvertiserDelegate {
     func advertiser(_ advertiser: MCNearbyServiceAdvertiser,
                     didNotStartAdvertisingPeer error: Error) {
-        log.info("Advertiser failed to start: \(error)")
+        SNMLogger.info("Advertiser failed to start: \(error)")
     }
 
     func advertiser(_ advertiser: MCNearbyServiceAdvertiser,
@@ -81,7 +79,7 @@ extension MPCAdvertiser: MCNearbyServiceAdvertiserDelegate {
                     withContext context: Data?,
                     invitationHandler: @escaping (Bool, MCSession?) -> Void)
     {
-        log.info("Received invitation from \(peerID)")
+        SNMLogger.info("Received invitation from \(peerID)")
         invitationHandler(true, session)
         receivedInvite.send(true)
     }

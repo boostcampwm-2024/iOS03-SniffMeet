@@ -7,8 +7,6 @@
 import MultipeerConnectivity
 import os
 
-fileprivate let log = Logger()
-
 final class MPCBrowser: NSObject {
     let browser: MCNearbyServiceBrowser
     let session: MCSession
@@ -44,36 +42,36 @@ final class MPCBrowser: NSObject {
     deinit {
         if MPCBrowser.sharedBrowser === browser {
             MPCBrowser.sharedBrowser = nil
-            log.log("MPCBrowser deinit")
+            SNMLogger.log("MPCBrowser deinit")
         }
     }
 
     func startBrowsing() {
         browser.startBrowsingForPeers()
-        log.log("start Browsing")
+        SNMLogger.log("start Browsing")
 
     }
     
     func stopBrowsing() {
         browser.stopBrowsingForPeers()
         availablePeers.removeAll()
-        log.log("stop Browsing")
+        SNMLogger.log("stop Browsing")
     }
     
     func invite() {
         guard let peer = availablePeers.first else { return }
         browser.invitePeer(peer, to: session, withContext: nil, timeout: 30)
-        log.log("invitePeer")
+        SNMLogger.log("invitePeer")
     }
 
     func invite(peerID: MCPeerID) {
         browser.invitePeer(peerID, to: session, withContext: nil, timeout: 30)
-        log.log("invitePeer peerID")
+        SNMLogger.log("invitePeer peerID")
     }
     
     func invite(peerID: MCPeerID, tokenData: Data) {
         browser.invitePeer(peerID, to: session, withContext: tokenData, timeout: 30)
-        log.log("invitePeer tokenData")
+        SNMLogger.log("invitePeer tokenData")
     }
 }
 
@@ -83,11 +81,11 @@ extension MPCBrowser: MCNearbyServiceBrowserDelegate {
                  withDiscoveryInfo info: [String : String]?)
     {
         if let info = info {
-            log.info("Found peer with info: \(info)")
+            SNMLogger.info("Found peer with info: \(info)")
         }
         
         // info에 해당되는 peer에 대해서만 availablepeers에 넣을 수 있다
-        log.info("ServiceBrowser found peer: \(peerID)")
+        SNMLogger.info("ServiceBrowser found peer: \(peerID)")
         guard !(self.availablePeers.contains(peerID)) else { return }
         self.availablePeers.insert(peerID)
 
@@ -96,7 +94,7 @@ extension MPCBrowser: MCNearbyServiceBrowserDelegate {
                 self?.invite(peerID: peerID)
             }
         }
-        log.info("availablePeers: \(self.availablePeers)")
+        SNMLogger.info("availablePeers: \(self.availablePeers)")
     }
     
     

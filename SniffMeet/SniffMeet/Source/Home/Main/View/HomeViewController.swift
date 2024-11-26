@@ -96,7 +96,7 @@ final class HomeViewController: BaseViewController, HomeViewable {
         mpcManager?.$paired
             .receive(on: RunLoop.main)
             .sink { [weak self] isPaired in
-                if self?.count ?? 0 < 3 && self?.count ?? 0 > 0{
+                if 1...3 ~= self?.count ?? 0 {
                     self?.presenter?.changeIsPaired(with: isPaired)
                 }
                 self?.count += 1
@@ -106,7 +106,7 @@ final class HomeViewController: BaseViewController, HomeViewable {
         mpcManager?.receivedDataPublisher
             .receive(on: RunLoop.main)
             .sink { [weak self] profile in
-                print("HomeViewController received data: \(profile)")
+                SNMLogger.info("HomeViewController received data: \(profile)")
                 self?.dogProfile = profile
             }
             .store(in: &cancellables)
@@ -119,7 +119,7 @@ final class HomeViewController: BaseViewController, HomeViewable {
                     return
                 }
                 if bool {
-                    print("isViewTransitioning")
+                    SNMLogger.log("isViewTransitioning")
                     self?.presenter?.profileData(profile)
                 }
             }
