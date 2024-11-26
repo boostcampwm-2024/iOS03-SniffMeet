@@ -27,7 +27,7 @@ final class AppRouter {
     private func displayTabBar() {
         let submodules = (
             home: UINavigationController(rootViewController: HomeModuleBuilder.build()),
-            walk: UIViewController(),
+            walk: UINavigationController(rootViewController: WalkLogPageViewController()),
             mate: UINavigationController(rootViewController: MateListRouter.createMateListModule())
         )
         window?.rootViewController = TabBarModuleBuilder.build(usingSubmodules: submodules)
@@ -43,7 +43,7 @@ final class AppRouter {
     func moveToHomeScreen() {
         let submodules = (
             home: UINavigationController(rootViewController:  HomeModuleBuilder.build()),
-            walk: UIViewController(),
+            walk: UINavigationController(rootViewController: WalkLogPageViewController()),
             mate: UINavigationController(rootViewController: MateListRouter.createMateListModule())
         )
         window?.rootViewController = TabBarModuleBuilder.build(usingSubmodules: submodules)

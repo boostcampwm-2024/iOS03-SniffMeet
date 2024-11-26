@@ -19,6 +19,8 @@ final class HomeViewController: BaseViewController, HomeViewable {
     private var mpcManager: MPCManager?
     private var niManager: NIManager?
     private var cancellables = Set<AnyCancellable>()
+    private var count: Int = 0
+    var dogProfile: DogProfileInfo?
 
     override func viewDidLoad() {
         setupMPCManager()
@@ -94,7 +96,32 @@ final class HomeViewController: BaseViewController, HomeViewable {
         mpcManager?.$paired
             .receive(on: RunLoop.main)
             .sink { [weak self] isPaired in
-                self?.presenter?.changeIsPaired(with: isPaired)
+                if 1...3 ~= self?.count ?? 0 {
+                    self?.presenter?.changeIsPaired(with: isPaired)
+                }
+                self?.count += 1
+            }
+            .store(in: &cancellables)
+
+        mpcManager?.receivedDataPublisher
+            .receive(on: RunLoop.main)
+            .sink { [weak self] profile in
+                SNMLogger.info("HomeViewController received data: \(profile)")
+                self?.dogProfile = profile
+            }
+            .store(in: &cancellables)
+
+        niManager?.isViewTransitioning
+            .receive(on: RunLoop.main)
+            .sink { [weak self] bool in
+                guard let profile = self?.dogProfile else {
+                    SNMLogger.error("No exist profile")
+                    return
+                }
+                if bool {
+                    SNMLogger.log("isViewTransitioning")
+                    self?.presenter?.profileData(profile)
+                }
             }
             .store(in: &cancellables)
     }
@@ -103,11 +130,10 @@ final class HomeViewController: BaseViewController, HomeViewable {
     }
     @objc func goToStartSession() {
         mpcManager?.isAvailableToBeConnected = true
-        mpcManager?.browser.startBrowsing()
-        mpcManager?.advertiser.startAdvertising()
+        count = 1
     }
     private func setupMPCManager() {
-        mpcManager = MPCManager(yourName: UIDevice.current.name)
+        mpcManager = MPCManager(yourName: String(UUID().uuidString.suffix(8)))
         niManager = NIManager(mpcManager: mpcManager!)
     }
 }

@@ -16,11 +16,13 @@ protocol ProfileCreateBuildable {
 
 final class ProfileCreateRouter: ProfileCreateRoutable {
     func presentMainScreen(from view: any ProfileCreateViewable) {
-        if let sceneDelegate = UIApplication.shared.connectedScenes
-            .first(where: { $0.activationState == .foregroundActive })?
-            .delegate as? SceneDelegate {
-            if let router = sceneDelegate.appRouter {
-                router.moveToHomeScreen()
+        Task { @MainActor in
+            if let sceneDelegate = UIApplication.shared.connectedScenes
+                .first(where: { $0.activationState == .foregroundActive })?
+                .delegate as? SceneDelegate {
+                if let router = sceneDelegate.appRouter {
+                    router.moveToHomeScreen()
+                }
             }
         }
     }
@@ -30,12 +32,22 @@ extension ProfileCreateRouter: ProfileCreateBuildable {
     static func createProfileCreateModule(dogDetailInfo: DogDetailInfo) -> UIViewController {
         let storeDogInfoUsecase: StoreDogInfoUseCase =
         StoreDogInfoUseCaseImpl(localDataManager: LocalDataManager())
+        let saveProfileImageUsecase: SaveProfileImageUseCase =
+        SaveProfileImageUseCaseImpl(
+            remoteImageManager: SupabaseStorageManager(
+                networkProvider: SNMNetworkProvider()
+            ),
+            userDefaultsManager: UserDefaultsManager.shared
+        )
 
         let view: ProfileCreateViewable & UIViewController = ProfileCreateViewController()
         let presenter: ProfileCreatePresentable & DogInfoInteractorOutput
         = ProfileCreatePresenter(dogInfo: dogDetailInfo)
         let interactor: ProfileCreateInteractable =
-        ProfileCreateInteractor(usecase: storeDogInfoUsecase)
+        ProfileCreateInteractor(
+            storeDogInfoUsecase: storeDogInfoUsecase,
+            saveProfileImageUseCase: saveProfileImageUsecase
+        )
         let router: ProfileCreateRoutable & ProfileCreateBuildable = ProfileCreateRouter()
 
         view.presenter = presenter
