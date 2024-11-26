@@ -4,8 +4,8 @@
 //
 //  Created by 윤지성 on 11/20/24.
 //
-import UIKit
 import CoreLocation
+import UIKit
 
 protocol RespondWalkRoutable: AnyObject {
     func dismissView(view: any RespondWalkViewable)

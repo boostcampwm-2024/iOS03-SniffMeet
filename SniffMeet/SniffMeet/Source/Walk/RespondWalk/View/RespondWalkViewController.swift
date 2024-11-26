@@ -4,8 +4,8 @@
 //
 //  Created by 윤지성 on 11/19/24.
 //
-import UIKit
 import Combine
+import UIKit
 
 protocol RespondWalkViewable: AnyObject {
     var presenter: RespondWalkPresentable? { get set }

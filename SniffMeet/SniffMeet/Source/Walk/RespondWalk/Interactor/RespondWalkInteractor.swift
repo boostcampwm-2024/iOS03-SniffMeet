@@ -4,9 +4,8 @@
 //
 //  Created by 윤지성 on 11/20/24.
 //
-
-import Foundation
 import CoreLocation
+import Foundation
 
 protocol RespondWalkInteractable: AnyObject {
     var presenter: RespondWalkInteractorOutput? { get set }
