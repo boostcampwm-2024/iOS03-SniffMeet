@@ -24,6 +24,7 @@ protocol RespondWalkInteractorOutput: AnyObject {
     func didFetchUserInfo(senderInfo: Dog) // fetch한 데이터를 보여준다.
     func didSendWalkRequest()
     func didCalculateTimeLimit(secondDifference: Int)
+    func didConvertLocationToText(with location: String?)
     func didFailToFetchWalkRequest(error: Error)
     func didFailToSendWalkRequest(error: Error)
 }
@@ -40,7 +41,7 @@ final class RespondWalkPresenter: RespondWalkPresentable {
          interactor: (any RespondWalkInteractable)? = nil,
          router: (any RespondWalkRoutable)? = nil,
          output: RespondWalkPresenterOutput =  DefaultRespondWalkPresenterOutput(
-            timeLimit: PassthroughSubject<Int, Never>()
+            locationLabel: CurrentValueSubject<String?, Never>(nil)
          )
     )
     {
@@ -55,6 +56,9 @@ final class RespondWalkPresenter: RespondWalkPresentable {
         interactor?.fetchSenderInfo(userId: noti.senderId)
         guard let createdAt = noti.createdAt else { return }
         interactor?.calculateTimeLimit(requestTime: createdAt)
+        Task {
+            await interactor?.convertLocationToText(latitude: noti.latitude, longtitude: noti.longtitude)
+        }
     }
     func respondWalkRequest(walkRequestNumber: Int, isAccepted: Bool) {
         interactor?.respondWalkRequest(requestNum: walkRequestNumber, isAccepted: isAccepted)
@@ -69,8 +73,15 @@ final class RespondWalkPresenter: RespondWalkPresentable {
 }
 
 extension RespondWalkPresenter: RespondWalkInteractorOutput {
+    func didConvertLocationToText(with location: String?) {
+        output.locationLabel.send(location)
+    }
+    
     func didFetchUserInfo(senderInfo: Dog) {
-        let walkRequest = WalkRequest(dog: senderInfo, address: noti.address, message: noti.message)
+        let walkRequest = WalkRequest(dog: senderInfo,
+                                      address: Address(longtitude: noti.longtitude,
+                                                       latitude: noti.latitude),
+                                      message: noti.message)
         
         view?.showRequestDetail(request: walkRequest)
     }
@@ -89,16 +100,16 @@ extension RespondWalkPresenter: RespondWalkInteractorOutput {
         view?.showError()
     }
     func didCalculateTimeLimit(secondDifference: Int) {
-        view?.startTimer(countDownValue: 10)
+        view?.startTimer(countDownValue: secondDifference)
     }
 }
 
 // MARK: - RespondWalkPresenterOutput
 
 protocol RespondWalkPresenterOutput {
-    var timeLimit: PassthroughSubject<Int, Never> { get }
+    var locationLabel: CurrentValueSubject<String?, Never> { get }
 }
 
 struct DefaultRespondWalkPresenterOutput: RespondWalkPresenterOutput {
-    var timeLimit: PassthroughSubject<Int, Never>
+    let locationLabel: CurrentValueSubject<String?, Never>
 }

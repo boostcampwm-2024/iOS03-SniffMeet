@@ -20,7 +20,7 @@ final class RespondWalkViewController: BaseViewController, RespondWalkViewable {
     private let scrollView = UIScrollView()
     private let contentView = UIView()
     private var timerPublisher: AnyPublisher<Int, Never>?
-    private var cancellable: AnyCancellable?
+    private var cancellables: Set<AnyCancellable> = []
     
     private var dismissButton: UIButton = {
         let button = UIButton()
@@ -156,6 +156,15 @@ final class RespondWalkViewController: BaseViewController, RespondWalkViewable {
                 constant: -LayoutConstant.smallHorizontalPadding).isActive = true
         }
     }
+    override func bind() {
+        presenter?.output.locationLabel
+            .receive(on: RunLoop.main)
+            .sink { [weak self] locationLabel in
+                guard let locationLabel else { return }
+                self?.locationView.setAddress(address: locationLabel)
+            }
+            .store(in: &cancellables)
+    }
 }
 
 private extension RespondWalkViewController {
@@ -200,15 +209,13 @@ extension RespondWalkViewController {
         .prefix(while: { $0 >= 0 }) // 값이 0일 때까지 이벤트 발행
         .eraseToAnyPublisher()
         
-        cancellable = timerPublisher?.sink { [weak self] value in
+        timerPublisher?.sink { [weak self] value in
             guard let self else { return }
             self.timeLimitLabel.text = String(value) + Context.remainingTimeLimitTitle
             if value == 0 {
                 self.timeLimitLabel.text = Context.timeoutTitle
-                self.cancellable?.cancel()
-                self.cancellable = nil
                 self.submitButton.isEnabled = false
             }
-        }
+        }.store(in: &cancellables)
     }
 }

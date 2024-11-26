@@ -18,7 +18,7 @@ protocol RespondWalkInteractable: AnyObject {
     func fetchSenderInfo(userId: UUID)
     func respondWalkRequest(requestNum: Int, isAccepted: Bool)
     func calculateTimeLimit(requestTime: Date)
-    func convertLocationToText(latitude: Double, longtitude: Double)
+    func convertLocationToText(latitude: Double, longtitude: Double) async
 }
 
 final class RespondWalkInteractor: RespondWalkInteractable {
@@ -69,9 +69,13 @@ final class RespondWalkInteractor: RespondWalkInteractable {
         presenter?.didCalculateTimeLimit(secondDifference: timeDifference)
         
     }
-    func convertLocationToText(latitude: Double, longtitude: Double) {
-        convertLocationToTextUseCase.execute(location: CLLocation(latitude: latitude,
-                                                                  longitude: longtitude))
+    func convertLocationToText(latitude: Double, longtitude: Double) async {
+        Task {
+            let locationText: String? = await convertLocationToTextUseCase.execute(
+                location: CLLocation(latitude: latitude, longitude: longtitude)
+            )
+            presenter?.didConvertLocationToText(with: locationText)
+        }
     }
 
 }

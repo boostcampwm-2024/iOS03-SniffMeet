@@ -5,6 +5,7 @@
 //  Created by 윤지성 on 11/20/24.
 //
 import UIKit
+import CoreLocation
 
 protocol RespondWalkRoutable: AnyObject {
     func dismissView(view: any RespondWalkViewable)
@@ -26,6 +27,8 @@ extension RespondWalkRouter: RespondWalkBuildable {
         let fetchUseCase: FetchUserInfoUseCase = FetchUserInfoUsecaseImpl()
         let respondUseCase: RespondWalkRequestUseCase = RespondWalkRequestUseCaseImpl()
         let calculateTimeUseCase: CalculateTimeLimitUseCase = CalculateTimeLimitUseCaseImpl()
+        let convertLocationToTextUseCase: ConvertLocationToTextUseCase =
+        ConvertLocationToTextUseCaseImpl(geoCoder: CLGeocoder())
 
         let view: RespondWalkViewable & UIViewController = RespondWalkViewController()
         let presenter: RespondWalkPresentable & RespondWalkInteractorOutput =
@@ -33,7 +36,9 @@ extension RespondWalkRouter: RespondWalkBuildable {
         let interactor: RespondWalkInteractable =
         RespondWalkInteractor(fetchUserUseCase: fetchUseCase,
                               respondUseCase: respondUseCase,
-                              calculateTimeLimitUseCase: calculateTimeUseCase)
+                              calculateTimeLimitUseCase: calculateTimeUseCase,
+                              convertLocationToTextUseCase: convertLocationToTextUseCase
+        )
         
         let router: RespondWalkRoutable & RespondWalkBuildable = RespondWalkRouter()
 
