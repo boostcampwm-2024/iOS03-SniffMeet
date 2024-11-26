@@ -28,7 +28,7 @@ extension SupabaseRequest: SNMRequestConvertible {
                 path: "auth/v1/token",
                 method: .post,
                 query: [
-                    "grant_type": "refreshToken"
+                    "grant_type": "refresh_token"
                 ]
             )
         case .refreshUser:
@@ -53,9 +53,10 @@ extension SupabaseRequest: SNMRequestConvertible {
                 body: Data("{}".utf8)
             )
         case .refreshToken(let refreshToken):
-            return SNMRequestType.compositeJSONEncodable(
+            header["Authorization"] = nil
+            return SNMRequestType.compositePlain(
                 header: header,
-                body: SupabaseTokenRequest(refreshToken: refreshToken)
+                body: Data("{ \"refresh_token\": \"\(refreshToken)\" }".utf8)
             )
         case .refreshUser(let accessToken):
             header["Authorization"] = "Bearer \(accessToken)"

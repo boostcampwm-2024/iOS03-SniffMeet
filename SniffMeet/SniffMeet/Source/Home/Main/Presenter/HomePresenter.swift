@@ -45,15 +45,8 @@ final class HomePresenter: HomePresentable {
                 output.dogInfo.send(dog)
             }
         } catch {
-            // TODO: have to fill - alert or placeholder info
-            let placeHolderInfo: Dog = Dog(
-                name: "SniffMeet",
-                age: 0,
-                size: .small,
-                keywords: [],
-                nickname: "",
-                profileImage: nil
-            )
+            SNMLogger.error("이미지 실패?: \(error.localizedDescription)")
+            let placeHolderInfo: Dog = Dog.example
             output.dogInfo.send(placeHolderInfo)
         }
     }

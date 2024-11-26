@@ -26,6 +26,7 @@ final class ProfileCreateViewController: UIViewController, ProfileCreateViewable
     private var profileImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.image = UIImage(named: "ImagePlaceholder")
+        imageView.contentMode = .scaleAspectFill
         return imageView
     }()
     private var addPhotoButton: UIButton = {
@@ -60,6 +61,7 @@ final class ProfileCreateViewController: UIViewController, ProfileCreateViewable
         setDelegate()
         setButtonAction()
         hideKeyboardWhenTappedAround()
+        navigationController?.navigationBar.configureBackButton()
     }
     override func viewDidLayoutSubviews() {
         profileImageView.makeViewCircular()
@@ -139,9 +141,9 @@ private extension ProfileCreateViewController {
             // approuter를 통해서 화면전환을 수행한다. window를 다르게 설정해야 할듯
             // FIXME: File 저장 방식 변경 필요
             guard let nickname = self?.nicknameTextField.text else { return }
-            self?.presenter?.saveDogInfo(
+            self?.presenter?.didTapSubmitButton(
                 nickname: nickname,
-                imageData: self?.profileImageView.image?.jpegData(compressionQuality: 1)
+                image: self?.profileImageView.image
             )
         }, for: .touchUpInside)
     }
