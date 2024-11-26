@@ -19,20 +19,37 @@ final class MPCManager: NSObject {
     let browser: MPCBrowser
     let session: MCSession
     let mypeerID: MCPeerID
-    var connectedPeers = [MCPeerID]()
-    
+    var timer: Timer?
+    let testProfile = DogProfileInfo(name: "두식",
+                                     keywords: [.energetic, .friendly],
+                                     profileImage: nil)
+
+    private var cancellables = Set<AnyCancellable>()
+
     @Published var paired: Bool = false
 
-    private let log = Logger()
-
     var receivedTokenPublisher = PassthroughSubject<Data, Never>()
+    var receivedDataPublisher = PassthroughSubject<DogProfileInfo, Never>()
+    var receivedViewTransitionPublisher = PassthroughSubject<String, Never>()
     var isAvailableToBeConnected: Bool = false {
         didSet {
             if isAvailableToBeConnected {
                 advertiser.startAdvertising()
+                browser.startBrowsing()
             } else {
+                SNMLogger.error("isAvailableToBeConnected is changed")
                 advertiser.stopAdvertising()
+                browser.stopBrowsing()
             }
+
+            advertiser.receivedInvite
+                .sink { [weak self] bool in
+                    SNMLogger.info("receivedInvite : \(bool)")
+                    if bool {
+                        self?.browser.stopBrowsing()
+                    }
+                }
+                .store(in: &cancellables)
         }
     }
     
@@ -41,7 +58,7 @@ final class MPCManager: NSObject {
         self.browser = browser
         self.session = session
         self.mypeerID = mypeerID
-       
+
         super.init()
 
         session.delegate = self
@@ -51,7 +68,7 @@ final class MPCManager: NSObject {
         let peerID = MCPeerID(displayName: yourName)
         let serviceType = String.serviceName
         let session = MCSession(peer: peerID)
-        
+
         self.init(advertiser: MPCAdvertiser(session: session,
                                             myPeerID: peerID,
                                             serviceType: serviceType),
@@ -67,13 +84,54 @@ final class MPCManager: NSObject {
         browser.stopBrowsing()
     }
     
-    func send(mateData: Data) {
-        if !session.connectedPeers.isEmpty {
-            do {
-                try session.send(mateData, toPeers: session.connectedPeers, with: .reliable)
-            } catch {
-                print("error sending \(error.localizedDescription)")
+    func sendToken(discoveryToken: Data) {
+        guard !session.connectedPeers.isEmpty else { return }
+
+        do {
+            let dataToSend = ReceiveData(token: discoveryToken, profile: nil, transitionMessage: nil)
+            let encodedData = try JSONEncoder().encode(dataToSend)
+            SNMLogger.info("encodedToken is  \(encodedData)")
+            try session.send(encodedData, toPeers: session.connectedPeers, with: .reliable)
+        } catch {
+            SNMLogger.error("error sending \(error.localizedDescription)")
+        }
+    }
+
+    func sendData(profile: DogProfileInfo) {
+        guard !session.connectedPeers.isEmpty else {
+            SNMLogger.log("no one is connected")
+            return
+        }
+
+        do {
+            let dataToSend = ReceiveData(token: nil, profile: profile, transitionMessage: nil)
+            let encodedData = try JSONEncoder().encode(dataToSend)
+            SNMLogger.info("encodedData is  \(encodedData)")
+            timer = Timer.scheduledTimer(withTimeInterval: 3.0, repeats: true) { [weak self] _ in
+                do {
+                    guard let session = self?.session else { return }
+                    try self?.session.send(encodedData, toPeers: session.connectedPeers, with: .reliable)
+                    SNMLogger.log("DogProfileInfo 전송 성공")
+                } catch {
+                    SNMLogger.error("DogProfileInfo 전송 실패 \(error.localizedDescription)")
+                }
+
             }
+        } catch {
+            SNMLogger.error("DogProfileInfo 전송 실패: \(error.localizedDescription)")
+        }
+    }
+
+    func send(viewTransitionInfo: String) {
+        guard !session.connectedPeers.isEmpty else { return }
+
+        do {
+            let dataToSend = ReceiveData(token: nil, profile: nil, transitionMessage: viewTransitionInfo)
+            let encodedData = try JSONEncoder().encode(dataToSend)
+            SNMLogger.info("encodedToken is  \(encodedData)")
+            try session.send(encodedData, toPeers: session.connectedPeers, with: .reliable)
+        } catch {
+            SNMLogger.error("error sending \(error.localizedDescription)")
         }
     }
 }
@@ -81,33 +139,51 @@ final class MPCManager: NSObject {
 // MARK: - MCSessionDelegate
 extension MPCManager: MCSessionDelegate {
     func session(_ session: MCSession, peer peerID: MCPeerID, didChange state: MCSessionState) {
-        log.info("peer \(peerID) didChangeState: \(state.rawValue)")
+        SNMLogger.info("peer \(peerID) didChangeState: \(state.rawValue)")
         switch state {
         case .notConnected:
             Task { @MainActor in
+                SNMLogger.log("notConnected to MPCSession")
+                SNMLogger.info("notConnected: \(session.connectedPeers)")
                 self.paired = false
-                self.isAvailableToBeConnected = true
+                timer?.invalidate()
             }
         case .connected:
             Task { @MainActor in
+                SNMLogger.log("successfully connected to MPCSession")
                 self.paired = true
                 self.isAvailableToBeConnected = false
-                log.log("successfully connected to MPCSession")
+                SNMLogger.info("ConnectedPeers: \(session.connectedPeers)")
+                sendData(profile: testProfile)
             }
         default:
             Task { @MainActor in
                 self.paired = false
-                self.isAvailableToBeConnected = true
             }
         }
     }
 
     func session(_ session: MCSession, didReceive data: Data, fromPeer peerID: MCPeerID) {
-        log.info("didReceive bytes \(data.count) bytes")
-        Task { @MainActor in
-            self.session.disconnect()
-            self.isAvailableToBeConnected = true
-            receivedTokenPublisher.send(data)
+        SNMLogger.info("didReceive bytes \(data.count) bytes")
+
+        do {
+            let receivedData = try JSONDecoder().decode(ReceiveData.self, from: data)
+
+            if let tokenData = receivedData.token {
+                Task { @MainActor in
+                    receivedTokenPublisher.send(tokenData)
+                }
+            } else if let profile = receivedData.profile {
+                Task { @MainActor in
+                    receivedDataPublisher.send(profile)
+                }
+            } else if let message = receivedData.transitionMessage {
+                Task { @MainActor in
+                    receivedViewTransitionPublisher.send(message)
+                }
+            }
+        } catch {
+            SNMLogger.error("Failed to decode received data: \(error)")
         }
     }
 
@@ -117,7 +193,7 @@ extension MPCManager: MCSessionDelegate {
         withName streamName: String,
         fromPeer peerID: MCPeerID
     ) {
-        log.error("Receiving streams is not supported")
+        SNMLogger.error("Receiving streams is not supported")
     }
 
     func session(
@@ -126,7 +202,7 @@ extension MPCManager: MCSessionDelegate {
         fromPeer peerID: MCPeerID,
         with progress: Progress
     ) {
-        log.error("Receiving resources is not supported")
+        SNMLogger.error("Receiving resources is not supported")
     }
 
     func session(
@@ -136,6 +212,6 @@ extension MPCManager: MCSessionDelegate {
         at localURL: URL?,
         withError error: (any Error)?
     ) {
-        log.error("Receiving resources is not supported")
+        SNMLogger.error("Receiving resources is not supported")
     }
 }

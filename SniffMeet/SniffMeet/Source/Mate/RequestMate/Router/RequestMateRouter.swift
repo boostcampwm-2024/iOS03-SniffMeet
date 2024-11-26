@@ -12,7 +12,7 @@ protocol RequestMateRoutable: AnyObject {
 }
 
 protocol RequestMateBuildable {
-    static func createRequestMateModule() -> UIViewController
+    static func createRequestMateModule(profile: DogProfileInfo) -> UIViewController
 }
 
 final class RequestMateRouter: RequestMateRoutable {
@@ -24,8 +24,8 @@ final class RequestMateRouter: RequestMateRoutable {
 }
 
 extension RequestMateRouter: RequestMateBuildable {
-    static func createRequestMateModule() -> UIViewController {
-        let view = RequestMateViewController()
+    static func createRequestMateModule(profile: DogProfileInfo) -> UIViewController {
+        let view = RequestMateViewController(profile: profile)
         let presenter = RequestMatePresenter()
         let interactor = RequestMateInteractor()
         let router: RequestMateRoutable & RequestMateBuildable = RequestMateRouter()

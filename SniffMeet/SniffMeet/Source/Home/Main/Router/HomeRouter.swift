@@ -11,6 +11,7 @@ protocol HomeRoutable: Routable {
     func showProfileEditView(homeView: any HomeViewable)
     func showNotificationView(homeView: any HomeViewable)
     func showAlert(homeView: any HomeViewable, title: String, message: String)
+    func showMateRequestView(homeView: any HomeViewable, data: DogProfileInfo)
 }
 
 struct HomeRouter: HomeRoutable {
@@ -32,6 +33,11 @@ struct HomeRouter: HomeRoutable {
 
         let alertVC = UIAlertController(title: title, message: message, preferredStyle: .alert)
         alertVC.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-        present(from: homeView, with: alertVC, animated: true)
+        homeView.present(alertVC, animated: true, completion: nil)
+    }
+    func showMateRequestView(homeView: any HomeViewable, data: DogProfileInfo) {
+        guard let homeView = homeView as? UIViewController else { return }
+        let requestMateViewController = RequestMateViewController(profile: data)
+        fullScreen(from: homeView, with: requestMateViewController, animated: true)
     }
 }
