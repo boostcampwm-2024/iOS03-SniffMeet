@@ -14,6 +14,15 @@ class NIManager: NSObject {
     private var mpcManager: MPCManager
     private var cancellables = Set<AnyCancellable>()
 
+    private let minDistance: Float = 0.09
+    private let maxDistance: Float = 0.15
+    private let minDirection: simd_float3 = simd_float3(-0.6, -0.3, -1.0)
+    private let maxDirection: simd_float3 = simd_float3(0.6, 0.3, -0.8)
+
+    @Published var niPaired: Bool = false
+    var isViewTransitioning = PassthroughSubject<Bool, Never>()
+    var viewTransitionInfo = Set<String>()
+
     init(mpcManager: MPCManager) {
         self.mpcManager = mpcManager
         super.init()
@@ -44,12 +53,19 @@ class NIManager: NSObject {
                 self?.handleReceivedDiscoveryToken(token)
             }
             .store(in: &cancellables)
+
+        mpcManager.receivedViewTransitionPublisher
+            .sink { [weak self] isViewTransitioning in
+                self?.viewTransitionInfo.insert(isViewTransitioning)
+                SNMLogger.info("viewTrnasitionInfo: \(self?.viewTransitionInfo ?? [])")
+            }
+            .store(in: &cancellables)
     }
 
     // discoveryToken 전송
     private func sendDiscoveryToken() {
         guard let niSession = niSession, let discoveryToken = niSession.discoveryToken else {
-            print("Discovery token is not available.")
+            SNMLogger.log("Discovery token is not available.")
             return
         }
 
@@ -58,10 +74,10 @@ class NIManager: NSObject {
                 withRootObject: discoveryToken,
                 requiringSecureCoding: true
             )
-            mpcManager.send(mateData: tokenData)
-            print("Discovery token sent to peer.")
+            mpcManager.sendToken(discoveryToken: tokenData)
+            SNMLogger.log("Discovery token sent to peer.")
         } catch {
-            print("Failed to encode discovery token: \(error)")
+            SNMLogger.error("Failed to encode discovery token: \(error)")
         }
     }
 
@@ -72,37 +88,61 @@ class NIManager: NSObject {
                 ofClass: NIDiscoveryToken.self,
                 from: data
             ) else {
-                print("Invalid discovery token received.")
+                SNMLogger.log("Invalid discovery token received.")
                 return
             }
 
             let config = NINearbyPeerConfiguration(peerToken: token)
             niSession?.run(config)
-            print("NearbyInteraction session started with received discovery token.")
+            niPaired = true
+            SNMLogger.log("NearbyInteraction session started with received discovery token.")
         } catch {
-            print("Failed to decode discovery token: \(error)")
+            SNMLogger.error("Failed to decode discovery token: \(error)")
         }
+    }
+
+    func endSession() {
+        SNMLogger.log("NI 세션 종료")
+        niSession?.invalidate()
+        mpcManager.session.disconnect()
+        mpcManager.isAvailableToBeConnected = false
+        SNMLogger.log("MPC 세션 종료")
+        niPaired = false
     }
 }
 
 // MARK: - NISessionDelegate
 extension NIManager: NISessionDelegate {
     func session(_ session: NISession, didUpdate nearbyObjects: [NINearbyObject]) {
-        for nearbyObject in nearbyObjects {
+        guard let nearbyObject = nearbyObjects.first else { return }
+        let distance = nearbyObject.distance ?? 1
+        let direction = nearbyObject.direction ?? simd_float3(0.1, 0.1, 0.1)
 
-            print("Distance to peer: \(nearbyObject.distance ?? 0)")
+        SNMLogger.info("Distance and Direction to peer: \(distance) and \(direction)")
+
+        if distance > minDistance && distance < maxDistance {
+            SNMLogger.log("거리와 방향 조건 만족")
+            Task { @MainActor in
+                isViewTransitioning.send(true)
+                viewTransitionInfo.insert("send")
+                mpcManager.send(viewTransitionInfo: "receive")
+            }
+
+            if viewTransitionInfo.count == 2 {
+                endSession()
+            }
         }
     }
 
     func sessionWasSuspended(_ session: NISession) {
-        print("NearbyInteraction session suspended.")
+        SNMLogger.log("NearbyInteraction session suspended.")
     }
 
     func sessionSuspensionEnded(_ session: NISession) {
-        print("NearbyInteraction session suspension ended.")
+        SNMLogger.log("NearbyInteraction session suspension ended.")
     }
 
     func session(_ session: NISession, didInvalidateWith error: Error) {
-        print("NearbyInteraction session invalidated: \(error)")
+        SNMLogger.error("NearbyInteraction session invalidated: \(error)")
     }
 }

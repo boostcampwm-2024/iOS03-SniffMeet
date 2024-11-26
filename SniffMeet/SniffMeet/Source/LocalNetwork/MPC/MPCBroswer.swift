@@ -7,16 +7,15 @@
 import MultipeerConnectivity
 import os
 
-fileprivate let log = Logger()
-
 final class MPCBrowser: NSObject {
     let browser: MCNearbyServiceBrowser
     let session: MCSession
     let myPeerId: MCPeerID
-    
-    @Published var paired: Bool = false
-    @Published var availablePeers = [MCPeerID]()
-    
+
+    static var sharedBrowser: MCNearbyServiceBrowser?
+
+    var availablePeers = Set<MCPeerID>()
+
     init(browser: MCNearbyServiceBrowser,
          session: MCSession,
          myPeerId: MCPeerID)
@@ -30,37 +29,49 @@ final class MPCBrowser: NSObject {
     }
     
     convenience init(session: MCSession, myPeerID: MCPeerID, serviceType: String) {
-        self.init(browser: MCNearbyServiceBrowser(peer: myPeerID, serviceType: serviceType),
-                  session: session,
-                  myPeerId: myPeerID)
+        if let existingBrowser = MPCBrowser.sharedBrowser {
+            self.init(browser: existingBrowser, session: session, myPeerId: myPeerID)
+        } else {
+            let newBrowser = MCNearbyServiceBrowser(peer: myPeerID,
+                                                    serviceType: serviceType)
+            MPCBrowser.sharedBrowser = newBrowser
+            self.init(browser: newBrowser, session: session, myPeerId: myPeerID)
+        }
     }
-    
+
+    deinit {
+        if MPCBrowser.sharedBrowser === browser {
+            MPCBrowser.sharedBrowser = nil
+            SNMLogger.log("MPCBrowser deinit")
+        }
+    }
+
     func startBrowsing() {
         browser.startBrowsingForPeers()
-        log.log("start Browsing")
+        SNMLogger.log("start Browsing")
 
     }
     
     func stopBrowsing() {
         browser.stopBrowsingForPeers()
         availablePeers.removeAll()
-        log.log("stop Browsing")
+        SNMLogger.log("stop Browsing")
     }
     
     func invite() {
         guard let peer = availablePeers.first else { return }
-        browser.invitePeer(peer, to: session, withContext: nil, timeout: 10)
-        log.info("invitePeer")
+        browser.invitePeer(peer, to: session, withContext: nil, timeout: 30)
+        SNMLogger.log("invitePeer")
     }
 
     func invite(peerID: MCPeerID) {
-        browser.invitePeer(peerID, to: session, withContext: nil, timeout: 10)
-        log.info("invitePeer peerID")
+        browser.invitePeer(peerID, to: session, withContext: nil, timeout: 30)
+        SNMLogger.log("invitePeer peerID")
     }
     
     func invite(peerID: MCPeerID, tokenData: Data) {
-        browser.invitePeer(peerID, to: session, withContext: tokenData, timeout: 10)
-        log.info("invitePeer tokenData")
+        browser.invitePeer(peerID, to: session, withContext: tokenData, timeout: 30)
+        SNMLogger.log("invitePeer tokenData")
     }
 }
 
@@ -70,15 +81,20 @@ extension MPCBrowser: MCNearbyServiceBrowserDelegate {
                  withDiscoveryInfo info: [String : String]?)
     {
         if let info = info {
-            print("Found peer with info: \(info)")
+            SNMLogger.info("Found peer with info: \(info)")
         }
         
         // info에 해당되는 peer에 대해서만 availablepeers에 넣을 수 있다
-        log.info("ServiceBrowser found peer: \(peerID)")
+        SNMLogger.info("ServiceBrowser found peer: \(peerID)")
         guard !(self.availablePeers.contains(peerID)) else { return }
-        self.availablePeers.append(peerID)
+        self.availablePeers.insert(peerID)
 
-        invite(peerID: peerID)
+        let timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: false) { [weak self] _ in
+            if (self?.session.connectedPeers.contains(peerID) == false) {
+                self?.invite(peerID: peerID)
+            }
+        }
+        SNMLogger.info("availablePeers: \(self.availablePeers)")
     }
     
     

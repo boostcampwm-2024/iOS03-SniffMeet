@@ -30,4 +30,9 @@ extension Routable {
     func dismiss(from: UIViewController, animated: Bool) {
         from.dismiss(animated: animated)
     }
+
+    func fullScreen(from: UIViewController, with: UIViewController, animated: Bool) {
+        with.modalPresentationStyle = .overFullScreen
+        from.present(with, animated: animated)
+    }
 }
