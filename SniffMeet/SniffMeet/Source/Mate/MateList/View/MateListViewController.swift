@@ -9,17 +9,17 @@ import Combine
 import UIKit
 
 protocol MateListViewable: AnyObject {
-    // var presenter: (any MateListPresentable)? { get }
+    var presenter: (any MateListPresentable)? { get set }
 }
 
 final class MateListViewController: BaseViewController, MateListViewable {
-    // var presenter: any MateListPresentable?
-    private let tableView: UITableView = {
-        let tableView = UITableView()
-        return tableView
-    }()
+    var presenter: (any MateListPresentable)?
+    var dataSource: [Mate] = []
+    private var cancellables: Set<AnyCancellable> = []
+    private let tableView: UITableView = UITableView()
 
     override func viewDidLoad() {
+        presenter?.viewDidLoad()
         super.viewDidLoad()
     }
 
@@ -52,11 +52,21 @@ final class MateListViewController: BaseViewController, MateListViewable {
     }
 
     override func bind() {
-//        presenter?.mates
-//            .sink { [weak self] in
-//                self?.updateTableView()
-//            }
-//            .store(in: &cancellables)
+        presenter?.output.mates
+            .receive(on: RunLoop.main)
+            .sink { [weak self] mates in
+                self?.dataSource = mates
+                self?.tableView.reloadData()
+            }
+            .store(in: &cancellables)
+        presenter?.output.profileImageData
+            .receive(on: RunLoop.main)
+            .sink { [weak self] (index, imageData) in
+                self?.dataSource[index].profileImageData = imageData
+                let indexPath = IndexPath(item: index, section: 0)
+                self?.tableView.reloadRows(at: [indexPath], with: .none)
+            }
+            .store(in: &cancellables)
     }
 
     private func setTableView() {
@@ -65,26 +75,30 @@ final class MateListViewController: BaseViewController, MateListViewable {
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: Identifier.mateCellID)
         tableView.separatorStyle = .none
     }
-
-    func updateTableView() {
-        // 네트워크에서 mate를 다 불러오면 호출됩니다.
-        // FIXME: Diffable data source
-        tableView.reloadData()
-    }
 }
+
+// MARK: - MateListViewController+UITableViewDelegate & UITableViewDataSource
 
 extension MateListViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 3 // presenter.mates.count
+        dataSource.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: Identifier.mateCellID, for: indexPath)
         var content = cell.defaultContentConfiguration()
-        content.image = .app // presenter.setCellImage?
+        content.image = .app
+        if let imageData = dataSource[indexPath.row].profileImageData {
+            content.image = UIImage(data: imageData)
+        } else {
+            presenter?.didTableViewCellLoad(
+                index: indexPath.row,
+                urlString: dataSource[indexPath.row].profileImageURLString
+            )
+        }
         content.imageProperties.maximumSize = ItemSize.profileImageSize
         content.imageProperties.cornerRadius = ItemSize.profileImageCornerRadius
-        content.text = "Mate" // presenter.mates[indexPath].name
+        content.text = dataSource[indexPath.row].name
         cell.contentConfiguration = content
         cell.accessoryView = createAccessoryButton()
         cell.selectionStyle = .none
@@ -92,11 +106,10 @@ extension MateListViewController: UITableViewDelegate, UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return ItemSize.cellHeight
+        ItemSize.cellHeight
     }
 
     private func createAccessoryButton() -> UIButton {
-        // 공용 뷰 컴포넌트가 아니라서 common에 분리하지 않았습니다.
         let button = UIButton(type: .roundedRect)
         button.frame = CGRect(origin: .zero, size: ItemSize.accessoryButtonSize)
         button.backgroundColor = SNMColor.mainBrown
