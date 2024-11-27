@@ -63,6 +63,8 @@
 		A20E71502CEC595C00272B25 /* SupabaseError.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20E714F2CEC595C00272B25 /* SupabaseError.swift */; };
 		A20E71522CEC5FE900272B25 /* SupabaseUserResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20E71512CEC5FE900272B25 /* SupabaseUserResponse.swift */; };
 		A21435F72CE20D2500564A4D /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A21435F62CE20D2500564A4D /* TabBarController.swift */; };
+		A22040092CF6B12B00D1E8CB /* SupabaseDatabaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A22040082CF6B12B00D1E8CB /* SupabaseDatabaseTests.swift */; };
+		A220400B2CF6B89800D1E8CB /* UserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = A220400A2CF6B89800D1E8CB /* UserInfo.swift */; };
 		A23A3B732CF4683F00A58705 /* Mate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A23A3B722CF4683F00A58705 /* Mate.swift */; };
 		A24082612CEB244C009109A0 /* SupabaseConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = A24082602CEB244C009109A0 /* SupabaseConfig.swift */; };
 		A24082642CEB2470009109A0 /* SupabaseAuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A24082632CEB2470009109A0 /* SupabaseAuthManager.swift */; };
@@ -73,6 +75,7 @@
 		A25BE4562CEBB63A00886763 /* SupabaseUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = A25BE4552CEBB63A00886763 /* SupabaseUser.swift */; };
 		A25BE4582CEBB95C00886763 /* SupabaseRefreshResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = A25BE4572CEBB95C00886763 /* SupabaseRefreshResponse.swift */; };
 		A25BE45A2CEC2BA300886763 /* SessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A25BE4592CEC2BA300886763 /* SessionManager.swift */; };
+		A266A2602CF5CF4A002C2B3A /* SaveUserInfoRemoteUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A266A25F2CF5CF4A002C2B3A /* SaveUserInfoRemoteUseCase.swift */; };
 		A288A63D2CDC595000D11C34 /* (null) in Resources */ = {isa = PBXBuildFile; };
 		A2BA1B922CF1E8C60080575A /* MateListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2BA1B912CF1E8C60080575A /* MateListViewController.swift */; };
 		A2BA1B962CF2606B0080575A /* MateListInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2BA1B952CF2606B0080575A /* MateListInteractor.swift */; };
@@ -100,9 +103,11 @@
 		FD119F4E2CED87C200BE22BD /* SelectLocationPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD119F4D2CED87BC00BE22BD /* SelectLocationPresenter.swift */; };
 		FD119F502CED87E500BE22BD /* SelectLocationRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD119F4F2CED87DD00BE22BD /* SelectLocationRouter.swift */; };
 		FD119F522CED881300BE22BD /* SelectLocationModuleBuildable.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD119F512CED880A00BE22BD /* SelectLocationModuleBuildable.swift */; };
-		FD331A912CF3461B00F39426 /* NotificationListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD331A902CF3461600F39426 /* NotificationListViewController.swift */; };
-		FD331A932CF3463200F39426 /* NotificationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD331A922CF3462E00F39426 /* NotificationCell.swift */; };
-		FD331A952CF3464000F39426 /* PushNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD331A942CF3463E00F39426 /* PushNotification.swift */; };
+		FD331A4D2CF235A100F39426 /* SNMLineTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD331A4C2CF2359D00F39426 /* SNMLineTabBar.swift */; };
+		FD331A502CF235C400F39426 /* WalkLogPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD331A4F2CF235B900F39426 /* WalkLogPageViewController.swift */; };
+		FD331A522CF23BD000F39426 /* WalkLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD331A512CF23BCE00F39426 /* WalkLog.swift */; };
+		FD331A562CF23C5300F39426 /* WalkLogListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD331A552CF23C4E00F39426 /* WalkLogListViewController.swift */; };
+		FD331A582CF23CEC00F39426 /* WalkLogCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD331A572CF23CE900F39426 /* WalkLogCell.swift */; };
 		FD331A602CF339B000F39426 /* SupabaseStorageRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD331A5F2CF339AA00F39426 /* SupabaseStorageRequest.swift */; };
 		FD331A722CF33C8400F39426 /* SupabaseStorageTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD331A712CF33C7F00F39426 /* SupabaseStorageTests.swift */; };
 		FD331A732CF33CF200F39426 /* MultipartFormData.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDA04AA42CE91DB7002605AC /* MultipartFormData.swift */; };
@@ -133,11 +138,9 @@
 		FD331A8C2CF33E7100F39426 /* KeychainManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD69B1B22CE3BC68009D71DC /* KeychainManager.swift */; };
 		FD331A8E2CF33F6700F39426 /* SupabaseStorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD331A8D2CF33F6100F39426 /* SupabaseStorageManager.swift */; };
 		FD331A8F2CF33F6700F39426 /* SupabaseStorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD331A8D2CF33F6100F39426 /* SupabaseStorageManager.swift */; };
-		FD331A4D2CF235A100F39426 /* SNMLineTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD331A4C2CF2359D00F39426 /* SNMLineTabBar.swift */; };
-		FD331A502CF235C400F39426 /* WalkLogPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD331A4F2CF235B900F39426 /* WalkLogPageViewController.swift */; };
-		FD331A522CF23BD000F39426 /* WalkLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD331A512CF23BCE00F39426 /* WalkLog.swift */; };
-		FD331A562CF23C5300F39426 /* WalkLogListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD331A552CF23C4E00F39426 /* WalkLogListViewController.swift */; };
-		FD331A582CF23CEC00F39426 /* WalkLogCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD331A572CF23CE900F39426 /* WalkLogCell.swift */; };
+		FD331A912CF3461B00F39426 /* NotificationListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD331A902CF3461600F39426 /* NotificationListViewController.swift */; };
+		FD331A932CF3463200F39426 /* NotificationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD331A922CF3462E00F39426 /* NotificationCell.swift */; };
+		FD331A952CF3464000F39426 /* PushNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD331A942CF3463E00F39426 /* PushNotification.swift */; };
 		FD3A033F2CD8CF460047B7ED /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FD3A03392CD8CF460047B7ED /* Assets.xcassets */; };
 		FD3A03412CD8CF460047B7ED /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FD3A033C2CD8CF460047B7ED /* LaunchScreen.storyboard */; };
 		FD3A03422CD8CF460047B7ED /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD3A03382CD8CF460047B7ED /* AppDelegate.swift */; };
@@ -254,6 +257,8 @@
 		A20E714F2CEC595C00272B25 /* SupabaseError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupabaseError.swift; sourceTree = "<group>"; };
 		A20E71512CEC5FE900272B25 /* SupabaseUserResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupabaseUserResponse.swift; sourceTree = "<group>"; };
 		A21435F62CE20D2500564A4D /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
+		A22040082CF6B12B00D1E8CB /* SupabaseDatabaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupabaseDatabaseTests.swift; sourceTree = "<group>"; };
+		A220400A2CF6B89800D1E8CB /* UserInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfo.swift; sourceTree = "<group>"; };
 		A23A3B722CF4683F00A58705 /* Mate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mate.swift; sourceTree = "<group>"; };
 		A24082602CEB244C009109A0 /* SupabaseConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupabaseConfig.swift; sourceTree = "<group>"; };
 		A24082632CEB2470009109A0 /* SupabaseAuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupabaseAuthManager.swift; sourceTree = "<group>"; };
@@ -264,6 +269,7 @@
 		A25BE4552CEBB63A00886763 /* SupabaseUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupabaseUser.swift; sourceTree = "<group>"; };
 		A25BE4572CEBB95C00886763 /* SupabaseRefreshResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupabaseRefreshResponse.swift; sourceTree = "<group>"; };
 		A25BE4592CEC2BA300886763 /* SessionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionManager.swift; sourceTree = "<group>"; };
+		A266A25F2CF5CF4A002C2B3A /* SaveUserInfoRemoteUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveUserInfoRemoteUseCase.swift; sourceTree = "<group>"; };
 		A2BA1B912CF1E8C60080575A /* MateListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MateListViewController.swift; sourceTree = "<group>"; };
 		A2BA1B952CF2606B0080575A /* MateListInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MateListInteractor.swift; sourceTree = "<group>"; };
 		A2BA1B972CF260780080575A /* MateListPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MateListPresenter.swift; sourceTree = "<group>"; };
@@ -288,18 +294,18 @@
 		FD119F4D2CED87BC00BE22BD /* SelectLocationPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectLocationPresenter.swift; sourceTree = "<group>"; };
 		FD119F4F2CED87DD00BE22BD /* SelectLocationRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectLocationRouter.swift; sourceTree = "<group>"; };
 		FD119F512CED880A00BE22BD /* SelectLocationModuleBuildable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectLocationModuleBuildable.swift; sourceTree = "<group>"; };
-		FD331A902CF3461600F39426 /* NotificationListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationListViewController.swift; sourceTree = "<group>"; };
-		FD331A922CF3462E00F39426 /* NotificationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationCell.swift; sourceTree = "<group>"; };
-		FD331A942CF3463E00F39426 /* PushNotification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushNotification.swift; sourceTree = "<group>"; };
-		FD331A5F2CF339AA00F39426 /* SupabaseStorageRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupabaseStorageRequest.swift; sourceTree = "<group>"; };
-		FD331A652CF33C6700F39426 /* SupabaseTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SupabaseTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		FD331A712CF33C7F00F39426 /* SupabaseStorageTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupabaseStorageTests.swift; sourceTree = "<group>"; };
-		FD331A8D2CF33F6100F39426 /* SupabaseStorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupabaseStorageManager.swift; sourceTree = "<group>"; };
 		FD331A4C2CF2359D00F39426 /* SNMLineTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SNMLineTabBar.swift; sourceTree = "<group>"; };
 		FD331A4F2CF235B900F39426 /* WalkLogPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalkLogPageViewController.swift; sourceTree = "<group>"; };
 		FD331A512CF23BCE00F39426 /* WalkLog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalkLog.swift; sourceTree = "<group>"; };
 		FD331A552CF23C4E00F39426 /* WalkLogListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalkLogListViewController.swift; sourceTree = "<group>"; };
 		FD331A572CF23CE900F39426 /* WalkLogCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalkLogCell.swift; sourceTree = "<group>"; };
+		FD331A5F2CF339AA00F39426 /* SupabaseStorageRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupabaseStorageRequest.swift; sourceTree = "<group>"; };
+		FD331A652CF33C6700F39426 /* SupabaseTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SupabaseTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		FD331A712CF33C7F00F39426 /* SupabaseStorageTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupabaseStorageTests.swift; sourceTree = "<group>"; };
+		FD331A8D2CF33F6100F39426 /* SupabaseStorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupabaseStorageManager.swift; sourceTree = "<group>"; };
+		FD331A902CF3461600F39426 /* NotificationListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationListViewController.swift; sourceTree = "<group>"; };
+		FD331A922CF3462E00F39426 /* NotificationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationCell.swift; sourceTree = "<group>"; };
+		FD331A942CF3463E00F39426 /* PushNotification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushNotification.swift; sourceTree = "<group>"; };
 		FD3A03202CD8CDE50047B7ED /* SniffMeet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SniffMeet.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FD3A03382CD8CF460047B7ED /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FD3A03392CD8CF460047B7ED /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -405,6 +411,7 @@
 		320044782CEC48FB00D08B6D /* UseCase */ = {
 			isa = PBXGroup;
 			children = (
+				A266A25F2CF5CF4A002C2B3A /* SaveUserInfoRemoteUseCase.swift */,
 				FD880B5F2CF432780093BEB9 /* SaveProfileImageUseCase.swift */,
 				FD119F492CED875800BE22BD /* RequestUserLocationUseCase.swift */,
 				FD119F472CED872500BE22BD /* RequestLocationAuthUseCase.swift */,
@@ -429,6 +436,7 @@
 				320044972CED81EF00D08B6D /* WalkRequest.swift */,
 				A23A3B722CF4683F00A58705 /* Mate.swift */,
 				320044522CE59A8100D08B6D /* Dog.swift */,
+				A220400A2CF6B89800D1E8CB /* UserInfo.swift */,
 			);
 			path = Entity;
 			sourceTree = "<group>";
@@ -604,6 +612,16 @@
 			path = SNMNetwork;
 			sourceTree = "<group>";
 		};
+		FD331A4E2CF235B600F39426 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				FD331A572CF23CE900F39426 /* WalkLogCell.swift */,
+				FD331A552CF23C4E00F39426 /* WalkLogListViewController.swift */,
+				FD331A4F2CF235B900F39426 /* WalkLogPageViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		FD331A5E2CF339A400F39426 /* Storage */ = {
 			isa = PBXGroup;
 			children = (
@@ -617,18 +635,9 @@
 			isa = PBXGroup;
 			children = (
 				FD331A712CF33C7F00F39426 /* SupabaseStorageTests.swift */,
+				A22040082CF6B12B00D1E8CB /* SupabaseDatabaseTests.swift */,
 			);
 			path = SupabaseTests;
-            sourceTree = "<group>";
-        };
-		FD331A4E2CF235B600F39426 /* View */ = {
-			isa = PBXGroup;
-			children = (
-				FD331A572CF23CE900F39426 /* WalkLogCell.swift */,
-				FD331A552CF23C4E00F39426 /* WalkLogListViewController.swift */,
-				FD331A4F2CF235B900F39426 /* WalkLogPageViewController.swift */,
-			);
-			path = View;
 			sourceTree = "<group>";
 		};
 		FD3A03172CD8CDE50047B7ED = {
@@ -1637,6 +1646,7 @@
 				FD331A832CF33D0500F39426 /* SupabaseSession.swift in Sources */,
 				FD331A842CF33D0500F39426 /* SupabaseUser.swift in Sources */,
 				FD331A852CF33D0500F39426 /* SupabaseSessionResponse.swift in Sources */,
+				A22040092CF6B12B00D1E8CB /* SupabaseDatabaseTests.swift in Sources */,
 				FD331A862CF33D0500F39426 /* SupabaseUserResponse.swift in Sources */,
 				FD331A872CF33D0500F39426 /* SupabaseRefreshResponse.swift in Sources */,
 				FD331A882CF33D0500F39426 /* SupabaseTokenRequest.swift in Sources */,
@@ -1687,7 +1697,7 @@
 				A21435F72CE20D2500564A4D /* TabBarController.swift in Sources */,
 				320043762CDCA18E00D08B6D /* (null) in Sources */,
 				995D94D22CEDF037005A47BF /* MateRequest.swift in Sources */,
-				A20E71502CEC595C00272B25 /* SupabaseAuthError.swift in Sources */,
+				A20E71502CEC595C00272B25 /* SupabaseError.swift in Sources */,
 				A20E71502CEC595C00272B25 /* SupabaseError.swift in Sources */,
 				FDCD02CF2CE917D800B627D8 /* MockRequest.swift in Sources */,
 				A2F825DD2CDFBEB4000C5419 /* ProfileCardView.swift in Sources */,
@@ -1771,7 +1781,9 @@
 				320044892CEC862D00D08B6D /* LocationSelectionView.swift in Sources */,
 				FD331A4D2CF235A100F39426 /* SNMLineTabBar.swift in Sources */,
 				FD69B1B52CE3BC7E009D71DC /* UserDefaultsManager.swift in Sources */,
+				A220400B2CF6B89800D1E8CB /* UserInfo.swift in Sources */,
 				320043722CDC9E5F00D08B6D /* (null) in Sources */,
+				A266A2602CF5CF4A002C2B3A /* SaveUserInfoRemoteUseCase.swift in Sources */,
 				FDE14A4E2CE8D144001F7A9D /* HTTPStatusCode.swift in Sources */,
 				3200441E2CE48D3500D08B6D /* MPCManager.swift in Sources */,
 				FD0634312CE62578003C9D6B /* AnyEncodable.swift in Sources */,
