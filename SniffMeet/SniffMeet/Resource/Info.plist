@@ -2,10 +2,12 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>NSLocalNetworkUsageDescription</key>
+	<string>&apos;SniffMEET&apos;은 P2P 연결을 지원하기 위해 로컬 네트워크 환경이 필요합니다.</string>
 	<key>NSCameraUsageDescription</key>
-	<string>이 앱은 Nearby Interaction과 ARKit을 위해 카메라 접근이 필요합니다.</string>
+	<string>&apos;SniffMEET&apos;은 Nearby Interaction과 ARKit을 위해 카메라 접근이 필요합니다.</string>
 	<key>NSNearbyInteractionUsageDescription</key>
-	<string>This app demonstrates the NearbyInteraction framework. Supply a value for this string to explain how the user benefits when they allow the app to use NearbyInteraction.</string>
+	<string>&apos;SniffMEET&apos;은 연결된 기기와의 거리와 방향 측정을 위해 Nearby Interaction 접근이 필요합니다.</string>
 	<key>NSBonjourServices</key>
 	<array>
 		<string>_SniffMeet._tcp</string>
