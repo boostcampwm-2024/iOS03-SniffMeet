@@ -21,7 +21,11 @@ final class RespondWalkViewController: BaseViewController, RespondWalkViewable {
     private let contentView = UIView()
     private var timerPublisher: AnyPublisher<Int, Never>?
     private var cancellables: Set<AnyCancellable> = []
+    private var isTimedOut: Bool = false
     
+    private var declineAlert = UIAlertController(title: "요청 수락 거절",
+                                     message: "해당 창을 닫으면 산책 요청이 자동으로 거절 처리돼요. 창을 닫으시겠어요?",
+                                     preferredStyle: .alert)
     private var dismissButton: UIButton = {
         let button = UIButton()
         button.setImage(UIImage(systemName: "xmark"), for: .normal)
@@ -73,6 +77,15 @@ final class RespondWalkViewController: BaseViewController, RespondWalkViewable {
         
         submitButton.setTitle(Context.abledSubmitButtonTitle, for: .normal)
         submitButton.setTitle(Context.disabledSubmitButtonTitle, for: .disabled)
+        
+        let acceptAction = UIAlertAction(title: "거절하기", style: .destructive) {[weak self] _ in
+            self?.presenter?.respondWalkRequest(isAccepted: false)
+        }
+        
+        let cancelAction = UIAlertAction(title: "취소", style: .cancel)
+        
+        declineAlert.addAction(acceptAction)
+        declineAlert.addAction(cancelAction)
     }
     override func configureHierachy() {
         view.addSubview(scrollView)
@@ -164,6 +177,26 @@ final class RespondWalkViewController: BaseViewController, RespondWalkViewable {
                 self?.locationView.setAddress(address: locationLabel)
             }
             .store(in: &cancellables)
+        
+        dismissButton.publisher(event: .touchUpInside)
+            .receive(on: RunLoop.main)
+            .sink {[weak self] _ in
+                guard let self else { return }
+                if !isTimedOut {
+                    self.present(declineAlert, animated: true)
+                } else {
+                    presenter?.dismissView()
+                }
+            }
+            .store(in: &cancellables)
+        
+        submitButton.publisher(event: .touchUpInside)
+            .receive(on: RunLoop.main)
+            .sink { [weak self] _ in
+                guard let self else { return }
+                self.presenter?.respondWalkRequest(isAccepted: true)
+            }
+            .store(in: &cancellables)
     }
 }
 
@@ -177,12 +210,6 @@ private extension RespondWalkViewController {
         static let remainingTimeLimitTitle: String = "초 안에 요청을 수락하지 않으면 자동으로 거절 처리돼요."
         static let timeoutTitle: String = "수락 제한 시간(60초) 초과되어 자동 거절처리 됐습니다."
         static let characterCountLimit: Int = 100
-    }
-    
-    func setButtonActions() {
-        dismissButton.addAction(UIAction(handler: {[weak self] _ in
-            self?.presenter?.dismissView()
-        }), for: .touchUpInside)
     }
 }
 
@@ -215,6 +242,7 @@ extension RespondWalkViewController {
             if value == 0 {
                 self.timeLimitLabel.text = Context.timeoutTitle
                 self.submitButton.isEnabled = false
+                self.isTimedOut = true
             }
         }.store(in: &cancellables)
     }
