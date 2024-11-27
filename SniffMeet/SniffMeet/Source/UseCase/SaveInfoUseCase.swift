@@ -10,15 +10,10 @@ protocol StoreDogInfoUseCase {
     func execute(dog: Dog) throws
 }
 
-
 struct StoreDogInfoUseCaseImpl: StoreDogInfoUseCase {
     let localDataManager: DataStorable
     
-    init(localDataManager: DataStorable) {
-        self.localDataManager = localDataManager
-    }
-    
     func execute(dog: Dog) throws {
-        try localDataManager.storeData(data: dog)
+        try localDataManager.storeData(data: dog, key: UserDefaultKey.dogInfo)
     }
 }
