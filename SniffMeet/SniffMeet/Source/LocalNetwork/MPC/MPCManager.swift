@@ -15,14 +15,14 @@ extension String {
 }
 
 final class MPCManager: NSObject {
+    let dataManager = LocalDataManager()
     let advertiser: MPCAdvertiser
     let browser: MPCBrowser
     let session: MCSession
     let mypeerID: MCPeerID
     var timer: Timer?
-    let testProfile = DogProfileInfo(name: "두식",
-                                     keywords: [.energetic, .friendly],
-                                     profileImage: nil)
+    var dog: Dog?
+    var profile: DogProfileInfo?
 
     private var cancellables = Set<AnyCancellable>()
 
@@ -33,11 +33,17 @@ final class MPCManager: NSObject {
     var receivedViewTransitionPublisher = PassthroughSubject<String, Never>()
     var isAvailableToBeConnected: Bool = false {
         didSet {
+            do {
+                dog = try dataManager.loadData(forKey: "dogInfo", type: Dog.self)
+                updateProfile(dogInfo: dog ?? Dog.example)
+            } catch {
+                SNMLogger.error("loadData error : \(error)")
+            }
+
             if isAvailableToBeConnected {
                 advertiser.startAdvertising()
                 browser.startBrowsing()
             } else {
-                SNMLogger.error("isAvailableToBeConnected is changed")
                 advertiser.stopAdvertising()
                 browser.stopBrowsing()
             }
@@ -83,7 +89,7 @@ final class MPCManager: NSObject {
         advertiser.stopAdvertising()
         browser.stopBrowsing()
     }
-    
+
     func sendToken(discoveryToken: Data) {
         guard !session.connectedPeers.isEmpty else { return }
 
@@ -107,15 +113,9 @@ final class MPCManager: NSObject {
             let dataToSend = ReceiveData(token: nil, profile: profile, transitionMessage: nil)
             let encodedData = try JSONEncoder().encode(dataToSend)
             SNMLogger.info("encodedData is  \(encodedData)")
+            sendProfileData(data: encodedData)
             timer = Timer.scheduledTimer(withTimeInterval: 3.0, repeats: true) { [weak self] _ in
-                do {
-                    guard let session = self?.session else { return }
-                    try self?.session.send(encodedData, toPeers: session.connectedPeers, with: .reliable)
-                    SNMLogger.log("DogProfileInfo 전송 성공")
-                } catch {
-                    SNMLogger.error("DogProfileInfo 전송 실패 \(error.localizedDescription)")
-                }
-
+                self?.sendProfileData(data: encodedData)
             }
         } catch {
             SNMLogger.error("DogProfileInfo 전송 실패: \(error.localizedDescription)")
@@ -132,6 +132,19 @@ final class MPCManager: NSObject {
             try session.send(encodedData, toPeers: session.connectedPeers, with: .reliable)
         } catch {
             SNMLogger.error("error sending \(error.localizedDescription)")
+        }
+    }
+
+    private func updateProfile(dogInfo: Dog) {
+        profile = DogProfileInfo(name: dogInfo.name, keywords: dogInfo.keywords, profileImage: dogInfo.profileImage)
+    }
+
+    private func sendProfileData(data: Data) {
+        do {
+            try self.session.send(data, toPeers: session.connectedPeers, with: .reliable)
+            SNMLogger.log("DogProfileInfo 전송 성공")
+        } catch {
+            SNMLogger.error("DogProfileInfo 전송 실패 \(error.localizedDescription)")
         }
     }
 }
@@ -154,7 +167,7 @@ extension MPCManager: MCSessionDelegate {
                 self.paired = true
                 self.isAvailableToBeConnected = false
                 SNMLogger.info("ConnectedPeers: \(session.connectedPeers)")
-                sendData(profile: testProfile)
+                sendData(profile: profile ?? DogProfileInfo.example)
             }
         default:
             Task { @MainActor in
