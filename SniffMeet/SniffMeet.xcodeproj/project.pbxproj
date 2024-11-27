@@ -591,24 +591,11 @@
 		A2C844CF2CDBE1CB007F2970 /* Common */ = {
 			isa = PBXGroup;
 			children = (
-				FD880B612CF433AC0093BEB9 /* Environment.swift */,
-				3200453C2CF5A60A00D08B6D /* Extension + Date.swift */,
-				FD331A4C2CF2359D00F39426 /* SNMLineTabBar.swift */,
-				320044842CEC836000D08B6D /* PaddingLabel.swift */,
-				FD880B592CECE8F90093BEB9 /* SNMLogger.swift */,
-				FD5134162CEB7388002E76F3 /* UIControl + Publisher.swift */,
-				FDEAEA792CE3148C005890FA /* BaseView.swift */,
-				FDEAEA7B2CE314A3005890FA /* BaseViewController.swift */,
-				FDBFA9B02CE1FDED00AA9220 /* LayoutConstant.swift */,
-				FDBFA9A02CE1E51000AA9220 /* SNMColor.swift */,
-				FDBFA99E2CE1E50900AA9220 /* SNMFont.swift */,
-				995D94252CE32EC1005A47BF /* Extension + Keyboard.swift */,
-				320043962CDF493600D08B6D /* Extension + UIView.swift */,
-				3200438C2CDF3D7F00D08B6D /* Extension + Navigation.swift */,
-				3200438D2CDF3D7F00D08B6D /* InputTextField.swift */,
-				3200438E2CDF3D7F00D08B6D /* KeywordButton.swift */,
-				3200438F2CDF3D7F00D08B6D /* KeywordView.swift */,
-				320043902CDF3D7F00D08B6D /* PrimaryButton.swift */,
+				FDE7688E2CF7823D00B5DE88 /* Base */,
+				FDE768892CF7819D00B5DE88 /* Constant */,
+				FDE768882CF7811900B5DE88 /* Util */,
+				FDE768872CF7811400B5DE88 /* Helper */,
+				FDE768862CF7810E00B5DE88 /* Design System */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -1472,6 +1459,59 @@
 				FDCD02CD2CE917D400B627D8 /* MockRequest.swift */,
 			);
 			path = Mock;
+			sourceTree = "<group>";
+		};
+		FDE768862CF7810E00B5DE88 /* Design System */ = {
+			isa = PBXGroup;
+			children = (
+				3200438D2CDF3D7F00D08B6D /* InputTextField.swift */,
+				3200438E2CDF3D7F00D08B6D /* KeywordButton.swift */,
+				3200438F2CDF3D7F00D08B6D /* KeywordView.swift */,
+				320043902CDF3D7F00D08B6D /* PrimaryButton.swift */,
+				FD331A4C2CF2359D00F39426 /* SNMLineTabBar.swift */,
+				320044842CEC836000D08B6D /* PaddingLabel.swift */,
+				FDBFA9B02CE1FDED00AA9220 /* LayoutConstant.swift */,
+				FDBFA9A02CE1E51000AA9220 /* SNMColor.swift */,
+				FDBFA99E2CE1E50900AA9220 /* SNMFont.swift */,
+			);
+			path = "Design System";
+			sourceTree = "<group>";
+		};
+		FDE768872CF7811400B5DE88 /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				3200453C2CF5A60A00D08B6D /* Extension + Date.swift */,
+				FD5134162CEB7388002E76F3 /* UIControl + Publisher.swift */,
+				995D94252CE32EC1005A47BF /* Extension + Keyboard.swift */,
+				320043962CDF493600D08B6D /* Extension + UIView.swift */,
+				3200438C2CDF3D7F00D08B6D /* Extension + Navigation.swift */,
+			);
+			path = Helper;
+			sourceTree = "<group>";
+		};
+		FDE768882CF7811900B5DE88 /* Util */ = {
+			isa = PBXGroup;
+			children = (
+				FD880B592CECE8F90093BEB9 /* SNMLogger.swift */,
+			);
+			path = Util;
+			sourceTree = "<group>";
+		};
+		FDE768892CF7819D00B5DE88 /* Constant */ = {
+			isa = PBXGroup;
+			children = (
+				FD880B612CF433AC0093BEB9 /* Environment.swift */,
+			);
+			path = Constant;
+			sourceTree = "<group>";
+		};
+		FDE7688E2CF7823D00B5DE88 /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				FDEAEA792CE3148C005890FA /* BaseView.swift */,
+				FDEAEA7B2CE314A3005890FA /* BaseViewController.swift */,
+			);
+			path = Base;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
