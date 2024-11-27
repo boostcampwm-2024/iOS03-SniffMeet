@@ -35,6 +35,6 @@ extension LocalDataManager: DataLoadable {
 
 
 enum UserDefaultKey {
-    static let dogInfo: String = "dogInfo"
+    static let userInfo: String = "userInfo"
     static let mateList: String = "mateList"
 }

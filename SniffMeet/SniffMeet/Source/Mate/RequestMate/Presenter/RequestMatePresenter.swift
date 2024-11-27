@@ -6,7 +6,7 @@
 //
 
 protocol RequestMatePresentable: AnyObject {
-    func didFetchDogProfile(_ dogProfile: DogProfileInfo)
+    func didFetchDogProfile(_ dogProfile: DogProfileDTO)
     func viewDidLoad()
 }
 
@@ -19,6 +19,6 @@ final class RequestMatePresenter: RequestMatePresentable {
         interactor?.fetchDogProfile()
     }
 
-    func didFetchDogProfile(_ dogProfile: DogProfileInfo) {
+    func didFetchDogProfile(_ dogProfile: DogProfileDTO) {
     }
 }

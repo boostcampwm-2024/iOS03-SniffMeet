@@ -7,19 +7,19 @@
 
 protocol HomeInteractable: AnyObject {
     var presenter: (any HomePresentable)? { get }
-    func loadInfo() throws -> Dog
+    func loadInfo() throws -> UserInfo
 }
 
 final class HomeInteractor: HomeInteractable {
     weak var presenter: (any HomePresentable)?
-    private let loadInfoUseCase: LoadDogInfoUseCase
+    private let loadUserInfoUseCase: LoadUserInfoUseCase
 
-    init(presenter: (any HomePresentable)? = nil, loadInfoUseCase: LoadDogInfoUseCase) {
+    init(presenter: (any HomePresentable)? = nil, loadUserInfoUseCase: LoadUserInfoUseCase) {
         self.presenter = presenter
-        self.loadInfoUseCase = loadInfoUseCase
+        self.loadUserInfoUseCase = loadUserInfoUseCase
     }
 
-    func loadInfo() throws -> Dog {
-        try loadInfoUseCase.execute()
+    func loadInfo() throws -> UserInfo {
+        try loadUserInfoUseCase.execute()
     }
 }

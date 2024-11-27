@@ -9,8 +9,8 @@ import Foundation
 
 protocol RespondWalkInteractable: AnyObject {
     var presenter: RespondWalkInteractorOutput? { get set }
-    var fetchUserUseCase: FetchUserInfoUseCase { get }
-    var respondUseCase: RespondWalkRequestUseCase { get }
+    var requestUserInfoUseCase: RequestUserInfoUseCase { get }
+    var respondWalkRequestUseCase: RespondWalkRequestUseCase { get }
     var calculateTimeLimitUseCase: CalculateTimeLimitUseCase { get }
     var convertLocationToTextUseCase: ConvertLocationToTextUseCase { get }
     var requestProfileImageUseCase: RequestProfileImageUseCase { get }
@@ -24,14 +24,14 @@ protocol RespondWalkInteractable: AnyObject {
 
 final class RespondWalkInteractor: RespondWalkInteractable {
     weak var presenter: (any RespondWalkInteractorOutput)?
-    var fetchUserUseCase: FetchUserInfoUseCase
-    var respondUseCase: RespondWalkRequestUseCase
+    var requestUserInfoUseCase: RequestUserInfoUseCase
+    var respondWalkRequestUseCase: RespondWalkRequestUseCase
     var calculateTimeLimitUseCase: CalculateTimeLimitUseCase
     var convertLocationToTextUseCase: ConvertLocationToTextUseCase
     var requestProfileImageUseCase: RequestProfileImageUseCase
     
     init(presenter: (any RespondWalkInteractorOutput)? = nil,
-         fetchUserUseCase: FetchUserInfoUseCase,
+         requestUserInfoUseCase: RequestUserInfoUseCase,
          respondUseCase: RespondWalkRequestUseCase,
          calculateTimeLimitUseCase: CalculateTimeLimitUseCase,
          convertLocationToTextUseCase: ConvertLocationToTextUseCase,
@@ -39,8 +39,8 @@ final class RespondWalkInteractor: RespondWalkInteractable {
     )
     {
         self.presenter = presenter
-        self.fetchUserUseCase = fetchUserUseCase
-        self.respondUseCase = respondUseCase
+        self.requestUserInfoUseCase = requestUserInfoUseCase
+        self.respondWalkRequestUseCase = respondUseCase
         self.calculateTimeLimitUseCase = calculateTimeLimitUseCase
         self.convertLocationToTextUseCase = convertLocationToTextUseCase
         self.requestProfileImageUseCase = requestProfileImageUseCase
@@ -48,7 +48,7 @@ final class RespondWalkInteractor: RespondWalkInteractable {
     
     func fetchSenderInfo(userId: UUID) {
         do {
-            let senderInfo = try fetchUserUseCase.execute(userId: userId) // 아마 await
+            let senderInfo = try requestUserInfoUseCase.execute(userId: userId) // 아마 await
             presenter?.didFetchUserInfo(senderInfo: senderInfo)
         } catch {
             presenter?.didFailToFetchWalkRequest(error: error)
@@ -57,7 +57,7 @@ final class RespondWalkInteractor: RespondWalkInteractable {
     
     func respondWalkRequest(walkNotiId: UUID, isAccepted: Bool) {
         do {
-            try respondUseCase.execute(walkNotiId: walkNotiId, isAccepted: isAccepted)
+            try respondWalkRequestUseCase.execute(walkNotiId: walkNotiId, isAccepted: isAccepted)
             presenter?.didSendWalkRespond()
         } catch {
             presenter?.didFailToSendWalkRequest(error: error)

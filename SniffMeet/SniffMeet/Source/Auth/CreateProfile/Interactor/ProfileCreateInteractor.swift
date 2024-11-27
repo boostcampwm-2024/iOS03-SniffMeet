@@ -10,36 +10,36 @@ import UIKit
 
 protocol ProfileCreateInteractable: AnyObject {
     var presenter: DogInfoInteractorOutput? { get set }
-    var storeDogInfoUseCase: StoreDogInfoUseCase { get set }
+    var saveUserInfoUseCase: SaveUserInfoUseCase { get set }
     var saveProfileImageUseCase: SaveProfileImageUseCase { get }
 
-    func signInWithProfileData(dogInfo: Dog)
+    func signInWithProfileData(dogInfo: UserInfo)
     func convertImageToData(image: UIImage?) -> Data?
 }
 
 final class ProfileCreateInteractor: ProfileCreateInteractable {
     weak var presenter: DogInfoInteractorOutput?
-    var storeDogInfoUseCase: StoreDogInfoUseCase
+    var saveUserInfoUseCase: SaveUserInfoUseCase
     var saveProfileImageUseCase: SaveProfileImageUseCase
     var saveUserInfoRemoteUseCase: SaveUserInfoRemoteUseCase
 
     init(
         presenter: DogInfoInteractorOutput? = nil,
-        storeDogInfoUsecase: StoreDogInfoUseCase,
+        saveUserInfoUseCase: SaveUserInfoUseCase,
         saveProfileImageUseCase: SaveProfileImageUseCase,
         saveUserInfoRemoteUseCase: SaveUserInfoRemoteUseCase
     ) {
         self.presenter = presenter
-        self.storeDogInfoUseCase = storeDogInfoUsecase
+        self.saveUserInfoUseCase = saveUserInfoUseCase
         self.saveProfileImageUseCase = saveProfileImageUseCase
         self.saveUserInfoRemoteUseCase = saveUserInfoRemoteUseCase
     }
 
-    func signInWithProfileData(dogInfo: Dog) {
+    func signInWithProfileData(dogInfo: UserInfo) {
         Task {
             do {
                 await SupabaseAuthManager.shared.signInAnonymously()
-                try storeDogInfoUseCase.execute(dog: dogInfo)
+                try saveUserInfoUseCase.execute(dog: dogInfo)
                 var fileName: String? = nil
                 if let profileImageData = dogInfo.profileImage {
                     fileName = try await saveProfileImageUseCase.execute(
@@ -50,7 +50,7 @@ final class ProfileCreateInteractor: ProfileCreateInteractable {
                     return
                 }
                 await saveUserInfoRemoteUseCase.execute(
-                    info: UserInfo(
+                    info: UserInfoDTO(
                         id: userID,
                         dogName: dogInfo.name,
                         age: dogInfo.age,
@@ -62,9 +62,9 @@ final class ProfileCreateInteractor: ProfileCreateInteractable {
                         profileImageURL: fileName
                     )   
                 )
-                presenter?.didSaveDogInfo()
+                presenter?.didSaveUserInfo()
             } catch {
-                presenter?.didFailToSaveDogInfo(error: error)
+                presenter?.didFailToSaveUserInfo(error: error)
             }
         }
     }

@@ -15,6 +15,7 @@ protocol MateListViewable: AnyObject {
 final class MateListViewController: BaseViewController, MateListViewable {
     var presenter: (any MateListPresentable)?
     var dataSource: [Mate] = []
+    var imageDataSource: [Int: Data] = [:]
     private var cancellables: Set<AnyCancellable> = []
     private let tableView: UITableView = UITableView()
 
@@ -62,7 +63,7 @@ final class MateListViewController: BaseViewController, MateListViewable {
         presenter?.output.profileImageData
             .receive(on: RunLoop.main)
             .sink { [weak self] (index, imageData) in
-                self?.dataSource[index].profileImageData = imageData
+                self?.imageDataSource[index] = imageData
                 let indexPath = IndexPath(item: index, section: 0)
                 self?.tableView.reloadRows(at: [indexPath], with: .none)
             }
@@ -85,10 +86,13 @@ extension MateListViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: Identifier.mateCellID, for: indexPath)
+        let cell = tableView.dequeueReusableCell(
+            withIdentifier: Identifier.mateCellID,
+            for: indexPath
+        )
         var content = cell.defaultContentConfiguration()
         content.image = .app
-        if let imageData = dataSource[indexPath.row].profileImageData {
+        if let imageData = imageDataSource[indexPath.row] {
             content.image = UIImage(data: imageData)
         } else {
             presenter?.didTableViewCellLoad(

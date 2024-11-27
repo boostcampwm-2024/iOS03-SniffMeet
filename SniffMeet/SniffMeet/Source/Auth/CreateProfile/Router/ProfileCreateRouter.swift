@@ -11,7 +11,7 @@ protocol ProfileCreateRoutable {
 }
 
 protocol ProfileCreateBuildable {
-    static func createProfileCreateModule(dogDetailInfo: DogDetailInfo) -> UIViewController
+    static func createProfileCreateModule(dogDetailInfo: DogInfo) -> UIViewController
 }
 
 final class ProfileCreateRouter: ProfileCreateRoutable {
@@ -29,10 +29,10 @@ final class ProfileCreateRouter: ProfileCreateRoutable {
 }
 
 extension ProfileCreateRouter: ProfileCreateBuildable {
-    static func createProfileCreateModule(dogDetailInfo: DogDetailInfo) -> UIViewController {
-        let storeDogInfoUsecase: StoreDogInfoUseCase =
-        StoreDogInfoUseCaseImpl(localDataManager: LocalDataManager())
-        let saveProfileImageUsecase: SaveProfileImageUseCase =
+    static func createProfileCreateModule(dogDetailInfo: DogInfo) -> UIViewController {
+        let saveUserInfoUseCase: SaveUserInfoUseCase =
+        SaveUserInfoUseCaseImpl(localDataManager: LocalDataManager())
+        let saveProfileImageUseCase: SaveProfileImageUseCase =
         SaveProfileImageUseCaseImpl(
             remoteImageManager: SupabaseStorageManager(
                 networkProvider: SNMNetworkProvider()
@@ -46,8 +46,8 @@ extension ProfileCreateRouter: ProfileCreateBuildable {
         = ProfileCreatePresenter(dogInfo: dogDetailInfo)
         let interactor: ProfileCreateInteractable =
         ProfileCreateInteractor(
-            storeDogInfoUsecase: storeDogInfoUsecase,
-            saveProfileImageUseCase: saveProfileImageUsecase,
+            saveUserInfoUseCase: saveUserInfoUseCase,
+            saveProfileImageUseCase: saveProfileImageUseCase,
             saveUserInfoRemoteUseCase: saveUserInfoRemoteUseCase
         )
         let router: ProfileCreateRoutable & ProfileCreateBuildable = ProfileCreateRouter()

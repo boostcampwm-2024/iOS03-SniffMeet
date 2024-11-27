@@ -12,7 +12,7 @@ enum HomeModuleBuilder {
         let view = HomeViewController()
         let router = HomeRouter()
         let interactor = HomeInteractor(
-            loadInfoUseCase: LoadDogInfoUseCaseImpl(
+            loadUserInfoUseCase: LoadUserInfoUseCaseImpl(
                 dataLoadable: LocalDataManager()
             )
         )
