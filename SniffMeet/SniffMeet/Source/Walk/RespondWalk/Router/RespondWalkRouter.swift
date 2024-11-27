@@ -29,6 +29,8 @@ extension RespondWalkRouter: RespondWalkBuildable {
         let calculateTimeUseCase: CalculateTimeLimitUseCase = CalculateTimeLimitUseCaseImpl()
         let convertLocationToTextUseCase: ConvertLocationToTextUseCase =
         ConvertLocationToTextUseCaseImpl(geoCoder: CLGeocoder())
+        let requestProfileImageUseCase: RequestProfileImageUseCase =
+        RequestProfileImageUseCaseImpl()
 
         let view: RespondWalkViewable & UIViewController = RespondWalkViewController()
         let presenter: RespondWalkPresentable & RespondWalkInteractorOutput =
@@ -37,7 +39,8 @@ extension RespondWalkRouter: RespondWalkBuildable {
         RespondWalkInteractor(fetchUserUseCase: fetchUseCase,
                               respondUseCase: respondUseCase,
                               calculateTimeLimitUseCase: calculateTimeUseCase,
-                              convertLocationToTextUseCase: convertLocationToTextUseCase
+                              convertLocationToTextUseCase: convertLocationToTextUseCase,
+                              requestProfileImageUseCase: requestProfileImageUseCase
         )
         
         let router: RespondWalkRoutable & RespondWalkBuildable = RespondWalkRouter()

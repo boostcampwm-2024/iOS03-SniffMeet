@@ -5,7 +5,7 @@
 //  Created by 윤지성 on 11/20/24.
 //
 import Combine
-import Foundation
+import UIKit
 
 protocol RespondWalkPresentable : AnyObject {
     var noti: WalkNoti { get }
@@ -25,8 +25,9 @@ protocol RespondWalkInteractorOutput: AnyObject {
     func didSendWalkRespond()
     func didCalculateTimeLimit(secondDifference: Int)
     func didConvertLocationToText(with location: String?)
-    func didFailToFetchWalkRequest(error: Error)
+    func didFetchProfileImage(with imageData: Data?)
     func didFailToSendWalkRequest(error: Error)
+    func didFailToFetchWalkRequest(error: Error)
 }
 
 final class RespondWalkPresenter: RespondWalkPresentable {    
@@ -41,7 +42,8 @@ final class RespondWalkPresenter: RespondWalkPresentable {
          interactor: (any RespondWalkInteractable)? = nil,
          router: (any RespondWalkRoutable)? = nil,
          output: RespondWalkPresenterOutput =  DefaultRespondWalkPresenterOutput(
-            locationLabel: CurrentValueSubject<String?, Never>(nil)
+            locationLabel: CurrentValueSubject<String?, Never>(nil),
+            profileImage: CurrentValueSubject<UIImage?, Never>(nil)
          )
     )
     {
@@ -90,6 +92,15 @@ extension RespondWalkPresenter: RespondWalkInteractorOutput {
         dismissView()
     }
     
+    func didFetchProfileImage(with imageData: Data?) {
+        guard let imageData else {
+            output.profileImage.send(nil)
+            return
+        }
+        let image = UIImage(data: imageData)
+        output.profileImage.send(image)
+    }
+    
     func didFailToFetchWalkRequest(error: any Error) {
         // TODO: -  에러 구체화 필요
         view?.showError()
@@ -108,8 +119,10 @@ extension RespondWalkPresenter: RespondWalkInteractorOutput {
 
 protocol RespondWalkPresenterOutput {
     var locationLabel: CurrentValueSubject<String?, Never> { get }
+    var profileImage: CurrentValueSubject<UIImage?, Never> { get }
 }
 
 struct DefaultRespondWalkPresenterOutput: RespondWalkPresenterOutput {
     let locationLabel: CurrentValueSubject<String?, Never>
+    let profileImage: CurrentValueSubject<UIImage?, Never>
 }
