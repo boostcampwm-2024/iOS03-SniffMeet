@@ -21,15 +21,18 @@ final class ProfileCreateInteractor: ProfileCreateInteractable {
     weak var presenter: DogInfoInteractorOutput?
     var storeDogInfoUseCase: StoreDogInfoUseCase
     var saveProfileImageUseCase: SaveProfileImageUseCase
+    var saveUserInfoRemoteUseCase: SaveUserInfoRemoteUseCase
 
     init(
         presenter: DogInfoInteractorOutput? = nil,
         storeDogInfoUsecase: StoreDogInfoUseCase,
-        saveProfileImageUseCase: SaveProfileImageUseCase
+        saveProfileImageUseCase: SaveProfileImageUseCase,
+        saveUserInfoRemoteUseCase: SaveUserInfoRemoteUseCase
     ) {
         self.presenter = presenter
         self.storeDogInfoUseCase = storeDogInfoUsecase
         self.saveProfileImageUseCase = saveProfileImageUseCase
+        self.saveUserInfoRemoteUseCase = saveUserInfoRemoteUseCase
     }
 
     func signInWithProfileData(dogInfo: Dog) {
@@ -37,9 +40,28 @@ final class ProfileCreateInteractor: ProfileCreateInteractable {
             do {
                 await SupabaseAuthManager.shared.signInAnonymously()
                 try storeDogInfoUseCase.execute(dog: dogInfo)
+                var fileName: String? = nil
                 if let profileImageData = dogInfo.profileImage {
-                    _ = try await saveProfileImageUseCase.execute(imageData: profileImageData)
+                    fileName = try await saveProfileImageUseCase.execute(
+                        imageData: profileImageData
+                    )
                 }
+                guard let userID = SessionManager.shared.session?.user?.userID else {
+                    return
+                }
+                await saveUserInfoRemoteUseCase.execute(
+                    info: UserInfo(
+                        id: userID,
+                        dogName: dogInfo.name,
+                        age: dogInfo.age,
+                        sex: dogInfo.sex,
+                        sexUponIntake: dogInfo.sexUponIntake,
+                        size: dogInfo.size,
+                        keywords: dogInfo.keywords,
+                        nickname: dogInfo.nickname,
+                        profileImageURL: fileName
+                    )   
+                )
                 presenter?.didSaveDogInfo()
             } catch {
                 presenter?.didFailToSaveDogInfo(error: error)
