@@ -6,15 +6,20 @@
 //
 import Foundation
 
-protocol AcceptMateRequestUseCase {
+protocol RespondMateRequestUseCase {
     var localDataManager: DataStorable & DataLoadable { get }
-    func execute(mateId: UUID)
+    func execute(mateId: UUID, isAccepted: Bool)
 }
 
-struct AcceptMateRequestUseCaseImpl: AcceptMateRequestUseCase {
+struct RespondMateRequestUseCaseImpl: RespondMateRequestUseCase {
     var localDataManager: DataStorable & DataLoadable
     
-    func execute(mateId: UUID) {
+    func execute(mateId: UUID, isAccepted: Bool) {
+        if isAccepted {
+            addMate(mateId: mateId)
+        }
+    }
+    func addMate(mateId: UUID) {
         var mateList: [UUID]  = []
         do {
             mateList = try localDataManager.loadData(forKey: UserDefaultKey.mateList,
