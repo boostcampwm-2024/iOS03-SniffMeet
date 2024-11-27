@@ -4,20 +4,23 @@
 //
 //  Created by 윤지성 on 11/19/24.
 //
+import Combine
 import UIKit
 
 protocol RespondWalkViewable: AnyObject {
     var presenter: RespondWalkPresentable? { get set }
     
     func showRequestDetail(request: WalkRequest)
-    func showTimeOut()
     func showError()
+    func startTimer(countDownValue: Int)
 }
 
 final class RespondWalkViewController: BaseViewController, RespondWalkViewable {
     var presenter: (any RespondWalkPresentable)?
     private let scrollView = UIScrollView()
     private let contentView = UIView()
+    private var timerPublisher: AnyPublisher<Int, Never>?
+    private var cancellables: Set<AnyCancellable> = []
     
     private var dismissButton: UIButton = {
         let button = UIButton()
@@ -50,16 +53,16 @@ final class RespondWalkViewController: BaseViewController, RespondWalkViewable {
         label.numberOfLines = 4
         return label
     }()
-    private var warningLabel: UILabel = {
+    private var timeLimitLabel: UILabel = {
         let label = UILabel()
-        label.text = "60" + Context.warningTitle
         label.font = SNMFont.caption
+        label.text = "   " + Context.remainingTimeLimitTitle
         label.textColor = SNMColor.black
         label.numberOfLines = 2
         label.textAlignment = .center
         return label
     }()
-    private var acceptButton = PrimaryButton(title: Context.acceptButtonTitle)
+    private var submitButton = PrimaryButton(title: Context.abledSubmitButtonTitle)
     override func viewDidLoad() {
         super.viewDidLoad()
         presenter?.viewDidLoad()
@@ -67,6 +70,9 @@ final class RespondWalkViewController: BaseViewController, RespondWalkViewable {
     override func configureAttributes() {
         profileView.configure(dog: Dog.example)
         messageLabel.text = "HomeView에서 dogInfo의 변경을 알아야 하더라구요. Presenter에서 HomePresenterOutput 프로토콜을 채택하도록 설정해줬습니다."
+        
+        submitButton.setTitle(Context.abledSubmitButtonTitle, for: .normal)
+        submitButton.setTitle(Context.disabledSubmitButtonTitle, for: .disabled)
     }
     override func configureHierachy() {
         view.addSubview(scrollView)
@@ -80,8 +86,8 @@ final class RespondWalkViewController: BaseViewController, RespondWalkViewable {
          profileView,
          locationView,
          messageLabel,
-         warningLabel,
-         acceptButton].forEach
+         timeLimitLabel,
+         submitButton].forEach
         {
             contentView.addSubview($0)
             $0.translatesAutoresizingMaskIntoConstraints = false
@@ -129,19 +135,19 @@ final class RespondWalkViewController: BaseViewController, RespondWalkViewable {
             messageLabel.topAnchor.constraint(
                 equalTo: locationView.bottomAnchor,
                 constant: LayoutConstant.regularVerticalPadding),
-            warningLabel.topAnchor.constraint(
+            timeLimitLabel.topAnchor.constraint(
                 equalTo: messageLabel.bottomAnchor,
                 constant: LayoutConstant.mediumVerticalPadding),
-            warningLabel.bottomAnchor.constraint(
-                equalTo: acceptButton.topAnchor,
+            timeLimitLabel.bottomAnchor.constraint(
+                equalTo: submitButton.topAnchor,
                 constant: -LayoutConstant.smallVerticalPadding),
-            warningLabel.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
-            acceptButton.bottomAnchor.constraint(equalTo: contentView.bottomAnchor,
+            timeLimitLabel.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
+            submitButton.bottomAnchor.constraint(equalTo: contentView.bottomAnchor,
                                                  constant: -LayoutConstant.xlargeVerticalPadding),
-            acceptButton.heightAnchor.constraint(equalToConstant: 50)
+            submitButton.heightAnchor.constraint(equalToConstant: 50)
         ])
         
-        [locationView, messageLabel, warningLabel, acceptButton].forEach {
+        [locationView, messageLabel, timeLimitLabel, submitButton].forEach {
             $0.leadingAnchor.constraint(
                 equalTo: contentView.leadingAnchor,
                 constant: LayoutConstant.smallHorizontalPadding).isActive = true
@@ -150,6 +156,15 @@ final class RespondWalkViewController: BaseViewController, RespondWalkViewable {
                 constant: -LayoutConstant.smallHorizontalPadding).isActive = true
         }
     }
+    override func bind() {
+        presenter?.output.locationLabel
+            .receive(on: RunLoop.main)
+            .sink { [weak self] locationLabel in
+                guard let locationLabel else { return }
+                self?.locationView.setAddress(address: locationLabel)
+            }
+            .store(in: &cancellables)
+    }
 }
 
 private extension RespondWalkViewController {
@@ -157,8 +172,10 @@ private extension RespondWalkViewController {
         static let mainTitle: String = "산책 요청이 도착했어요!"
         static let locationGuideTitle: String = "산책 시작 장소"
         static let messagePlaceholder: String = "간단한 요청 메세지를 작성해주세요."
-        static let acceptButtonTitle: String = "산책 요청 수락하기"
-        static let warningTitle: String = "초 안에 요청을 수락하지 않으면 자동으로 거절 처리돼요."
+        static let abledSubmitButtonTitle: String = "산책 요청 수락하기"
+        static let disabledSubmitButtonTitle: String = "다음 기회에"
+        static let remainingTimeLimitTitle: String = "초 안에 요청을 수락하지 않으면 자동으로 거절 처리돼요."
+        static let timeoutTitle: String = "수락 제한 시간(60초) 초과되어 자동 거절처리 됐습니다."
         static let characterCountLimit: Int = 100
     }
     
@@ -166,7 +183,6 @@ private extension RespondWalkViewController {
         dismissButton.addAction(UIAction(handler: {[weak self] _ in
             self?.presenter?.dismissView()
         }), for: .touchUpInside)
-        
     }
 }
 
@@ -178,11 +194,28 @@ extension RespondWalkViewController {
         locationView.setAddress(address: request.address.location)
         profileView.configure(dog: request.dog)
     }
-    
-    func showTimeOut() {
-        
-    }
     func showError() {
         
+    }
+    func startTimer(countDownValue: Int) {
+        timerPublisher = Publishers.Merge(
+            Just(countDownValue), // 즉시 첫 값 발행
+            Timer.publish(every: 1.0, on: RunLoop.main, in: RunLoop.Mode.common)
+                .autoconnect()
+                .scan(countDownValue) { current, _ in
+                    max(current - 1, 0)
+                }
+        )
+        .prefix(while: { $0 >= 0 }) // 값이 0일 때까지 이벤트 발행
+        .eraseToAnyPublisher()
+        
+        timerPublisher?.sink { [weak self] value in
+            guard let self else { return }
+            self.timeLimitLabel.text = String(value) + Context.remainingTimeLimitTitle
+            if value == 0 {
+                self.timeLimitLabel.text = Context.timeoutTitle
+                self.submitButton.isEnabled = false
+            }
+        }.store(in: &cancellables)
     }
 }

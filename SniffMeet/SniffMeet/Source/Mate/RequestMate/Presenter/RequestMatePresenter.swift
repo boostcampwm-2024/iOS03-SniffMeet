@@ -20,6 +20,5 @@ final class RequestMatePresenter: RequestMatePresentable {
     }
 
     func didFetchDogProfile(_ dogProfile: DogProfileInfo) {
-        view?.updateView(with: dogProfile)
     }
 }
