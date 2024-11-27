@@ -20,14 +20,8 @@ struct RespondMateRequestUseCaseImpl: RespondMateRequestUseCase {
         }
     }
     func addMate(mateId: UUID) {
-        var mateList: [UUID]  = []
         do {
-            mateList = try localDataManager.loadData(forKey: UserDefaultKey.mateList,
-                                                     type: [UUID].self)
-        } catch {
-            SNMLogger.info("mateList가 저장된적 없다. ")
-        }
-        do {
+            var mateList: [UUID] = try localDataManager.loadData(forKey: UserDefaultKey.mateList, type: [UUID].self) ?? []
             mateList.append(mateId)
             try localDataManager.storeData(data: mateList, key: UserDefaultKey.mateList)
         } catch {
