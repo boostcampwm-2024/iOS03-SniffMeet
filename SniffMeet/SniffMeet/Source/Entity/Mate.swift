@@ -7,15 +7,9 @@
 
 import Foundation
 
-struct Mate: Decodable {
+struct Mate {
     var name: String
     var userID: UUID
+    var keywords: [Keyword]
     var profileImageURLString: String
-    var profileImageData: Data?
-
-    enum CodingKeys: String, CodingKey {
-        case name
-        case userID = "user_id"
-        case profileImageURLString = "profile_image_url_string"
-    }
 }
