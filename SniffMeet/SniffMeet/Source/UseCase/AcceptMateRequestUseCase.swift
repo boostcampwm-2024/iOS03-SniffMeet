@@ -15,8 +15,14 @@ struct AcceptMateRequestUseCaseImpl: AcceptMateRequestUseCase {
     var localDataManager: DataStorable & DataLoadable
     
     func execute(mateId: UUID) {
+        var mateList: [UUID]  = []
         do {
-            var mateList: [UUID] = try localDataManager.loadData(forKey: UserDefaultKey.mateList, type: [UUID].self)
+            mateList = try localDataManager.loadData(forKey: UserDefaultKey.mateList,
+                                                     type: [UUID].self)
+        } catch {
+            SNMLogger.info("mateList가 저장된적 없다. ")
+        }
+        do {
             mateList.append(mateId)
             try localDataManager.storeData(data: mateList, key: UserDefaultKey.mateList)
         } catch {
