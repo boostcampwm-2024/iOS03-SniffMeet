@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct SupabaseUser {
+struct SupabaseUser: Encodable {
     var userID: UUID
     // var name: String
     // var profileImageURL: URL
