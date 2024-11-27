@@ -80,10 +80,6 @@ final class ProfileView: BaseView {
     }
     
     func configureImage(with image: UIImage?) {
-        guard let image else {
-            imageView.image = .imagePlaceholder
-            return
-        }
-        imageView.image = image
+        imageView.image = image ?? UIImage.imagePlaceholder
     }
 }
