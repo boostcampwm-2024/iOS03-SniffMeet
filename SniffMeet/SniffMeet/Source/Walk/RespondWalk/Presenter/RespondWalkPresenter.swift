@@ -5,7 +5,7 @@
 //  Created by 윤지성 on 11/20/24.
 //
 import Combine
-import Foundation
+import UIKit
 
 protocol RespondWalkPresentable : AnyObject {
     var noti: WalkNoti { get }
@@ -15,18 +15,19 @@ protocol RespondWalkPresentable : AnyObject {
     var output: (any RespondWalkPresenterOutput) { get }
 
     func viewDidLoad()
-    func respondWalkRequest(walkRequestNumber: Int, isAccepted: Bool)
+    func respondWalkRequest(isAccepted: Bool)
     func dismissView()
     func handleExceedingLimit() // 제한 시간 초과일 때 실행하는 함수
 }
 
 protocol RespondWalkInteractorOutput: AnyObject {
     func didFetchUserInfo(senderInfo: Dog) // fetch한 데이터를 보여준다.
-    func didSendWalkRequest()
+    func didSendWalkRespond()
     func didCalculateTimeLimit(secondDifference: Int)
     func didConvertLocationToText(with location: String?)
-    func didFailToFetchWalkRequest(error: Error)
+    func didFetchProfileImage(with imageData: Data?)
     func didFailToSendWalkRequest(error: Error)
+    func didFailToFetchWalkRequest(error: Error)
 }
 
 final class RespondWalkPresenter: RespondWalkPresentable {    
@@ -41,7 +42,8 @@ final class RespondWalkPresenter: RespondWalkPresentable {
          interactor: (any RespondWalkInteractable)? = nil,
          router: (any RespondWalkRoutable)? = nil,
          output: RespondWalkPresenterOutput =  DefaultRespondWalkPresenterOutput(
-            locationLabel: CurrentValueSubject<String?, Never>(nil)
+            locationLabel: CurrentValueSubject<String?, Never>(nil),
+            profileImage: CurrentValueSubject<UIImage?, Never>(nil)
          )
     )
     {
@@ -60,8 +62,8 @@ final class RespondWalkPresenter: RespondWalkPresentable {
             await interactor?.convertLocationToText(latitude: noti.latitude, longtitude: noti.longtitude)
         }
     }
-    func respondWalkRequest(walkRequestNumber: Int, isAccepted: Bool) {
-        interactor?.respondWalkRequest(requestNum: walkRequestNumber, isAccepted: isAccepted)
+    func respondWalkRequest(isAccepted: Bool) {
+        interactor?.respondWalkRequest(walkNotiId: noti.id, isAccepted: isAccepted)
     }
     func dismissView() {
         guard let view else {return}
@@ -86,8 +88,17 @@ extension RespondWalkPresenter: RespondWalkInteractorOutput {
         view?.showRequestDetail(request: walkRequest)
     }
     
-    func didSendWalkRequest() {
+    func didSendWalkRespond() {
         dismissView()
+    }
+    
+    func didFetchProfileImage(with imageData: Data?) {
+        guard let imageData else {
+            output.profileImage.send(nil)
+            return
+        }
+        let image = UIImage(data: imageData)
+        output.profileImage.send(image)
     }
     
     func didFailToFetchWalkRequest(error: any Error) {
@@ -108,8 +119,10 @@ extension RespondWalkPresenter: RespondWalkInteractorOutput {
 
 protocol RespondWalkPresenterOutput {
     var locationLabel: CurrentValueSubject<String?, Never> { get }
+    var profileImage: CurrentValueSubject<UIImage?, Never> { get }
 }
 
 struct DefaultRespondWalkPresenterOutput: RespondWalkPresenterOutput {
     let locationLabel: CurrentValueSubject<String?, Never>
+    let profileImage: CurrentValueSubject<UIImage?, Never>
 }

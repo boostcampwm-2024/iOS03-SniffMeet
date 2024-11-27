@@ -245,6 +245,8 @@
 		320044972CED81EF00D08B6D /* WalkRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalkRequest.swift; sourceTree = "<group>"; };
 		320044992CEDA80400D08B6D /* FetchUserInfoUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchUserInfoUseCase.swift; sourceTree = "<group>"; };
 		3200449B2CEDA86B00D08B6D /* RespondWalkRequestUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RespondWalkRequestUseCase.swift; sourceTree = "<group>"; };
+		3200453C2CF5A60A00D08B6D /* Extension + Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension + Date.swift"; sourceTree = "<group>"; };
+		3200453E2CF5A88A00D08B6D /* CalculateTimeLimitUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculateTimeLimitUseCase.swift; sourceTree = "<group>"; };
 		320045342CF4353400D08B6D /* SNMFileManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SNMFileManager.swift; sourceTree = "<group>"; };
 		320045392CF43F3800D08B6D /* FileManagerTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileManagerTest.swift; sourceTree = "<group>"; };
 		3200453C2CF5A60A00D08B6D /* Extension + Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension + Date.swift"; sourceTree = "<group>"; };

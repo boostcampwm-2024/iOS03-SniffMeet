@@ -20,8 +20,8 @@ final class ProfileView: BaseView {
         let view = KeywordView(title: "")
         return view
     }()
-    private var nameLabel: UILabel = {
-        let label = UILabel()
+    private var nameLabel: PaddingLabel = {
+        let label = PaddingLabel(paddingType: .horizontal)
         label.font = SNMFont.title3
         label.textColor = SNMColor.mainWhite
         label.lineBreakMode = .byCharWrapping
@@ -57,16 +57,29 @@ final class ProfileView: BaseView {
             nameLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: LayoutConstant.smallHorizontalPadding)
         ])
     }
+    
+    override func configureAttributes() {
+        styleLabel(nameLabel)
+    }
+    func styleLabel(_ label: UILabel) {
+        label.backgroundColor = SNMColor.subGray3.withAlphaComponent(0.6)
+        label.textColor = .white
+        label.textAlignment = .center
+        label.layer.cornerRadius = 15
+        label.layer.masksToBounds = true
+    }
+    
     func configure(dog: Dog) {
         nameLabel.text = dog.name
-        if let imageData = dog.profileImage,
-           let image = UIImage(data: imageData) {
-            imageView.image = image
-        }
+        
         guard let firstKeyword = dog.keywords.first else { return }
         firstKeywordView.text = firstKeyword.rawValue
         
         guard dog.keywords.count > 1 else { return }
         secondKeywordView.text = dog.keywords[1].rawValue
+    }
+    
+    func configureImage(with image: UIImage?) {
+        imageView.image = image ?? UIImage.imagePlaceholder
     }
 }

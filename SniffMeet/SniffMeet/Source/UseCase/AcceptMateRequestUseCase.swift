@@ -20,10 +20,15 @@ struct RespondMateRequestUseCaseImpl: RespondMateRequestUseCase {
         }
     }
     func addMate(mateId: UUID) {
+        var mateList: [UUID]? = try? localDataManager.loadData(forKey: UserDefaultKey.mateList, type: [UUID].self)
+        
         do {
-            var mateList: [UUID] = try localDataManager.loadData(forKey: UserDefaultKey.mateList, type: [UUID].self) ?? []
-            mateList.append(mateId)
-            try localDataManager.storeData(data: mateList, key: UserDefaultKey.mateList)
+            if var mateList {
+                mateList.append(mateId)
+                try localDataManager.storeData(data: mateList, key: UserDefaultKey.mateList)
+            } else {
+                try localDataManager.storeData(data: [mateId], key: UserDefaultKey.mateList)
+            }
         } catch {
             SNMLogger.error("AcceptMateRequestUsecaseError: \(error.localizedDescription)")
         }

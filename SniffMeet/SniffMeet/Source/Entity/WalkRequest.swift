@@ -52,7 +52,8 @@ struct WalkNotiDTO: Decodable {
     }
     
     func toEntity() -> WalkNoti {
-        WalkNoti(createdAt: createdAtDate,
+        WalkNoti(id: id,
+                 createdAt: createdAtDate,
                  message: message,
                  latitude: latitude,
                  longtitude: longtitude,
@@ -62,6 +63,7 @@ struct WalkNotiDTO: Decodable {
 }
 
 struct WalkNoti {
+    let id: UUID
     let createdAt: Date?
     let message: String
     let latitude: Double
@@ -70,7 +72,8 @@ struct WalkNoti {
     let senderName: String
 }
 extension WalkNoti {
-    static let example = WalkNoti(createdAt: Date.now,
+    static let example = WalkNoti(id: UUID(),
+                                  createdAt: Date.now,
                                   message: "산책하시죠",
                                   latitude: 11,
                                   longtitude: 11,

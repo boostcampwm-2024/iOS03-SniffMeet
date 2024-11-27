@@ -13,11 +13,13 @@ protocol RespondWalkInteractable: AnyObject {
     var respondUseCase: RespondWalkRequestUseCase { get }
     var calculateTimeLimitUseCase: CalculateTimeLimitUseCase { get }
     var convertLocationToTextUseCase: ConvertLocationToTextUseCase { get }
+    var requestProfileImageUseCase: RequestProfileImageUseCase { get }
     
     func fetchSenderInfo(userId: UUID)
-    func respondWalkRequest(requestNum: Int, isAccepted: Bool)
+    func respondWalkRequest(walkNotiId: UUID, isAccepted: Bool)
     func calculateTimeLimit(requestTime: Date)
     func convertLocationToText(latitude: Double, longtitude: Double) async
+    func fetchProfileImage()
 }
 
 final class RespondWalkInteractor: RespondWalkInteractable {
@@ -26,12 +28,14 @@ final class RespondWalkInteractor: RespondWalkInteractable {
     var respondUseCase: RespondWalkRequestUseCase
     var calculateTimeLimitUseCase: CalculateTimeLimitUseCase
     var convertLocationToTextUseCase: ConvertLocationToTextUseCase
+    var requestProfileImageUseCase: RequestProfileImageUseCase
     
     init(presenter: (any RespondWalkInteractorOutput)? = nil,
          fetchUserUseCase: FetchUserInfoUseCase,
          respondUseCase: RespondWalkRequestUseCase,
          calculateTimeLimitUseCase: CalculateTimeLimitUseCase,
-         convertLocationToTextUseCase: ConvertLocationToTextUseCase
+         convertLocationToTextUseCase: ConvertLocationToTextUseCase,
+         requestProfileImageUseCase: RequestProfileImageUseCase
     )
     {
         self.presenter = presenter
@@ -39,6 +43,7 @@ final class RespondWalkInteractor: RespondWalkInteractable {
         self.respondUseCase = respondUseCase
         self.calculateTimeLimitUseCase = calculateTimeLimitUseCase
         self.convertLocationToTextUseCase = convertLocationToTextUseCase
+        self.requestProfileImageUseCase = requestProfileImageUseCase
     }
     
     func fetchSenderInfo(userId: UUID) {
@@ -50,14 +55,10 @@ final class RespondWalkInteractor: RespondWalkInteractable {
         }
     }
     
-    func respondWalkRequest(requestNum: Int, isAccepted: Bool) {
+    func respondWalkRequest(walkNotiId: UUID, isAccepted: Bool) {
         do {
-            if isAccepted {
-                try respondUseCase.accept(to: requestNum)
-            } else {
-                try respondUseCase.decline(to: requestNum)
-            }
-            presenter?.didSendWalkRequest()
+            try respondUseCase.execute(walkNotiId: walkNotiId, isAccepted: isAccepted)
+            presenter?.didSendWalkRespond()
         } catch {
             presenter?.didFailToSendWalkRequest(error: error)
         }
@@ -76,5 +77,11 @@ final class RespondWalkInteractor: RespondWalkInteractable {
             presenter?.didConvertLocationToText(with: locationText)
         }
     }
-
+    
+    func fetchProfileImage() {
+        Task { [weak self] in
+            let imageData = await requestProfileImageUseCase.execute()
+            self?.presenter?.didFetchProfileImage(with: imageData)
+        }
+    }
 }
