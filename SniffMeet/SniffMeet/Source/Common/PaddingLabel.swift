@@ -7,26 +7,58 @@
 
 import UIKit
 
-final class AllPaddingLabel: UILabel {
+final class PaddingLabel: UILabel {
     private let padding = LayoutConstant.edgePadding
+    private var paddingType: PaddingType
 
-    init() {
+    init(paddingType: PaddingType = .all) {
+        self.paddingType = paddingType
         super.init(frame: .zero)
     }
     
     @available(*, unavailable)
     required init?(coder: NSCoder) {
+        self.paddingType = .all
         super.init(coder: coder)
     }
     override func drawText(in rect: CGRect) {
-        let insets = UIEdgeInsets(top: padding, left: padding, bottom: padding, right: padding)
+        var insets = UIEdgeInsets(top: padding, left: padding, bottom: padding, right: padding)
+        switch paddingType {
+        case .horizontal:
+            insets = UIEdgeInsets(top: 0, left: padding, bottom: 0, right: padding)
+        case .vertical:
+            insets = UIEdgeInsets(top: padding, left: 0, bottom: padding, right: 0)
+        case .all:
+            break
+        }
         super.drawText(in: rect.inset(by: insets))
     }
     override var intrinsicContentSize: CGSize {
         let size = super.intrinsicContentSize
-        return CGSize(width: size.width + padding * 2, height: size.height + padding * 2)
+        switch paddingType {
+        case .horizontal:
+            return CGSize(width: size.width + padding * 2, height: size.height)
+        case .vertical:
+            return CGSize(width: size.width, height: size.height + padding * 2)
+        case .all:
+            return CGSize(width: size.width + padding * 2, height: size.height + padding * 2)
+        }
     }
     override var bounds: CGRect {
-        didSet { preferredMaxLayoutWidth = bounds.width - ( padding * 2 ) }
+        didSet {
+            switch paddingType {
+            case .horizontal:
+                preferredMaxLayoutWidth = bounds.width - ( padding * 2 )
+            case .vertical:
+                preferredMaxLayoutWidth = bounds.width
+            case .all:
+                preferredMaxLayoutWidth = bounds.width - ( padding * 2 )
+            }
+        }
+    }
+    enum PaddingType {
+        case horizontal
+        case vertical
+        case all
     }
 }

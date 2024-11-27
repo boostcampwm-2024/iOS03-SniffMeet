@@ -47,8 +47,8 @@ final class RespondWalkViewController: BaseViewController, RespondWalkViewable {
         return view
     }()
     private var locationView = LocationSelectionView()
-    private var messageLabel: AllPaddingLabel = {
-        let label = AllPaddingLabel()
+    private var messageLabel: PaddingLabel = {
+        let label = PaddingLabel()
         label.backgroundColor = SNMColor.subGray1
         label.textColor = SNMColor.subBlack1
         label.font = SNMFont.body
