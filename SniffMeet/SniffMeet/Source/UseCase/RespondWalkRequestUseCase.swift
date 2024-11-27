@@ -7,15 +7,15 @@
 import Foundation
 
 protocol RespondWalkRequestUseCase {
-    func accept(to requestNum: Int) throws
-    func decline(to requestNum: Int) throws
+    func execute(walkNotiId: UUID, isAccepted: Bool) throws
 }
 
 struct RespondWalkRequestUseCaseImpl: RespondWalkRequestUseCase {
-    func accept(to requestNum: Int) throws{
-         
-    }
-    func decline(to requestNum: Int) throws{
-        
+    func execute(walkNotiId: UUID, isAccepted: Bool) throws {
+        if isAccepted {
+            // 서버에 수락 응답을 보낸다.
+        } else {
+            // 서버에 거절 응답을 보낸다.
+        }
     }
 }

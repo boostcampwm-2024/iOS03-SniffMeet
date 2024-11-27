@@ -15,14 +15,14 @@ protocol RespondWalkPresentable : AnyObject {
     var output: (any RespondWalkPresenterOutput) { get }
 
     func viewDidLoad()
-    func respondWalkRequest(walkRequestNumber: Int, isAccepted: Bool)
+    func respondWalkRequest(isAccepted: Bool)
     func dismissView()
     func handleExceedingLimit() // 제한 시간 초과일 때 실행하는 함수
 }
 
 protocol RespondWalkInteractorOutput: AnyObject {
     func didFetchUserInfo(senderInfo: Dog) // fetch한 데이터를 보여준다.
-    func didSendWalkRequest()
+    func didSendWalkRespond()
     func didCalculateTimeLimit(secondDifference: Int)
     func didConvertLocationToText(with location: String?)
     func didFailToFetchWalkRequest(error: Error)
@@ -60,8 +60,8 @@ final class RespondWalkPresenter: RespondWalkPresentable {
             await interactor?.convertLocationToText(latitude: noti.latitude, longtitude: noti.longtitude)
         }
     }
-    func respondWalkRequest(walkRequestNumber: Int, isAccepted: Bool) {
-        interactor?.respondWalkRequest(requestNum: walkRequestNumber, isAccepted: isAccepted)
+    func respondWalkRequest(isAccepted: Bool) {
+        interactor?.respondWalkRequest(walkNotiId: noti.id, isAccepted: isAccepted)
     }
     func dismissView() {
         guard let view else {return}
@@ -86,7 +86,7 @@ extension RespondWalkPresenter: RespondWalkInteractorOutput {
         view?.showRequestDetail(request: walkRequest)
     }
     
-    func didSendWalkRequest() {
+    func didSendWalkRespond() {
         dismissView()
     }
     

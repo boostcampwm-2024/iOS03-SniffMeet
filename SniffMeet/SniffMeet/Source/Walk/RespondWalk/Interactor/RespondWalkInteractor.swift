@@ -15,7 +15,7 @@ protocol RespondWalkInteractable: AnyObject {
     var convertLocationToTextUseCase: ConvertLocationToTextUseCase { get }
     
     func fetchSenderInfo(userId: UUID)
-    func respondWalkRequest(requestNum: Int, isAccepted: Bool)
+    func respondWalkRequest(walkNotiId: UUID, isAccepted: Bool)
     func calculateTimeLimit(requestTime: Date)
     func convertLocationToText(latitude: Double, longtitude: Double) async
 }
@@ -50,14 +50,10 @@ final class RespondWalkInteractor: RespondWalkInteractable {
         }
     }
     
-    func respondWalkRequest(requestNum: Int, isAccepted: Bool) {
+    func respondWalkRequest(walkNotiId: UUID, isAccepted: Bool) {
         do {
-            if isAccepted {
-                try respondUseCase.accept(to: requestNum)
-            } else {
-                try respondUseCase.decline(to: requestNum)
-            }
-            presenter?.didSendWalkRequest()
+            try respondUseCase.execute(walkNotiId: walkNotiId, isAccepted: isAccepted)
+            presenter?.didSendWalkRespond()
         } catch {
             presenter?.didFailToSendWalkRequest(error: error)
         }
