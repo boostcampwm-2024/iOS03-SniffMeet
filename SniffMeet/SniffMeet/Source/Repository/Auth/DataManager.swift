@@ -8,7 +8,7 @@
 import Foundation
 
 protocol DataStorable {
-    func storeData(data: Encodable) throws
+    func storeData(data: Encodable, key: String) throws
 }
 
 protocol DataLoadable {
@@ -20,8 +20,8 @@ final class LocalDataManager: DataStorable {
     private let dataManager = UserDefaultsManager(userDefaults: UserDefaults(suiteName: "demo")!,
                                                   jsonEncoder: JSONEncoder(),
                                                   jsonDecoder: JSONDecoder())
-    func storeData(data: any Encodable) throws {
-        try dataManager.set(value: data, forKey: UserDefaultKey.dogInfo)
+    func storeData(data: any Encodable, key: String) throws {
+        try dataManager.set(value: data, forKey: key)
     }
 }
 
@@ -33,8 +33,8 @@ extension LocalDataManager: DataLoadable {
     }
 }
 
-extension LocalDataManager {
-    private enum UserDefaultKey {
-        static let dogInfo: String = "dogInfo"
-    }
+
+enum UserDefaultKey {
+    static let dogInfo: String = "dogInfo"
+    static let mateList: String = "mateList"
 }

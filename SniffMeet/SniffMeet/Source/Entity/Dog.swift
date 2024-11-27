@@ -72,3 +72,9 @@ struct DogProfileInfo: Codable {
     let keywords: [Keyword]
     let profileImage: Data?
 }
+
+extension DogProfileInfo {
+    static let example: DogProfileInfo = DogProfileInfo(name: "후추",
+                                                        keywords: [.shy],
+                                                        profileImage: nil)
+}
