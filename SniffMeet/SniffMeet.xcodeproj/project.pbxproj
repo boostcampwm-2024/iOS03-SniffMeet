@@ -198,6 +198,7 @@
 		FDE7689A2CF783EB00B5DE88 /* ConvertToRequestAPSUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDE768992CF783EA00B5DE88 /* ConvertToRequestAPSUseCase.swift */; };
 		FDE7689C2CF783FE00B5DE88 /* ConvertToRespondAPSUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDE7689B2CF783FD00B5DE88 /* ConvertToRespondAPSUseCase.swift */; };
 		FDE7689F2CF7858F00B5DE88 /* Extension + UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDE7689E2CF7858D00B5DE88 /* Extension + UIViewController.swift */; };
+		FDE768A12CF7873600B5DE88 /* RequestNotificationAuthUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDE768A02CF7872E00B5DE88 /* RequestNotificationAuthUseCase.swift */; };
 		FDEAEA7A2CE3148D005890FA /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDEAEA792CE3148C005890FA /* BaseView.swift */; };
 		FDEAEA7C2CE314A7005890FA /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDEAEA7B2CE314A3005890FA /* BaseViewController.swift */; };
 /* End PBXBuildFile section */
@@ -366,6 +367,7 @@
 		FDE7689B2CF783FD00B5DE88 /* ConvertToRespondAPSUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConvertToRespondAPSUseCase.swift; sourceTree = "<group>"; };
 		FDE7689D2CF7852A00B5DE88 /* SniffMeet.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SniffMeet.entitlements; sourceTree = "<group>"; };
 		FDE7689E2CF7858D00B5DE88 /* Extension + UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension + UIViewController.swift"; sourceTree = "<group>"; };
+		FDE768A02CF7872E00B5DE88 /* RequestNotificationAuthUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestNotificationAuthUseCase.swift; sourceTree = "<group>"; };
 		FDEAEA792CE3148C005890FA /* BaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseView.swift; sourceTree = "<group>"; };
 		FDEAEA7B2CE314A3005890FA /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -436,6 +438,7 @@
 		320044782CEC48FB00D08B6D /* UseCase */ = {
 			isa = PBXGroup;
 			children = (
+				FDE768A02CF7872E00B5DE88 /* RequestNotificationAuthUseCase.swift */,
 				FDE7689B2CF783FD00B5DE88 /* ConvertToRespondAPSUseCase.swift */,
 				FDE768992CF783EA00B5DE88 /* ConvertToRequestAPSUseCase.swift */,
 				FDE768972CF7836B00B5DE88 /* RemoteSaveDeviceTokenUseCase.swift */,
@@ -1773,6 +1776,7 @@
 				320044582CE5B04C00D08B6D /* ProfileCreateRouter.swift in Sources */,
 				A25BE4582CEBB95C00886763 /* SupabaseRefreshResponse.swift in Sources */,
 				FDEAEA7C2CE314A7005890FA /* BaseViewController.swift in Sources */,
+				FDE768A12CF7873600B5DE88 /* RequestNotificationAuthUseCase.swift in Sources */,
 				A21435F72CE20D2500564A4D /* TabBarController.swift in Sources */,
 				320043762CDCA18E00D08B6D /* (null) in Sources */,
 				995D94D22CEDF037005A47BF /* MateRequest.swift in Sources */,
