@@ -146,3 +146,12 @@ extension HomeViewController {
         static let primaryButtonLabel: String = "메이트 연결하기"
     }
 }
+
+extension HomeViewController: UIViewControllerTransitioningDelegate {
+    func animationController(forPresented presented: UIViewController,
+                             presenting: UIViewController,
+                             source: UIViewController) -> UIViewControllerAnimatedTransitioning?
+    {
+        return FromTop2BottomPresentAnimator()
+    }
+}
