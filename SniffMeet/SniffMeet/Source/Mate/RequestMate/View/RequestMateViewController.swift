@@ -37,7 +37,7 @@ final class RequestMateViewController: BaseViewController, RequestMateViewable {
 
     override func configureAttributes() {
         profileImageView.image = UIImage(data: profile.profileImage!)
-        profileImageView.contentMode = .scaleToFill
+        profileImageView.contentMode = .scaleAspectFill
         profileImageView.translatesAutoresizingMaskIntoConstraints = false
         nameLabel.text = profile.name
         nameLabel.textColor = SNMColor.white
@@ -88,6 +88,8 @@ final class RequestMateViewController: BaseViewController, RequestMateViewable {
         let constraints = [
             profileImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             profileImageView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+            profileImageView.widthAnchor.constraint(equalTo: view.widthAnchor),
+            profileImageView.heightAnchor.constraint(equalTo: view.heightAnchor),
             nameLabel.bottomAnchor.constraint(
                 equalTo: keywordStackView.topAnchor,
                 constant: -LayoutConstant.smallVerticalPadding
