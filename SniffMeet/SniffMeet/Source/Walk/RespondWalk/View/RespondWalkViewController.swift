@@ -197,6 +197,13 @@ final class RespondWalkViewController: BaseViewController, RespondWalkViewable {
                 self.presenter?.respondWalkRequest(isAccepted: true)
             }
             .store(in: &cancellables)
+        
+        presenter?.output.profileImage
+            .receive(on: RunLoop.main)
+            .sink { [weak self] image in
+                self?.profileView.configureImage(with: image)
+            }
+            .store(in: &cancellables)
     }
 }
 
