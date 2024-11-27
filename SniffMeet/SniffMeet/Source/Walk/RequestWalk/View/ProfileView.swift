@@ -59,14 +59,19 @@ final class ProfileView: BaseView {
     }
     func configure(dog: Dog) {
         nameLabel.text = dog.name
-        if let imageData = dog.profileImage,
-           let image = UIImage(data: imageData) {
-            imageView.image = image
-        }
+        
         guard let firstKeyword = dog.keywords.first else { return }
         firstKeywordView.text = firstKeyword.rawValue
         
         guard dog.keywords.count > 1 else { return }
         secondKeywordView.text = dog.keywords[1].rawValue
+    }
+    
+    func configureImage(with image: UIImage?) {
+        guard let image else {
+            imageView.image = .imagePlaceholder
+            return
+        }
+        imageView.image = image
     }
 }
