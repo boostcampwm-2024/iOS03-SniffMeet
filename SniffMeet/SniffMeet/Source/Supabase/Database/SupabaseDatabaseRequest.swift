@@ -10,7 +10,7 @@ import Foundation
 enum SupabaseDatabaseRequest {
     case fetchData(table: String, accessToken: String)
     case insertData(table: String, accessToken: String, data: Data)
-    // case updateData(table: String, accessToken: String)
+    case updateData(table: String, accessToken: String, data: Data)
 }
 
 extension SupabaseDatabaseRequest: SNMRequestConvertible {
@@ -30,6 +30,13 @@ extension SupabaseDatabaseRequest: SNMRequestConvertible {
                 method: .post,
                 query: nil
             )
+        case .updateData(let table, _, _):
+            return Endpoint(
+                baseURL: SupabaseConfig.baseURL,
+                path: "rest/v1/\(table)",
+                method: .patch,
+                query: nil
+            )
         }
     }
     var requestType: SNMRequestType {
@@ -44,6 +51,12 @@ extension SupabaseDatabaseRequest: SNMRequestConvertible {
                 with: header
             )
         case .insertData(_, let accessToken, let data):
+            header["Authorization"] = "Bearer \(accessToken)"
+            return SNMRequestType.compositePlain(
+                header: header,
+                body: data
+            )
+        case .updateData(_, let accessToken, let data):
             header["Authorization"] = "Bearer \(accessToken)"
             return SNMRequestType.compositePlain(
                 header: header,
