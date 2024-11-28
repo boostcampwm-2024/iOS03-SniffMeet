@@ -19,11 +19,11 @@ struct SaveUserInfoRemoteUseCaseImpl: SaveUserInfoRemoteUseCase {
             let userData = try encoder.encode(info)
             let mateListData = try encoder.encode(MateListDTO(id: info.id, mates: []))
             try await SupabaseDatabaseManager.shared.insertData(
-                into: "user_info",
+                into: Environment.SupabaseTableName.userInfo,
                 with: userData
             )
             try await SupabaseDatabaseManager.shared.insertData(
-                into: "mate_list",
+                into: Environment.SupabaseTableName.matelist,
                 with: mateListData
             )
         } catch {

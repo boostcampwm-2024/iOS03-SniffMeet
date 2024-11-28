@@ -32,9 +32,3 @@ extension LocalDataManager: DataLoadable {
         try dataManager.get(forKey: forKey, type: type)
     }
 }
-
-
-enum UserDefaultKey {
-    static let userInfo: String = "userInfo"
-    static let mateList: String = "mateList"
-}
