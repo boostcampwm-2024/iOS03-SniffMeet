@@ -14,7 +14,7 @@ protocol RequestWalkRoutable: AnyObject, Routable {
 }
 
 protocol RequestWalkBuildable {
-    static func createRequestWalkModule(dogNumber: Int) -> UIViewController
+    static func createRequestWalkModule(mate: Mate) -> UIViewController
 }
 
 final class RequestWalkRouter: RequestWalkRoutable {
@@ -35,17 +35,21 @@ final class RequestWalkRouter: RequestWalkRoutable {
     }
 }
 
-//MARK: - RequestWalkRouter+RequestWalkBuildable
+// MARK: - RequestWalkRouter+RequestWalkBuildable
 
 extension RequestWalkRouter: RequestWalkBuildable {
-    /// 서버에 요청할 반려견 request number를 함께 전달
-    static func createRequestWalkModule(dogNumber: Int) -> UIViewController {
-        let requestWalkInfoUsecase: RequestWalkUseCase = RequestWalkUseCaseImpl()
-
+    /// 서버에 요청할 반려견 mateID를 함께 전달
+    static func createRequestWalkModule(mate: Mate) -> UIViewController {
+        let requestWalkUseCase: RequestWalkUseCase = RequestWalkUseCaseImpl()
+        let requestProfileImageUseCase:
+        RequestProfileImageUseCase = RequestProfileImageUseCaseImpl()
         let view: RequestWalkViewable & UIViewController = RequestWalkViewController()
         let presenter: RequestWalkPresentable & RequestWalkInteractorOutput = RequestWalkPresenter()
-        let interactor: RequestWalkInteractable =
-        RequestWalkInteractor(usecase: requestWalkInfoUsecase)
+        let interactor: RequestWalkInteractable = RequestWalkInteractor(
+            mate: mate,
+            requestWalkUseCase: requestWalkUseCase,
+            requestProfileImageUseCase: requestProfileImageUseCase
+        )
         let router: RequestWalkRoutable & RequestWalkBuildable = RequestWalkRouter()
 
         view.presenter = presenter
