@@ -15,20 +15,12 @@ protocol RemoteDatabaseManager {
     func updateData(into table: String, with data: Data) async throws
 }
 
-enum DatabaseState {
-    case fetchData
-    case insertData
-    case updateData
-}
-
 final class SupabaseDatabaseManager: RemoteDatabaseManager {
     static let shared: RemoteDatabaseManager = SupabaseDatabaseManager()
-    var databaseStateSubject: PassthroughSubject<DatabaseState, Never>
     private let networkProvider: SNMNetworkProvider
     private let decoder: JSONDecoder
 
     private init() {
-        databaseStateSubject = PassthroughSubject<DatabaseState, Never>()
         networkProvider = SNMNetworkProvider()
         decoder = JSONDecoder()
     }
@@ -46,7 +38,6 @@ final class SupabaseDatabaseManager: RemoteDatabaseManager {
                 accessToken: session.accessToken
             )
         )
-        databaseStateSubject.send(.fetchData)
         return response.data
     }
 
@@ -81,7 +72,6 @@ final class SupabaseDatabaseManager: RemoteDatabaseManager {
                 data: data
             )
         )
-        databaseStateSubject.send(.insertData)
     }
 
     func updateData(into table: String, with data: Data) async throws {
@@ -98,6 +88,5 @@ final class SupabaseDatabaseManager: RemoteDatabaseManager {
                 data: data
             )
         )
-        databaseStateSubject.send(.insertData)
     }
 }
