@@ -23,7 +23,7 @@ struct UserInfo: Codable {
     let size: Size
     let keywords: [Keyword]
     let nickname: String
-    let profileImage: Data?
+    var profileImage: Data?
 }
 
 extension UserInfo {

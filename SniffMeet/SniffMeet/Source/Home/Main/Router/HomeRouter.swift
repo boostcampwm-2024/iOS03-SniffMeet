@@ -14,7 +14,7 @@ protocol HomeRoutable: Routable {
     func showMateRequestView(homeView: any HomeViewable, data: DogProfileDTO)
 }
 
-struct HomeRouter: HomeRoutable {
+final class HomeRouter: NSObject, HomeRoutable {
     func showProfileEditView(homeView: any HomeViewable) {
         // TODO: ProfileEditViewController로 교체 필요
         guard let homeView = homeView as? UIViewController else { return }
@@ -38,6 +38,11 @@ struct HomeRouter: HomeRoutable {
     func showMateRequestView(homeView: any HomeViewable, data: DogProfileDTO) {
         guard let homeView = homeView as? UIViewController else { return }
         let requestMateViewController = RequestMateViewController(profile: data)
-        fullScreen(from: homeView, with: requestMateViewController, animated: true)
+        requestMateViewController.modalPresentationStyle = .fullScreen
+        
+        if let homeView = homeView as?  UIViewControllerTransitioningDelegate {
+            requestMateViewController.transitioningDelegate = homeView
+        }
+        present(from: homeView, with: requestMateViewController, animated: true)
     }
 }

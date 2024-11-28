@@ -53,6 +53,9 @@
 		3200453D2CF5A60E00D08B6D /* Extension + Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3200453C2CF5A60A00D08B6D /* Extension + Date.swift */; };
 		3200453F2CF5A8B800D08B6D /* CalculateTimeLimitUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3200453E2CF5A88A00D08B6D /* CalculateTimeLimitUseCase.swift */; };
 		320047652CF6B86D00D08B6D /* RespondMateRequestUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 320047642CF6B83B00D08B6D /* RespondMateRequestUseCase.swift */; };
+		320047832CF70CA300D08B6D /* PresentAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 320047822CF70C9E00D08B6D /* PresentAnimator.swift */; };
+		320047852CF80B2600D08B6D /* MateList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 320047842CF80B2200D08B6D /* MateList.swift */; };
+		9937361D2CF80D6600E3DD58 /* RequestUserInfoRemoteUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9937361C2CF80D5200E3DD58 /* RequestUserInfoRemoteUseCase.swift */; };
 		995D94262CE32ECE005A47BF /* Extension + Keyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 995D94252CE32EC1005A47BF /* Extension + Keyboard.swift */; };
 		995D94622CE598FD005A47BF /* NIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 995D94612CE598F0005A47BF /* NIManager.swift */; };
 		995D94A82CECEF91005A47BF /* RequestMateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 995D94A72CECEF91005A47BF /* RequestMateViewController.swift */; };
@@ -66,7 +69,6 @@
 		A20E71502CEC595C00272B25 /* SupabaseError.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20E714F2CEC595C00272B25 /* SupabaseError.swift */; };
 		A20E71522CEC5FE900272B25 /* SupabaseUserResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20E71512CEC5FE900272B25 /* SupabaseUserResponse.swift */; };
 		A21435F72CE20D2500564A4D /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A21435F62CE20D2500564A4D /* TabBarController.swift */; };
-		A22040092CF6B12B00D1E8CB /* SupabaseDatabaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A22040082CF6B12B00D1E8CB /* SupabaseDatabaseTests.swift */; };
 		A220400B2CF6B89800D1E8CB /* UserInfoDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = A220400A2CF6B89800D1E8CB /* UserInfoDTO.swift */; };
 		A23A3B732CF4683F00A58705 /* Mate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A23A3B722CF4683F00A58705 /* Mate.swift */; };
 		A24082612CEB244C009109A0 /* SupabaseConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = A24082602CEB244C009109A0 /* SupabaseConfig.swift */; };
@@ -195,6 +197,15 @@
 		FDE14A4E2CE8D144001F7A9D /* HTTPStatusCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDE14A4D2CE8D13E001F7A9D /* HTTPStatusCode.swift */; };
 		FDE14A502CE8D2FB001F7A9D /* URLRequest + append.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDE14A4F2CE8D2E7001F7A9D /* URLRequest + append.swift */; };
 		FDE14A522CE8D338001F7A9D /* SNMRequestType.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDE14A512CE8D331001F7A9D /* SNMRequestType.swift */; };
+		FDE768902CF7827D00B5DE88 /* AnyDecodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDE7688F2CF7827900B5DE88 /* AnyDecodable.swift */; };
+		FDE768922CF7828700B5DE88 /* AnyJSONSerializable.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDE768912CF7828600B5DE88 /* AnyJSONSerializable.swift */; };
+		FDE768942CF782E900B5DE88 /* WalkAPS.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDE768932CF782E500B5DE88 /* WalkAPS.swift */; };
+		FDE768962CF7831000B5DE88 /* RegisterDeviceTokenUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDE768952CF7830F00B5DE88 /* RegisterDeviceTokenUseCase.swift */; };
+		FDE768982CF7836C00B5DE88 /* RemoteSaveDeviceTokenUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDE768972CF7836B00B5DE88 /* RemoteSaveDeviceTokenUseCase.swift */; };
+		FDE7689A2CF783EB00B5DE88 /* ConvertToRequestAPSUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDE768992CF783EA00B5DE88 /* ConvertToRequestAPSUseCase.swift */; };
+		FDE7689C2CF783FE00B5DE88 /* ConvertToRespondAPSUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDE7689B2CF783FD00B5DE88 /* ConvertToRespondAPSUseCase.swift */; };
+		FDE7689F2CF7858F00B5DE88 /* Extension + UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDE7689E2CF7858D00B5DE88 /* Extension + UIViewController.swift */; };
+		FDE768A12CF7873600B5DE88 /* RequestNotificationAuthUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDE768A02CF7872E00B5DE88 /* RequestNotificationAuthUseCase.swift */; };
 		FDEAEA7A2CE3148D005890FA /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDEAEA792CE3148C005890FA /* BaseView.swift */; };
 		FDEAEA7C2CE314A7005890FA /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDEAEA7B2CE314A3005890FA /* BaseViewController.swift */; };
 /* End PBXBuildFile section */
@@ -256,6 +267,9 @@
 		3200453C2CF5A60A00D08B6D /* Extension + Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension + Date.swift"; sourceTree = "<group>"; };
 		3200453E2CF5A88A00D08B6D /* CalculateTimeLimitUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculateTimeLimitUseCase.swift; sourceTree = "<group>"; };
 		320047642CF6B83B00D08B6D /* RespondMateRequestUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RespondMateRequestUseCase.swift; sourceTree = "<group>"; };
+		320047822CF70C9E00D08B6D /* PresentAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentAnimator.swift; sourceTree = "<group>"; };
+		320047842CF80B2200D08B6D /* MateList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MateList.swift; sourceTree = "<group>"; };
+		9937361C2CF80D5200E3DD58 /* RequestUserInfoRemoteUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestUserInfoRemoteUseCase.swift; sourceTree = "<group>"; };
 		995D94252CE32EC1005A47BF /* Extension + Keyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension + Keyboard.swift"; sourceTree = "<group>"; };
 		995D94612CE598F0005A47BF /* NIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NIManager.swift; sourceTree = "<group>"; };
 		995D94A72CECEF91005A47BF /* RequestMateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestMateViewController.swift; sourceTree = "<group>"; };
@@ -269,7 +283,6 @@
 		A20E714F2CEC595C00272B25 /* SupabaseError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupabaseError.swift; sourceTree = "<group>"; };
 		A20E71512CEC5FE900272B25 /* SupabaseUserResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupabaseUserResponse.swift; sourceTree = "<group>"; };
 		A21435F62CE20D2500564A4D /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
-		A22040082CF6B12B00D1E8CB /* SupabaseDatabaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupabaseDatabaseTests.swift; sourceTree = "<group>"; };
 		A220400A2CF6B89800D1E8CB /* UserInfoDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoDTO.swift; sourceTree = "<group>"; };
 		A23A3B722CF4683F00A58705 /* Mate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mate.swift; sourceTree = "<group>"; };
 		A24082602CEB244C009109A0 /* SupabaseConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupabaseConfig.swift; sourceTree = "<group>"; };
@@ -359,6 +372,16 @@
 		FDE14A4D2CE8D13E001F7A9D /* HTTPStatusCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPStatusCode.swift; sourceTree = "<group>"; };
 		FDE14A4F2CE8D2E7001F7A9D /* URLRequest + append.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URLRequest + append.swift"; sourceTree = "<group>"; };
 		FDE14A512CE8D331001F7A9D /* SNMRequestType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SNMRequestType.swift; sourceTree = "<group>"; };
+		FDE7688F2CF7827900B5DE88 /* AnyDecodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnyDecodable.swift; sourceTree = "<group>"; };
+		FDE768912CF7828600B5DE88 /* AnyJSONSerializable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnyJSONSerializable.swift; sourceTree = "<group>"; };
+		FDE768932CF782E500B5DE88 /* WalkAPS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalkAPS.swift; sourceTree = "<group>"; };
+		FDE768952CF7830F00B5DE88 /* RegisterDeviceTokenUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterDeviceTokenUseCase.swift; sourceTree = "<group>"; };
+		FDE768972CF7836B00B5DE88 /* RemoteSaveDeviceTokenUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteSaveDeviceTokenUseCase.swift; sourceTree = "<group>"; };
+		FDE768992CF783EA00B5DE88 /* ConvertToRequestAPSUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConvertToRequestAPSUseCase.swift; sourceTree = "<group>"; };
+		FDE7689B2CF783FD00B5DE88 /* ConvertToRespondAPSUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConvertToRespondAPSUseCase.swift; sourceTree = "<group>"; };
+		FDE7689D2CF7852A00B5DE88 /* SniffMeet.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SniffMeet.entitlements; sourceTree = "<group>"; };
+		FDE7689E2CF7858D00B5DE88 /* Extension + UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension + UIViewController.swift"; sourceTree = "<group>"; };
+		FDE768A02CF7872E00B5DE88 /* RequestNotificationAuthUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestNotificationAuthUseCase.swift; sourceTree = "<group>"; };
 		FDEAEA792CE3148C005890FA /* BaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseView.swift; sourceTree = "<group>"; };
 		FDEAEA7B2CE314A3005890FA /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -429,6 +452,11 @@
 		320044782CEC48FB00D08B6D /* UseCase */ = {
 			isa = PBXGroup;
 			children = (
+				FDE768A02CF7872E00B5DE88 /* RequestNotificationAuthUseCase.swift */,
+				FDE7689B2CF783FD00B5DE88 /* ConvertToRespondAPSUseCase.swift */,
+				FDE768992CF783EA00B5DE88 /* ConvertToRequestAPSUseCase.swift */,
+				FDE768972CF7836B00B5DE88 /* RemoteSaveDeviceTokenUseCase.swift */,
+				FDE768952CF7830F00B5DE88 /* RegisterDeviceTokenUseCase.swift */,
 				A266A25F2CF5CF4A002C2B3A /* SaveUserInfoRemoteUseCase.swift */,
 				FD880B5F2CF432780093BEB9 /* SaveProfileImageUseCase.swift */,
 				3200445D2CE5CA1A00D08B6D /* SaveUserInfoUseCase.swift */,
@@ -437,6 +465,7 @@
 				320047642CF6B83B00D08B6D /* RespondMateRequestUseCase.swift */,
 				320044992CEDA80400D08B6D /* RequestUserInfoUseCase.swift */,
 				A2BD4A002CF7AD4300AC72A7 /* RequestMateInfoUseCase.swift */,
+				9937361C2CF80D5200E3DD58 /* RequestUserInfoRemoteUseCase.swift */,
 				FD119F472CED872500BE22BD /* RequestLocationAuthUseCase.swift */,
 				FD119F492CED875800BE22BD /* RequestUserLocationUseCase.swift */,
 				320044762CEB4E0F00D08B6D /* RequestWalkUseCase.swift */,
@@ -451,6 +480,7 @@
 		320044792CEC490600D08B6D /* Entity */ = {
 			isa = PBXGroup;
 			children = (
+				FDE768932CF782E500B5DE88 /* WalkAPS.swift */,
 				FD331A942CF3463E00F39426 /* PushNotification.swift */,
 				FD331A512CF23BCE00F39426 /* WalkLog.swift */,
 				320044972CED81EF00D08B6D /* WalkRequest.swift */,
@@ -586,6 +616,7 @@
 		A2BD49F02CF72A8800AC72A7 /* DTO */ = {
 			isa = PBXGroup;
 			children = (
+				320047842CF80B2200D08B6D /* MateList.swift */,
 				995D94D12CEDF031005A47BF /* MPCProfileDropDTO.swift */,
 				A2BD49F52CF72B4000AC72A7 /* WalkNotiDTO.swift */,
 				A2BD49F12CF72A9500AC72A7 /* DogProfileDTO.swift */,
@@ -622,24 +653,11 @@
 		A2C844CF2CDBE1CB007F2970 /* Common */ = {
 			isa = PBXGroup;
 			children = (
-				FD880B612CF433AC0093BEB9 /* Environment.swift */,
-				3200453C2CF5A60A00D08B6D /* Extension + Date.swift */,
-				FD331A4C2CF2359D00F39426 /* SNMLineTabBar.swift */,
-				320044842CEC836000D08B6D /* PaddingLabel.swift */,
-				FD880B592CECE8F90093BEB9 /* SNMLogger.swift */,
-				FD5134162CEB7388002E76F3 /* UIControl + Publisher.swift */,
-				FDEAEA792CE3148C005890FA /* BaseView.swift */,
-				FDEAEA7B2CE314A3005890FA /* BaseViewController.swift */,
-				FDBFA9B02CE1FDED00AA9220 /* LayoutConstant.swift */,
-				FDBFA9A02CE1E51000AA9220 /* SNMColor.swift */,
-				FDBFA99E2CE1E50900AA9220 /* SNMFont.swift */,
-				995D94252CE32EC1005A47BF /* Extension + Keyboard.swift */,
-				320043962CDF493600D08B6D /* Extension + UIView.swift */,
-				3200438C2CDF3D7F00D08B6D /* Extension + Navigation.swift */,
-				3200438D2CDF3D7F00D08B6D /* InputTextField.swift */,
-				3200438E2CDF3D7F00D08B6D /* KeywordButton.swift */,
-				3200438F2CDF3D7F00D08B6D /* KeywordView.swift */,
-				320043902CDF3D7F00D08B6D /* PrimaryButton.swift */,
+				FDE7688E2CF7823D00B5DE88 /* Base */,
+				FDE768892CF7819D00B5DE88 /* Constant */,
+				FDE768882CF7811900B5DE88 /* Util */,
+				FDE768872CF7811400B5DE88 /* Helper */,
+				FDE768862CF7810E00B5DE88 /* Design System */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -677,7 +695,6 @@
 			isa = PBXGroup;
 			children = (
 				FD331A712CF33C7F00F39426 /* SupabaseStorageTests.swift */,
-				A22040082CF6B12B00D1E8CB /* SupabaseDatabaseTests.swift */,
 			);
 			path = SupabaseTests;
 			sourceTree = "<group>";
@@ -707,6 +724,7 @@
 		FD3A033E2CD8CF460047B7ED /* SniffMeet */ = {
 			isa = PBXGroup;
 			children = (
+				FDE7689D2CF7852A00B5DE88 /* SniffMeet.entitlements */,
 				FDA491332CD9FE7C00A36FB0 /* Source */,
 				FDA4912A2CD9FE3500A36FB0 /* Resource */,
 			);
@@ -1203,6 +1221,7 @@
 		FDA4916D2CDA7C0B00A36FB0 /* Router */ = {
 			isa = PBXGroup;
 			children = (
+				320047822CF70C9E00D08B6D /* PresentAnimator.swift */,
 				FD5134182CEB7AD9002E76F3 /* HomeRouter.swift */,
 			);
 			path = Router;
@@ -1505,6 +1524,62 @@
 			path = Mock;
 			sourceTree = "<group>";
 		};
+		FDE768862CF7810E00B5DE88 /* Design System */ = {
+			isa = PBXGroup;
+			children = (
+				3200438D2CDF3D7F00D08B6D /* InputTextField.swift */,
+				3200438E2CDF3D7F00D08B6D /* KeywordButton.swift */,
+				3200438F2CDF3D7F00D08B6D /* KeywordView.swift */,
+				320043902CDF3D7F00D08B6D /* PrimaryButton.swift */,
+				FD331A4C2CF2359D00F39426 /* SNMLineTabBar.swift */,
+				320044842CEC836000D08B6D /* PaddingLabel.swift */,
+				FDBFA9B02CE1FDED00AA9220 /* LayoutConstant.swift */,
+				FDBFA9A02CE1E51000AA9220 /* SNMColor.swift */,
+				FDBFA99E2CE1E50900AA9220 /* SNMFont.swift */,
+			);
+			path = "Design System";
+			sourceTree = "<group>";
+		};
+		FDE768872CF7811400B5DE88 /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				FDE7689E2CF7858D00B5DE88 /* Extension + UIViewController.swift */,
+				FDE768912CF7828600B5DE88 /* AnyJSONSerializable.swift */,
+				FDE7688F2CF7827900B5DE88 /* AnyDecodable.swift */,
+				3200453C2CF5A60A00D08B6D /* Extension + Date.swift */,
+				FD5134162CEB7388002E76F3 /* UIControl + Publisher.swift */,
+				995D94252CE32EC1005A47BF /* Extension + Keyboard.swift */,
+				320043962CDF493600D08B6D /* Extension + UIView.swift */,
+				3200438C2CDF3D7F00D08B6D /* Extension + Navigation.swift */,
+			);
+			path = Helper;
+			sourceTree = "<group>";
+		};
+		FDE768882CF7811900B5DE88 /* Util */ = {
+			isa = PBXGroup;
+			children = (
+				FD880B592CECE8F90093BEB9 /* SNMLogger.swift */,
+			);
+			path = Util;
+			sourceTree = "<group>";
+		};
+		FDE768892CF7819D00B5DE88 /* Constant */ = {
+			isa = PBXGroup;
+			children = (
+				FD880B612CF433AC0093BEB9 /* Environment.swift */,
+			);
+			path = Constant;
+			sourceTree = "<group>";
+		};
+		FDE7688E2CF7823D00B5DE88 /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				FDEAEA792CE3148C005890FA /* BaseView.swift */,
+				FDEAEA7B2CE314A3005890FA /* BaseViewController.swift */,
+			);
+			path = Base;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1688,7 +1763,6 @@
 				FD331A832CF33D0500F39426 /* SupabaseSession.swift in Sources */,
 				FD331A842CF33D0500F39426 /* SupabaseUser.swift in Sources */,
 				FD331A852CF33D0500F39426 /* SupabaseSessionResponse.swift in Sources */,
-				A22040092CF6B12B00D1E8CB /* SupabaseDatabaseTests.swift in Sources */,
 				FD331A862CF33D0500F39426 /* SupabaseUserResponse.swift in Sources */,
 				FD331A872CF33D0500F39426 /* SupabaseRefreshResponse.swift in Sources */,
 				FD331A882CF33D0500F39426 /* SupabaseTokenRequest.swift in Sources */,
@@ -1715,6 +1789,7 @@
 				A202A1152CEDD50700B98203 /* SupabaseDatabaseManager.swift in Sources */,
 				995D94622CE598FD005A47BF /* NIManager.swift in Sources */,
 				FDBFA9A12CE1E51500AA9220 /* SNMColor.swift in Sources */,
+				FDE7689F2CF7858F00B5DE88 /* Extension + UIViewController.swift in Sources */,
 				A24082702CEB27DE009109A0 /* SupabaseRequest.swift in Sources */,
 				A2C844D12CDBE1E5007F2970 /* (null) in Sources */,
 				A2BD49F62CF72B4000AC72A7 /* WalkNotiDTO.swift in Sources */,
@@ -1731,12 +1806,15 @@
 				3200448D2CEC878300D08B6D /* RespondWalkViewController.swift in Sources */,
 				FD331A932CF3463200F39426 /* NotificationCell.swift in Sources */,
 				FDA04AA92CE91DF8002605AC /* Data + append.swift in Sources */,
+				FDE768982CF7836C00B5DE88 /* RemoteSaveDeviceTokenUseCase.swift in Sources */,
 				FD119F462CED868D00BE22BD /* ConvertLocationToTextUseCase.swift in Sources */,
 				A20E71522CEC5FE900272B25 /* SupabaseUserResponse.swift in Sources */,
 				320045362CF4353900D08B6D /* SNMFileManager.swift in Sources */,
 				320044582CE5B04C00D08B6D /* ProfileCreateRouter.swift in Sources */,
 				A25BE4582CEBB95C00886763 /* SupabaseRefreshResponse.swift in Sources */,
 				FDEAEA7C2CE314A7005890FA /* BaseViewController.swift in Sources */,
+				FDE768A12CF7873600B5DE88 /* RequestNotificationAuthUseCase.swift in Sources */,
+				320047852CF80B2600D08B6D /* MateList.swift in Sources */,
 				A21435F72CE20D2500564A4D /* TabBarController.swift in Sources */,
 				320043762CDCA18E00D08B6D /* (null) in Sources */,
 				995D94D22CEDF037005A47BF /* MPCProfileDropDTO.swift in Sources */,
@@ -1775,6 +1853,7 @@
 				FDBFA9B12CE1FE5500AA9220 /* LayoutConstant.swift in Sources */,
 				320044752CEB4D6900D08B6D /* RequestWalkRouter.swift in Sources */,
 				320044962CED80DA00D08B6D /* RespondWalkRouter.swift in Sources */,
+				FDE768942CF782E900B5DE88 /* WalkAPS.swift in Sources */,
 				320043912CDF3D7F00D08B6D /* KeywordButton.swift in Sources */,
 				FD119F4C2CED87B000BE22BD /* SelectLocationInteractor.swift in Sources */,
 				FD880B622CF433AF0093BEB9 /* Environment.swift in Sources */,
@@ -1792,6 +1871,7 @@
 				A2BA1B982CF260780080575A /* MateListPresenter.swift in Sources */,
 				3200449A2CEDA80900D08B6D /* RequestUserInfoUseCase.swift in Sources */,
 				995D94AE2CED00A4005A47BF /* RequestMateRouter.swift in Sources */,
+				320047832CF70CA300D08B6D /* PresentAnimator.swift in Sources */,
 				FD06342C2CE5984D003C9D6B /* SNMNetworkResponse.swift in Sources */,
 				3200445E2CE5CA1B00D08B6D /* SaveUserInfoUseCase.swift in Sources */,
 				995D94AA2CECF8DD005A47BF /* RequestMateInteractor.swift in Sources */,
@@ -1799,6 +1879,7 @@
 				A24082672CEB2539009109A0 /* SupabaseSessionResponse.swift in Sources */,
 				FD51341B2CEB7AE8002E76F3 /* HomePresenter.swift in Sources */,
 				320043942CDF3D7F00D08B6D /* PrimaryButton.swift in Sources */,
+				FDE7689A2CF783EB00B5DE88 /* ConvertToRequestAPSUseCase.swift in Sources */,
 				FDCD02D12CE917E600B627D8 /* MockURLProtocol.swift in Sources */,
 				320043952CDF3D7F00D08B6D /* Extension + Navigation.swift in Sources */,
 				FDBFA99F2CE1E50C00AA9220 /* SNMFont.swift in Sources */,
@@ -1823,10 +1904,13 @@
 				FDA04AA52CE91DBF002605AC /* MultipartFormData.swift in Sources */,
 				FD119F522CED881300BE22BD /* SelectLocationModuleBuildable.swift in Sources */,
 				FD331A522CF23BD000F39426 /* WalkLog.swift in Sources */,
+				FDE7689C2CF783FE00B5DE88 /* ConvertToRespondAPSUseCase.swift in Sources */,
 				A2C328862CE245AC00D255AB /* TabBarModuleBuilder.swift in Sources */,
 				320044732CEB47B100D08B6D /* RequestWalkInteractor.swift in Sources */,
 				320044942CED80B700D08B6D /* RespondWalkInteractor.swift in Sources */,
 				FD331A912CF3461B00F39426 /* NotificationListViewController.swift in Sources */,
+				FDE768922CF7828700B5DE88 /* AnyJSONSerializable.swift in Sources */,
+				9937361D2CF80D6600E3DD58 /* RequestUserInfoRemoteUseCase.swift in Sources */,
 				FD331A602CF339B000F39426 /* SupabaseStorageRequest.swift in Sources */,
 				320044892CEC862D00D08B6D /* LocationSelectionView.swift in Sources */,
 				FD331A4D2CF235A100F39426 /* SNMLineTabBar.swift in Sources */,
@@ -1837,7 +1921,9 @@
 				A266A2602CF5CF4A002C2B3A /* SaveUserInfoRemoteUseCase.swift in Sources */,
 				FDE14A4E2CE8D144001F7A9D /* HTTPStatusCode.swift in Sources */,
 				3200441E2CE48D3500D08B6D /* MPCManager.swift in Sources */,
+				FDE768902CF7827D00B5DE88 /* AnyDecodable.swift in Sources */,
 				FD0634312CE62578003C9D6B /* AnyEncodable.swift in Sources */,
+				FDE768962CF7831000B5DE88 /* RegisterDeviceTokenUseCase.swift in Sources */,
 				A23A3B732CF4683F00A58705 /* Mate.swift in Sources */,
 				3200441A2CE48A3D00D08B6D /* MPCBroswer.swift in Sources */,
 				A25BE4562CEBB63A00886763 /* SupabaseUser.swift in Sources */,
@@ -1965,15 +2051,17 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = SniffMeet/SniffMeet.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = B3PWYBKFUK;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SniffMeet/Resource/Info.plist;
-				INFOPLIST_KEY_NSLocalNetworkUsageDescription = "메이트 맺기 기능에는 로컬 네트워크 사용이 필요합니다.  \\n 로컬 네트워크를 사용하시겠습니까?";
+				INFOPLIST_KEY_NSCameraUsageDescription = "'SniffMEET'은 Nearby Interaction과 ARKit을 위해 카메라 접근이 필요합니다.";
+				INFOPLIST_KEY_NSLocalNetworkUsageDescription = "'SniffMEET'은 P2P 연결을 지원하기 위해 로컬 네트워크 환경이 필요합니다.";
 				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "산책하기 기능에는 GPS 사용이 필요합니다. ";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "산책하기 기능에는 GPS 사용이 필요합니다. ";
-				INFOPLIST_KEY_NSNearbyInteractionUsageDescription = "This app demonstrates the NearbyInteraction framework. Supply a value for this string to explain how the user benefits when they allow the app to use NearbyInteraction.";
+				INFOPLIST_KEY_NSNearbyInteractionUsageDescription = "'SniffMEET'은 연결된 기기와의 거리와 방향 측정을 위해 Nearby Interaction 접근이 필요합니다.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
@@ -2001,15 +2089,17 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = SniffMeet/SniffMeet.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = B3PWYBKFUK;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SniffMeet/Resource/Info.plist;
-				INFOPLIST_KEY_NSLocalNetworkUsageDescription = "메이트 맺기 기능에는 로컬 네트워크 사용이 필요합니다.  \\n 로컬 네트워크를 사용하시겠습니까?";
+				INFOPLIST_KEY_NSCameraUsageDescription = "'SniffMEET'은 Nearby Interaction과 ARKit을 위해 카메라 접근이 필요합니다.";
+				INFOPLIST_KEY_NSLocalNetworkUsageDescription = "'SniffMEET'은 P2P 연결을 지원하기 위해 로컬 네트워크 환경이 필요합니다.";
 				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "산책하기 기능에는 GPS 사용이 필요합니다. ";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "산책하기 기능에는 GPS 사용이 필요합니다. ";
-				INFOPLIST_KEY_NSNearbyInteractionUsageDescription = "This app demonstrates the NearbyInteraction framework. Supply a value for this string to explain how the user benefits when they allow the app to use NearbyInteraction.";
+				INFOPLIST_KEY_NSNearbyInteractionUsageDescription = "'SniffMEET'은 연결된 기기와의 거리와 방향 측정을 위해 Nearby Interaction 접근이 필요합니다.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
