@@ -8,7 +8,6 @@
 import Foundation
 
 protocol RequestWalkInteractable: AnyObject {
-    var mate: Mate { get }
     var presenter: RequestWalkInteractorOutput? { get set }
     func requestMateInfo()
     func requestProfileImage(imageName: String?)

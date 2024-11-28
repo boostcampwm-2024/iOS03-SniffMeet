@@ -79,11 +79,6 @@ final class ProfileView: BaseView {
                 keywordView.text = keyword
                 keywordView.isHidden = false
             }
-//        guard let firstKeyword = keywords.first else { return }
-//        firstKeywordView.text = firstKeyword.rawValue
-//        
-//        guard mate.keywords.count > 1 else { return }
-//        secondKeywordView.text = mate.keywords[1].rawValue
     }
     
     func configureImage(with image: UIImage?) {
