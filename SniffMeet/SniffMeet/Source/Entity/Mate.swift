@@ -11,5 +11,14 @@ struct Mate {
     var name: String
     var userID: UUID
     var keywords: [Keyword]
-    var profileImageURLString: String
+    var profileImageURLString: String?
+}
+
+extension Mate {
+    static let example: Mate = Mate(
+        name: "후추",
+        userID: UUID(),
+        keywords: [.shy],
+        profileImageURLString: nil
+    )
 }
