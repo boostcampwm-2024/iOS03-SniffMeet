@@ -5,7 +5,6 @@
 //  Created by 윤지성 on 11/14/24.
 //
 
-import Foundation
 import UIKit
 
 protocol ProfileCreateInteractable: AnyObject {
@@ -13,7 +12,7 @@ protocol ProfileCreateInteractable: AnyObject {
     var saveUserInfoUseCase: SaveUserInfoUseCase { get set }
     var saveProfileImageUseCase: SaveProfileImageUseCase { get }
 
-    func signInWithProfileData(dogInfo: UserInfo)
+    func signInWithProfileData(dogInfo: UserInfo, imageData: Data?)
     func convertImageToData(image: UIImage?) -> Data?
 }
 
@@ -35,15 +34,22 @@ final class ProfileCreateInteractor: ProfileCreateInteractable {
         self.saveUserInfoRemoteUseCase = saveUserInfoRemoteUseCase
     }
 
-    func signInWithProfileData(dogInfo: UserInfo) {
+    func signInWithProfileData(dogInfo: UserInfo, imageData: Data?) {
         Task {
             do {
                 await SupabaseAuthManager.shared.signInAnonymously()
-                try saveUserInfoUseCase.execute(dog: dogInfo)
+                try saveUserInfoUseCase.execute(dog: UserInfo(name: dogInfo.name,
+                                                              age: dogInfo.age,
+                                                              sex: dogInfo.sex,
+                                                              sexUponIntake: dogInfo.sexUponIntake,
+                                                              size: dogInfo.size,
+                                                              keywords: dogInfo.keywords,
+                                                              nickname: dogInfo.nickname,
+                                                              profileImage: imageData))
                 var fileName: String? = nil
-                if let profileImageData = dogInfo.profileImage {
+                if let imageData {
                     fileName = try await saveProfileImageUseCase.execute(
-                        imageData: profileImageData
+                        imageData: imageData
                     )
                 }
                 guard let userID = SessionManager.shared.session?.user?.userID else {
