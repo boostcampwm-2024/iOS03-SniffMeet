@@ -17,6 +17,10 @@ struct SaveUserInfoUseCaseImpl: SaveUserInfoUseCase {
     func execute(dog: UserInfo) throws {
         try localDataManager.storeData(data: dog, key: Environment.UserDefaultsKey.dogInfo)
         guard let imageData = dog.profileImage else { return }
-        try imageManager.set(imageData: imageData, forKey: Environment.FileManagerKey.profileImage)
+        do {
+            try imageManager.set(imageData: imageData, forKey: Environment.FileManagerKey.profileImage)
+        } catch {
+            SNMLogger.error("프로필 이미지 저장 실패: \(error.localizedDescription)")
+        }
     }
 }
