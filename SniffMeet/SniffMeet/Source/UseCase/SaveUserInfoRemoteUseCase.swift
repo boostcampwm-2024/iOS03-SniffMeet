@@ -17,11 +17,16 @@ struct SaveUserInfoRemoteUseCaseImpl: SaveUserInfoRemoteUseCase {
         let encoder = JSONEncoder()
         do {
             let userData = try encoder.encode(info)
-            let mateListData = try encoder.encode(MateListDTO(id: info.id, mates: []))
             try await SupabaseDatabaseManager.shared.insertData(
                 into: Environment.SupabaseTableName.userInfo,
                 with: userData
             )
+            
+        } catch {
+            SNMLogger.error("\(error.localizedDescription)")
+        }
+        do {
+            let mateListData = try encoder.encode(MateListInsertDTO(id: info.id))
             try await SupabaseDatabaseManager.shared.insertData(
                 into: Environment.SupabaseTableName.matelist,
                 with: mateListData
