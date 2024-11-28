@@ -16,3 +16,11 @@ struct MateListInsertDTO: Encodable {
 struct MateListDTO: Codable {
     let mates: [UserInfoDTO]
 }
+
+struct MateListRequestDTO: Encodable {
+    let userId: UUID
+    
+    enum CodingKeys: String, CodingKey {
+        case userId = "user_id"
+    }
+}
