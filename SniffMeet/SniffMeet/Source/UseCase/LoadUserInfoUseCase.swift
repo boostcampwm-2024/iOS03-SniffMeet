@@ -11,12 +11,21 @@ protocol LoadUserInfoUseCase {
 
 struct LoadUserInfoUseCaseImpl: LoadUserInfoUseCase {
     private let dataLoadable: (any DataLoadable)
+    private let imageManageable: (any ImageManagable)
 
-    init(dataLoadable: any DataLoadable) {
+    init(dataLoadable: any DataLoadable, imageManageable: any ImageManagable) {
         self.dataLoadable = dataLoadable
+        self.imageManageable = imageManageable
     }
 
     func execute() throws -> UserInfo {
-        try dataLoadable.loadData(forKey: "dogInfo", type: UserInfo.self)
+        var userInfo = try dataLoadable.loadData(forKey: Environment.UserDefaultsKey.dogInfo,
+                                                 type: UserInfo.self)
+        do {
+            userInfo.profileImage = try imageManageable.get(forKey: Environment.FileManagerKey.profileImage)
+            return userInfo
+        } catch {
+            return userInfo
+        }
     }
 }
