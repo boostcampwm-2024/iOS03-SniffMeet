@@ -23,7 +23,8 @@ final class KeywordView: UILabel {
 
     init(title: String) {
         super.init(frame: .zero)
-        setupConfiguration(title: title)
+        text = title
+        setupConfiguration()
     }
 
     @available(*, unavailable)
@@ -35,14 +36,11 @@ final class KeywordView: UILabel {
         let insetRect = rect.inset(by: insets)
         super.drawText(in: insetRect)
     }
-
-    private func setupConfiguration(title: String) {
-        text = "#" + title
+    private func setupConfiguration() {
         font = UIFont.systemFont(ofSize: 14)
         layer.cornerRadius = Context.cornerRadius
         layer.masksToBounds = true
         self.backgroundColor = SNMColor.white
-
     }
 }
 extension KeywordView {
