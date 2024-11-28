@@ -14,10 +14,12 @@ final class ProfileView: BaseView {
     }()
     private var firstKeywordView: KeywordView = {
         let view = KeywordView(title: "")
+        view.isHidden = true
         return view
     }()
     private var secondKeywordView: KeywordView = {
         let view = KeywordView(title: "")
+        view.isHidden = true
         return view
     }()
     private var nameLabel: PaddingLabel = {
@@ -69,14 +71,19 @@ final class ProfileView: BaseView {
         label.layer.masksToBounds = true
     }
     
-    func configure(dog: UserInfo) {
-        nameLabel.text = dog.name
-        
-        guard let firstKeyword = dog.keywords.first else { return }
-        firstKeywordView.text = firstKeyword.rawValue
-        
-        guard dog.keywords.count > 1 else { return }
-        secondKeywordView.text = dog.keywords[1].rawValue
+    func configure(name: String, keywords: [String]) {
+        nameLabel.text = name
+
+        zip([firstKeywordView, secondKeywordView], keywords)
+            .forEach { keywordView, keyword in
+                keywordView.text = keyword
+                keywordView.isHidden = false
+            }
+//        guard let firstKeyword = keywords.first else { return }
+//        firstKeywordView.text = firstKeyword.rawValue
+//        
+//        guard mate.keywords.count > 1 else { return }
+//        secondKeywordView.text = mate.keywords[1].rawValue
     }
     
     func configureImage(with image: UIImage?) {
