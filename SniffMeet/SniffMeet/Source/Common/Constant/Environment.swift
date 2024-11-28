@@ -15,5 +15,6 @@ enum Environment {
     enum KeychainKey {
         static let accessToken: String = "accessToken"
         static let refreshToken: String = "refreshToken"
+        static let deviceToken: String = "deviceToken"
     }
 }
