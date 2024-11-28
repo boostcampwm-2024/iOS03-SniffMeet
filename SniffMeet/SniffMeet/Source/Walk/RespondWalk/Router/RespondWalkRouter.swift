@@ -24,7 +24,7 @@ final class RespondWalkRouter: RespondWalkRoutable {
 
 extension RespondWalkRouter: RespondWalkBuildable {
     static func createRespondtWalkModule(walkNoti: WalkNoti) -> UIViewController {
-        let fetchUseCase: FetchUserInfoUseCase = FetchUserInfoUsecaseImpl()
+        let requestUserInfoUseCase: RequestUserInfoUseCase = RequestUserInfoUsecaseImpl()
         let respondUseCase: RespondWalkRequestUseCase = RespondWalkRequestUseCaseImpl()
         let calculateTimeUseCase: CalculateTimeLimitUseCase = CalculateTimeLimitUseCaseImpl()
         let convertLocationToTextUseCase: ConvertLocationToTextUseCase =
@@ -36,13 +36,14 @@ extension RespondWalkRouter: RespondWalkBuildable {
         let presenter: RespondWalkPresentable & RespondWalkInteractorOutput =
         RespondWalkPresenter(noti: walkNoti)
         let interactor: RespondWalkInteractable =
-        RespondWalkInteractor(fetchUserUseCase: fetchUseCase,
-                              respondUseCase: respondUseCase,
-                              calculateTimeLimitUseCase: calculateTimeUseCase,
-                              convertLocationToTextUseCase: convertLocationToTextUseCase,
-                              requestProfileImageUseCase: requestProfileImageUseCase
+        RespondWalkInteractor(
+            requestUserInfoUseCase: requestUserInfoUseCase,
+            respondUseCase: respondUseCase,
+            calculateTimeLimitUseCase: calculateTimeUseCase,
+            convertLocationToTextUseCase: convertLocationToTextUseCase,
+            requestProfileImageUseCase: requestProfileImageUseCase
         )
-        
+
         let router: RespondWalkRoutable & RespondWalkBuildable = RespondWalkRouter()
 
         view.presenter = presenter

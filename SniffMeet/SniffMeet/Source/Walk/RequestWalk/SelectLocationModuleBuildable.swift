@@ -5,8 +5,8 @@
 //  Created by sole on 11/19/24.
 //
 
-import UIKit
 import CoreLocation
+import UIKit
 
 protocol SelectLocationModuleBuildable {
     static func build() -> UIViewController

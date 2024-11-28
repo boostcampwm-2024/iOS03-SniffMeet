@@ -13,6 +13,6 @@ protocol RequestMateListUseCase {
 
 struct RequestMateListUseCaseImpl: RequestMateListUseCase {
     func execute() async -> [Mate] {
-        return [Mate(name: "강아", userID: UUID(), profileImageURLString: "")]
+        return [Mate(name: "강아", userID: UUID(), keywords: [.energetic], profileImageURLString: "")]
     }
 }

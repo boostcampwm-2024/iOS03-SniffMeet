@@ -21,7 +21,7 @@ protocol RespondWalkPresentable : AnyObject {
 }
 
 protocol RespondWalkInteractorOutput: AnyObject {
-    func didFetchUserInfo(senderInfo: Dog) // fetch한 데이터를 보여준다.
+    func didFetchUserInfo(senderInfo: UserInfo) // fetch한 데이터를 보여준다.
     func didSendWalkRespond()
     func didCalculateTimeLimit(secondDifference: Int)
     func didConvertLocationToText(with location: String?)
@@ -79,7 +79,7 @@ extension RespondWalkPresenter: RespondWalkInteractorOutput {
         output.locationLabel.send(location)
     }
     
-    func didFetchUserInfo(senderInfo: Dog) {
+    func didFetchUserInfo(senderInfo: UserInfo) {
         let walkRequest = WalkRequest(dog: senderInfo,
                                       address: Address(longtitude: noti.longtitude,
                                                        latitude: noti.latitude),

@@ -16,7 +16,7 @@ protocol HomePresentable: AnyObject {
     func viewDidLoad()
     func notificationBarButtonDidTap()
     func changeIsPaired(with isPaired: Bool)
-    func profileData(_ data: DogProfileInfo)
+    func profileData(_ data: DogProfileDTO)
 }
 
 final class HomePresenter: HomePresentable {
@@ -30,7 +30,7 @@ final class HomePresenter: HomePresentable {
         router: (any HomeRoutable)? = nil,
         interactor: (any HomeInteractable)? = nil,
         output: HomePresenterOutput = DefaultHomePresenterOutput(
-            dogInfo: PassthroughSubject<Dog, Never>()
+            dogInfo: PassthroughSubject<UserInfo, Never>()
         )
     ) {
         self.view = view
@@ -46,7 +46,7 @@ final class HomePresenter: HomePresentable {
             }
         } catch {
             SNMLogger.error("이미지 실패?: \(error.localizedDescription)")
-            let placeHolderInfo: Dog = Dog.example
+            let placeHolderInfo: UserInfo = UserInfo.example
             output.dogInfo.send(placeHolderInfo)
         }
     }
@@ -70,7 +70,7 @@ final class HomePresenter: HomePresentable {
             )
         }
     }
-    func profileData(_ data: DogProfileInfo) {
+    func profileData(_ data: DogProfileDTO) {
         guard let view else { return }
         router?.showMateRequestView(homeView: view, data: data)
     }
@@ -79,9 +79,9 @@ final class HomePresenter: HomePresentable {
 // MARK: - HomePresenterOutput
 
 protocol HomePresenterOutput {
-    var dogInfo: PassthroughSubject<Dog, Never> { get }
+    var dogInfo: PassthroughSubject<UserInfo, Never> { get }
 }
 
 struct DefaultHomePresenterOutput: HomePresenterOutput {
-    var dogInfo: PassthroughSubject<Dog, Never>
+    var dogInfo: PassthroughSubject<UserInfo, Never>
 }

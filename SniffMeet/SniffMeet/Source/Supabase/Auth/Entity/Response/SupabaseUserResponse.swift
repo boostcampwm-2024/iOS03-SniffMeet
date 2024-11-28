@@ -7,18 +7,6 @@
 
 import Foundation
 
-struct SupabaseUserResponse: Codable {
+struct SupabaseUserResponse: Decodable {
     var id: UUID
-    var role: String
-    var userMetadata: SupabaseUserMetadata
-
-    enum CodingKeys: String, CodingKey {
-        case id, role
-        case userMetadata = "user_metadata"
-    }
-}
-
-struct SupabaseUserMetadata: Codable {
-    // var name: String
-    // var profileImageURL: String
 }

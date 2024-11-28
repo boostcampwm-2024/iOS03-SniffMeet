@@ -8,7 +8,7 @@
 protocol ProfileInputPresentable {
     var view: ProfileInputViewable? { get set }
     var router: ProfileInputRoutable? { get set }
-    func moveToProfileCreateView(with newDogDetailInfo: DogDetailInfo)
+    func moveToProfileCreateView(with newDogDetailInfo: DogInfo)
 }
 
 
@@ -16,7 +16,7 @@ final class ProfileInputPresenter: ProfileInputPresentable {
     weak var view: ProfileInputViewable?
     var router: ProfileInputRoutable?
     
-    func moveToProfileCreateView(with newDogDetailInfo: DogDetailInfo) {
+    func moveToProfileCreateView(with newDogDetailInfo: DogInfo) {
         guard let view else { return }
         router?.presentPostCreateScreen(from: view, with: newDogDetailInfo)
     }

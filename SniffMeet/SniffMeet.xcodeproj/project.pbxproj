@@ -24,11 +24,11 @@
 		3200441E2CE48D3500D08B6D /* MPCManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3200441D2CE48D1F00D08B6D /* MPCManager.swift */; };
 		3200444E2CE595EA00D08B6D /* ProfileCreatePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3200444D2CE595DE00D08B6D /* ProfileCreatePresenter.swift */; };
 		320044502CE595F700D08B6D /* ProfileInputPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3200444F2CE595F000D08B6D /* ProfileInputPresenter.swift */; };
-		320044532CE59A8A00D08B6D /* Dog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 320044522CE59A8100D08B6D /* Dog.swift */; };
+		320044532CE59A8A00D08B6D /* UserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 320044522CE59A8100D08B6D /* UserInfo.swift */; };
 		320044562CE59DF500D08B6D /* ProfileInputRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 320044552CE59D5D00D08B6D /* ProfileInputRouter.swift */; };
 		320044582CE5B04C00D08B6D /* ProfileCreateRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 320044572CE5B04300D08B6D /* ProfileCreateRouter.swift */; };
 		3200445A2CE5B3AA00D08B6D /* ProfileCreateInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 320044592CE5B39A00D08B6D /* ProfileCreateInteractor.swift */; };
-		3200445E2CE5CA1B00D08B6D /* SaveInfoUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3200445D2CE5CA1A00D08B6D /* SaveInfoUseCase.swift */; };
+		3200445E2CE5CA1B00D08B6D /* SaveUserInfoUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3200445D2CE5CA1A00D08B6D /* SaveUserInfoUseCase.swift */; };
 		320044672CE6125100D08B6D /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 320044662CE6124900D08B6D /* DataManager.swift */; };
 		3200446B2CEB183300D08B6D /* RequestWalkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3200446A2CEB182A00D08B6D /* RequestWalkViewController.swift */; };
 		3200446F2CEB23A700D08B6D /* CardPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3200446E2CEB239D00D08B6D /* CardPresentationController.swift */; };
@@ -44,7 +44,7 @@
 		320044942CED80B700D08B6D /* RespondWalkInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 320044932CED80B000D08B6D /* RespondWalkInteractor.swift */; };
 		320044962CED80DA00D08B6D /* RespondWalkRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 320044952CED80D100D08B6D /* RespondWalkRouter.swift */; };
 		320044982CED81F400D08B6D /* WalkRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 320044972CED81EF00D08B6D /* WalkRequest.swift */; };
-		3200449A2CEDA80900D08B6D /* FetchUserInfoUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 320044992CEDA80400D08B6D /* FetchUserInfoUseCase.swift */; };
+		3200449A2CEDA80900D08B6D /* RequestUserInfoUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 320044992CEDA80400D08B6D /* RequestUserInfoUseCase.swift */; };
 		3200449C2CEDA87800D08B6D /* RespondWalkRequestUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3200449B2CEDA86B00D08B6D /* RespondWalkRequestUseCase.swift */; };
 		320045352CF4353900D08B6D /* SNMFileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 320045342CF4353400D08B6D /* SNMFileManager.swift */; };
 		320045362CF4353900D08B6D /* SNMFileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 320045342CF4353400D08B6D /* SNMFileManager.swift */; };
@@ -52,7 +52,7 @@
 		3200453B2CF442D500D08B6D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FD3A03392CD8CF460047B7ED /* Assets.xcassets */; };
 		3200453D2CF5A60E00D08B6D /* Extension + Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3200453C2CF5A60A00D08B6D /* Extension + Date.swift */; };
 		3200453F2CF5A8B800D08B6D /* CalculateTimeLimitUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3200453E2CF5A88A00D08B6D /* CalculateTimeLimitUseCase.swift */; };
-		320047652CF6B86D00D08B6D /* AcceptMateRequestUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 320047642CF6B83B00D08B6D /* AcceptMateRequestUseCase.swift */; };
+		320047652CF6B86D00D08B6D /* RespondMateRequestUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 320047642CF6B83B00D08B6D /* RespondMateRequestUseCase.swift */; };
 		320047832CF70CA300D08B6D /* PresentAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 320047822CF70C9E00D08B6D /* PresentAnimator.swift */; };
 		995D94262CE32ECE005A47BF /* Extension + Keyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 995D94252CE32EC1005A47BF /* Extension + Keyboard.swift */; };
 		995D94622CE598FD005A47BF /* NIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 995D94612CE598F0005A47BF /* NIManager.swift */; };
@@ -60,14 +60,15 @@
 		995D94AA2CECF8DD005A47BF /* RequestMateInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 995D94A92CECF8C4005A47BF /* RequestMateInteractor.swift */; };
 		995D94AC2CECFA30005A47BF /* RequestMatePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 995D94AB2CECFA24005A47BF /* RequestMatePresenter.swift */; };
 		995D94AE2CED00A4005A47BF /* RequestMateRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 995D94AD2CED0093005A47BF /* RequestMateRouter.swift */; };
-		995D94D22CEDF037005A47BF /* MateRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 995D94D12CEDF031005A47BF /* MateRequest.swift */; };
+		995D94D22CEDF037005A47BF /* MPCProfileDropDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 995D94D12CEDF031005A47BF /* MPCProfileDropDTO.swift */; };
 		99FA4E792CE0FBBF00553C2E /* ProfileInputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99FA4E782CE0FBBF00553C2E /* ProfileInputViewController.swift */; };
 		A202A1152CEDD50700B98203 /* SupabaseDatabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A202A1142CEDD50700B98203 /* SupabaseDatabaseManager.swift */; };
 		A202A1172CEDD5EF00B98203 /* SupabaseDatabaseRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A202A1162CEDD5EF00B98203 /* SupabaseDatabaseRequest.swift */; };
 		A20E71502CEC595C00272B25 /* SupabaseError.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20E714F2CEC595C00272B25 /* SupabaseError.swift */; };
 		A20E71522CEC5FE900272B25 /* SupabaseUserResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20E71512CEC5FE900272B25 /* SupabaseUserResponse.swift */; };
 		A21435F72CE20D2500564A4D /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A21435F62CE20D2500564A4D /* TabBarController.swift */; };
-		A220400B2CF6B89800D1E8CB /* UserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = A220400A2CF6B89800D1E8CB /* UserInfo.swift */; };
+		A22040092CF6B12B00D1E8CB /* SupabaseDatabaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A22040082CF6B12B00D1E8CB /* SupabaseDatabaseTests.swift */; };
+		A220400B2CF6B89800D1E8CB /* UserInfoDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = A220400A2CF6B89800D1E8CB /* UserInfoDTO.swift */; };
 		A23A3B732CF4683F00A58705 /* Mate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A23A3B722CF4683F00A58705 /* Mate.swift */; };
 		A24082612CEB244C009109A0 /* SupabaseConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = A24082602CEB244C009109A0 /* SupabaseConfig.swift */; };
 		A24082642CEB2470009109A0 /* SupabaseAuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A24082632CEB2470009109A0 /* SupabaseAuthManager.swift */; };
@@ -86,6 +87,11 @@
 		A2BA1B9A2CF260A50080575A /* MateListRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2BA1B992CF260A50080575A /* MateListRouter.swift */; };
 		A2BA1BA92CF34A6A0080575A /* RequestMateListUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2BA1BA82CF34A6A0080575A /* RequestMateListUseCase.swift */; };
 		A2BA1BAC2CF34A860080575A /* RequestProfileImageUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2BA1BAB2CF34A860080575A /* RequestProfileImageUseCase.swift */; };
+		A2BD49F22CF72A9500AC72A7 /* DogProfileDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2BD49F12CF72A9500AC72A7 /* DogProfileDTO.swift */; };
+		A2BD49F62CF72B4000AC72A7 /* WalkNotiDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2BD49F52CF72B4000AC72A7 /* WalkNotiDTO.swift */; };
+		A2BD49FB2CF7711A00AC72A7 /* Sex.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2BD49FA2CF7711A00AC72A7 /* Sex.swift */; };
+		A2BD49FD2CF7712000AC72A7 /* Size.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2BD49FC2CF7712000AC72A7 /* Size.swift */; };
+		A2BD49FF2CF7712800AC72A7 /* Keyword.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2BD49FE2CF7712800AC72A7 /* Keyword.swift */; };
 		A2C328862CE245AC00D255AB /* TabBarModuleBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2C328852CE245AC00D255AB /* TabBarModuleBuilder.swift */; };
 		A2C328882CE2481900D255AB /* HomeModuleBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2C328872CE2481900D255AB /* HomeModuleBuilder.swift */; };
 		A2C328922CE3BEA000D255AB /* AppRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2C328912CE3BEA000D255AB /* AppRouter.swift */; };
@@ -152,7 +158,7 @@
 		FD5134192CEB7ADE002E76F3 /* HomeRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD5134182CEB7AD9002E76F3 /* HomeRouter.swift */; };
 		FD51341B2CEB7AE8002E76F3 /* HomePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD51341A2CEB7AE3002E76F3 /* HomePresenter.swift */; };
 		FD51341D2CEB7AF0002E76F3 /* HomeInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD51341C2CEB7AEC002E76F3 /* HomeInteractor.swift */; };
-		FD51341F2CEB7AFE002E76F3 /* LoadDogInfoUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD51341E2CEB7AF6002E76F3 /* LoadDogInfoUseCase.swift */; };
+		FD51341F2CEB7AFE002E76F3 /* LoadUserInfoUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD51341E2CEB7AF6002E76F3 /* LoadUserInfoUseCase.swift */; };
 		FD5134232CEC2BDE002E76F3 /* Routable.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD5134222CEC2BDB002E76F3 /* Routable.swift */; };
 		FD69B1B32CE3BC76009D71DC /* KeychainManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD69B1B22CE3BC68009D71DC /* KeychainManager.swift */; };
 		FD69B1B52CE3BC7E009D71DC /* UserDefaultsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD69B1B42CE3BC79009D71DC /* UserDefaultsManager.swift */; };
@@ -232,11 +238,11 @@
 		3200441D2CE48D1F00D08B6D /* MPCManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MPCManager.swift; sourceTree = "<group>"; };
 		3200444D2CE595DE00D08B6D /* ProfileCreatePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCreatePresenter.swift; sourceTree = "<group>"; };
 		3200444F2CE595F000D08B6D /* ProfileInputPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileInputPresenter.swift; sourceTree = "<group>"; };
-		320044522CE59A8100D08B6D /* Dog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dog.swift; sourceTree = "<group>"; };
+		320044522CE59A8100D08B6D /* UserInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfo.swift; sourceTree = "<group>"; };
 		320044552CE59D5D00D08B6D /* ProfileInputRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileInputRouter.swift; sourceTree = "<group>"; };
 		320044572CE5B04300D08B6D /* ProfileCreateRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCreateRouter.swift; sourceTree = "<group>"; };
 		320044592CE5B39A00D08B6D /* ProfileCreateInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCreateInteractor.swift; sourceTree = "<group>"; };
-		3200445D2CE5CA1A00D08B6D /* SaveInfoUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveInfoUseCase.swift; sourceTree = "<group>"; };
+		3200445D2CE5CA1A00D08B6D /* SaveUserInfoUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveUserInfoUseCase.swift; sourceTree = "<group>"; };
 		320044662CE6124900D08B6D /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		3200446A2CEB182A00D08B6D /* RequestWalkViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestWalkViewController.swift; sourceTree = "<group>"; };
 		3200446E2CEB239D00D08B6D /* CardPresentationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardPresentationController.swift; sourceTree = "<group>"; };
@@ -252,13 +258,13 @@
 		320044932CED80B000D08B6D /* RespondWalkInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RespondWalkInteractor.swift; sourceTree = "<group>"; };
 		320044952CED80D100D08B6D /* RespondWalkRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RespondWalkRouter.swift; sourceTree = "<group>"; };
 		320044972CED81EF00D08B6D /* WalkRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalkRequest.swift; sourceTree = "<group>"; };
-		320044992CEDA80400D08B6D /* FetchUserInfoUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchUserInfoUseCase.swift; sourceTree = "<group>"; };
+		320044992CEDA80400D08B6D /* RequestUserInfoUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestUserInfoUseCase.swift; sourceTree = "<group>"; };
 		3200449B2CEDA86B00D08B6D /* RespondWalkRequestUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RespondWalkRequestUseCase.swift; sourceTree = "<group>"; };
 		320045342CF4353400D08B6D /* SNMFileManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SNMFileManager.swift; sourceTree = "<group>"; };
 		320045392CF43F3800D08B6D /* FileManagerTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileManagerTest.swift; sourceTree = "<group>"; };
 		3200453C2CF5A60A00D08B6D /* Extension + Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension + Date.swift"; sourceTree = "<group>"; };
 		3200453E2CF5A88A00D08B6D /* CalculateTimeLimitUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculateTimeLimitUseCase.swift; sourceTree = "<group>"; };
-		320047642CF6B83B00D08B6D /* AcceptMateRequestUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AcceptMateRequestUseCase.swift; sourceTree = "<group>"; };
+		320047642CF6B83B00D08B6D /* RespondMateRequestUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RespondMateRequestUseCase.swift; sourceTree = "<group>"; };
 		320047822CF70C9E00D08B6D /* PresentAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentAnimator.swift; sourceTree = "<group>"; };
 		995D94252CE32EC1005A47BF /* Extension + Keyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension + Keyboard.swift"; sourceTree = "<group>"; };
 		995D94612CE598F0005A47BF /* NIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NIManager.swift; sourceTree = "<group>"; };
@@ -266,14 +272,15 @@
 		995D94A92CECF8C4005A47BF /* RequestMateInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestMateInteractor.swift; sourceTree = "<group>"; };
 		995D94AB2CECFA24005A47BF /* RequestMatePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestMatePresenter.swift; sourceTree = "<group>"; };
 		995D94AD2CED0093005A47BF /* RequestMateRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestMateRouter.swift; sourceTree = "<group>"; };
-		995D94D12CEDF031005A47BF /* MateRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MateRequest.swift; sourceTree = "<group>"; };
+		995D94D12CEDF031005A47BF /* MPCProfileDropDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MPCProfileDropDTO.swift; sourceTree = "<group>"; };
 		99FA4E782CE0FBBF00553C2E /* ProfileInputViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileInputViewController.swift; sourceTree = "<group>"; };
 		A202A1142CEDD50700B98203 /* SupabaseDatabaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupabaseDatabaseManager.swift; sourceTree = "<group>"; };
 		A202A1162CEDD5EF00B98203 /* SupabaseDatabaseRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupabaseDatabaseRequest.swift; sourceTree = "<group>"; };
 		A20E714F2CEC595C00272B25 /* SupabaseError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupabaseError.swift; sourceTree = "<group>"; };
 		A20E71512CEC5FE900272B25 /* SupabaseUserResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupabaseUserResponse.swift; sourceTree = "<group>"; };
 		A21435F62CE20D2500564A4D /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
-		A220400A2CF6B89800D1E8CB /* UserInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfo.swift; sourceTree = "<group>"; };
+		A22040082CF6B12B00D1E8CB /* SupabaseDatabaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupabaseDatabaseTests.swift; sourceTree = "<group>"; };
+		A220400A2CF6B89800D1E8CB /* UserInfoDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoDTO.swift; sourceTree = "<group>"; };
 		A23A3B722CF4683F00A58705 /* Mate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mate.swift; sourceTree = "<group>"; };
 		A24082602CEB244C009109A0 /* SupabaseConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupabaseConfig.swift; sourceTree = "<group>"; };
 		A24082632CEB2470009109A0 /* SupabaseAuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupabaseAuthManager.swift; sourceTree = "<group>"; };
@@ -291,6 +298,11 @@
 		A2BA1B992CF260A50080575A /* MateListRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MateListRouter.swift; sourceTree = "<group>"; };
 		A2BA1BA82CF34A6A0080575A /* RequestMateListUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestMateListUseCase.swift; sourceTree = "<group>"; };
 		A2BA1BAB2CF34A860080575A /* RequestProfileImageUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestProfileImageUseCase.swift; sourceTree = "<group>"; };
+		A2BD49F12CF72A9500AC72A7 /* DogProfileDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DogProfileDTO.swift; sourceTree = "<group>"; };
+		A2BD49F52CF72B4000AC72A7 /* WalkNotiDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalkNotiDTO.swift; sourceTree = "<group>"; };
+		A2BD49FA2CF7711A00AC72A7 /* Sex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sex.swift; sourceTree = "<group>"; };
+		A2BD49FC2CF7712000AC72A7 /* Size.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Size.swift; sourceTree = "<group>"; };
+		A2BD49FE2CF7712800AC72A7 /* Keyword.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keyword.swift; sourceTree = "<group>"; };
 		A2C328852CE245AC00D255AB /* TabBarModuleBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarModuleBuilder.swift; sourceTree = "<group>"; };
 		A2C328872CE2481900D255AB /* HomeModuleBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeModuleBuilder.swift; sourceTree = "<group>"; };
 		A2C328912CE3BEA000D255AB /* AppRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppRouter.swift; sourceTree = "<group>"; };
@@ -331,7 +343,7 @@
 		FD5134182CEB7AD9002E76F3 /* HomeRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeRouter.swift; sourceTree = "<group>"; };
 		FD51341A2CEB7AE3002E76F3 /* HomePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePresenter.swift; sourceTree = "<group>"; };
 		FD51341C2CEB7AEC002E76F3 /* HomeInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeInteractor.swift; sourceTree = "<group>"; };
-		FD51341E2CEB7AF6002E76F3 /* LoadDogInfoUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadDogInfoUseCase.swift; sourceTree = "<group>"; };
+		FD51341E2CEB7AF6002E76F3 /* LoadUserInfoUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadUserInfoUseCase.swift; sourceTree = "<group>"; };
 		FD5134222CEC2BDB002E76F3 /* Routable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Routable.swift; sourceTree = "<group>"; };
 		FD69B1B22CE3BC68009D71DC /* KeychainManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainManager.swift; sourceTree = "<group>"; };
 		FD69B1B42CE3BC79009D71DC /* UserDefaultsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsManager.swift; sourceTree = "<group>"; };
@@ -442,19 +454,19 @@
 				FDE768972CF7836B00B5DE88 /* RemoteSaveDeviceTokenUseCase.swift */,
 				FDE768952CF7830F00B5DE88 /* RegisterDeviceTokenUseCase.swift */,
 				A266A25F2CF5CF4A002C2B3A /* SaveUserInfoRemoteUseCase.swift */,
-				320047642CF6B83B00D08B6D /* AcceptMateRequestUseCase.swift */,
 				FD880B5F2CF432780093BEB9 /* SaveProfileImageUseCase.swift */,
-				3200453E2CF5A88A00D08B6D /* CalculateTimeLimitUseCase.swift */,
-				FD119F492CED875800BE22BD /* RequestUserLocationUseCase.swift */,
-				FD119F472CED872500BE22BD /* RequestLocationAuthUseCase.swift */,
-				FD119F452CED867600BE22BD /* ConvertLocationToTextUseCase.swift */,
-				FD51341E2CEB7AF6002E76F3 /* LoadDogInfoUseCase.swift */,
+				3200445D2CE5CA1A00D08B6D /* SaveUserInfoUseCase.swift */,
+				FD51341E2CEB7AF6002E76F3 /* LoadUserInfoUseCase.swift */,
 				3200449B2CEDA86B00D08B6D /* RespondWalkRequestUseCase.swift */,
-				320044992CEDA80400D08B6D /* FetchUserInfoUseCase.swift */,
-				3200445D2CE5CA1A00D08B6D /* SaveInfoUseCase.swift */,
+				320047642CF6B83B00D08B6D /* RespondMateRequestUseCase.swift */,
+				320044992CEDA80400D08B6D /* RequestUserInfoUseCase.swift */,
+				FD119F472CED872500BE22BD /* RequestLocationAuthUseCase.swift */,
+				FD119F492CED875800BE22BD /* RequestUserLocationUseCase.swift */,
 				320044762CEB4E0F00D08B6D /* RequestWalkUseCase.swift */,
 				A2BA1BA82CF34A6A0080575A /* RequestMateListUseCase.swift */,
 				A2BA1BAB2CF34A860080575A /* RequestProfileImageUseCase.swift */,
+				3200453E2CF5A88A00D08B6D /* CalculateTimeLimitUseCase.swift */,
+				FD119F452CED867600BE22BD /* ConvertLocationToTextUseCase.swift */,
 			);
 			path = UseCase;
 			sourceTree = "<group>";
@@ -464,12 +476,11 @@
 			children = (
 				FDE768932CF782E500B5DE88 /* WalkAPS.swift */,
 				FD331A942CF3463E00F39426 /* PushNotification.swift */,
-				995D94D12CEDF031005A47BF /* MateRequest.swift */,
 				FD331A512CF23BCE00F39426 /* WalkLog.swift */,
 				320044972CED81EF00D08B6D /* WalkRequest.swift */,
 				A23A3B722CF4683F00A58705 /* Mate.swift */,
-				320044522CE59A8100D08B6D /* Dog.swift */,
-				A220400A2CF6B89800D1E8CB /* UserInfo.swift */,
+				320044522CE59A8100D08B6D /* UserInfo.swift */,
+				A2BD49F92CF770F900AC72A7 /* DogTraits */,
 			);
 			path = Entity;
 			sourceTree = "<group>";
@@ -594,6 +605,27 @@
 				A24082712CEB36B8009109A0 /* SupabaseTokenRequest.swift */,
 			);
 			path = Request;
+			sourceTree = "<group>";
+		};
+		A2BD49F02CF72A8800AC72A7 /* DTO */ = {
+			isa = PBXGroup;
+			children = (
+				995D94D12CEDF031005A47BF /* MPCProfileDropDTO.swift */,
+				A2BD49F52CF72B4000AC72A7 /* WalkNotiDTO.swift */,
+				A2BD49F12CF72A9500AC72A7 /* DogProfileDTO.swift */,
+				A220400A2CF6B89800D1E8CB /* UserInfoDTO.swift */,
+			);
+			path = DTO;
+			sourceTree = "<group>";
+		};
+		A2BD49F92CF770F900AC72A7 /* DogTraits */ = {
+			isa = PBXGroup;
+			children = (
+				A2BD49FE2CF7712800AC72A7 /* Keyword.swift */,
+				A2BD49FC2CF7712000AC72A7 /* Size.swift */,
+				A2BD49FA2CF7711A00AC72A7 /* Sex.swift */,
+			);
+			path = DogTraits;
 			sourceTree = "<group>";
 		};
 		A2C328892CE2F4F600D255AB /* Router */ = {
@@ -725,6 +757,7 @@
 		FDA491332CD9FE7C00A36FB0 /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				A2BD49F02CF72A8800AC72A7 /* DTO */,
 				320044792CEC490600D08B6D /* Entity */,
 				320044782CEC48FB00D08B6D /* UseCase */,
 				FD0634242CE596A7003C9D6B /* SNMNetwork */,
@@ -1752,6 +1785,7 @@
 				FDE7689F2CF7858F00B5DE88 /* Extension + UIViewController.swift in Sources */,
 				A24082702CEB27DE009109A0 /* SupabaseRequest.swift in Sources */,
 				A2C844D12CDBE1E5007F2970 /* (null) in Sources */,
+				A2BD49F62CF72B4000AC72A7 /* WalkNotiDTO.swift in Sources */,
 				3200444E2CE595EA00D08B6D /* ProfileCreatePresenter.swift in Sources */,
 				320044922CED78D200D08B6D /* RespondWalkPresenter.swift in Sources */,
 				FD331A8F2CF33F6700F39426 /* SupabaseStorageManager.swift in Sources */,
@@ -1775,15 +1809,17 @@
 				FDE768A12CF7873600B5DE88 /* RequestNotificationAuthUseCase.swift in Sources */,
 				A21435F72CE20D2500564A4D /* TabBarController.swift in Sources */,
 				320043762CDCA18E00D08B6D /* (null) in Sources */,
-				995D94D22CEDF037005A47BF /* MateRequest.swift in Sources */,
+				995D94D22CEDF037005A47BF /* MPCProfileDropDTO.swift in Sources */,
 				A20E71502CEC595C00272B25 /* SupabaseError.swift in Sources */,
 				A20E71502CEC595C00272B25 /* SupabaseError.swift in Sources */,
 				FDCD02CF2CE917D800B627D8 /* MockRequest.swift in Sources */,
+				A2BD49FD2CF7712000AC72A7 /* Size.swift in Sources */,
 				A2F825DD2CDFBEB4000C5419 /* ProfileCardView.swift in Sources */,
-				FD51341F2CEB7AFE002E76F3 /* LoadDogInfoUseCase.swift in Sources */,
+				FD51341F2CEB7AFE002E76F3 /* LoadUserInfoUseCase.swift in Sources */,
 				FD331A582CF23CEC00F39426 /* WalkLogCell.swift in Sources */,
 				FD5134172CEB738D002E76F3 /* UIControl + Publisher.swift in Sources */,
 				320044852CEC836400D08B6D /* PaddingLabel.swift in Sources */,
+				A2BD49FF2CF7712800AC72A7 /* Keyword.swift in Sources */,
 				A2C328882CE2481900D255AB /* HomeModuleBuilder.swift in Sources */,
 				320044712CEB45E000D08B6D /* RequestWalkPresenter.swift in Sources */,
 				995D94262CE32ECE005A47BF /* Extension + Keyboard.swift in Sources */,
@@ -1805,6 +1841,7 @@
 				320043782CDCA49100D08B6D /* (null) in Sources */,
 				A24082612CEB244C009109A0 /* SupabaseConfig.swift in Sources */,
 				FD06342A2CE596D0003C9D6B /* NetworkProvider.swift in Sources */,
+				A2BD49F22CF72A9500AC72A7 /* DogProfileDTO.swift in Sources */,
 				FDBFA9B12CE1FE5500AA9220 /* LayoutConstant.swift in Sources */,
 				320044752CEB4D6900D08B6D /* RequestWalkRouter.swift in Sources */,
 				320044962CED80DA00D08B6D /* RespondWalkRouter.swift in Sources */,
@@ -1824,11 +1861,11 @@
 				320044982CED81F400D08B6D /* WalkRequest.swift in Sources */,
 				FDE14A502CE8D2FB001F7A9D /* URLRequest + append.swift in Sources */,
 				A2BA1B982CF260780080575A /* MateListPresenter.swift in Sources */,
-				3200449A2CEDA80900D08B6D /* FetchUserInfoUseCase.swift in Sources */,
+				3200449A2CEDA80900D08B6D /* RequestUserInfoUseCase.swift in Sources */,
 				995D94AE2CED00A4005A47BF /* RequestMateRouter.swift in Sources */,
 				320047832CF70CA300D08B6D /* PresentAnimator.swift in Sources */,
 				FD06342C2CE5984D003C9D6B /* SNMNetworkResponse.swift in Sources */,
-				3200445E2CE5CA1B00D08B6D /* SaveInfoUseCase.swift in Sources */,
+				3200445E2CE5CA1B00D08B6D /* SaveUserInfoUseCase.swift in Sources */,
 				995D94AA2CECF8DD005A47BF /* RequestMateInteractor.swift in Sources */,
 				A25BE45A2CEC2BA300886763 /* SessionManager.swift in Sources */,
 				A24082672CEB2539009109A0 /* SupabaseSessionResponse.swift in Sources */,
@@ -1842,7 +1879,7 @@
 				FD5134192CEB7ADE002E76F3 /* HomeRouter.swift in Sources */,
 				FD51341D2CEB7AF0002E76F3 /* HomeInteractor.swift in Sources */,
 				3200453F2CF5A8B800D08B6D /* CalculateTimeLimitUseCase.swift in Sources */,
-				320044532CE59A8A00D08B6D /* Dog.swift in Sources */,
+				320044532CE59A8A00D08B6D /* UserInfo.swift in Sources */,
 				A24082642CEB2470009109A0 /* SupabaseAuthManager.swift in Sources */,
 				3200453D2CF5A60E00D08B6D /* Extension + Date.swift in Sources */,
 				320044562CE59DF500D08B6D /* ProfileInputRouter.swift in Sources */,
@@ -1850,7 +1887,7 @@
 				3200438B2CDF3BEF00D08B6D /* ProfileCreateViewController.swift in Sources */,
 				FD119F502CED87E500BE22BD /* SelectLocationRouter.swift in Sources */,
 				FD880B602CF4327F0093BEB9 /* SaveProfileImageUseCase.swift in Sources */,
-				320047652CF6B86D00D08B6D /* AcceptMateRequestUseCase.swift in Sources */,
+				320047652CF6B86D00D08B6D /* RespondMateRequestUseCase.swift in Sources */,
 				FD331A562CF23C5300F39426 /* WalkLogListViewController.swift in Sources */,
 				320044672CE6125100D08B6D /* DataManager.swift in Sources */,
 				3200449C2CEDA87800D08B6D /* RespondWalkRequestUseCase.swift in Sources */,
@@ -1867,8 +1904,9 @@
 				FD331A602CF339B000F39426 /* SupabaseStorageRequest.swift in Sources */,
 				320044892CEC862D00D08B6D /* LocationSelectionView.swift in Sources */,
 				FD331A4D2CF235A100F39426 /* SNMLineTabBar.swift in Sources */,
+				A2BD49FB2CF7711A00AC72A7 /* Sex.swift in Sources */,
 				FD69B1B52CE3BC7E009D71DC /* UserDefaultsManager.swift in Sources */,
-				A220400B2CF6B89800D1E8CB /* UserInfo.swift in Sources */,
+				A220400B2CF6B89800D1E8CB /* UserInfoDTO.swift in Sources */,
 				320043722CDC9E5F00D08B6D /* (null) in Sources */,
 				A266A2602CF5CF4A002C2B3A /* SaveUserInfoRemoteUseCase.swift in Sources */,
 				FDE14A4E2CE8D144001F7A9D /* HTTPStatusCode.swift in Sources */,

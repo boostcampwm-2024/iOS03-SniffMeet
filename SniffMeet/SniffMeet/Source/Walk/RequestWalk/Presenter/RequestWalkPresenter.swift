@@ -23,7 +23,7 @@ protocol RequestWalkPresentable : AnyObject{
 }
 
 protocol RequestWalkInteractorOutput: AnyObject {
-    func didFetchDogInfo(dog: Dog)
+    func didFetchDogInfo(dog: UserInfo)
     func didSendWalkRequest()
     func didFailToFetchDogInfo(error: Error)
     func didFailToSendWalkRequest(error: Error)
@@ -76,7 +76,7 @@ final class RequestWalkPresenter: RequestWalkPresentable {
 }
 
 extension RequestWalkPresenter: RequestWalkInteractorOutput {
-    func didFetchDogInfo(dog: Dog) {
+    func didFetchDogInfo(dog: UserInfo) {
         /// interactor에서 얻어온 dog 정보를 view에 보여줌
     }
     func didSendWalkRequest() {

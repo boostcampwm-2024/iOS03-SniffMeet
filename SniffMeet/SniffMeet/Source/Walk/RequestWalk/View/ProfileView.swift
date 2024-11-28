@@ -69,7 +69,7 @@ final class ProfileView: BaseView {
         label.layer.masksToBounds = true
     }
     
-    func configure(dog: Dog) {
+    func configure(dog: UserInfo) {
         nameLabel.text = dog.name
         
         guard let firstKeyword = dog.keywords.first else { return }

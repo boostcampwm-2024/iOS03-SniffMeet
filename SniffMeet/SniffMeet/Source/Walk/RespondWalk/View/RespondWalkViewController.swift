@@ -72,7 +72,7 @@ final class RespondWalkViewController: BaseViewController, RespondWalkViewable {
         presenter?.viewDidLoad()
     }
     override func configureAttributes() {
-        profileView.configure(dog: Dog.example)
+        profileView.configure(dog: UserInfo.example)
         messageLabel.text = "HomeView에서 dogInfo의 변경을 알아야 하더라구요. Presenter에서 HomePresenterOutput 프로토콜을 채택하도록 설정해줬습니다."
         
         submitButton.setTitle(Context.abledSubmitButtonTitle, for: .normal)

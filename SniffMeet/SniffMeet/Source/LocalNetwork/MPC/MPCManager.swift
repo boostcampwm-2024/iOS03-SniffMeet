@@ -21,21 +21,21 @@ final class MPCManager: NSObject {
     let session: MCSession
     let mypeerID: MCPeerID
     var timer: Timer?
-    var dog: Dog?
-    var profile: DogProfileInfo?
+    var dog: UserInfo?
+    var profile: DogProfileDTO?
 
     private var cancellables = Set<AnyCancellable>()
 
     @Published var paired: Bool = false
 
     var receivedTokenPublisher = PassthroughSubject<Data, Never>()
-    var receivedDataPublisher = PassthroughSubject<DogProfileInfo, Never>()
+    var receivedDataPublisher = PassthroughSubject<DogProfileDTO, Never>()
     var receivedViewTransitionPublisher = PassthroughSubject<String, Never>()
     var isAvailableToBeConnected: Bool = false {
         didSet {
             do {
-                dog = try dataManager.loadData(forKey: "dogInfo", type: Dog.self)
-                updateProfile(dogInfo: dog ?? Dog.example)
+                dog = try dataManager.loadData(forKey: "dogInfo", type: UserInfo.self)
+                updateProfile(dogInfo: dog ?? UserInfo.example)
             } catch {
                 SNMLogger.error("loadData error : \(error)")
             }
@@ -94,7 +94,7 @@ final class MPCManager: NSObject {
         guard !session.connectedPeers.isEmpty else { return }
 
         do {
-            let dataToSend = ReceiveData(token: discoveryToken, profile: nil, transitionMessage: nil)
+            let dataToSend = MPCProfileDropDTO(token: discoveryToken, profile: nil, transitionMessage: nil)
             let encodedData = try JSONEncoder().encode(dataToSend)
             SNMLogger.info("encodedToken is  \(encodedData)")
             try session.send(encodedData, toPeers: session.connectedPeers, with: .reliable)
@@ -103,14 +103,14 @@ final class MPCManager: NSObject {
         }
     }
 
-    func sendData(profile: DogProfileInfo) {
+    func sendData(profile: DogProfileDTO) {
         guard !session.connectedPeers.isEmpty else {
             SNMLogger.log("no one is connected")
             return
         }
 
         do {
-            let dataToSend = ReceiveData(token: nil, profile: profile, transitionMessage: nil)
+            let dataToSend = MPCProfileDropDTO(token: nil, profile: profile, transitionMessage: nil)
             let encodedData = try JSONEncoder().encode(dataToSend)
             SNMLogger.info("encodedData is  \(encodedData)")
             sendProfileData(data: encodedData)
@@ -126,7 +126,7 @@ final class MPCManager: NSObject {
         guard !session.connectedPeers.isEmpty else { return }
 
         do {
-            let dataToSend = ReceiveData(token: nil, profile: nil, transitionMessage: viewTransitionInfo)
+            let dataToSend = MPCProfileDropDTO(token: nil, profile: nil, transitionMessage: viewTransitionInfo)
             let encodedData = try JSONEncoder().encode(dataToSend)
             SNMLogger.info("encodedToken is  \(encodedData)")
             try session.send(encodedData, toPeers: session.connectedPeers, with: .reliable)
@@ -135,8 +135,8 @@ final class MPCManager: NSObject {
         }
     }
 
-    private func updateProfile(dogInfo: Dog) {
-        profile = DogProfileInfo(name: dogInfo.name, keywords: dogInfo.keywords, profileImage: dogInfo.profileImage)
+    private func updateProfile(dogInfo: UserInfo) {
+        profile = DogProfileDTO(name: dogInfo.name, keywords: dogInfo.keywords, profileImage: dogInfo.profileImage)
     }
 
     private func sendProfileData(data: Data) {
@@ -167,7 +167,7 @@ extension MPCManager: MCSessionDelegate {
                 self.paired = true
                 self.isAvailableToBeConnected = false
                 SNMLogger.info("ConnectedPeers: \(session.connectedPeers)")
-                sendData(profile: profile ?? DogProfileInfo.example)
+                sendData(profile: profile ?? DogProfileDTO.example)
             }
         default:
             Task { @MainActor in
@@ -180,7 +180,7 @@ extension MPCManager: MCSessionDelegate {
         SNMLogger.info("didReceive bytes \(data.count) bytes")
 
         do {
-            let receivedData = try JSONDecoder().decode(ReceiveData.self, from: data)
+            let receivedData = try JSONDecoder().decode(MPCProfileDropDTO.self, from: data)
 
             if let tokenData = receivedData.token {
                 Task { @MainActor in
