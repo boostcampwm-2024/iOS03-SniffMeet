@@ -61,10 +61,6 @@ final class RequestWalkViewController: BaseViewController, RequestWalkViewable {
     }
     override func configureAttributes() {
         setButtonActions()
-        profileView.configure(
-            name: Mate.example.name,
-            keywords: Mate.example.keywords.map { $0.rawValue }
-        )
     }
     override func configureHierachy() {
 
