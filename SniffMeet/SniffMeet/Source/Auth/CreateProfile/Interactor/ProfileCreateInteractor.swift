@@ -28,7 +28,7 @@ final class ProfileCreateInteractor: ProfileCreateInteractable {
         presenter: DogInfoInteractorOutput? = nil,
         saveUserInfoUseCase: SaveUserInfoUseCase,
         saveProfileImageUseCase: SaveProfileImageUseCase,
-        saveUserInfoRemoteUseCase: SaveUserInfoRemoteUseCase
+        saveUserInfoRemoteUseCase: SaveUserInfoRemoteUseCase,
         saveMateListUseCase: SaveMateListUseCase
     ) {
         self.presenter = presenter

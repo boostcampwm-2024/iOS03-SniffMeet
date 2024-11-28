@@ -21,7 +21,7 @@ struct MateListRouter: MateListRoutable {
 
 extension MateListRouter: MateListBuildable {
     static func createMateListModule() -> UIViewController {
-        let requestMateListUseCase: RequestMateListUseCase = RequestMateListUseCaseImpl()
+        let requestMateListUseCase: RequestMateListUseCase = RequestMateListUseCaseImpl(remoteDatabaseManager: SupabaseDatabaseManager.shared)
         let requestProfileImageUseCase: RequestProfileImageUseCase = RequestProfileImageUseCaseImpl()
 
         let view: MateListViewable & UIViewController = MateListViewController()
