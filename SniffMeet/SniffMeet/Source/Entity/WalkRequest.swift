@@ -8,7 +8,7 @@
 import Foundation
 
 struct WalkRequest: Codable {
-    let dog: Dog
+    let mate: UserInfo
     let address: Address
     let message: String
 }
@@ -35,31 +35,6 @@ extension Address {
     static let example: Address = Address(longtitude: 12.0,
                                           latitude: 12.0,
                                           location: "서울 코드스쿼드")
-}
-
-struct WalkNotiDTO: Decodable {
-    let id: UUID
-    let createdAt: String
-    let message: String
-    let latitude: Double
-    let longtitude: Double
-    let senderId: UUID
-    let senderName: String
-    
-    var createdAtDate: Date? {
-        let dateFormatter = ISO8601DateFormatter()
-        return dateFormatter.date(from: createdAt)
-    }
-    
-    func toEntity() -> WalkNoti {
-        WalkNoti(id: id,
-                 createdAt: createdAtDate,
-                 message: message,
-                 latitude: latitude,
-                 longtitude: longtitude,
-                 senderId: senderId,
-                 senderName: senderName)
-    }
 }
 
 struct WalkNoti {

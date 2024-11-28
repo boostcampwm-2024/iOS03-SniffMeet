@@ -7,8 +7,8 @@
 
 import Foundation
 
-struct ReceiveData: Codable {
+struct MPCProfileDropDTO: Codable {
     let token: Data?
-    let profile: DogProfileInfo?
+    let profile: DogProfileDTO?
     let transitionMessage: String?
 }

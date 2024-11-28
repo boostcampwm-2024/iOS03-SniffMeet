@@ -312,7 +312,7 @@ private extension ProfileInputViewController {
                 return Keyword(rawValue: text)
             }
             
-            let dogInfo = DogDetailInfo(name: name,
+            let dogInfo = DogInfo(name: name,
                                         age: age,
                                         sex: sex,
                                         sexUponIntake: sexUponIntake,

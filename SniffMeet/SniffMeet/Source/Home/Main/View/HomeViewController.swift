@@ -20,7 +20,7 @@ final class HomeViewController: BaseViewController, HomeViewable {
     private var niManager: NIManager?
     private var cancellables = Set<AnyCancellable>()
     private var count: Int = 0
-    var dogProfile: DogProfileInfo?
+    var dogProfile: DogProfileDTO?
 
     override func viewDidLoad() {
         setupMPCManager()

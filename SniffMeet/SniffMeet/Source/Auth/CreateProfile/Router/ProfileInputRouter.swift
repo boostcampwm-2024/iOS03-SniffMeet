@@ -7,7 +7,7 @@
 import UIKit
 
 protocol ProfileInputRoutable {
-    func presentPostCreateScreen(from view: ProfileInputViewable, with dogDetail: DogDetailInfo)
+    func presentPostCreateScreen(from view: ProfileInputViewable, with dogDetail: DogInfo)
 }
 
 protocol ProfileInputBuildable {
@@ -15,7 +15,7 @@ protocol ProfileInputBuildable {
 }
 
 final class ProfileInputRouter: ProfileInputRoutable {
-    func presentPostCreateScreen(from view: ProfileInputViewable, with dogDetail: DogDetailInfo) {
+    func presentPostCreateScreen(from view: ProfileInputViewable, with dogDetail: DogInfo) {
         let profileCreateViewController =
         ProfileCreateRouter.createProfileCreateModule(dogDetailInfo: dogDetail)
    

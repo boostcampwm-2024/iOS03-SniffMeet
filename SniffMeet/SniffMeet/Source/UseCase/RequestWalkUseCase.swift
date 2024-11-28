@@ -8,11 +8,11 @@
 import Foundation
 
 protocol RequestWalkUseCase {
-    func execute(dog: Dog) throws
+    func execute(dog: UserInfo) throws
 }
 
 
 struct RequestWalkUseCaseImpl: RequestWalkUseCase {
-    func execute(dog: Dog) throws {
+    func execute(dog: UserInfo) throws {
     }
 }

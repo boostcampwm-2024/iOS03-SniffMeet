@@ -31,7 +31,7 @@ final class WalkLogCell: UITableViewCell {
     private let walkLogImageView: UIImageView = UIImageView(frame: .zero)
 
     init(
-        dogInfo: DogProfileInfo,
+        dogInfo: DogProfileDTO,
         walkLog: WalkLog,
         style: UITableViewCell.CellStyle,
         reuseIdentifier: String?
@@ -186,7 +186,7 @@ final class WalkLogCell: UITableViewCell {
         stepLabel.text = "\(100)"
         dateAndLocationLabel.text = "부천시 100213213"
     }
-    func configureCell(dogInfo: DogProfileInfo) {
+    func configureCell(dogInfo: DogProfileDTO) {
         if let profileImage = dogInfo.profileImage {
             profileImageView.image = UIImage(data: profileImage)
         }

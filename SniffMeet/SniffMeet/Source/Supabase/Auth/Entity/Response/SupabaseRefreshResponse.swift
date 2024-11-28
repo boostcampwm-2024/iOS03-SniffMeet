@@ -23,10 +23,8 @@ struct SupabaseRefreshTokenResponse: Codable {
 
 struct SupabaseRefreshUserResponse: Codable {
     var id: String
-    var userMetadata: SupabaseUserMetadata
 
     enum CodingKeys: String, CodingKey {
         case id
-        case userMetadata = "user_metadata"
     }
 }

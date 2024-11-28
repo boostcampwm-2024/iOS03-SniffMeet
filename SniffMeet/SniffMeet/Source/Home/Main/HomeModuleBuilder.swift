@@ -12,8 +12,9 @@ enum HomeModuleBuilder {
         let view = HomeViewController()
         let router = HomeRouter()
         let interactor = HomeInteractor(
-            loadInfoUseCase: LoadDogInfoUseCaseImpl(
-                dataLoadable: LocalDataManager()
+            loadUserInfoUseCase: LoadUserInfoUseCaseImpl(
+                dataLoadable: LocalDataManager(),
+                imageManageable: SNMFileManager()
             )
         )
         view.presenter = HomePresenter(view: view, router: router, interactor: interactor)

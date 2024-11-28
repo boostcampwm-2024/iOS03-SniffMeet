@@ -20,6 +20,11 @@ final class KeywordView: UILabel {
             height: size.height + insets.top + insets.bottom
         )
     }
+    override var text: String? {
+        didSet {
+            super.text = "#\(text ?? "")"
+        }
+    }
 
     init(title: String) {
         super.init(frame: .zero)

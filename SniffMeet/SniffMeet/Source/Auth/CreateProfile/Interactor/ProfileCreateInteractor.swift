@@ -5,52 +5,58 @@
 //  Created by 윤지성 on 11/14/24.
 //
 
-import Foundation
 import UIKit
 
 protocol ProfileCreateInteractable: AnyObject {
     var presenter: DogInfoInteractorOutput? { get set }
-    var storeDogInfoUseCase: StoreDogInfoUseCase { get set }
+    var saveUserInfoUseCase: SaveUserInfoUseCase { get set }
     var saveProfileImageUseCase: SaveProfileImageUseCase { get }
 
-    func signInWithProfileData(dogInfo: Dog)
+    func signInWithProfileData(dogInfo: UserInfo, imageData: Data?)
     func convertImageToData(image: UIImage?) -> Data?
 }
 
 final class ProfileCreateInteractor: ProfileCreateInteractable {
     weak var presenter: DogInfoInteractorOutput?
-    var storeDogInfoUseCase: StoreDogInfoUseCase
+    var saveUserInfoUseCase: SaveUserInfoUseCase
     var saveProfileImageUseCase: SaveProfileImageUseCase
     var saveUserInfoRemoteUseCase: SaveUserInfoRemoteUseCase
 
     init(
         presenter: DogInfoInteractorOutput? = nil,
-        storeDogInfoUsecase: StoreDogInfoUseCase,
+        saveUserInfoUseCase: SaveUserInfoUseCase,
         saveProfileImageUseCase: SaveProfileImageUseCase,
         saveUserInfoRemoteUseCase: SaveUserInfoRemoteUseCase
     ) {
         self.presenter = presenter
-        self.storeDogInfoUseCase = storeDogInfoUsecase
+        self.saveUserInfoUseCase = saveUserInfoUseCase
         self.saveProfileImageUseCase = saveProfileImageUseCase
         self.saveUserInfoRemoteUseCase = saveUserInfoRemoteUseCase
     }
 
-    func signInWithProfileData(dogInfo: Dog) {
+    func signInWithProfileData(dogInfo: UserInfo, imageData: Data?) {
         Task {
             do {
                 await SupabaseAuthManager.shared.signInAnonymously()
-                try storeDogInfoUseCase.execute(dog: dogInfo)
+                try saveUserInfoUseCase.execute(dog: UserInfo(name: dogInfo.name,
+                                                              age: dogInfo.age,
+                                                              sex: dogInfo.sex,
+                                                              sexUponIntake: dogInfo.sexUponIntake,
+                                                              size: dogInfo.size,
+                                                              keywords: dogInfo.keywords,
+                                                              nickname: dogInfo.nickname,
+                                                              profileImage: imageData))
                 var fileName: String? = nil
-                if let profileImageData = dogInfo.profileImage {
+                if let imageData {
                     fileName = try await saveProfileImageUseCase.execute(
-                        imageData: profileImageData
+                        imageData: imageData
                     )
                 }
                 guard let userID = SessionManager.shared.session?.user?.userID else {
                     return
                 }
                 await saveUserInfoRemoteUseCase.execute(
-                    info: UserInfo(
+                    info: UserInfoDTO(
                         id: userID,
                         dogName: dogInfo.name,
                         age: dogInfo.age,
@@ -62,9 +68,9 @@ final class ProfileCreateInteractor: ProfileCreateInteractable {
                         profileImageURL: fileName
                     )   
                 )
-                presenter?.didSaveDogInfo()
+                presenter?.didSaveUserInfo()
             } catch {
-                presenter?.didFailToSaveDogInfo(error: error)
+                presenter?.didFailToSaveUserInfo(error: error)
             }
         }
     }

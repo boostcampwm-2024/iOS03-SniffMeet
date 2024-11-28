@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct SupabaseSessionResponse: Codable {
+struct SupabaseSessionResponse: Decodable {
     var accessToken: String
     var tokenType: String
     var expiresIn: Int

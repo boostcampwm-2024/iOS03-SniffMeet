@@ -9,7 +9,6 @@ import Combine
 import Foundation
 
 protocol RequestWalkPresentable : AnyObject{
-    var dogInfo: Int { get set }
     var view: RequestWalkViewable? { get set }
     var interactor: RequestWalkInteractable? { get set }
     var router: RequestWalkRoutable? { get set }
@@ -23,14 +22,14 @@ protocol RequestWalkPresentable : AnyObject{
 }
 
 protocol RequestWalkInteractorOutput: AnyObject {
-    func didFetchDogInfo(dog: Dog)
+    func didFetchMateInfo(mateInfo: Mate)
+    func didFetchProfileImage(imageData: Data?)
     func didSendWalkRequest()
     func didFailToFetchDogInfo(error: Error)
     func didFailToSendWalkRequest(error: Error)
 }
 
-final class RequestWalkPresenter: RequestWalkPresentable {    
-    var dogInfo: Int = 0
+final class RequestWalkPresenter: RequestWalkPresentable {
     weak var view: RequestWalkViewable?
     var interactor: RequestWalkInteractable?
     var router: RequestWalkRoutable?
@@ -38,7 +37,6 @@ final class RequestWalkPresenter: RequestWalkPresentable {
     
     // FIXME: dogInfo defaultValue 제거 필요
     init(
-        dogInfo: Int = 0,
         view: RequestWalkViewable? = nil,
         interactor: RequestWalkInteractable? = nil,
         router: RequestWalkRoutable? = nil,
@@ -46,7 +44,6 @@ final class RequestWalkPresenter: RequestWalkPresentable {
             selectedLocation: CurrentValueSubject(nil)
         )
     ) {
-        self.dogInfo = dogInfo
         self.view = view
         self.interactor = interactor
         self.router = router
@@ -54,7 +51,8 @@ final class RequestWalkPresenter: RequestWalkPresentable {
     }
     
     func viewDidLoad() {
-        interactor?.fetchDogDetail(dog: dogInfo)
+        // interactor에서 메이트 정보 받아오고 -> url에서 사진 받아오기 (캐싱 사용)
+        interactor?.requestMateInfo()
     }
     
     func requestWalk(forPost walkRequest: String, to user: Int) {
@@ -76,8 +74,11 @@ final class RequestWalkPresenter: RequestWalkPresentable {
 }
 
 extension RequestWalkPresenter: RequestWalkInteractorOutput {
-    func didFetchDogInfo(dog: Dog) {
-        /// interactor에서 얻어온 dog 정보를 view에 보여줌
+    func didFetchMateInfo(mateInfo: Mate) {
+        output.mateInfo.send(mateInfo)
+        if let profileImageName = mateInfo.profileImageURLString {
+            interactor?.requestProfileImage(imageName: profileImageName)
+        }
     }
     func didSendWalkRequest() {
         if let view {
@@ -90,12 +91,19 @@ extension RequestWalkPresenter: RequestWalkInteractorOutput {
     func didFailToSendWalkRequest(error: any Error) {
         /// 산책 요청이 실패했을 때 실행할 로직
     }
+    func didFetchProfileImage(imageData: Data?) {
+        output.profileImageData.send(imageData)
+    }
 }
 
 protocol RequestWalkPresenterOutput {
     var selectedLocation: CurrentValueSubject<Address?, Never> { get }
+    var profileImageData: PassthroughSubject<Data?, Never> { get }
+    var mateInfo: PassthroughSubject<Mate?, Never> { get }
 }
 
 struct DefaultRequestWalkPresenterOutput: RequestWalkPresenterOutput {
     let selectedLocation: CurrentValueSubject<Address?, Never>
+    let profileImageData = PassthroughSubject<Data?, Never>()
+    let mateInfo = PassthroughSubject<Mate?, Never>()
 }

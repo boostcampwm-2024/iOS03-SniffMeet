@@ -8,7 +8,7 @@ import Foundation
 import UIKit
 
 protocol ProfileCreatePresentable : AnyObject{
-    var dogInfo: DogDetailInfo { get set }
+    var dogInfo: DogInfo { get set }
     var view: ProfileCreateViewable? { get set }
     var interactor: ProfileCreateInteractable? { get set }
     var router: ProfileCreateRoutable? { get set }
@@ -17,18 +17,18 @@ protocol ProfileCreatePresentable : AnyObject{
 }
 
 protocol DogInfoInteractorOutput: AnyObject {
-    func didSaveDogInfo()
-    func didFailToSaveDogInfo(error: Error)
+    func didSaveUserInfo()
+    func didFailToSaveUserInfo(error: Error)
 }
 
 
 final class ProfileCreatePresenter: ProfileCreatePresentable {
-    var dogInfo: DogDetailInfo
+    var dogInfo: DogInfo
     weak var view: ProfileCreateViewable?
     var interactor: ProfileCreateInteractable?
     var router: ProfileCreateRoutable?
     
-    init(dogInfo: DogDetailInfo,
+    init(dogInfo: DogInfo,
          view: ProfileCreateViewable? = nil,
          interactor: ProfileCreateInteractable? = nil,
          router: ProfileCreateRoutable? = nil)
@@ -41,27 +41,29 @@ final class ProfileCreatePresenter: ProfileCreatePresentable {
 
     func didTapSubmitButton(nickname: String, image: UIImage?) {
         let imageData = interactor?.convertImageToData(image: image)
-        let dogInfo = Dog(name: dogInfo.name,
-                      age: dogInfo.age,
-                      sex: dogInfo.sex,
-                      sexUponIntake: dogInfo.sexUponIntake,
-                      size: dogInfo.size,
-                      keywords: dogInfo.keywords,
-                      nickname: nickname,
-                      profileImage: imageData)
+        let userInfo = UserInfo(
+            name: dogInfo.name,
+            age: dogInfo.age,
+            sex: dogInfo.sex,
+            sexUponIntake: dogInfo.sexUponIntake,
+            size: dogInfo.size,
+            keywords: dogInfo.keywords,
+            nickname: nickname,
+            profileImage: nil
+        )
         // TODO: SubmitButton disable 필요
-        interactor?.signInWithProfileData(dogInfo: dogInfo)
+        interactor?.signInWithProfileData(dogInfo: userInfo, imageData: imageData)
     }
 }
 
 extension ProfileCreatePresenter: DogInfoInteractorOutput {
-    func didSaveDogInfo() {
+    func didSaveUserInfo() {
         // TODO: submit button enable
         guard let view else { return }
         router?.presentMainScreen(from: view)
     }
     
-    func didFailToSaveDogInfo(error: any Error) {
+    func didFailToSaveUserInfo(error: any Error) {
         // TODO: -  alert 올리는데 어떻게 올릴지 정하기
         // TODO: submit button enable
     }

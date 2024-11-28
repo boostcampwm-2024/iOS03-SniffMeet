@@ -15,6 +15,7 @@ protocol MateListViewable: AnyObject {
 final class MateListViewController: BaseViewController, MateListViewable {
     var presenter: (any MateListPresentable)?
     var dataSource: [Mate] = []
+    var imageDataSource: [Int: Data] = [:]
     private var cancellables: Set<AnyCancellable> = []
     private let tableView: UITableView = UITableView()
 
@@ -62,7 +63,7 @@ final class MateListViewController: BaseViewController, MateListViewable {
         presenter?.output.profileImageData
             .receive(on: RunLoop.main)
             .sink { [weak self] (index, imageData) in
-                self?.dataSource[index].profileImageData = imageData
+                self?.imageDataSource[index] = imageData
                 let indexPath = IndexPath(item: index, section: 0)
                 self?.tableView.reloadRows(at: [indexPath], with: .none)
             }
@@ -85,10 +86,13 @@ extension MateListViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: Identifier.mateCellID, for: indexPath)
+        let cell = tableView.dequeueReusableCell(
+            withIdentifier: Identifier.mateCellID,
+            for: indexPath
+        )
         var content = cell.defaultContentConfiguration()
         content.image = .app
-        if let imageData = dataSource[indexPath.row].profileImageData {
+        if let imageData = imageDataSource[indexPath.row] {
             content.image = UIImage(data: imageData)
         } else {
             presenter?.didTableViewCellLoad(
@@ -100,7 +104,7 @@ extension MateListViewController: UITableViewDelegate, UITableViewDataSource {
         content.imageProperties.cornerRadius = ItemSize.profileImageCornerRadius
         content.text = dataSource[indexPath.row].name
         cell.contentConfiguration = content
-        cell.accessoryView = createAccessoryButton()
+        cell.accessoryView = createAccessoryButton(mate: dataSource[indexPath.row])
         cell.selectionStyle = .none
         return cell
     }
@@ -109,7 +113,7 @@ extension MateListViewController: UITableViewDelegate, UITableViewDataSource {
         ItemSize.cellHeight
     }
 
-    private func createAccessoryButton() -> UIButton {
+    private func createAccessoryButton(mate: Mate) -> UIButton {
         let button = UIButton(type: .roundedRect)
         button.frame = CGRect(origin: .zero, size: ItemSize.accessoryButtonSize)
         button.backgroundColor = SNMColor.mainBrown
@@ -117,6 +121,12 @@ extension MateListViewController: UITableViewDelegate, UITableViewDataSource {
         button.setTitleColor(.white, for: .normal)
         button.layer.cornerRadius = button.frame.height / 2
         button.clipsToBounds = true
+
+        button.publisher(event: .touchUpInside)
+            .sink { [weak self] _ in
+                self?.presenter?.didTabAccessoryButton(mate: mate)
+            }
+            .store(in: &cancellables)
         return button
     }
 }
@@ -139,5 +149,17 @@ extension MateListViewController {
         static let profileImageCornerRadius: CGFloat = 30
         static let accessoryButtonSize = CGSize(width: 100, height: 30)
         static let cellHeight: CGFloat = 70
+    }
+}
+
+// MARK: - UIViewControllerTransitioningDelegate
+
+extension MateListViewController: UIViewControllerTransitioningDelegate {
+    func presentationController(
+        forPresented presented: UIViewController,
+        presenting: UIViewController?,
+        source: UIViewController
+    ) -> UIPresentationController? {
+        CardPresentationController(presentedViewController: presented, presenting: presenting)
     }
 }
