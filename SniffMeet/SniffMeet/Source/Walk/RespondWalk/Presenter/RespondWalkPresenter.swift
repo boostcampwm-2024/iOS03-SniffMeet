@@ -80,7 +80,7 @@ extension RespondWalkPresenter: RespondWalkInteractorOutput {
     }
     
     func didFetchUserInfo(senderInfo: UserInfo) {
-        let walkRequest = WalkRequest(dog: senderInfo,
+        let walkRequest = WalkRequest(mate: senderInfo,
                                       address: Address(longtitude: noti.longtitude,
                                                        latitude: noti.latitude),
                                       message: noti.message)

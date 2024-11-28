@@ -20,6 +20,11 @@ final class KeywordView: UILabel {
             height: size.height + insets.top + insets.bottom
         )
     }
+    override var text: String? {
+        didSet {
+            super.text = "#\(text ?? "")"
+        }
+    }
 
     init(title: String) {
         super.init(frame: .zero)
@@ -37,7 +42,7 @@ final class KeywordView: UILabel {
     }
 
     private func setupConfiguration(title: String) {
-        text = "#" + title
+        // text = "#" + title
         font = UIFont.systemFont(ofSize: 14)
         layer.cornerRadius = Context.cornerRadius
         layer.masksToBounds = true

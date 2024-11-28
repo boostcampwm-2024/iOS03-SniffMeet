@@ -13,3 +13,12 @@ struct Mate {
     var keywords: [Keyword]
     var profileImageURLString: String?
 }
+
+extension Mate {
+    static let example: Mate = Mate(
+        name: "후추",
+        userID: UUID(),
+        keywords: [.shy],
+        profileImageURLString: nil
+    )
+}
