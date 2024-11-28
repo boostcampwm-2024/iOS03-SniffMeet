@@ -31,7 +31,10 @@ final class ProfileCreateRouter: ProfileCreateRoutable {
 extension ProfileCreateRouter: ProfileCreateBuildable {
     static func createProfileCreateModule(dogDetailInfo: DogInfo) -> UIViewController {
         let saveUserInfoUseCase: SaveUserInfoUseCase =
-        SaveUserInfoUseCaseImpl(localDataManager: LocalDataManager())
+        SaveUserInfoUseCaseImpl(
+            localDataManager: LocalDataManager(),
+            imageManager: SNMFileManager()
+        )
         let saveProfileImageUseCase: SaveProfileImageUseCase =
         SaveProfileImageUseCaseImpl(
             remoteImageManager: SupabaseStorageManager(

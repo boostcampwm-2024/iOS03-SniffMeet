@@ -4,11 +4,11 @@
 //
 //  Created by 윤지성 on 11/25/24.
 //
-import UIKit
+import Foundation
 
 protocol ImageManagable {
-    func get(forKey: String) throws -> UIImage?
-    func set(image: UIImage, forKey: String) throws
+    func get(forKey: String) throws -> Data?
+    func set(imageData: Data, forKey: String) throws
     func delete(forKey: String) throws
 }
 
@@ -19,7 +19,7 @@ struct SNMFileManager: ImageManagable {
     }
     
     func fileExists(forKey path: String) -> Bool {
-        guard let documentsDir else { return false}
+        guard let documentsDir else { return false }
         let fileURL = documentsDir.appendingPathComponent(path, conformingTo: .png)
         if #available(iOS 16.0, *) {
             return fileManager.fileExists(atPath: fileURL.path())
@@ -28,7 +28,8 @@ struct SNMFileManager: ImageManagable {
         }
     }
     
-    func get(forKey: String) throws -> UIImage? {
+    /// key 값은 Environment.FileManagerKey를 이용하시면 됩니다.
+    func get(forKey: String) throws -> Data? {
         guard let documentsDir else {
             throw FileManagerError.directoryNotFound
         }
@@ -36,19 +37,15 @@ struct SNMFileManager: ImageManagable {
         guard fileManager.fileExists(atPath: fileURL.path) else {
             throw FileManagerError.fileNotFound
         }
-        return UIImage(contentsOfFile: fileURL.path)
+        return try? Data(contentsOf: fileURL)
     }
     
-    func set(image: UIImage, forKey: String) throws {
+    func set(imageData: Data, forKey: String) throws {
         guard let documentsDir else {
             throw FileManagerError.directoryNotFound
         }
         /// key 값을 받아 해당 키 값이 파일 이름인 파일을 생성한다.
         let fileURL = documentsDir.appendingPathComponent(forKey, conformingTo: .png)
-        
-        guard let imageData = image.pngData() else {
-            throw FileManagerError.dataConversionError
-        }
         do {
             try imageData.write(to: fileURL)
         } catch {

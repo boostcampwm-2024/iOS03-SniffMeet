@@ -54,6 +54,7 @@
 		3200453F2CF5A8B800D08B6D /* CalculateTimeLimitUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3200453E2CF5A88A00D08B6D /* CalculateTimeLimitUseCase.swift */; };
 		320047652CF6B86D00D08B6D /* RespondMateRequestUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 320047642CF6B83B00D08B6D /* RespondMateRequestUseCase.swift */; };
 		320047832CF70CA300D08B6D /* PresentAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 320047822CF70C9E00D08B6D /* PresentAnimator.swift */; };
+		320047852CF80B2600D08B6D /* MateList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 320047842CF80B2200D08B6D /* MateList.swift */; };
 		9937361D2CF80D6600E3DD58 /* RequestUserInfoRemoteUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9937361C2CF80D5200E3DD58 /* RequestUserInfoRemoteUseCase.swift */; };
 		995D94262CE32ECE005A47BF /* Extension + Keyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 995D94252CE32EC1005A47BF /* Extension + Keyboard.swift */; };
 		995D94622CE598FD005A47BF /* NIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 995D94612CE598F0005A47BF /* NIManager.swift */; };
@@ -266,6 +267,7 @@
 		3200453E2CF5A88A00D08B6D /* CalculateTimeLimitUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculateTimeLimitUseCase.swift; sourceTree = "<group>"; };
 		320047642CF6B83B00D08B6D /* RespondMateRequestUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RespondMateRequestUseCase.swift; sourceTree = "<group>"; };
 		320047822CF70C9E00D08B6D /* PresentAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentAnimator.swift; sourceTree = "<group>"; };
+		320047842CF80B2200D08B6D /* MateList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MateList.swift; sourceTree = "<group>"; };
 		9937361C2CF80D5200E3DD58 /* RequestUserInfoRemoteUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestUserInfoRemoteUseCase.swift; sourceTree = "<group>"; };
 		995D94252CE32EC1005A47BF /* Extension + Keyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension + Keyboard.swift"; sourceTree = "<group>"; };
 		995D94612CE598F0005A47BF /* NIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NIManager.swift; sourceTree = "<group>"; };
@@ -611,6 +613,7 @@
 		A2BD49F02CF72A8800AC72A7 /* DTO */ = {
 			isa = PBXGroup;
 			children = (
+				320047842CF80B2200D08B6D /* MateList.swift */,
 				995D94D12CEDF031005A47BF /* MPCProfileDropDTO.swift */,
 				A2BD49F52CF72B4000AC72A7 /* WalkNotiDTO.swift */,
 				A2BD49F12CF72A9500AC72A7 /* DogProfileDTO.swift */,
@@ -1808,6 +1811,7 @@
 				A25BE4582CEBB95C00886763 /* SupabaseRefreshResponse.swift in Sources */,
 				FDEAEA7C2CE314A7005890FA /* BaseViewController.swift in Sources */,
 				FDE768A12CF7873600B5DE88 /* RequestNotificationAuthUseCase.swift in Sources */,
+				320047852CF80B2600D08B6D /* MateList.swift in Sources */,
 				A21435F72CE20D2500564A4D /* TabBarController.swift in Sources */,
 				320043762CDCA18E00D08B6D /* (null) in Sources */,
 				995D94D22CEDF037005A47BF /* MPCProfileDropDTO.swift in Sources */,

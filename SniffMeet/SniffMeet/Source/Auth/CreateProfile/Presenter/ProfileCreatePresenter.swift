@@ -41,14 +41,6 @@ final class ProfileCreatePresenter: ProfileCreatePresentable {
 
     func didTapSubmitButton(nickname: String, image: UIImage?) {
         let imageData = interactor?.convertImageToData(image: image)
-//        let dogInfo = Dog(name: dogInfo.name,
-//                      age: dogInfo.age,
-//                      sex: dogInfo.sex,
-//                      sexUponIntake: dogInfo.sexUponIntake,
-//                      size: dogInfo.size,
-//                      keywords: dogInfo.keywords,
-//                      nickname: nickname,
-//                      profileImage: imageData)
         let userInfo = UserInfo(
             name: dogInfo.name,
             age: dogInfo.age,
@@ -60,7 +52,7 @@ final class ProfileCreatePresenter: ProfileCreatePresentable {
             profileImage: nil
         )
         // TODO: SubmitButton disable 필요
-        interactor?.signInWithProfileData(dogInfo: userInfo)
+        interactor?.signInWithProfileData(dogInfo: userInfo, imageData: imageData)
     }
 }
 
