@@ -93,7 +93,9 @@ extension MateListViewController: UITableViewDelegate, UITableViewDataSource {
         var content = cell.defaultContentConfiguration()
         content.image = .app
         if let imageData = imageDataSource[indexPath.row] {
-            content.image = UIImage(data: imageData)
+            var profileImage = UIImage(data: imageData)
+            profileImage = profileImage?.clipToSquareWithBackgroundColor(with: ItemSize.profileImageSize.width)
+            content.image = profileImage
         } else {
             presenter?.didTableViewCellLoad(
                 index: indexPath.row,

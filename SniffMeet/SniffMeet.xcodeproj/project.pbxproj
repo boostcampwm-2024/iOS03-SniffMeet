@@ -168,6 +168,7 @@
 		FD69B1C42CE3BCE4009D71DC /* KeychainManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD69B1B22CE3BC68009D71DC /* KeychainManager.swift */; };
 		FD69B1CB2CE3E9B4009D71DC /* UserDefaultsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD69B1CA2CE3E9B4009D71DC /* UserDefaultsTests.swift */; };
 		FD69B1CD2CE3E9BB009D71DC /* KeychainTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD69B1CC2CE3E9B8009D71DC /* KeychainTests.swift */; };
+		FD8020FE2CF8C8DE0089B349 /* Extension + UIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD8020FD2CF8C8DA0089B349 /* Extension + UIImage.swift */; };
 		FD880B5A2CECE8FC0093BEB9 /* SNMLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD880B592CECE8F90093BEB9 /* SNMLogger.swift */; };
 		FD880B602CF4327F0093BEB9 /* SaveProfileImageUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD880B5F2CF432780093BEB9 /* SaveProfileImageUseCase.swift */; };
 		FD880B622CF433AF0093BEB9 /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD880B612CF433AC0093BEB9 /* Environment.swift */; };
@@ -354,6 +355,7 @@
 		FD69B1BA2CE3BCDC009D71DC /* SNMPersistenceTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SNMPersistenceTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FD69B1CA2CE3E9B4009D71DC /* UserDefaultsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsTests.swift; sourceTree = "<group>"; };
 		FD69B1CC2CE3E9B8009D71DC /* KeychainTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainTests.swift; sourceTree = "<group>"; };
+		FD8020FD2CF8C8DA0089B349 /* Extension + UIImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension + UIImage.swift"; sourceTree = "<group>"; };
 		FD880B592CECE8F90093BEB9 /* SNMLogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SNMLogger.swift; sourceTree = "<group>"; };
 		FD880B5F2CF432780093BEB9 /* SaveProfileImageUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveProfileImageUseCase.swift; sourceTree = "<group>"; };
 		FD880B612CF433AC0093BEB9 /* Environment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Environment.swift; sourceTree = "<group>"; };
@@ -1543,6 +1545,7 @@
 		FDE768872CF7811400B5DE88 /* Helper */ = {
 			isa = PBXGroup;
 			children = (
+				FD8020FD2CF8C8DA0089B349 /* Extension + UIImage.swift */,
 				FDE7689E2CF7858D00B5DE88 /* Extension + UIViewController.swift */,
 				FDE768912CF7828600B5DE88 /* AnyJSONSerializable.swift */,
 				FDE7688F2CF7827900B5DE88 /* AnyDecodable.swift */,
@@ -1803,6 +1806,7 @@
 				FD331A952CF3464000F39426 /* PushNotification.swift in Sources */,
 				FD3A03432CD8CF460047B7ED /* SceneDelegate.swift in Sources */,
 				99FA4E792CE0FBBF00553C2E /* ProfileInputViewController.swift in Sources */,
+				FD8020FE2CF8C8DE0089B349 /* Extension + UIImage.swift in Sources */,
 				3200448D2CEC878300D08B6D /* RespondWalkViewController.swift in Sources */,
 				FD331A932CF3463200F39426 /* NotificationCell.swift in Sources */,
 				FDA04AA92CE91DF8002605AC /* Data + append.swift in Sources */,
