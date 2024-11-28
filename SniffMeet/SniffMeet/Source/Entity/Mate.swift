@@ -11,5 +11,5 @@ struct Mate {
     var name: String
     var userID: UUID
     var keywords: [Keyword]
-    var profileImageURLString: String
+    var profileImageURLString: String?
 }
