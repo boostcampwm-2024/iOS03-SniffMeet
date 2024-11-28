@@ -10,11 +10,14 @@ import Foundation
 /// 처음 회원가입할 때는 메이트가 없으므로 빈 배열로 고정했습니다.
 struct MateListInsertDTO: Encodable {
     let id: UUID
-    let mates: [UserInfoDTO] = []
+    let mates: [UUID] = []
+    enum CodingKeys: String, CodingKey {
+        case id, mates
+    }
 }
 
 struct MateListDTO: Codable {
-    let mates: [UserInfoDTO]
+    let mates: [UUID]
 }
 
 struct MateListRequestDTO: Encodable {
