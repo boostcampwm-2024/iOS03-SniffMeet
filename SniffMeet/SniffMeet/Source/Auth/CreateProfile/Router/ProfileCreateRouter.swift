@@ -43,7 +43,6 @@ extension ProfileCreateRouter: ProfileCreateBuildable {
             userDefaultsManager: UserDefaultsManager.shared
         )
         let saveUserInfoRemoteUseCase: SaveUserInfoRemoteUseCase = SaveUserInfoRemoteUseCaseImpl()
-        let saveMateListUseCase: SaveMateListUseCase = SaveMateListUseCaseImpl(localDataManager: LocalDataManager())
 
         let view: ProfileCreateViewable & UIViewController = ProfileCreateViewController()
         let presenter: ProfileCreatePresentable & DogInfoInteractorOutput
@@ -52,8 +51,7 @@ extension ProfileCreateRouter: ProfileCreateBuildable {
         ProfileCreateInteractor(
             saveUserInfoUseCase: saveUserInfoUseCase,
             saveProfileImageUseCase: saveProfileImageUseCase,
-            saveUserInfoRemoteUseCase: saveUserInfoRemoteUseCase,
-            saveMateListUseCase: saveMateListUseCase
+            saveUserInfoRemoteUseCase: saveUserInfoRemoteUseCase
         )
         let router: ProfileCreateRoutable & ProfileCreateBuildable = ProfileCreateRouter()
 

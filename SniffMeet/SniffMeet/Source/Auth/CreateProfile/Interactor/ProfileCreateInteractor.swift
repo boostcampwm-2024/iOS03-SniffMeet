@@ -11,7 +11,6 @@ protocol ProfileCreateInteractable: AnyObject {
     var presenter: DogInfoInteractorOutput? { get set }
     var saveUserInfoUseCase: SaveUserInfoUseCase { get set }
     var saveProfileImageUseCase: SaveProfileImageUseCase { get }
-    var saveMateListUseCase: SaveMateListUseCase { get}
 
     func signInWithProfileData(dogInfo: UserInfo, imageData: Data?)
     func convertImageToData(image: UIImage?) -> Data?
@@ -22,20 +21,17 @@ final class ProfileCreateInteractor: ProfileCreateInteractable {
     var saveUserInfoUseCase: SaveUserInfoUseCase
     var saveProfileImageUseCase: SaveProfileImageUseCase
     var saveUserInfoRemoteUseCase: SaveUserInfoRemoteUseCase
-    var saveMateListUseCase: SaveMateListUseCase
 
     init(
         presenter: DogInfoInteractorOutput? = nil,
         saveUserInfoUseCase: SaveUserInfoUseCase,
         saveProfileImageUseCase: SaveProfileImageUseCase,
-        saveUserInfoRemoteUseCase: SaveUserInfoRemoteUseCase,
-        saveMateListUseCase: SaveMateListUseCase
+        saveUserInfoRemoteUseCase: SaveUserInfoRemoteUseCase
     ) {
         self.presenter = presenter
         self.saveUserInfoUseCase = saveUserInfoUseCase
         self.saveProfileImageUseCase = saveProfileImageUseCase
         self.saveUserInfoRemoteUseCase = saveUserInfoRemoteUseCase
-        self.saveMateListUseCase = saveMateListUseCase
     }
 
     func signInWithProfileData(dogInfo: UserInfo, imageData: Data?) {
@@ -50,7 +46,6 @@ final class ProfileCreateInteractor: ProfileCreateInteractable {
                                                               keywords: dogInfo.keywords,
                                                               nickname: dogInfo.nickname,
                                                               profileImage: imageData))
-                try saveMateListUseCase.execute(mates: [])
                 var fileName: String? = nil
                 if let imageData {
                     fileName = try await saveProfileImageUseCase.execute(
