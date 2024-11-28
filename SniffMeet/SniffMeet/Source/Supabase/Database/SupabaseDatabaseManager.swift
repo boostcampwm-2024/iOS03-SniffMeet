@@ -73,9 +73,12 @@ final class SupabaseDatabaseManager: RemoteDatabaseManager {
         guard let session = SessionManager.shared.session else {
             throw SupabaseError.sessionNotExist
         }
+        guard let userID = SessionManager.shared.session?.user?.userID else { return }
+        
         _ = try await networkProvider.request(
             with: SupabaseDatabaseRequest.updateData(
                 table: table,
+                id: userID,
                 accessToken: session.accessToken,
                 data: data
             )
