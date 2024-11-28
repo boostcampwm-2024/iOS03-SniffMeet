@@ -21,7 +21,7 @@ final class CardPresentationController: UIPresentationController {
         super.presentationTransitionWillBegin()
         
         if let containerView = containerView {
-            let blurEffectView = UIVisualEffectView(effect: UIBlurEffect(style: .light))
+            let blurEffectView = UIVisualEffectView(effect: UIBlurEffect(style: .dark))
             blurEffectView.frame = containerView.bounds
             containerView.addSubview(blurEffectView)
             blurEffectView.alpha = 0
