@@ -8,7 +8,7 @@
 import UIKit
 
 protocol MateListRoutable: Routable {
-    
+    func presentWalkRequestView(mateListView: any MateListViewable, mate: Mate)
 }
 
 protocol MateListBuildable {
@@ -16,7 +16,13 @@ protocol MateListBuildable {
 }
 
 struct MateListRouter: MateListRoutable {
-    
+    func presentWalkRequestView(mateListView: MateListViewable, mate: Mate) {
+        guard let mateListView = mateListView as? MateListViewController else { return }
+        let requestWalkView = RequestWalkRouter.createRequestWalkModule(mate: mate)
+        requestWalkView.modalPresentationStyle = .custom
+        requestWalkView.transitioningDelegate = mateListView
+        mateListView.present(requestWalkView, animated: true)
+    }
 }
 
 extension MateListRouter: MateListBuildable {

@@ -104,7 +104,7 @@ extension MateListViewController: UITableViewDelegate, UITableViewDataSource {
         content.imageProperties.cornerRadius = ItemSize.profileImageCornerRadius
         content.text = dataSource[indexPath.row].name
         cell.contentConfiguration = content
-        cell.accessoryView = createAccessoryButton()
+        cell.accessoryView = createAccessoryButton(mate: dataSource[indexPath.row])
         cell.selectionStyle = .none
         return cell
     }
@@ -113,7 +113,7 @@ extension MateListViewController: UITableViewDelegate, UITableViewDataSource {
         ItemSize.cellHeight
     }
 
-    private func createAccessoryButton() -> UIButton {
+    private func createAccessoryButton(mate: Mate) -> UIButton {
         let button = UIButton(type: .roundedRect)
         button.frame = CGRect(origin: .zero, size: ItemSize.accessoryButtonSize)
         button.backgroundColor = SNMColor.mainBrown
@@ -121,6 +121,12 @@ extension MateListViewController: UITableViewDelegate, UITableViewDataSource {
         button.setTitleColor(.white, for: .normal)
         button.layer.cornerRadius = button.frame.height / 2
         button.clipsToBounds = true
+
+        button.publisher(event: .touchUpInside)
+            .sink { [weak self] _ in
+                self?.presenter?.didTabAccessoryButton(mate: mate)
+            }
+            .store(in: &cancellables)
         return button
     }
 }
@@ -143,5 +149,17 @@ extension MateListViewController {
         static let profileImageCornerRadius: CGFloat = 30
         static let accessoryButtonSize = CGSize(width: 100, height: 30)
         static let cellHeight: CGFloat = 70
+    }
+}
+
+// MARK: - UIViewControllerTransitioningDelegate
+
+extension MateListViewController: UIViewControllerTransitioningDelegate {
+    func presentationController(
+        forPresented presented: UIViewController,
+        presenting: UIViewController?,
+        source: UIViewController
+    ) -> UIPresentationController? {
+        CardPresentationController(presentedViewController: presented, presenting: presenting)
     }
 }

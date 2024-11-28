@@ -9,7 +9,7 @@ import Combine
 import Foundation
 
 protocol RemoteDatabaseManager {
-    func fetchData(from table: String) async throws -> Data
+    func fetchData(from table: String, query: [String: String]) async throws -> Data
     func fetchDataWithID(from table: String, with id: UUID) async throws -> Data
     func insertData(into table: String, with data: Data) async throws
     func updateData(into table: String, with data: Data) async throws
@@ -25,7 +25,7 @@ final class SupabaseDatabaseManager: RemoteDatabaseManager {
         decoder = JSONDecoder()
     }
 
-    func fetchData(from table: String) async throws -> Data {
+    func fetchData(from table: String, query: [String: String]) async throws -> Data {
         if SessionManager.shared.isExpired {
             try await SupabaseAuthManager.shared.refreshSession()
         }
@@ -35,7 +35,8 @@ final class SupabaseDatabaseManager: RemoteDatabaseManager {
         let response = try await networkProvider.request(
             with: SupabaseDatabaseRequest.fetchData(
                 table: table,
-                accessToken: session.accessToken
+                accessToken: session.accessToken,
+                query: query
             )
         )
         return response.data

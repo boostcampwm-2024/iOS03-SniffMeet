@@ -28,14 +28,14 @@ final class RequestWalkViewController: BaseViewController, RequestWalkViewable {
         label.textColor = SNMColor.mainNavy
         return label
     }()
-    
+
     private var profileView: ProfileView = {
         let view = ProfileView()
         view.layer.cornerRadius = 15
         view.clipsToBounds = true
         return view
     }()
-    
+
     private var locationView = LocationSelectionView()
     private var messageTextView: UITextView = {
         let textView = UITextView()
@@ -52,7 +52,7 @@ final class RequestWalkViewController: BaseViewController, RequestWalkViewable {
         return textView
     }()
     private var submitButton = PrimaryButton(title: Context.mainTitle)
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         messageTextView.delegate = self
@@ -61,10 +61,9 @@ final class RequestWalkViewController: BaseViewController, RequestWalkViewable {
     }
     override func configureAttributes() {
         setButtonActions()
-        profileView.configure(dog: UserInfo.example)
     }
     override func configureHierachy() {
-        
+
         [titleLabel,
          dismissButton,
          profileView,
@@ -80,7 +79,7 @@ final class RequestWalkViewController: BaseViewController, RequestWalkViewable {
             titleLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             titleLabel.topAnchor.constraint(equalTo: view.topAnchor,
                                             constant: LayoutConstant.xlargeVerticalPadding),
-            
+
             dismissButton.topAnchor.constraint(equalTo: view.topAnchor,
                                                constant: LayoutConstant.regularVerticalPadding),
             dismissButton.trailingAnchor.constraint(
@@ -88,12 +87,12 @@ final class RequestWalkViewController: BaseViewController, RequestWalkViewable {
                 constant: -LayoutConstant.smallHorizontalPadding),
             dismissButton.heightAnchor.constraint(equalToConstant: LayoutConstant.iconSize),
             dismissButton.widthAnchor.constraint(equalToConstant: LayoutConstant.iconSize),
-            
+
             profileView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 20),
             profileView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             profileView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.4),
             profileView.widthAnchor.constraint(equalTo: profileView.heightAnchor),
-            
+
             locationView.topAnchor.constraint(
                 equalTo: profileView.bottomAnchor,
                 constant: LayoutConstant.mediumVerticalPadding),
@@ -101,15 +100,15 @@ final class RequestWalkViewController: BaseViewController, RequestWalkViewable {
                 equalTo: messageTextView.topAnchor,
                 constant: -LayoutConstant.regularVerticalPadding),
             locationView.heightAnchor.constraint(equalToConstant: 25),
-            
+
             messageTextView.bottomAnchor.constraint(
                 equalTo: submitButton.topAnchor,
                 constant: -LayoutConstant.xlargeVerticalPadding),
-            
+
             submitButton.bottomAnchor.constraint(equalTo: view.bottomAnchor,
                                                  constant: -LayoutConstant.xlargeVerticalPadding)
         ])
-       
+
         [locationView, messageTextView, submitButton].forEach {
             $0.leadingAnchor.constraint(
                 equalTo: view.leadingAnchor,
@@ -120,12 +119,36 @@ final class RequestWalkViewController: BaseViewController, RequestWalkViewable {
         }
     }
     override func bind() {
+        presenter?.output.mateInfo
+            .receive(on: RunLoop.main)
+            .sink { [weak self] mate in
+                guard let mate else {
+                    SNMLogger.error("Mate 바인딩 실패")
+                    return
+                }
+                self?.profileView.configure(
+                    name: mate.name,
+                    keywords: mate.keywords.map { $0.rawValue }
+                )
+            }
+            .store(in: &cancellables)
         presenter?.output.selectedLocation
             .receive(on: RunLoop.main)
             .sink { [weak self] address in
                 self?.locationView.setAddress(
                     address: address?.location ?? Context.locationGuideTitle
                 )
+            }
+            .store(in: &cancellables)
+        presenter?.output.profileImageData
+            .receive(on: RunLoop.main)
+            .sink { [weak self] imageData in
+                if let imageData {
+                    let profileImage = UIImage(data: imageData)
+                    self?.profileView.configureImage(with: profileImage)
+                } else {
+                    self?.profileView.configureImage(with: nil)
+                }
             }
             .store(in: &cancellables)
     }
@@ -138,15 +161,15 @@ private extension RequestWalkViewController {
         static let messagePlaceholder: String = "간단한 요청 메세지를 작성해주세요."
         static let characterCountLimit: Int = 100
     }
-    
+
     func setButtonActions() {
         dismissButton.addAction(UIAction(handler: {[weak self] _ in
             self?.presenter?.closeTheView()
         }), for: .touchUpInside)
-        
-       // locationTapGesture.addTarget(self, action: #selector(locationDidTap))
+
+        // locationTapGesture.addTarget(self, action: #selector(locationDidTap))
     }
-    
+
     @objc func locationDidTap() {
         presenter?.didTapLocationButton()
     }

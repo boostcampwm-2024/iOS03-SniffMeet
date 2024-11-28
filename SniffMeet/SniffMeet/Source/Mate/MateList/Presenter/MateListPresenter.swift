@@ -16,6 +16,7 @@ protocol MateListPresentable: AnyObject {
     
     func viewDidLoad()
     func didTableViewCellLoad(index: Int, urlString: String?)
+    func didTabAccessoryButton(mate: Mate)
 }
 
 protocol MateListInteractorOutput: AnyObject {
@@ -49,6 +50,11 @@ final class MateListPresenter: MateListPresentable {
 
     func didTableViewCellLoad(index: Int, urlString: String?) {
         interactor?.requestProfileImage(index: index, urlString: urlString)
+    }
+
+    func didTabAccessoryButton(mate: Mate) {
+        guard let view else { return }
+        router?.presentWalkRequestView(mateListView: view, mate: mate)
     }
 }
 

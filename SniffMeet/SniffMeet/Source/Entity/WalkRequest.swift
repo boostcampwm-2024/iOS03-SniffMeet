@@ -8,7 +8,7 @@
 import Foundation
 
 struct WalkRequest: Codable {
-    let dog: UserInfo
+    let mate: UserInfo
     let address: Address
     let message: String
 }
