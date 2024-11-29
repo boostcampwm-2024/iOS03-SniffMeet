@@ -20,13 +20,13 @@ final class ProfileCreateInteractor: ProfileCreateInteractable {
     weak var presenter: DogInfoInteractorOutput?
     var saveUserInfoUseCase: SaveUserInfoUseCase
     var saveProfileImageUseCase: SaveProfileImageUseCase
-    var saveUserInfoRemoteUseCase: SaveUserInfoRemoteUseCase
+    var saveUserInfoRemoteUseCase: CreateAccountUseCase
 
     init(
         presenter: DogInfoInteractorOutput? = nil,
         saveUserInfoUseCase: SaveUserInfoUseCase,
         saveProfileImageUseCase: SaveProfileImageUseCase,
-        saveUserInfoRemoteUseCase: SaveUserInfoRemoteUseCase
+        saveUserInfoRemoteUseCase: CreateAccountUseCase
     ) {
         self.presenter = presenter
         self.saveUserInfoUseCase = saveUserInfoUseCase

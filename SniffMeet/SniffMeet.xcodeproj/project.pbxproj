@@ -80,7 +80,7 @@
 		A25BE4562CEBB63A00886763 /* SupabaseUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = A25BE4552CEBB63A00886763 /* SupabaseUser.swift */; };
 		A25BE4582CEBB95C00886763 /* SupabaseRefreshResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = A25BE4572CEBB95C00886763 /* SupabaseRefreshResponse.swift */; };
 		A25BE45A2CEC2BA300886763 /* SessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A25BE4592CEC2BA300886763 /* SessionManager.swift */; };
-		A266A2602CF5CF4A002C2B3A /* SaveUserInfoRemoteUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A266A25F2CF5CF4A002C2B3A /* SaveUserInfoRemoteUseCase.swift */; };
+		A266A2602CF5CF4A002C2B3A /* CreateAccountUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A266A25F2CF5CF4A002C2B3A /* CreateAccountUseCase.swift */; };
 		A288A63D2CDC595000D11C34 /* (null) in Resources */ = {isa = PBXBuildFile; };
 		A2BA1B922CF1E8C60080575A /* MateListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2BA1B912CF1E8C60080575A /* MateListViewController.swift */; };
 		A2BA1B962CF2606B0080575A /* MateListInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2BA1B952CF2606B0080575A /* MateListInteractor.swift */; };
@@ -295,7 +295,7 @@
 		A25BE4552CEBB63A00886763 /* SupabaseUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupabaseUser.swift; sourceTree = "<group>"; };
 		A25BE4572CEBB95C00886763 /* SupabaseRefreshResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupabaseRefreshResponse.swift; sourceTree = "<group>"; };
 		A25BE4592CEC2BA300886763 /* SessionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionManager.swift; sourceTree = "<group>"; };
-		A266A25F2CF5CF4A002C2B3A /* SaveUserInfoRemoteUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveUserInfoRemoteUseCase.swift; sourceTree = "<group>"; };
+		A266A25F2CF5CF4A002C2B3A /* CreateAccountUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccountUseCase.swift; sourceTree = "<group>"; };
 		A2BA1B912CF1E8C60080575A /* MateListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MateListViewController.swift; sourceTree = "<group>"; };
 		A2BA1B952CF2606B0080575A /* MateListInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MateListInteractor.swift; sourceTree = "<group>"; };
 		A2BA1B972CF260780080575A /* MateListPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MateListPresenter.swift; sourceTree = "<group>"; };
@@ -459,7 +459,7 @@
 				FDE768992CF783EA00B5DE88 /* ConvertToRequestAPSUseCase.swift */,
 				FDE768972CF7836B00B5DE88 /* RemoteSaveDeviceTokenUseCase.swift */,
 				FDE768952CF7830F00B5DE88 /* RegisterDeviceTokenUseCase.swift */,
-				A266A25F2CF5CF4A002C2B3A /* SaveUserInfoRemoteUseCase.swift */,
+				A266A25F2CF5CF4A002C2B3A /* CreateAccountUseCase.swift */,
 				FD880B5F2CF432780093BEB9 /* SaveProfileImageUseCase.swift */,
 				3200445D2CE5CA1A00D08B6D /* SaveUserInfoUseCase.swift */,
 				FD51341E2CEB7AF6002E76F3 /* LoadUserInfoUseCase.swift */,
@@ -1922,7 +1922,7 @@
 				FD69B1B52CE3BC7E009D71DC /* UserDefaultsManager.swift in Sources */,
 				A220400B2CF6B89800D1E8CB /* UserInfoDTO.swift in Sources */,
 				320043722CDC9E5F00D08B6D /* (null) in Sources */,
-				A266A2602CF5CF4A002C2B3A /* SaveUserInfoRemoteUseCase.swift in Sources */,
+				A266A2602CF5CF4A002C2B3A /* CreateAccountUseCase.swift in Sources */,
 				FDE14A4E2CE8D144001F7A9D /* HTTPStatusCode.swift in Sources */,
 				3200441E2CE48D3500D08B6D /* MPCManager.swift in Sources */,
 				FDE768902CF7827D00B5DE88 /* AnyDecodable.swift in Sources */,
