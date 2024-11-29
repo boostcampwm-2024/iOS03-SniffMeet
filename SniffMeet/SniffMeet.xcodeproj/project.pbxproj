@@ -44,7 +44,6 @@
 		320044942CED80B700D08B6D /* RespondWalkInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 320044932CED80B000D08B6D /* RespondWalkInteractor.swift */; };
 		320044962CED80DA00D08B6D /* RespondWalkRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 320044952CED80D100D08B6D /* RespondWalkRouter.swift */; };
 		320044982CED81F400D08B6D /* WalkRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 320044972CED81EF00D08B6D /* WalkRequest.swift */; };
-		3200449A2CEDA80900D08B6D /* RequestUserInfoUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 320044992CEDA80400D08B6D /* RequestUserInfoUseCase.swift */; };
 		3200449C2CEDA87800D08B6D /* RespondWalkRequestUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3200449B2CEDA86B00D08B6D /* RespondWalkRequestUseCase.swift */; };
 		320045352CF4353900D08B6D /* SNMFileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 320045342CF4353400D08B6D /* SNMFileManager.swift */; };
 		320045362CF4353900D08B6D /* SNMFileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 320045342CF4353400D08B6D /* SNMFileManager.swift */; };
@@ -261,7 +260,6 @@
 		320044932CED80B000D08B6D /* RespondWalkInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RespondWalkInteractor.swift; sourceTree = "<group>"; };
 		320044952CED80D100D08B6D /* RespondWalkRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RespondWalkRouter.swift; sourceTree = "<group>"; };
 		320044972CED81EF00D08B6D /* WalkRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalkRequest.swift; sourceTree = "<group>"; };
-		320044992CEDA80400D08B6D /* RequestUserInfoUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestUserInfoUseCase.swift; sourceTree = "<group>"; };
 		3200449B2CEDA86B00D08B6D /* RespondWalkRequestUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RespondWalkRequestUseCase.swift; sourceTree = "<group>"; };
 		320045342CF4353400D08B6D /* SNMFileManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SNMFileManager.swift; sourceTree = "<group>"; };
 		320045392CF43F3800D08B6D /* FileManagerTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileManagerTest.swift; sourceTree = "<group>"; };
@@ -454,6 +452,7 @@
 		320044782CEC48FB00D08B6D /* UseCase */ = {
 			isa = PBXGroup;
 			children = (
+				320047A22CF9DE4900D08B6D /* New Group */,
 				FDE768A02CF7872E00B5DE88 /* RequestNotificationAuthUseCase.swift */,
 				FDE7689B2CF783FD00B5DE88 /* ConvertToRespondAPSUseCase.swift */,
 				FDE768992CF783EA00B5DE88 /* ConvertToRequestAPSUseCase.swift */,
@@ -465,7 +464,6 @@
 				FD51341E2CEB7AF6002E76F3 /* LoadUserInfoUseCase.swift */,
 				3200449B2CEDA86B00D08B6D /* RespondWalkRequestUseCase.swift */,
 				320047642CF6B83B00D08B6D /* RespondMateRequestUseCase.swift */,
-				320044992CEDA80400D08B6D /* RequestUserInfoUseCase.swift */,
 				A2BD4A002CF7AD4300AC72A7 /* RequestMateInfoUseCase.swift */,
 				9937361C2CF80D5200E3DD58 /* RequestUserInfoRemoteUseCase.swift */,
 				FD119F472CED872500BE22BD /* RequestLocationAuthUseCase.swift */,
@@ -534,6 +532,13 @@
 				320044952CED80D100D08B6D /* RespondWalkRouter.swift */,
 			);
 			path = Router;
+			sourceTree = "<group>";
+		};
+		320047A22CF9DE4900D08B6D /* New Group */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "New Group";
 			sourceTree = "<group>";
 		};
 		995D94602CE598E1005A47BF /* NI */ = {
@@ -1873,7 +1878,6 @@
 				320044982CED81F400D08B6D /* WalkRequest.swift in Sources */,
 				FDE14A502CE8D2FB001F7A9D /* URLRequest + append.swift in Sources */,
 				A2BA1B982CF260780080575A /* MateListPresenter.swift in Sources */,
-				3200449A2CEDA80900D08B6D /* RequestUserInfoUseCase.swift in Sources */,
 				995D94AE2CED00A4005A47BF /* RequestMateRouter.swift in Sources */,
 				320047832CF70CA300D08B6D /* PresentAnimator.swift in Sources */,
 				FD06342C2CE5984D003C9D6B /* SNMNetworkResponse.swift in Sources */,
