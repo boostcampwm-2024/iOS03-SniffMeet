@@ -452,27 +452,10 @@
 		320044782CEC48FB00D08B6D /* UseCase */ = {
 			isa = PBXGroup;
 			children = (
-				320047A22CF9DE4900D08B6D /* New Group */,
-				FDE768A02CF7872E00B5DE88 /* RequestNotificationAuthUseCase.swift */,
-				FDE7689B2CF783FD00B5DE88 /* ConvertToRespondAPSUseCase.swift */,
-				FDE768992CF783EA00B5DE88 /* ConvertToRequestAPSUseCase.swift */,
-				FDE768972CF7836B00B5DE88 /* RemoteSaveDeviceTokenUseCase.swift */,
-				FDE768952CF7830F00B5DE88 /* RegisterDeviceTokenUseCase.swift */,
-				A266A25F2CF5CF4A002C2B3A /* CreateAccountUseCase.swift */,
-				FD880B5F2CF432780093BEB9 /* SaveProfileImageUseCase.swift */,
-				3200445D2CE5CA1A00D08B6D /* SaveUserInfoUseCase.swift */,
-				FD51341E2CEB7AF6002E76F3 /* LoadUserInfoUseCase.swift */,
-				3200449B2CEDA86B00D08B6D /* RespondWalkRequestUseCase.swift */,
-				320047642CF6B83B00D08B6D /* RespondMateRequestUseCase.swift */,
-				A2BD4A002CF7AD4300AC72A7 /* RequestMateInfoUseCase.swift */,
-				9937361C2CF80D5200E3DD58 /* RequestUserInfoRemoteUseCase.swift */,
-				FD119F472CED872500BE22BD /* RequestLocationAuthUseCase.swift */,
-				FD119F492CED875800BE22BD /* RequestUserLocationUseCase.swift */,
-				320044762CEB4E0F00D08B6D /* RequestWalkUseCase.swift */,
-				A2BA1BA82CF34A6A0080575A /* RequestMateListUseCase.swift */,
-				A2BA1BAB2CF34A860080575A /* RequestProfileImageUseCase.swift */,
-				3200453E2CF5A88A00D08B6D /* CalculateTimeLimitUseCase.swift */,
-				FD119F452CED867600BE22BD /* ConvertLocationToTextUseCase.swift */,
+				320047A52CF9E33200D08B6D /* SaveUseCase */,
+				320047A42CF9E2A200D08B6D /* RequestUseCase */,
+				320047A62CF9E36500D08B6D /* RespondUseCase */,
+				320047A32CF9E24E00D08B6D /* ComputeUseCase */,
 			);
 			path = UseCase;
 			sourceTree = "<group>";
@@ -534,11 +517,52 @@
 			path = Router;
 			sourceTree = "<group>";
 		};
-		320047A22CF9DE4900D08B6D /* New Group */ = {
+		320047A32CF9E24E00D08B6D /* ComputeUseCase */ = {
 			isa = PBXGroup;
 			children = (
+				FDE7689B2CF783FD00B5DE88 /* ConvertToRespondAPSUseCase.swift */,
+				FDE768992CF783EA00B5DE88 /* ConvertToRequestAPSUseCase.swift */,
+				3200453E2CF5A88A00D08B6D /* CalculateTimeLimitUseCase.swift */,
+				FD119F452CED867600BE22BD /* ConvertLocationToTextUseCase.swift */,
 			);
-			path = "New Group";
+			path = ComputeUseCase;
+			sourceTree = "<group>";
+		};
+		320047A42CF9E2A200D08B6D /* RequestUseCase */ = {
+			isa = PBXGroup;
+			children = (
+				FDE768A02CF7872E00B5DE88 /* RequestNotificationAuthUseCase.swift */,
+				A2BD4A002CF7AD4300AC72A7 /* RequestMateInfoUseCase.swift */,
+				9937361C2CF80D5200E3DD58 /* RequestUserInfoRemoteUseCase.swift */,
+				FD119F472CED872500BE22BD /* RequestLocationAuthUseCase.swift */,
+				FD119F492CED875800BE22BD /* RequestUserLocationUseCase.swift */,
+				320044762CEB4E0F00D08B6D /* RequestWalkUseCase.swift */,
+				A2BA1BA82CF34A6A0080575A /* RequestMateListUseCase.swift */,
+				A2BA1BAB2CF34A860080575A /* RequestProfileImageUseCase.swift */,
+				FD51341E2CEB7AF6002E76F3 /* LoadUserInfoUseCase.swift */,
+			);
+			path = RequestUseCase;
+			sourceTree = "<group>";
+		};
+		320047A52CF9E33200D08B6D /* SaveUseCase */ = {
+			isa = PBXGroup;
+			children = (
+				A266A25F2CF5CF4A002C2B3A /* CreateAccountUseCase.swift */,
+				FD880B5F2CF432780093BEB9 /* SaveProfileImageUseCase.swift */,
+				3200445D2CE5CA1A00D08B6D /* SaveUserInfoUseCase.swift */,
+				FDE768972CF7836B00B5DE88 /* RemoteSaveDeviceTokenUseCase.swift */,
+				FDE768952CF7830F00B5DE88 /* RegisterDeviceTokenUseCase.swift */,
+			);
+			path = SaveUseCase;
+			sourceTree = "<group>";
+		};
+		320047A62CF9E36500D08B6D /* RespondUseCase */ = {
+			isa = PBXGroup;
+			children = (
+				3200449B2CEDA86B00D08B6D /* RespondWalkRequestUseCase.swift */,
+				320047642CF6B83B00D08B6D /* RespondMateRequestUseCase.swift */,
+			);
+			path = RespondUseCase;
 			sourceTree = "<group>";
 		};
 		995D94602CE598E1005A47BF /* NI */ = {
