@@ -8,7 +8,7 @@
 import Foundation
 
 protocol ConvertToWalkAPSUseCase {
-    func execute(userInfo: [AnyHashable: Any]) -> WalkAPSDTO?
+    func execute(walkAPSUserInfo: [AnyHashable: Any]) -> WalkAPSDTO?
 }
 
 struct ConvertToWalkAPSUseCaseImpl: ConvertToWalkAPSUseCase {
@@ -18,9 +18,9 @@ struct ConvertToWalkAPSUseCaseImpl: ConvertToWalkAPSUseCase {
         self.jsonDecoder = jsonDecoder
     }
 
-    func execute(userInfo: [AnyHashable : Any]) -> WalkAPSDTO? {
+    func execute(walkAPSUserInfo: [AnyHashable : Any]) -> WalkAPSDTO? {
         try? AnyJSONSerializable(
-            value: userInfo,
+            value: walkAPSUserInfo,
             jsonDecoder: jsonDecoder
         )?.decode(type: WalkAPSDTO.self)
     }

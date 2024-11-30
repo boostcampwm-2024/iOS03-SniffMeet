@@ -31,7 +31,7 @@ final class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     /// push notification을 통해 앱에 처음 진입한 경우 라우팅을 진행합니다.
     private func routePushNotification(response: UNNotificationResponse) {
         let userInfo = response.notification.request.content.userInfo
-        guard let requestAPS = convertToRequestAPS.execute(userInfo: userInfo) else {
+        guard let requestAPS = convertToRequestAPS.execute(walkAPSUserInfo: userInfo) else {
             appRouter?.displayInitialScreen()
             return
         }

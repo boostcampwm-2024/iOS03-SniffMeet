@@ -58,7 +58,7 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
             return
         }
         let userInfo = response.notification.request.content.userInfo
-        guard let walkAPS = convertToWalkAPS.execute(userInfo: userInfo) else { return }
+        guard let walkAPS = convertToWalkAPS.execute(walkAPSUserInfo: userInfo) else { return }
         let walkNoti: WalkNoti = walkAPS.notification.toEntity()
         switch walkAPS.notification.category {
         case .walkRequest:
