@@ -30,8 +30,9 @@ final class RequestWalkRouter: RequestWalkRoutable {
         let selectViewController = SelectLocationRouter.build()
         let selectView = selectViewController as? SelectLocationViewable
         selectView?.presenter?.router?.delegate = self
-        
-        push(from: view, to: selectViewController, animated: true)
+
+        fullScreen(from: view, with: selectViewController, animated: true)
+        // push(from: view, to: selectViewController, animated: true)
     }
 }
 
@@ -68,7 +69,7 @@ extension RequestWalkRouter: RequestWalkBuildable {
 //MARK: - RequestWalkRouter+SelectLocationRouterDelegate
 
 extension RequestWalkRouter: SelectLocationRouterDelegate {
-    func didPop(router: any SelectLocationRoutable, address: Address?) {
+    func didDismiss(router: any SelectLocationRoutable, address: Address?) {
         presenter?.didSelectLocation(with: address)
     }
 }
