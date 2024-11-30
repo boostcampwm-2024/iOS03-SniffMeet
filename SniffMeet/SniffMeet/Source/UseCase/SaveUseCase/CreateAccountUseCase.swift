@@ -35,7 +35,7 @@ struct CreateAccountUseCaseImpl: CreateAccountUseCase {
             SNMLogger.error("mate list insert error: \(error.localizedDescription)")
         }
         do {
-            let notiListData = try encoder.encode(NotiListInsertDTO(id: info.id))
+            let notiListData = try encoder.encode(WalkNotiListInsertDTO(id: info.id))
             try await SupabaseDatabaseManager.shared.insertData(
                 into: Environment.SupabaseTableName.notificationList,
                 with: notiListData
