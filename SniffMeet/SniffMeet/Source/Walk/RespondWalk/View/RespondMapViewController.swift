@@ -8,7 +8,12 @@
 import Combine
 import MapKit
 
-final class RespondMapViewController: BaseViewController {
+protocol RespondMapViewable: AnyObject {
+    var presenter: (any RespondMapPresentable)? { get set }
+}
+
+final class RespondMapViewController: BaseViewController, RespondMapViewable {
+    var presenter: (any RespondMapPresentable)?
     private var cancellables: Set<AnyCancellable> = []
     private let mapView: MKMapView = MKMapView()
     private let annotation: MKPointAnnotation = MKPointAnnotation()
@@ -40,15 +45,26 @@ final class RespondMapViewController: BaseViewController {
             mapView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
 
             dismissButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            dismissButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -LayoutConstant.horizontalPadding),
+            dismissButton.trailingAnchor.constraint(
+                equalTo: view.trailingAnchor,
+                constant: -LayoutConstant.horizontalPadding
+            ),
             dismissButton.widthAnchor.constraint(equalToConstant: LayoutConstant.iconSize),
             dismissButton.heightAnchor.constraint(equalToConstant: LayoutConstant.iconSize)
         ])
     }
     override func bind() {
         dismissButton.publisher(event: .touchUpInside)
+            .receive(on: RunLoop.main)
             .sink { [weak self] _ in
-                // self?.presenter?.didTapDismissButton()
+                 self?.presenter?.didTapDismissButton()
+            }
+            .store(in: &cancellables)
+
+        presenter?.output.selectedLocation
+            .receive(on: RunLoop.main)
+            .sink { [weak self] address in
+                self?.updateCoordinate(latitude: address.latitude, longtitude: address.longtitude)
             }
             .store(in: &cancellables)
     }
