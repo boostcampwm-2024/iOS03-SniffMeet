@@ -24,7 +24,7 @@ final class RespondWalkRouter: RespondWalkRoutable {
 
 extension RespondWalkRouter: RespondWalkBuildable {
     static func createRespondtWalkModule(walkNoti: WalkNoti) -> UIViewController {
-        let requestUserInfoUseCase: RequestUserInfoUseCase = RequestUserInfoUsecaseImpl()
+        let requestUserInfoUseCase: RequestMateInfoUseCase = RequestMateInfoUsecaseImpl()
         let respondUseCase: RespondWalkRequestUseCase = RespondWalkRequestUseCaseImpl()
         let calculateTimeUseCase: CalculateTimeLimitUseCase = CalculateTimeLimitUseCaseImpl()
         let convertLocationToTextUseCase: ConvertLocationToTextUseCase =

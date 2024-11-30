@@ -9,7 +9,7 @@ import Foundation
 
 protocol RespondWalkInteractable: AnyObject {
     var presenter: RespondWalkInteractorOutput? { get set }
-    var requestUserInfoUseCase: RequestUserInfoUseCase { get }
+    var requestUserInfoUseCase: RequestMateInfoUseCase { get }
     var respondWalkRequestUseCase: RespondWalkRequestUseCase { get }
     var calculateTimeLimitUseCase: CalculateTimeLimitUseCase { get }
     var convertLocationToTextUseCase: ConvertLocationToTextUseCase { get }
@@ -24,14 +24,14 @@ protocol RespondWalkInteractable: AnyObject {
 
 final class RespondWalkInteractor: RespondWalkInteractable {
     weak var presenter: (any RespondWalkInteractorOutput)?
-    var requestUserInfoUseCase: RequestUserInfoUseCase
+    var requestUserInfoUseCase: RequestMateInfoUseCase
     var respondWalkRequestUseCase: RespondWalkRequestUseCase
     var calculateTimeLimitUseCase: CalculateTimeLimitUseCase
     var convertLocationToTextUseCase: ConvertLocationToTextUseCase
     var requestProfileImageUseCase: RequestProfileImageUseCase
     
     init(presenter: (any RespondWalkInteractorOutput)? = nil,
-         requestUserInfoUseCase: RequestUserInfoUseCase,
+         requestUserInfoUseCase: RequestMateInfoUseCase,
          respondUseCase: RespondWalkRequestUseCase,
          calculateTimeLimitUseCase: CalculateTimeLimitUseCase,
          convertLocationToTextUseCase: ConvertLocationToTextUseCase,
@@ -48,8 +48,13 @@ final class RespondWalkInteractor: RespondWalkInteractable {
     
     func fetchSenderInfo(userId: UUID) {
         do {
-            let senderInfo = try requestUserInfoUseCase.execute(userId: userId) // 아마 await
-            presenter?.didFetchUserInfo(senderInfo: senderInfo)
+            Task {
+                guard let senderInfo =  await requestUserInfoUseCase.execute(mateId: userId) else {
+                   // presenter?.didFailToFetchWalkRequest(error:)
+                    return
+                }
+                presenter?.didFetchUserInfo(senderInfo: senderInfo)
+            }
         } catch {
             presenter?.didFailToFetchWalkRequest(error: error)
         }
