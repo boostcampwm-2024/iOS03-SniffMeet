@@ -59,7 +59,10 @@ final class RespondWalkPresenter: RespondWalkPresentable {
         guard let createdAt = noti.createdAt else { return }
         interactor?.calculateTimeLimit(requestTime: createdAt)
         Task {
-            await interactor?.convertLocationToText(latitude: noti.latitude, longtitude: noti.longtitude)
+            await interactor?.convertLocationToText(
+                latitude: noti.latitude,
+                longtitude: noti.longtitude
+            )
         }
     }
     func respondWalkRequest(isAccepted: Bool) {
@@ -80,12 +83,15 @@ extension RespondWalkPresenter: RespondWalkInteractorOutput {
     }
     
     func didFetchUserInfo(senderInfo: UserInfoDTO) {
-        let walkRequest = WalkRequest(mate: senderInfo.toEntity(),
-                                      address: Address(longtitude: noti.longtitude,
-                                                       latitude: noti.latitude),
-                                      message: noti.message)
-        
-        view?.showRequestDetail(request: walkRequest)
+        Task { @MainActor [weak self] in
+            guard let self else { return }
+            let walkRequest = WalkRequest(mate: senderInfo.toEntity(),
+                                          address: Address(longtitude: self.noti.longtitude,
+                                                           latitude: self.noti.latitude),
+                                          message: self.noti.message)
+
+            self.view?.showRequestDetail(request: walkRequest)
+        }
     }
     
     func didSendWalkRespond() {
