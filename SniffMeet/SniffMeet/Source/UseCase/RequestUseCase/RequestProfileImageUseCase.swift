@@ -8,11 +8,20 @@
 import Foundation
 
 protocol RequestProfileImageUseCase {
-    func execute() async -> Data?
+    func execute(fileName: String) async throws -> Data?
 }
 
 struct RequestProfileImageUseCaseImpl: RequestProfileImageUseCase {
-    func execute() async -> Data? {
-        return nil
+    private let remoteImageManager: any RemoteImageManagable
+
+    init(
+        remoteImageManager: any RemoteImageManagable
+    ) {
+        self.remoteImageManager = remoteImageManager
+    }
+
+    func execute(fileName: String) async throws -> Data? {
+        let data = try await remoteImageManager.download(fileName: fileName)
+        return data
     }
 }
