@@ -14,7 +14,7 @@ protocol MateListPresentable: AnyObject {
     var interactor: (any MateListInteractable)? { get set }
     var output: any MateListPresenterOutput { get }
     
-    func viewDidLoad()
+    func viewWillAppear()
     func didTableViewCellLoad(index: Int, urlString: String?)
     func didTabAccessoryButton(mate: Mate)
 }
@@ -39,13 +39,14 @@ final class MateListPresenter: MateListPresentable {
         self.output = output
     }
 
-    func viewDidLoad() {
+    func viewWillAppear() {
         guard let userID = SessionManager.shared.session?.user?.userID else {
             SNMLogger.error("세션 없음")
             // FIXME: 세션 없음 - 앱 라우터에서 로그인으로 튕기게 하거나 해야할듯
             return
         }
         interactor?.requestMateList(userID: userID)
+        SNMLogger.info("메이트 리스트 호출")
     }
 
     func didTableViewCellLoad(index: Int, urlString: String?) {
