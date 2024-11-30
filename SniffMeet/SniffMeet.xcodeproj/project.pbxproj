@@ -105,6 +105,9 @@
 		FD06342A2CE596D0003C9D6B /* NetworkProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD0634292CE596C2003C9D6B /* NetworkProvider.swift */; };
 		FD06342C2CE5984D003C9D6B /* SNMNetworkResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD06342B2CE59843003C9D6B /* SNMNetworkResponse.swift */; };
 		FD0634312CE62578003C9D6B /* AnyEncodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD0634302CE62573003C9D6B /* AnyEncodable.swift */; };
+		FD11526F2CFB33B6008955C4 /* RespondMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD11526E2CFB33B0008955C4 /* RespondMapViewController.swift */; };
+		FD1152712CFB3872008955C4 /* RespondMapPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD1152702CFB386B008955C4 /* RespondMapPresenter.swift */; };
+		FD1152732CFB3A8A008955C4 /* RespondMapRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD1152722CFB3A83008955C4 /* RespondMapRouter.swift */; };
 		FD119F422CED865B00BE22BD /* SelectLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD119F412CED865000BE22BD /* SelectLocationViewController.swift */; };
 		FD119F462CED868D00BE22BD /* ConvertLocationToTextUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD119F452CED867600BE22BD /* ConvertLocationToTextUseCase.swift */; };
 		FD119F482CED872C00BE22BD /* RequestLocationAuthUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD119F472CED872500BE22BD /* RequestLocationAuthUseCase.swift */; };
@@ -316,6 +319,9 @@
 		FD0634292CE596C2003C9D6B /* NetworkProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkProvider.swift; sourceTree = "<group>"; };
 		FD06342B2CE59843003C9D6B /* SNMNetworkResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SNMNetworkResponse.swift; sourceTree = "<group>"; };
 		FD0634302CE62573003C9D6B /* AnyEncodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnyEncodable.swift; sourceTree = "<group>"; };
+		FD11526E2CFB33B0008955C4 /* RespondMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RespondMapViewController.swift; sourceTree = "<group>"; };
+		FD1152702CFB386B008955C4 /* RespondMapPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RespondMapPresenter.swift; sourceTree = "<group>"; };
+		FD1152722CFB3A83008955C4 /* RespondMapRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RespondMapRouter.swift; sourceTree = "<group>"; };
 		FD119F412CED865000BE22BD /* SelectLocationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectLocationViewController.swift; sourceTree = "<group>"; };
 		FD119F452CED867600BE22BD /* ConvertLocationToTextUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConvertLocationToTextUseCase.swift; sourceTree = "<group>"; };
 		FD119F472CED872500BE22BD /* RequestLocationAuthUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestLocationAuthUseCase.swift; sourceTree = "<group>"; };
@@ -488,6 +494,7 @@
 		3200448B2CEC877500D08B6D /* View */ = {
 			isa = PBXGroup;
 			children = (
+				FD11526E2CFB33B0008955C4 /* RespondMapViewController.swift */,
 				3200448C2CEC877C00D08B6D /* RespondWalkViewController.swift */,
 			);
 			path = View;
@@ -504,6 +511,7 @@
 		3200448F2CED77AC00D08B6D /* Presenter */ = {
 			isa = PBXGroup;
 			children = (
+				FD1152702CFB386B008955C4 /* RespondMapPresenter.swift */,
 				320044912CED78C100D08B6D /* RespondWalkPresenter.swift */,
 			);
 			path = Presenter;
@@ -512,6 +520,7 @@
 		320044902CED77B200D08B6D /* Router */ = {
 			isa = PBXGroup;
 			children = (
+				FD1152722CFB3A83008955C4 /* RespondMapRouter.swift */,
 				320044952CED80D100D08B6D /* RespondWalkRouter.swift */,
 			);
 			path = Router;
@@ -1847,6 +1856,7 @@
 				A25BE4582CEBB95C00886763 /* SupabaseRefreshResponse.swift in Sources */,
 				FDEAEA7C2CE314A7005890FA /* BaseViewController.swift in Sources */,
 				FDE768A12CF7873600B5DE88 /* RequestNotificationAuthUseCase.swift in Sources */,
+				FD1152712CFB3872008955C4 /* RespondMapPresenter.swift in Sources */,
 				320047852CF80B2600D08B6D /* MateList.swift in Sources */,
 				A21435F72CE20D2500564A4D /* TabBarController.swift in Sources */,
 				320043762CDCA18E00D08B6D /* (null) in Sources */,
@@ -1879,6 +1889,7 @@
 				320044502CE595F700D08B6D /* ProfileInputPresenter.swift in Sources */,
 				FDE14A522CE8D338001F7A9D /* SNMRequestType.swift in Sources */,
 				FD69B1B32CE3BC76009D71DC /* KeychainManager.swift in Sources */,
+				FD1152732CFB3A8A008955C4 /* RespondMapRouter.swift in Sources */,
 				320043782CDCA49100D08B6D /* (null) in Sources */,
 				A24082612CEB244C009109A0 /* SupabaseConfig.swift in Sources */,
 				FD06342A2CE596D0003C9D6B /* NetworkProvider.swift in Sources */,
@@ -1888,6 +1899,7 @@
 				320044962CED80DA00D08B6D /* RespondWalkRouter.swift in Sources */,
 				FDE768942CF782E900B5DE88 /* WalkAPS.swift in Sources */,
 				320043912CDF3D7F00D08B6D /* KeywordButton.swift in Sources */,
+				FD11526F2CFB33B6008955C4 /* RespondMapViewController.swift in Sources */,
 				FD119F4C2CED87B000BE22BD /* SelectLocationInteractor.swift in Sources */,
 				FD880B622CF433AF0093BEB9 /* Environment.swift in Sources */,
 				320043922CDF3D7F00D08B6D /* InputTextField.swift in Sources */,
