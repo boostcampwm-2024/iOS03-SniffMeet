@@ -28,7 +28,7 @@ extension RespondWalkRouter: RespondWalkBuildable {
         let respondUseCase: RespondWalkRequestUseCase = RespondWalkRequestUseCaseImpl()
         let calculateTimeUseCase: CalculateTimeLimitUseCase = CalculateTimeLimitUseCaseImpl()
         let convertLocationToTextUseCase: ConvertLocationToTextUseCase =
-        ConvertLocationToTextUseCaseImpl(geoCoder: CLGeocoder())
+        ConvertLocationToTextUseCaseImpl()
         let requestProfileImageUseCase: RequestProfileImageUseCase =
         RequestProfileImageUseCaseImpl()
 

@@ -49,7 +49,10 @@ final class SelectLocationPresenter: SelectLocationPresentable {
     func viewDidLoad() {
         interactor?.requestLocationAuth()
         let location = output.userLocation.value
-        interactor?.convertLocationToText(with: location)
+        interactor?.convertLocationToText(
+            latitude: location.coordinate.latitude,
+            longtitude: location.coordinate.longitude
+        )
     }
     func didTapFocusUserLocationButton() {
         interactor?.requestUserLocation()
@@ -57,20 +60,24 @@ final class SelectLocationPresenter: SelectLocationPresentable {
     func didTapSelectCompleteButton() {
         guard let view else { return }
         let address: Address = Address(
-            longtitude: output.selectedCoordinate.coordinate.latitude,
-            latitude: output.selectedCoordinate.coordinate.latitude
+            longtitude: output.selectedCoordinate.coordinate.longitude,
+            latitude: output.selectedCoordinate.coordinate.latitude,
+            location: output.locationLabel.value ?? ""
         )
         router?.pop(from: view, with: address)
     }
     func didUpdateSelectLocation(location: CLLocation) {
-        interactor?.convertLocationToText(with: location)
+        interactor?.convertLocationToText(
+            latitude: location.coordinate.latitude,
+            longtitude: location.coordinate.longitude
+        )
     }
     func didUpdateUserLocation(location: CLLocation) {
         output.userLocation.send(location)
     }
 }
 
-//MARK: - SelectLocationPresenter+SelectLocationInteractorOutput
+// MARK: - SelectLocationPresenter+SelectLocationInteractorOutput
 
 extension SelectLocationPresenter: SelectLocationInteractorOutput {
     func didConvertLocationToText(with locationText: String?) {
@@ -89,7 +96,7 @@ extension SelectLocationPresenter: SelectLocationInteractorOutput {
     }
 }
 
-//MARK: - SelectLocationPresenterOutput
+// MARK: - SelectLocationPresenterOutput
 
 protocol SelectLocationPresenterOutput {
     var selectedCoordinate: CLLocation { get }

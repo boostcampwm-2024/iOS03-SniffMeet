@@ -77,7 +77,7 @@ final class RespondWalkInteractor: RespondWalkInteractable {
     func convertLocationToText(latitude: Double, longtitude: Double) async {
         Task {
             let locationText: String? = await convertLocationToTextUseCase.execute(
-                location: CLLocation(latitude: latitude, longitude: longtitude)
+                latitude: latitude, longtitude: longtitude
             )
             presenter?.didConvertLocationToText(with: locationText)
         }
