@@ -24,6 +24,7 @@ final class RespondWalkRouter: RespondWalkRoutable {
     func showSelectedLocationMapView(view: any RespondWalkViewable, address: Address) {
         guard let view = view as? UIViewController else { return }
         let selectedLocationView = RespondMapRouter.createRespondMapView(address: address)
+        selectedLocationView.modalPresentationStyle = .fullScreen
         present(from: view, with: selectedLocationView, animated: true)
     }
 }
