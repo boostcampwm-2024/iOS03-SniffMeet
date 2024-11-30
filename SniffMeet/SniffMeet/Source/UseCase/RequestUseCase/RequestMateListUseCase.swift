@@ -14,12 +14,22 @@ protocol RequestMateListUseCase {
 
 struct RequestMateListUseCaseImpl: RequestMateListUseCase {
     var remoteDatabaseManager: (any RemoteDatabaseManager)
+    let decoder: JSONDecoder
+    let encoder: JSONEncoder
+    
+    init(remoteDatabaseManager: any RemoteDatabaseManager) {
+        self.remoteDatabaseManager = remoteDatabaseManager
+        decoder = JSONDecoder()
+        encoder = JSONEncoder()
+    }
     
     func execute() async -> [Mate] {
-        let decoder = JSONDecoder()
-
         do {
-            let data = try await remoteDatabaseManager.fetchList(into: Environment.SupabaseTableName.matelistFunction)
+            let tableName = Environment.SupabaseTableName.matelistFunction
+            guard let userID = SessionManager.shared.session?.user?.userID else { return [] }
+            let requestData = try encoder.encode(MateListRequestDTO(userId: userID))
+            
+            let data = try await remoteDatabaseManager.fetchList(into: tableName,with: requestData)
             let mateDTOList = try decoder.decode([UserInfoDTO].self, from: data)
             return mateDTOList.map {
                 Mate(name: $0.dogName,
