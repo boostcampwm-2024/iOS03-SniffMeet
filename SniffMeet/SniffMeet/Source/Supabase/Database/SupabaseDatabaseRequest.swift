@@ -12,7 +12,7 @@ enum SupabaseDatabaseRequest {
     case fetchDataWithID(table: String, id: UUID, accessToken: String)
     case insertData(table: String, accessToken: String, data: Data)
     case updateData(table: String, id: UUID, accessToken: String, data: Data)
-    case fetchUserInfoFromMateList(data: Data, accessToken: String)
+    case fetchList(table: String, data: Data, accessToken: String)
 }
 
 extension SupabaseDatabaseRequest: SNMRequestConvertible {
@@ -47,10 +47,10 @@ extension SupabaseDatabaseRequest: SNMRequestConvertible {
                 query: ["id": "eq.\(id)"]
             )
             
-        case .fetchUserInfoFromMateList( _, _):
+        case .fetchList(let table,  _, _):
             return Endpoint(
                 baseURL: SupabaseConfig.baseURL,
-                path: "rest/v1/rpc/get_user_info_from_mate_list",
+                path: "rest/v1/\(table)",
                 method: .post // SQL 함수 호출은 POST 요청으로 수행
             )
         }
@@ -83,7 +83,7 @@ extension SupabaseDatabaseRequest: SNMRequestConvertible {
                 header: header,
                 body: data
             )
-        case .fetchUserInfoFromMateList(let data, let accessToken):
+        case .fetchList(_, let data, let accessToken):
             header["Authorization"] = "Bearer \(accessToken)"
             
             return SNMRequestType.compositePlain(

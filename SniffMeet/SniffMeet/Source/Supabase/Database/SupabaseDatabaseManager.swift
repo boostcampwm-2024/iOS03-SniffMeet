@@ -13,7 +13,7 @@ protocol RemoteDatabaseManager {
     func fetchDataWithID(from table: String, with id: UUID) async throws -> Data
     func insertData(into table: String, with data: Data) async throws
     func updateData(into table: String, with data: Data) async throws
-    func fetchUserInfoFromMateList() async throws -> Data
+    func fetchList(into table: String) async throws -> Data
 }
 
 final class SupabaseDatabaseManager: RemoteDatabaseManager {
@@ -95,7 +95,7 @@ final class SupabaseDatabaseManager: RemoteDatabaseManager {
         )
     }
     
-    func fetchUserInfoFromMateList() async throws -> Data {
+    func fetchList(into table: String) async throws -> Data {
         if SessionManager.shared.isExpired {
             try await SupabaseAuthManager.shared.refreshSession()
         }
@@ -107,7 +107,8 @@ final class SupabaseDatabaseManager: RemoteDatabaseManager {
         }
 
         let response = try await networkProvider.request(
-            with: SupabaseDatabaseRequest.fetchUserInfoFromMateList(
+            with: SupabaseDatabaseRequest.fetchList(
+                table: table,
                 data: data,
                 accessToken: session.accessToken
             )

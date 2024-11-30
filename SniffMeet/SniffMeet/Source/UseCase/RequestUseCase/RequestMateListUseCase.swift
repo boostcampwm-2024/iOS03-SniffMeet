@@ -19,7 +19,7 @@ struct RequestMateListUseCaseImpl: RequestMateListUseCase {
         let decoder = JSONDecoder()
 
         do {
-            let data = try await remoteDatabaseManager.fetchUserInfoFromMateList()
+            let data = try await remoteDatabaseManager.fetchList(into: Environment.SupabaseTableName.matelistFunction)
             let mateDTOList = try decoder.decode([UserInfoDTO].self, from: data)
             return mateDTOList.map {
                 Mate(name: $0.dogName,
