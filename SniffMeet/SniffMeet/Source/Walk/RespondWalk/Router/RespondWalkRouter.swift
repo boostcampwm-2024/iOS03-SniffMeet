@@ -7,8 +7,9 @@
 import CoreLocation
 import UIKit
 
-protocol RespondWalkRoutable: AnyObject {
+protocol RespondWalkRoutable: AnyObject, Routable {
     func dismissView(view: any RespondWalkViewable)
+    func showSelectedLocationMapView(view: any RespondWalkViewable, address: Address)
 }
 
 protocol RespondWalkBuildable {
@@ -19,6 +20,11 @@ final class RespondWalkRouter: RespondWalkRoutable {
     func dismissView(view: any RespondWalkViewable) {
         guard let view = view as? UIViewController else { return }
         view.dismiss(animated: true)
+    }
+    func showSelectedLocationMapView(view: any RespondWalkViewable, address: Address) {
+        guard let view = view as? UIViewController else { return }
+        let selectedLocationView = RespondMapRouter.createRespondMapView(address: address)
+        present(from: view, with: selectedLocationView, animated: true)
     }
 }
 

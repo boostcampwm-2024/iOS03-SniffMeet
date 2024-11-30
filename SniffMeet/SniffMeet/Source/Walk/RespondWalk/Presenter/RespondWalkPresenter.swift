@@ -18,6 +18,7 @@ protocol RespondWalkPresentable : AnyObject {
     func respondWalkRequest(isAccepted: Bool)
     func dismissView()
     func handleExceedingLimit() // 제한 시간 초과일 때 실행하는 함수
+    func didTapLocationViewButton()
 }
 
 protocol RespondWalkInteractorOutput: AnyObject {
@@ -73,7 +74,12 @@ final class RespondWalkPresenter: RespondWalkPresentable {
         router?.dismissView(view: view)
     }
     func handleExceedingLimit() {
-        
+
+    }
+    func didTapLocationViewButton() {
+        guard let view else { return }
+        let address: Address = Address(longtitude: noti.longtitude, latitude: noti.latitude)
+        router?.showSelectedLocationMapView(view: view, address: address)
     }
 }
 
