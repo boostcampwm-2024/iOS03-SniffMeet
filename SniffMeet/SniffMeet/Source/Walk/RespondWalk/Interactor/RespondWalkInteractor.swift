@@ -19,7 +19,7 @@ protocol RespondWalkInteractable: AnyObject {
     func respondWalkRequest(walkNotiId: UUID, isAccepted: Bool)
     func calculateTimeLimit(requestTime: Date)
     func convertLocationToText(latitude: Double, longtitude: Double) async
-    func fetchProfileImage()
+    func fetchProfileImage(urlString: String)
 }
 
 final class RespondWalkInteractor: RespondWalkInteractable {
@@ -47,16 +47,16 @@ final class RespondWalkInteractor: RespondWalkInteractable {
     }
     
     func fetchSenderInfo(userId: UUID) {
-        do {
-            Task {
-                guard let senderInfo =  await requestUserInfoUseCase.execute(mateId: userId) else {
-                   // presenter?.didFailToFetchWalkRequest(error:)
-                    return
-                }
-                presenter?.didFetchUserInfo(senderInfo: senderInfo)
+        Task {
+            guard let senderInfo =  await requestUserInfoUseCase.execute(mateId: userId) else {
+                // presenter?.didFailToFetchWalkRequest(error:)
+                return
             }
-        } catch {
-            presenter?.didFailToFetchWalkRequest(error: error)
+            presenter?.didFetchUserInfo(senderInfo: senderInfo)
+            guard let profileImageURL = senderInfo.profileImageURL else {
+                return
+            }
+            fetchProfileImage(urlString: profileImageURL)
         }
     }
     
@@ -83,11 +83,9 @@ final class RespondWalkInteractor: RespondWalkInteractable {
         }
     }
     
-    func fetchProfileImage() {
+    func fetchProfileImage(urlString: String) {
         Task { [weak self] in
-            // fileName = senderInfo.profileImageURL 사용해 이미지 이름 가져오기
-            let fileName = ""
-            let imageData = try await requestProfileImageUseCase.execute(fileName: fileName)
+            let imageData = try await self?.requestProfileImageUseCase.execute(fileName: urlString)
             self?.presenter?.didFetchProfileImage(with: imageData)
         }
     }
