@@ -45,6 +45,7 @@ struct WalkNoti {
     let longtitude: Double
     let senderId: UUID
     let senderName: String
+    let category: String
 }
 extension WalkNoti {
     static let example = WalkNoti(id: UUID(),
@@ -53,5 +54,6 @@ extension WalkNoti {
                                   latitude: 11,
                                   longtitude: 11,
                                   senderId: UUID(),
-                                  senderName: "지성")
+                                  senderName: "지성",
+                                  category: "walkRequest")
 }
