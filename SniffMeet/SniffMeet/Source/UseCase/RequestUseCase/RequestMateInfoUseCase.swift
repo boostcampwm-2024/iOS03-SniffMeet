@@ -16,7 +16,7 @@ struct RequestMateInfoUsecaseImpl: RequestMateInfoUseCase {
     func execute(mateId: UUID) async -> UserInfoDTO? {
         do {
             let mateInfoData = try await SupabaseDatabaseManager.shared.fetchData(
-                from: "user_info",
+                from: Environment.SupabaseTableName.userInfo,
                 query: ["id": "eq.\(mateId.uuidString)"]
             )
             let mateInfo = try JSONDecoder().decode(UserInfoDTO.self, from: mateInfoData)
