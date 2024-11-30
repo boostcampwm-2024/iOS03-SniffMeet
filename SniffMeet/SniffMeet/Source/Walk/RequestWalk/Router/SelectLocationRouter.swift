@@ -11,22 +11,22 @@ protocol SelectLocationRoutable: AnyObject, Routable {
     var presenter: (any SelectLocationPresentable)? { get set }
     var delegate: (any SelectLocationRouterDelegate)? { get set }
     
-    func pop(from: any SelectLocationViewable, with: Address?)
+    func dismiss(from: any SelectLocationViewable, with: Address?)
     func showAlert(from: any SelectLocationViewable, title: String, message: String)
 }
 
 protocol SelectLocationRouterDelegate: AnyObject {
-    func didPop(router: any SelectLocationRoutable, address: Address?)
+    func didDismiss(router: any SelectLocationRoutable, address: Address?)
 }
 
 final class SelectLocationRouter: SelectLocationRoutable {
     weak var presenter: (any SelectLocationPresentable)?
     weak var delegate: (any SelectLocationRouterDelegate)?
     
-    func pop(from: any SelectLocationViewable, with address: Address?) {
+    func dismiss(from: any SelectLocationViewable, with address: Address?) {
         guard let view = from as? UIViewController else { return }
-        delegate?.didPop(router: self, address: address)
-        pop(from: view, animated: true)
+        delegate?.didDismiss(router: self, address: address)
+        dismiss(from: view, animated: true)
     }
     func showAlert(
         from view: any SelectLocationViewable,

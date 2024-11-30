@@ -9,7 +9,6 @@ import Foundation
 
 enum SupabaseDatabaseRequest {
     case fetchData(table: String, accessToken: String, query: [String: String])
-    case fetchDataWithID(table: String, id: UUID, accessToken: String)
     case insertData(table: String, accessToken: String, data: Data)
     case updateData(table: String, id: UUID, accessToken: String, data: Data)
     case fetchUserInfoFromMateList(data: Data, accessToken: String)
@@ -24,13 +23,6 @@ extension SupabaseDatabaseRequest: SNMRequestConvertible {
                 path: "rest/v1/\(table)",
                 method: .get,
                 query: query
-            )
-        case .fetchDataWithID(let table, let id, _):
-            return Endpoint(
-                baseURL: SupabaseConfig.baseURL,
-                path: "rest/v1/\(table)",
-                method: .get,
-                query: ["id": "eq.\(id)"]
             )
         case .insertData(let table, _, _):
             return Endpoint(
@@ -62,11 +54,6 @@ extension SupabaseDatabaseRequest: SNMRequestConvertible {
         ]
         switch self {
         case .fetchData(_, let accessToken, _):
-            header["Authorization"] = "Bearer \(accessToken)"
-            return SNMRequestType.header(
-                with: header
-            )
-        case .fetchDataWithID(_, _, let accessToken):
             header["Authorization"] = "Bearer \(accessToken)"
             return SNMRequestType.header(
                 with: header

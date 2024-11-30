@@ -4,9 +4,12 @@
 //
 //  Created by 윤지성 on 11/19/24.
 //
+
+import Combine
 import UIKit
 
 final class LocationSelectionView: BaseView {
+    let tapPublisher = PassthroughSubject<Void, Never>()
     private var tapGesture = UITapGestureRecognizer()
 
     private var locationGuideLabel: UILabel = {
@@ -21,7 +24,6 @@ final class LocationSelectionView: BaseView {
         let label = UILabel()
         label.font = SNMFont.subheadline
         label.textColor = SNMColor.subGray2
-        label.text = "잠원 한강 공원"
         return label
     }()
     
@@ -31,7 +33,12 @@ final class LocationSelectionView: BaseView {
         imageView.tintColor = SNMColor.subGray2
         return imageView
     }()
-    
+
+    override func configureAttributes() {
+        addGestureRecognizer(tapGesture)
+        tapGesture.addTarget(self, action: #selector(handleTapGesture))
+    }
+
     override func configureHierarchy() {
         [locationGuideLabel, locationLabel, chevronImageView].forEach{
             addSubview($0)
@@ -52,6 +59,11 @@ final class LocationSelectionView: BaseView {
             $0.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
         }
     }
+
+    @objc private func handleTapGesture() {
+        tapPublisher.send()
+    }
+
     func setAddress(address: String) {
         locationLabel.text = address
     }

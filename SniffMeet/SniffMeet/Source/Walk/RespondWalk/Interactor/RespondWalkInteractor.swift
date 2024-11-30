@@ -89,7 +89,9 @@ final class RespondWalkInteractor: RespondWalkInteractable {
     
     func fetchProfileImage() {
         Task { [weak self] in
-            let imageData = await requestProfileImageUseCase.execute()
+            // fileName = senderInfo.profileImageURL 사용해 이미지 이름 가져오기
+            let fileName = ""
+            let imageData = try await requestProfileImageUseCase.execute(fileName: fileName)
             self?.presenter?.didFetchProfileImage(with: imageData)
         }
     }
