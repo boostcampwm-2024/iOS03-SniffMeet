@@ -18,9 +18,9 @@ final class MateListViewController: BaseViewController, MateListViewable {
     private var cancellables: Set<AnyCancellable> = []
     private let tableView: UITableView = UITableView()
 
-    override func viewDidLoad() {
-        presenter?.viewDidLoad()
-        super.viewDidLoad()
+    override func viewWillAppear(_ animated: Bool) {
+        presenter?.viewWillAppear()
+        super.viewWillAppear(animated)
     }
 
     override func configureAttributes() {
