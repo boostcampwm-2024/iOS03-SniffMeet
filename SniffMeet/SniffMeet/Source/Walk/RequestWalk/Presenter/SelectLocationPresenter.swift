@@ -60,7 +60,7 @@ final class SelectLocationPresenter: SelectLocationPresentable {
             longtitude: output.selectedCoordinate.coordinate.latitude,
             latitude: output.selectedCoordinate.coordinate.latitude
         )
-        router?.pop(from: view, with: address)
+        router?.dismiss(from: view, with: address)
     }
     func didUpdateSelectLocation(location: CLLocation) {
         interactor?.convertLocationToText(with: location)
