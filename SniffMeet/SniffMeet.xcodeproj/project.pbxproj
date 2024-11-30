@@ -205,7 +205,6 @@
 		FDE768962CF7831000B5DE88 /* RegisterDeviceTokenUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDE768952CF7830F00B5DE88 /* RegisterDeviceTokenUseCase.swift */; };
 		FDE768982CF7836C00B5DE88 /* RemoteSaveDeviceTokenUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDE768972CF7836B00B5DE88 /* RemoteSaveDeviceTokenUseCase.swift */; };
 		FDE7689A2CF783EB00B5DE88 /* ConvertToRequestAPSUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDE768992CF783EA00B5DE88 /* ConvertToRequestAPSUseCase.swift */; };
-		FDE7689C2CF783FE00B5DE88 /* ConvertToRespondAPSUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDE7689B2CF783FD00B5DE88 /* ConvertToRespondAPSUseCase.swift */; };
 		FDE7689F2CF7858F00B5DE88 /* Extension + UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDE7689E2CF7858D00B5DE88 /* Extension + UIViewController.swift */; };
 		FDE768A12CF7873600B5DE88 /* RequestNotificationAuthUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDE768A02CF7872E00B5DE88 /* RequestNotificationAuthUseCase.swift */; };
 		FDEAEA7A2CE3148D005890FA /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDEAEA792CE3148C005890FA /* BaseView.swift */; };
@@ -382,7 +381,6 @@
 		FDE768952CF7830F00B5DE88 /* RegisterDeviceTokenUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterDeviceTokenUseCase.swift; sourceTree = "<group>"; };
 		FDE768972CF7836B00B5DE88 /* RemoteSaveDeviceTokenUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteSaveDeviceTokenUseCase.swift; sourceTree = "<group>"; };
 		FDE768992CF783EA00B5DE88 /* ConvertToRequestAPSUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConvertToRequestAPSUseCase.swift; sourceTree = "<group>"; };
-		FDE7689B2CF783FD00B5DE88 /* ConvertToRespondAPSUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConvertToRespondAPSUseCase.swift; sourceTree = "<group>"; };
 		FDE7689D2CF7852A00B5DE88 /* SniffMeet.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SniffMeet.entitlements; sourceTree = "<group>"; };
 		FDE7689E2CF7858D00B5DE88 /* Extension + UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension + UIViewController.swift"; sourceTree = "<group>"; };
 		FDE768A02CF7872E00B5DE88 /* RequestNotificationAuthUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestNotificationAuthUseCase.swift; sourceTree = "<group>"; };
@@ -524,7 +522,6 @@
 		320047A32CF9E24E00D08B6D /* ComputeUseCase */ = {
 			isa = PBXGroup;
 			children = (
-				FDE7689B2CF783FD00B5DE88 /* ConvertToRespondAPSUseCase.swift */,
 				FDE768992CF783EA00B5DE88 /* ConvertToRequestAPSUseCase.swift */,
 				3200453E2CF5A88A00D08B6D /* CalculateTimeLimitUseCase.swift */,
 				FD119F452CED867600BE22BD /* ConvertLocationToTextUseCase.swift */,
@@ -1944,7 +1941,6 @@
 				FDA04AA52CE91DBF002605AC /* MultipartFormData.swift in Sources */,
 				FD119F522CED881300BE22BD /* SelectLocationModuleBuildable.swift in Sources */,
 				FD331A522CF23BD000F39426 /* WalkLog.swift in Sources */,
-				FDE7689C2CF783FE00B5DE88 /* ConvertToRespondAPSUseCase.swift in Sources */,
 				A2C328862CE245AC00D255AB /* TabBarModuleBuilder.swift in Sources */,
 				320044732CEB47B100D08B6D /* RequestWalkInteractor.swift in Sources */,
 				320044942CED80B700D08B6D /* RespondWalkInteractor.swift in Sources */,
