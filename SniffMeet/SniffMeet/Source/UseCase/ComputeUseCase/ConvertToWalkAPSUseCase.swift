@@ -1,5 +1,5 @@
 //
-//  ConverToRequestAPSUseCase.swift
+//  ConvertToWalkAPSUseCase.swift
 //  SniffMeet
 //
 //  Created by sole on 11/28/24.
