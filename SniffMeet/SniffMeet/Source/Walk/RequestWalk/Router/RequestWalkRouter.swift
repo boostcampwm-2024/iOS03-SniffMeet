@@ -42,7 +42,9 @@ extension RequestWalkRouter: RequestWalkBuildable {
     static func createRequestWalkModule(mate: Mate) -> UIViewController {
         let requestWalkUseCase: RequestWalkUseCase = RequestWalkUseCaseImpl()
         let requestProfileImageUseCase:
-        RequestProfileImageUseCase = RequestProfileImageUseCaseImpl()
+        RequestProfileImageUseCase = RequestProfileImageUseCaseImpl(
+            remoteImageManager: SupabaseStorageManager(
+            networkProvider: SNMNetworkProvider()))
         let view: RequestWalkViewable & UIViewController = RequestWalkViewController()
         let presenter: RequestWalkPresentable & RequestWalkInteractorOutput = RequestWalkPresenter()
         let interactor: RequestWalkInteractable = RequestWalkInteractor(
