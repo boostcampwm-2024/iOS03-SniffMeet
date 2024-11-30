@@ -7,21 +7,21 @@
 
 import Foundation
 
-protocol ConvertToRequestAPSUseCase {
-    func execute(userInfo: [AnyHashable: Any]) -> RequestAPS?
+protocol ConvertToWalkAPSUseCase {
+    func execute(userInfo: [AnyHashable: Any]) -> WalkAPSDTO?
 }
 
-struct ConverToRequestAPSUseCaseImpl: ConvertToRequestAPSUseCase {
+struct ConvertToWalkAPSUseCaseImpl: ConvertToWalkAPSUseCase {
     private let jsonDecoder: JSONDecoder
 
     init(jsonDecoder: JSONDecoder = AnyDecodable.defaultDecoder) {
         self.jsonDecoder = jsonDecoder
     }
 
-    func execute(userInfo: [AnyHashable : Any]) -> RequestAPS? {
+    func execute(userInfo: [AnyHashable : Any]) -> WalkAPSDTO? {
         try? AnyJSONSerializable(
             value: userInfo,
             jsonDecoder: jsonDecoder
-        )?.decode(type: RequestAPS.self)
+        )?.decode(type: WalkAPSDTO.self)
     }
 }
