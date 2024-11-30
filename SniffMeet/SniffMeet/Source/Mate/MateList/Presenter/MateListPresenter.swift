@@ -15,7 +15,7 @@ protocol MateListPresentable: AnyObject {
     var output: any MateListPresenterOutput { get }
     
     func viewDidLoad()
-    func didTableViewCellLoad(index: Int, urlString: String?)
+    func didTableViewCellLoad(index: Int, imageName: String?)
     func didTabAccessoryButton(mate: Mate)
 }
 
@@ -25,6 +25,7 @@ protocol MateListInteractorOutput: AnyObject {
 }
 
 final class MateListPresenter: MateListPresentable {
+    
     weak var view: (any MateListViewable)?
     var interactor: (any MateListInteractable)?
     var router: (any MateListRoutable)?
@@ -48,8 +49,8 @@ final class MateListPresenter: MateListPresentable {
         interactor?.requestMateList(userID: userID)
     }
 
-    func didTableViewCellLoad(index: Int, urlString: String?) {
-        interactor?.requestProfileImage(index: index, urlString: urlString)
+    func didTableViewCellLoad(index: Int, imageName: String?) {
+        interactor?.requestProfileImage(index: index, imageName: imageName)
     }
 
     func didTabAccessoryButton(mate: Mate) {
