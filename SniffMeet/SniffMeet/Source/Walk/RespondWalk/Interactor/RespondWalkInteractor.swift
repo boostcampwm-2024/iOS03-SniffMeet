@@ -47,16 +47,20 @@ final class RespondWalkInteractor: RespondWalkInteractable {
     }
     
     func fetchSenderInfo(userId: UUID) {
-        do {
-            Task {
-                guard let senderInfo =  await requestUserInfoUseCase.execute(mateId: userId) else {
-                   // presenter?.didFailToFetchWalkRequest(error:)
+        Task {
+            do {
+                guard let senderInfo = try await requestUserInfoUseCase.execute(
+                    mateId: userId
+                ) else {
+                    presenter?.didFailToFetchWalkRequest(
+                        error: SupabaseError.notFound
+                    )
                     return
                 }
                 presenter?.didFetchUserInfo(senderInfo: senderInfo)
+            } catch {
+                presenter?.didFailToFetchWalkRequest(error: error)
             }
-        } catch {
-            presenter?.didFailToFetchWalkRequest(error: error)
         }
     }
     
