@@ -59,11 +59,8 @@ final class RequestWalkViewController: BaseViewController, RequestWalkViewable {
         view.backgroundColor = .systemBackground
         presenter?.viewDidLoad()
     }
-    override func configureAttributes() {
-        setButtonActions()
-    }
-    override func configureHierachy() {
 
+    override func configureHierachy() {
         [titleLabel,
          dismissButton,
          profileView,
@@ -156,6 +153,20 @@ final class RequestWalkViewController: BaseViewController, RequestWalkViewable {
                 self?.presenter?.didTapLocationButton()
             }
             .store(in: &cancellables)
+        
+        dismissButton.publisher(event: .touchUpInside)
+            .debounce(for: .seconds(EventConstant.debounceInterval), scheduler: RunLoop.main)
+            .sink { [weak self] _ in
+                self?.presenter?.closeTheView()
+            }
+            .store(in: &cancellables)
+        
+        submitButton.publisher(event: .touchUpInside)
+            .debounce(for: .seconds(EventConstant.debounceInterval), scheduler: RunLoop.main)
+            .sink { [weak self] _ in
+                // TODO: -  산책 요청 보내는 로직 실행
+            }
+            .store(in: &cancellables)
     }
 }
 
@@ -165,12 +176,6 @@ private extension RequestWalkViewController {
         static let locationGuideTitle: String = "장소 선택"
         static let messagePlaceholder: String = "간단한 요청 메세지를 작성해주세요."
         static let characterCountLimit: Int = 100
-    }
-
-    func setButtonActions() {
-        dismissButton.addAction(UIAction(handler: {[weak self] _ in
-            self?.presenter?.closeTheView()
-        }), for: .touchUpInside)
     }
 }
 
