@@ -6,10 +6,11 @@
 //
 
 import Combine
+import PhotosUI
 import UIKit
 
 protocol ProfileEditViewable: AnyObject {
-    // var presenter: (any ProfileEditPresentable)?
+    var presenter: (any ProfileEditPresentable)? { get set }
 }
 
 final class ProfileEditViewController: BaseViewController, ProfileEditViewable {
@@ -75,11 +76,18 @@ final class ProfileEditViewController: BaseViewController, ProfileEditViewable {
          independentKeywordButton]
     }
     private var nextButton = PrimaryButton(title: Context.nextBtnTitle)
+    private var picker: PHPickerViewController = {
+        var configuration = PHPickerConfiguration()
+        configuration.selectionLimit = 1
+        configuration.filter = .images
+        return PHPickerViewController(configuration: configuration)
+    }()
 
     private var selectedKeywordButtons: [KeywordButton] = []
     override func viewDidLoad() {
         setupBinding()
         super.viewDidLoad()
+        presenter?.viewDidLoad()
     }
 
     override func viewDidLayoutSubviews() {
@@ -198,6 +206,21 @@ final class ProfileEditViewController: BaseViewController, ProfileEditViewable {
     }
 
     override func configureAttributes() {
+        picker.delegate = self
+    }
+
+    override func bind() {
+        bindKeywordButtonAction()
+        bindAddPhotoButtonAction()
+        // 바인딩 할 때 받아와야 할 것
+        // 기존 정보 (user_info)
+        // 받아서 이름 플레이스 홀더를 원래 이름으로
+        // 나이도 원래 나이로
+        // 크기도 원래 크기로 세그먼트 인덱스 옮겨주고
+        // 키워드도 원래 키워드로 띄워줘야 함
+    }
+
+    private func bindKeywordButtonAction() {
         keywordButtons.forEach { keywordButton in
             keywordButton.publisher(event: .touchUpInside)
                 .sink { [weak self] in
@@ -214,14 +237,13 @@ final class ProfileEditViewController: BaseViewController, ProfileEditViewable {
                 .store(in: &cancellables)
         }
     }
-
-    override func bind() {
-        // 바인딩 할 때 받아와야 할 것
-        // 기존 정보 (user_info)
-        // 받아서 이름 플레이스 홀더를 원래 이름으로
-        // 나이도 원래 나이로
-        // 크기도 원래 크기로 세그먼트 인덱스 옮겨주고
-        // 키워드도 원래 키워드로 띄워줘야 함
+    private func bindAddPhotoButtonAction() {
+        addPhotoButton.publisher(event: .touchUpInside)
+            .sink { [weak self] in
+                guard let picker = self?.picker else { return }
+                self?.present(picker, animated: true, completion: nil)
+            }
+            .store(in: &cancellables)
     }
 
     private func setupBinding() {
@@ -348,6 +370,24 @@ extension ProfileEditViewController: UITextFieldDelegate {
         guard let text = textField.text else { return true }
         let newLength = text.count + string.count - range.length
         return newLength <= 2
+    }
+}
+
+// MARK: - ProfileEditViewController+PHPickerViewControllerDelegate
+
+extension ProfileEditViewController: PHPickerViewControllerDelegate {
+    func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
+        picker.dismiss(animated: true, completion: nil)
+        let itemProvider = results.first?.itemProvider
+        if let itemProvider = itemProvider,
+           itemProvider.canLoadObject(ofClass: UIImage.self) {
+            itemProvider.loadObject(ofClass: UIImage.self) { image, error in
+                guard let selectedImage = image as? UIImage else { return }
+                Task { @MainActor [weak self] in
+                    self?.profileImageView.image =  selectedImage
+                }
+            }
+        }
     }
 }
 
