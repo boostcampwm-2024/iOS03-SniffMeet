@@ -57,3 +57,25 @@ extension WalkNoti {
                                   senderName: "지성",
                                   category: .walkRequest)
 }
+
+enum WalkNotiCategory: String, Decodable {
+    case walkRequest
+    case walkAccepted
+    case walkDeclined
+
+    var label: String {
+        switch self {
+        case .walkRequest: "산책 요청"
+        case .walkAccepted: "산책 수락"
+        case .walkDeclined: "산책 거절"
+        }
+    }
+
+    var description: String {
+        switch self {
+        case .walkRequest: "님이 산책 요청을 요청했어요!"
+        case .walkAccepted: "님이 산책 수락했어요!"
+        case .walkDeclined: "님이 산책을 거절했어요..."
+        }
+    }
+}

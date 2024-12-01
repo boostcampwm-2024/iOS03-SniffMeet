@@ -44,9 +44,3 @@ struct WalkNotiDTO: Decodable {
                  category: category)
     }
 }
-
-enum WalkNotiCategory: String, Decodable {
-    case walkRequest
-    case walkAccepted
-    case walkDeclined
-}
