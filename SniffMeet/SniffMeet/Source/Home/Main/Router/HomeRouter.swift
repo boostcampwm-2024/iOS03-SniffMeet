@@ -17,7 +17,7 @@ protocol HomeRoutable: Routable {
 final class HomeRouter: NSObject, HomeRoutable {
     func showProfileEditView(homeView: any HomeViewable) {
         guard let homeView = homeView as? UIViewController else { return }
-        push(from: homeView, to: ProfileEditViewController(), animated: true)
+        pushNoBottomBar(from: homeView, to: ProfileEditViewController(), animated: true)
     }
     func showNotificationView(homeView: any HomeViewable) {
         // TODO: NotificationViewController로 교체 필요 
