@@ -14,7 +14,7 @@ protocol ProfileEditViewable: AnyObject {
 }
 
 final class ProfileEditViewController: BaseViewController, ProfileEditViewable {
-    var presenter: ProfileEditPresentable?
+    var presenter: (any ProfileEditPresentable)?
     private var cancellables = Set<AnyCancellable>()
     private var profileImageView: UIImageView = {
         let imageView = UIImageView()
@@ -137,29 +137,26 @@ final class ProfileEditViewController: BaseViewController, ProfileEditViewable {
     override func bind() {
         bindKeywordButtonAction()
         bindAddPhotoButtonAction()
+        bindCompleteEditButtonAction()
 
         presenter?.output.userInfo
             .receive(on: RunLoop.main)
             .sink { [weak self] userInfo in
-                self?.nameTextField.placeholder = userInfo?.dogName
-                self?.ageTextField.placeholder = String(userInfo?.age ?? 0)
-                switch userInfo?.size {
+                SNMLogger.info("Edit userInfo: \(userInfo)")
+                self?.nameTextField.placeholder = userInfo.name
+                self?.ageTextField.placeholder = String(userInfo.age)
+                switch userInfo.size {
                 case .small:
                     self?.sizeSegmentedControl.selectedSegmentIndex = 0
                 case .medium:
                     self?.sizeSegmentedControl.selectedSegmentIndex = 1
                 case .big:
                     self?.sizeSegmentedControl.selectedSegmentIndex = 2
-                default:
-                    self?.sizeSegmentedControl.selectedSegmentIndex = -1
                 }
-            }
-            .store(in: &cancellables)
-        presenter?.output.profileImageData
-            .receive(on: RunLoop.main)
-            .sink { [weak self] imageData in
-                guard let imageData else { return }
-                self?.profileImageView.image = UIImage(data: imageData)
+                if let profileImageData = userInfo.profileImage,
+                   let uiImage = UIImage(data: profileImageData) {
+                    self?.profileImageView.image = uiImage
+                }
             }
             .store(in: &cancellables)
     }
@@ -332,18 +329,6 @@ extension ProfileEditViewController {
             ),
             keywordSelectionLabel.leadingAnchor.constraint(
                 equalTo: view.leadingAnchor,
-                constant: Context.horizontalPadding
-            ),
-            keywordStackView.topAnchor.constraint(
-                equalTo: keywordSelectionLabel.bottomAnchor,
-                constant: Context.basicVerticalPadding
-            ),
-            keywordStackView.leadingAnchor.constraint(
-                equalTo: view.leadingAnchor,
-                constant: Context.horizontalPadding
-            ),
-            keywordStackView.trailingAnchor.constraint(
-                equalTo: view.trailingAnchor,
                 constant: Context.horizontalPadding
             )
         ])

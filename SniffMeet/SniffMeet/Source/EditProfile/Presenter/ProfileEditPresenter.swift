@@ -9,6 +9,7 @@ import Combine
 import UIKit
 
 protocol ProfileEditPresentable: AnyObject {
+    var userInfo: UserInfo { get set }
     var view: (any ProfileEditViewable)? { get set }
     var router: (any ProfileEditRoutable)? { get set }
     var interactor: (any ProfileEditInteractable)? { get set }
@@ -25,23 +26,37 @@ protocol ProfileEditPresentable: AnyObject {
 }
 
 final class ProfileEditPresenter: ProfileEditPresentable {
+    var userInfo: UserInfo
     weak var view: (any ProfileEditViewable)?
-    var interactor: (any ProfileEditInteractable)?
     var router: (any ProfileEditRoutable)?
+    var interactor: (any ProfileEditInteractable)?
     let output: any ProfileEditPresenterOutput
 
     init(
+        userInfo: UserInfo,
         view: (any ProfileEditViewable)? = nil,
-        output: any ProfileEditPresenterOutput = DefaultProfileEditPresenterOutput()
+        router: (any ProfileEditRoutable)? = nil,
+        interactor: ProfileEditInteractor? = nil,
+        output: ProfileEditPresenterOutput = DefaultProfileEditPresenterOutput(
+            userInfo: PassthroughSubject<UserInfo, Never>()
+        )
     )
     {
+        self.userInfo = userInfo
         self.view = view
+        self.router = router
+        self.interactor = interactor
         self.output = output
     }
 
     func viewDidLoad() {
-        interactor?.requestUserInfo()
-        interactor?.requestUserProfileImage()
+        do {
+            if let userInfo = try interactor?.requestUserInfo() {
+                didFetchUserInfo(userInfo: userInfo)
+            }
+        } catch {
+
+        }
     }
 
     func didTapCompleteButton(
@@ -51,45 +66,15 @@ final class ProfileEditPresenter: ProfileEditPresentable {
         size: Int?,
         profileImage: UIImage?
     ) {
-        updateUserName(to: name)
-        updateUserAge(to: age)
-        updateUserKeywords(to: keywords)
-        updateUserSize(to: size)
-        updateUserProfileImage(to: profileImage)
-    }
-
-    private func updateUserName(to name: String?) {
-        guard let name else { return }
-        interactor?.updateUserName(name: name)
-    }
-
-    private func updateUserAge(to age: String?) {
-        guard let age = age, let ageInteger = UInt8(age) else { return }
-        interactor?.updateUserAge(age: ageInteger)
-    }
-
-    private func updateUserKeywords(to keywords: [String]?) {
-        guard let keywords else { return }
-        interactor?.updateUserKeywords(keywords: keywords)
-    }
-
-    private func updateUserSize(to size: Int?) {
-        guard let size else { return }
-        var sizeString = String()
-        switch size {
-        case 0: sizeString = "소형"
-        case 1: sizeString = "중형"
-        case 2: sizeString = "대형"
-        default: break
-        }
-        interactor?.updateUserSize(size: sizeString)
-    }
-
-    private func updateUserProfileImage(to profileImage: UIImage?) {
         guard let profileImage else { return }
         let pngData = convertImageToPNGData(image: profileImage)
         let jpgData = convertImageToJPGData(image: profileImage)
-        interactor?.updateUserProfileImage(profileImageData: (pngData, jpgData))
+        interactor?.updateUserInfo(name: name,
+                                   age: UInt8(age ?? "0"),
+                                   size: String(size ?? 0),
+                                   keywords: keywords,
+                                   profileImageData: (pngData, jpgData)
+        )
     }
 
     private func convertImageToPNGData(image: UIImage) -> Data? {
@@ -104,29 +89,26 @@ final class ProfileEditPresenter: ProfileEditPresentable {
 // MARK: - ProfileEditPresenter+ProfileEditInteractorOutput
 
 protocol ProfileEditInteractorOutput: AnyObject {
-    func didFetchUserInfo(userInfo: UserInfoDTO)
-    func didFetchProfileImage(imageData: Data?)
+    func didFetchUserInfo(userInfo: UserInfo)
+    func didSaveUserInfo()
 }
 
 extension ProfileEditPresenter: ProfileEditInteractorOutput {
-    func didFetchUserInfo(userInfo: UserInfoDTO) {
+    func didFetchUserInfo(userInfo: UserInfo) {
         output.userInfo.send(userInfo)
     }
-
-    func didFetchProfileImage(imageData: Data?) {
-        guard let imageData else { return }
-        output.profileImageData.send(imageData)
+    func didSaveUserInfo() {
+        guard let view else { return }
+        router?.presentMainScreen(from: view)
     }
 }
 
 // MARK: - ProfileEditPresenterOutput
 
 protocol ProfileEditPresenterOutput {
-    var userInfo: CurrentValueSubject<UserInfoDTO?, Never> { get }
-    var profileImageData: PassthroughSubject<Data?, Never> { get }
+    var userInfo: PassthroughSubject<UserInfo, Never> { get }
 }
 
 struct DefaultProfileEditPresenterOutput: ProfileEditPresenterOutput {
-    let userInfo = CurrentValueSubject<UserInfoDTO?, Never>(nil)
-    let profileImageData = PassthroughSubject<Data?, Never>()
+    var userInfo: PassthroughSubject<UserInfo, Never>
 }
