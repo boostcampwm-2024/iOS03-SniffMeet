@@ -8,16 +8,18 @@
 import UIKit 
 
 protocol HomeRoutable: Routable {
-    func showProfileEditView(homeView: any HomeViewable)
+    func showProfileEditView(homeView: any HomeViewable, userInfo: UserInfo)
     func showNotificationView(homeView: any HomeViewable)
     func showAlert(homeView: any HomeViewable, title: String, message: String)
     func showMateRequestView(homeView: any HomeViewable, data: DogProfileDTO)
 }
 
 final class HomeRouter: NSObject, HomeRoutable {
-    func showProfileEditView(homeView: any HomeViewable) {
+    func showProfileEditView(homeView: any HomeViewable, userInfo: UserInfo) {
         guard let homeView = homeView as? UIViewController else { return }
-        pushNoBottomBar(from: homeView, to: ProfileEditViewController(), animated: true)
+        let profileCreateViewController =
+        ProfileEditRouter.createProfileEditModule(userInfo: userInfo)
+        pushNoBottomBar(from: homeView, to: profileCreateViewController, animated: true)
     }
     func showNotificationView(homeView: any HomeViewable) {
         // TODO: NotificationViewController로 교체 필요 

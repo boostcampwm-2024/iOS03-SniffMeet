@@ -129,7 +129,8 @@ final class HomeViewController: BaseViewController, HomeViewable {
             .receive(on: RunLoop.main)
             .sink { [weak self] bool in
                 if bool {
-                    self?.presenter?.didTapEditButton()
+                    guard let userInfo = self?.presenter?.output.dogInfo.value else { return }
+                    self?.presenter?.didTapEditButton(userInfo: userInfo)
                 }
             }
             .store(in: &cancellables)
