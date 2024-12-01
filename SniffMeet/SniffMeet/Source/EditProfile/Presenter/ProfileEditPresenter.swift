@@ -69,9 +69,22 @@ final class ProfileEditPresenter: ProfileEditPresentable {
         guard let profileImage else { return }
         let pngData = convertImageToPNGData(image: profileImage)
         let jpgData = convertImageToJPGData(image: profileImage)
+        var strSize = ""
+        switch size {
+        case 0:
+            strSize = "소형"
+        case 1:
+            strSize = "중형"
+        case 2:
+            strSize = "대형"
+        case .none:
+            strSize = ""
+        case .some(_):
+            strSize = ""
+        }
         interactor?.updateUserInfo(name: name,
                                    age: UInt8(age ?? "0"),
-                                   size: String(size ?? 0),
+                                   size: strSize,
                                    keywords: keywords,
                                    profileImageData: (pngData, jpgData)
         )

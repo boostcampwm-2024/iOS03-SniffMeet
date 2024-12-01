@@ -153,6 +153,17 @@ final class ProfileEditViewController: BaseViewController, ProfileEditViewable {
                 case .big:
                     self?.sizeSegmentedControl.selectedSegmentIndex = 2
                 }
+                self?.sizeSegmentedControl.setNeedsLayout()
+                self?.selectedKeywordButtons.removeAll()
+                for button in self?.keywordButtons ?? [] {
+                    if let title = button.titleLabel?.text, userInfo.keywords.contains(Keyword(rawValue: title) ?? .energetic) {
+                        button.isSelected = true
+                        self?.selectedKeywordButtons.append(button)
+                    } else {
+                        button.isSelected = false
+                    }
+                }
+
                 if let profileImageData = userInfo.profileImage,
                    let uiImage = UIImage(data: profileImageData) {
                     self?.profileImageView.image = uiImage

@@ -58,7 +58,7 @@ final class ProfileEditInteractor: ProfileEditInteractable {
                                                               age: age ?? 0,
                                                               sex: Sex.female,
                                                               sexUponIntake: true,
-                                                              size: Size.small,
+                                                              size: Size(rawValue: size) ?? .small,
                                                               keywords: convertedKeywords ?? [],
                                                               nickname: "",
                                                               profileImage: profileImageData.0))
@@ -78,7 +78,7 @@ final class ProfileEditInteractor: ProfileEditInteractable {
                         age: age ?? 0,
                         sex: Sex.female,
                         sexUponIntake: true,
-                        size: Size.small,
+                        size: Size(rawValue: size) ?? .small,
                         keywords: convertedKeywords ?? [],
                         nickname: "",
                         profileImageURL: fileName
