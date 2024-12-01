@@ -8,8 +8,13 @@
 import Foundation
 
 protocol ProfileEditInteractable: AnyObject {
+    var presenter: ProfileEditInteractorOutput? { get set }
+
     func requestUserInfo()
     func requestUserProfileImage()
-    func updateUserInfo(userInfo: UserInfo)
+    func updateUserName(name: String?)
+    func updateUserAge(age: UInt8?)
+    func updateUserSize(size: String)
+    func updateUserKeywords(keywords: [String]?)
     func updateUserProfileImage(profileImageData: (Data?, Data?))
 }
