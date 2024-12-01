@@ -12,6 +12,18 @@ final class SessionViewController: BaseViewController {
     private var logoTitleLabel = UILabel()
     private var smallTitleLabel = UILabel()
     
+    private weak var appRouter: AppRouter?
+    var walkNoti: WalkNoti?
+    var isAccepted: Bool?
+    
+    init(appRouter: AppRouter?) {
+        self.appRouter = appRouter
+        super.init()
+    }
+    override func viewDidAppear(_ animated: Bool) {
+        routeView()
+    }
+
     override func configureAttributes() {
         logoImageView.image = UIImage.app
         logoImageView.contentMode = .scaleAspectFill
@@ -46,6 +58,15 @@ final class SessionViewController: BaseViewController {
             smallTitleLabel.topAnchor.constraint(equalTo: logoTitleLabel.bottomAnchor,
                                                  constant: Context.logoSmallTitleVerticalPadding)
         ])
+    }
+    private func routeView() {
+        if let walkNoti {
+            appRouter?.initializeViewAndPresentRequestView(walkNoti: walkNoti)
+        } else if let isAccepted {
+            appRouter?.initializeViewAndPresentRespondView(isAccepted: isAccepted)
+        } else {
+            appRouter?.displayInitialScreen()
+        }
     }
 }
 extension SessionViewController {
