@@ -51,7 +51,8 @@ final class ProfileEditViewController: BaseViewController, ProfileEditViewable {
     }()
     private var sizeSegmentedControl: UISegmentedControl = {
         let segmentedControl = UISegmentedControl(items: Context.sizeArr)
-        segmentedControl.selectedSegmentIndex = 0
+        // 기본 선택이 없게 하고 바인딩 이후에 원래 크기에 맞춰서 인덱스를 업데이트 합니다.
+        segmentedControl.selectedSegmentIndex = -1
         return segmentedControl
     }()
     private var keywordSelectionLabel: UILabel = {
@@ -75,6 +76,7 @@ final class ProfileEditViewController: BaseViewController, ProfileEditViewable {
     }
     private var nextButton = PrimaryButton(title: Context.nextBtnTitle)
 
+    private var selectedKeywordButtons: [KeywordButton] = []
     override func viewDidLoad() {
         setupBinding()
         super.viewDidLoad()
@@ -110,7 +112,6 @@ final class ProfileEditViewController: BaseViewController, ProfileEditViewable {
         disableAutoresizingMaskForSubviews()
         configureNextButtonConstraints()
         configureProfileImageViewConstraints()
-
         NSLayoutConstraint.activate([
             nameTextLabel.topAnchor.constraint(
                 equalTo: profileImageView.bottomAnchor,
@@ -197,10 +198,31 @@ final class ProfileEditViewController: BaseViewController, ProfileEditViewable {
     }
 
     override func configureAttributes() {
-
+        keywordButtons.forEach { keywordButton in
+            keywordButton.publisher(event: .touchUpInside)
+                .sink { [weak self] in
+                    if keywordButton.isSelected {
+                        if self?.selectedKeywordButtons.count ?? 0 < 2 {
+                            self?.selectedKeywordButtons.append(keywordButton)
+                        } else {
+                            keywordButton.isSelected = false
+                        }
+                    } else {
+                        self?.selectedKeywordButtons.removeAll { $0 == keywordButton }
+                    }
+                }
+                .store(in: &cancellables)
+        }
     }
 
-    override func bind() {}
+    override func bind() {
+        // 바인딩 할 때 받아와야 할 것
+        // 기존 정보 (user_info)
+        // 받아서 이름 플레이스 홀더를 원래 이름으로
+        // 나이도 원래 나이로
+        // 크기도 원래 크기로 세그먼트 인덱스 옮겨주고
+        // 키워드도 원래 키워드로 띄워줘야 함
+    }
 
     private func setupBinding() {
         let namePublisher = nameTextField
@@ -219,6 +241,7 @@ final class ProfileEditViewController: BaseViewController, ProfileEditViewable {
             }
             .store(in: &cancellables)
     }
+
     private func disableAutoresizingMaskForSubviews() {
         [nameTextLabel,
          nameTextField,
@@ -286,7 +309,7 @@ final class ProfileEditViewController: BaseViewController, ProfileEditViewable {
 
     }
     
-    func configureButtonConstraints() {
+    private func configureButtonConstraints() {
         keywordStackView.spacing = Context.smallVerticalPadding
         keywordStackView.axis = .horizontal
         keywordStackView.distribution = .fillProportionally
@@ -308,7 +331,7 @@ final class ProfileEditViewController: BaseViewController, ProfileEditViewable {
 
     func setButtonAction() {
         // next button
-        // binding 하여 기존 정보를 가져와야 합니다.
+        // binding 하여 기존 정보를 가져온 것을 수정해야 합니다.
 
         // keyword button
         // 최대 2개까지만 선택, 2개 넘어가면 얼럿이든지 뭐든지 띄우기
@@ -331,9 +354,8 @@ extension ProfileEditViewController: UITextFieldDelegate {
 extension ProfileEditViewController {
     enum Context {
         static let nextBtnTitle: String = "다음으로"
-        static let namePlaceholder: String = "반려견 이름을 입력해주세요."
-        static let agePlaceholder: String = "반려견 나이를 입력해주세요."
-        static let sexLabel: String = "반려견의 성별을 선택해주세요."
+        static let namePlaceholder: String = "기존 이름"
+        static let agePlaceholder: String = "기존 나이"
         static let sizeLabel: String = "반려견의 크기를 선택해주세요."
         static let sizeArr: [String] = [
             Size.small.rawValue,
