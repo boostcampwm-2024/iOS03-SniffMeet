@@ -5,10 +5,16 @@
 //  Created by sole on 11/24/24.
 //
 
+import Combine
 import UIKit
+}
 
 final class NotificationListViewController: BaseViewController {
     private let notificationTableView: UITableView = UITableView()
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+    }
 
     override func configureAttributes() {
         let chevronImage = UIImage(systemName: "chevron.left")
@@ -69,8 +75,6 @@ extension NotificationListViewController: UITableViewDataSource {
         _ tableView: UITableView,
         numberOfRowsInSection section: Int
     ) -> Int {
-        // FIXME: 실제 데이터로 변경 필요
-        10
     }
     func tableView(
         _ tableView: UITableView,

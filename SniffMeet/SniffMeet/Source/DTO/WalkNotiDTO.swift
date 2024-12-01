@@ -41,7 +41,7 @@ struct WalkNotiDTO: Decodable {
                  longtitude: longtitude,
                  senderId: senderId,
                  senderName: senderName,
-                 category: category.rawValue)
+                 category: category)
     }
 }
 

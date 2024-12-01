@@ -1,5 +1,5 @@
 //
-//  WalkRequest.swift
+//  WalkNoti.swift
 //  SniffMeet
 //
 //  Created by 윤지성 on 11/20/24.
@@ -45,7 +45,7 @@ struct WalkNoti {
     let longtitude: Double
     let senderId: UUID
     let senderName: String
-    let category: String
+    let category: WalkNotiCategory
 }
 extension WalkNoti {
     static let example = WalkNoti(id: UUID(),
@@ -55,5 +55,5 @@ extension WalkNoti {
                                   longtitude: 11,
                                   senderId: UUID(),
                                   senderName: "지성",
-                                  category: "walkRequest")
+                                  category: .walkRequest)
 }
