@@ -7,4 +7,9 @@
 
 import Foundation
 
-protocol ProfileEditInteractable: AnyObject {}
+protocol ProfileEditInteractable: AnyObject {
+    func requestUserInfo()
+    func requestUserProfileImage()
+    func updateUserInfo(userInfo: UserInfo)
+    func updateUserProfileImage(profileImageData: (Data?, Data?))
+}
