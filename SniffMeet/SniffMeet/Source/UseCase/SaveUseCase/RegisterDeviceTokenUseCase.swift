@@ -8,7 +8,7 @@
 import Foundation
 
 protocol RegisterDeviceTokenUseCase {
-    func execute(deviceToken: Data) async throws
+    func execute(deviceToken: Data) throws
 }
 
 struct RegisterDeviceTokenUseCaseImpl: RegisterDeviceTokenUseCase {
@@ -18,8 +18,7 @@ struct RegisterDeviceTokenUseCaseImpl: RegisterDeviceTokenUseCase {
         self.keychainManager = keychainManager
     }
 
-    func execute(deviceToken: Data) async throws {
-        if let device = try? keychainManager.get(forKey: Environment.KeychainKey.deviceToken) { return }
+    func execute(deviceToken: Data) throws {
         let deviceTokenString = deviceToken.reduce("") { $0 + String(format: "%02X", $1) }
         try keychainManager.set(
             value: deviceTokenString,
