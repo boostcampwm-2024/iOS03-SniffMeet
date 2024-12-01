@@ -125,13 +125,10 @@ final class ProfileEditViewController: BaseViewController, ProfileEditViewable {
 
     override func configureAttributes() {
         picker.delegate = self
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
-        view.addGestureRecognizer(tapGesture)
+        nameTextField.delegate = self
+        ageTextField.delegate = self
+        hideKeyboardWhenTappedAround()
         ageTextField.keyboardType = .numberPad
-    }
-
-    @objc private func dissMissKeyboard() {
-        view.endEditing(true)
     }
 
     override func bind() {
@@ -228,6 +225,11 @@ final class ProfileEditViewController: BaseViewController, ProfileEditViewable {
 // MARK: - ProfileEditViewControlle+UITextFieldDelegate
 
 extension ProfileEditViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+
     func textField(_ textField: UITextField,
                    shouldChangeCharactersIn range: NSRange,
                    replacementString string: String) -> Bool
