@@ -161,13 +161,6 @@ final class RequestWalkViewController: BaseViewController, RequestWalkViewable {
                 self?.presenter?.closeTheView()
             }
             .store(in: &cancellables)
-        
-        submitButton.publisher(event: .touchUpInside)
-            .debounce(for: .seconds(EventConstant.debounceInterval), scheduler: RunLoop.main)
-            .sink { [weak self] _ in
-                // TODO: -  산책 요청 보내는 로직 실행
-            }
-            .store(in: &cancellables)
     }
 }
 
