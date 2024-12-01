@@ -111,7 +111,6 @@ final class ProfileInputViewController: BaseViewController, ProfileInputViewable
         
         updateNextButtonState()
         hideKeyboardWhenTappedAround()
-        setButtonAction()
         setTextFields()
     }
     
@@ -181,6 +180,7 @@ final class ProfileInputViewController: BaseViewController, ProfileInputViewable
     override func bind() {
         // MARK: - submit(다음으로) 버튼에 대한 액션
         nextButton.publisher(event: .touchUpInside)
+            .debounce(for: .seconds(EventConstant.debounceInterval), scheduler: RunLoop.main)
             .sink { [weak self] _ in
                 guard let selectedSexIdx = self?.sexSegmentedControl.selectedSegmentIndex,
                       var selectedSexUponIntakeIdx = self?.sexSegmentedControl.selectedSegmentIndex,
