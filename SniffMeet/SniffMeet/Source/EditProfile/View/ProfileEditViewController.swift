@@ -118,94 +118,20 @@ final class ProfileEditViewController: BaseViewController, ProfileEditViewable {
     override func configureConstraints() {
         disableAutoresizingMaskForSubviews()
         configureCompleteEditButtonConstraints()
+        configureContentsConstraints()
         configureProfileImageViewConstraints()
-        NSLayoutConstraint.activate([
-            nameTextLabel.topAnchor.constraint(
-                equalTo: profileImageView.bottomAnchor,
-                constant: Context.largeVerticalPadding
-            ),
-            nameTextLabel.leadingAnchor.constraint(
-                equalTo: view.leadingAnchor,
-                constant: Context.horizontalPadding
-            ),
-            nameTextField.topAnchor.constraint(
-                equalTo: nameTextLabel.bottomAnchor,
-                constant: Context.basicVerticalPadding
-            ),
-            nameTextField.leadingAnchor.constraint(
-                equalTo: view.leadingAnchor,
-                constant: Context.horizontalPadding
-            ),
-            nameTextField.trailingAnchor.constraint(
-                equalTo: view.trailingAnchor,
-                constant: -Context.horizontalPadding
-            ),
-            ageTextLabel.topAnchor.constraint(
-                equalTo: nameTextField.bottomAnchor,
-                constant: Context.basicVerticalPadding
-            ),
-            ageTextLabel.leadingAnchor.constraint(
-                equalTo: view.leadingAnchor,
-                constant: Context.horizontalPadding
-            ),
-            ageTextField.topAnchor.constraint(
-                equalTo: ageTextLabel.bottomAnchor,
-                constant: Context.basicVerticalPadding
-            ),
-            ageTextField.leadingAnchor.constraint(
-                equalTo: view.leadingAnchor,
-                constant: Context.horizontalPadding
-            ),
-            ageTextField.trailingAnchor.constraint(
-                equalTo: view.trailingAnchor,
-                constant: -Context.horizontalPadding
-            ),
-            sizeSelectionLabel.topAnchor.constraint(
-                equalTo: ageTextField.bottomAnchor,
-                constant: Context.basicVerticalPadding
-            ),
-            sizeSelectionLabel.leadingAnchor.constraint(
-                equalTo: view.leadingAnchor,
-                constant: Context.horizontalPadding
-            ),
-            sizeSegmentedControl.topAnchor.constraint(
-                equalTo: sizeSelectionLabel.bottomAnchor,
-                constant: Context.basicVerticalPadding
-            ),
-            sizeSegmentedControl.leadingAnchor.constraint(
-                equalTo: view.leadingAnchor,
-                constant: Context.horizontalPadding
-            ),
-            sizeSegmentedControl.trailingAnchor.constraint(
-                equalTo: view.trailingAnchor,
-                constant: -Context.horizontalPadding
-            ),
-            keywordSelectionLabel.topAnchor.constraint(
-                equalTo: sizeSegmentedControl.bottomAnchor,
-                constant: Context.basicVerticalPadding
-            ),
-            keywordSelectionLabel.leadingAnchor.constraint(
-                equalTo: view.leadingAnchor,
-                constant: Context.horizontalPadding
-            ),
-            keywordStackView.topAnchor.constraint(
-                equalTo: keywordSelectionLabel.bottomAnchor,
-                constant: Context.basicVerticalPadding
-            ),
-            keywordStackView.leadingAnchor.constraint(
-                equalTo: view.leadingAnchor,
-                constant: Context.horizontalPadding
-            ),
-            keywordStackView.trailingAnchor.constraint(
-                equalTo: view.trailingAnchor,
-                constant: Context.horizontalPadding
-            )
-        ])
         configureButtonConstraints()
     }
 
     override func configureAttributes() {
         picker.delegate = self
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        view.addGestureRecognizer(tapGesture)
+        ageTextField.keyboardType = .numberPad
+    }
+
+    @objc private func dissMissKeyboard() {
+        view.endEditing(true)
     }
 
     override func bind() {
@@ -297,6 +223,126 @@ final class ProfileEditViewController: BaseViewController, ProfileEditViewable {
             }
             .store(in: &cancellables)
     }
+}
+
+// MARK: - ProfileEditViewControlle+UITextFieldDelegate
+
+extension ProfileEditViewController: UITextFieldDelegate {
+    func textField(_ textField: UITextField,
+                   shouldChangeCharactersIn range: NSRange,
+                   replacementString string: String) -> Bool
+    {
+        guard let text = textField.text else { return true }
+        let newLength = text.count + string.count - range.length
+        return newLength <= 2
+    }
+}
+
+// MARK: - ProfileEditViewController+PHPickerViewControllerDelegate
+
+extension ProfileEditViewController: PHPickerViewControllerDelegate {
+    func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
+        picker.dismiss(animated: true, completion: nil)
+        let itemProvider = results.first?.itemProvider
+        if let itemProvider = itemProvider,
+           itemProvider.canLoadObject(ofClass: UIImage.self) {
+            itemProvider.loadObject(ofClass: UIImage.self) { image, error in
+                guard let selectedImage = image as? UIImage else { return }
+                Task { @MainActor [weak self] in
+                    self?.profileImageView.image =  selectedImage
+                }
+            }
+        }
+    }
+}
+
+// MARK: - ProfileEditViewController Layout
+
+extension ProfileEditViewController {
+    private func configureContentsConstraints() {
+        NSLayoutConstraint.activate([
+            nameTextLabel.topAnchor.constraint(
+                equalTo: profileImageView.bottomAnchor,
+                constant: Context.largeVerticalPadding
+            ),
+            nameTextLabel.leadingAnchor.constraint(
+                equalTo: view.leadingAnchor,
+                constant: Context.horizontalPadding
+            ),
+            nameTextField.topAnchor.constraint(
+                equalTo: nameTextLabel.bottomAnchor,
+                constant: Context.basicVerticalPadding
+            ),
+            nameTextField.leadingAnchor.constraint(
+                equalTo: view.leadingAnchor,
+                constant: Context.horizontalPadding
+            ),
+            nameTextField.trailingAnchor.constraint(
+                equalTo: view.trailingAnchor,
+                constant: -Context.horizontalPadding
+            ),
+            ageTextLabel.topAnchor.constraint(
+                equalTo: nameTextField.bottomAnchor,
+                constant: Context.basicVerticalPadding
+            ),
+            ageTextLabel.leadingAnchor.constraint(
+                equalTo: view.leadingAnchor,
+                constant: Context.horizontalPadding
+            ),
+            ageTextField.topAnchor.constraint(
+                equalTo: ageTextLabel.bottomAnchor,
+                constant: Context.basicVerticalPadding
+            ),
+            ageTextField.leadingAnchor.constraint(
+                equalTo: view.leadingAnchor,
+                constant: Context.horizontalPadding
+            ),
+            ageTextField.trailingAnchor.constraint(
+                equalTo: view.trailingAnchor,
+                constant: -Context.horizontalPadding
+            ),
+            sizeSelectionLabel.topAnchor.constraint(
+                equalTo: ageTextField.bottomAnchor,
+                constant: Context.basicVerticalPadding
+            ),
+            sizeSelectionLabel.leadingAnchor.constraint(
+                equalTo: view.leadingAnchor,
+                constant: Context.horizontalPadding
+            ),
+            sizeSegmentedControl.topAnchor.constraint(
+                equalTo: sizeSelectionLabel.bottomAnchor,
+                constant: Context.basicVerticalPadding
+            ),
+            sizeSegmentedControl.leadingAnchor.constraint(
+                equalTo: view.leadingAnchor,
+                constant: Context.horizontalPadding
+            ),
+            sizeSegmentedControl.trailingAnchor.constraint(
+                equalTo: view.trailingAnchor,
+                constant: -Context.horizontalPadding
+            ),
+            keywordSelectionLabel.topAnchor.constraint(
+                equalTo: sizeSegmentedControl.bottomAnchor,
+                constant: Context.basicVerticalPadding
+            ),
+            keywordSelectionLabel.leadingAnchor.constraint(
+                equalTo: view.leadingAnchor,
+                constant: Context.horizontalPadding
+            ),
+            keywordStackView.topAnchor.constraint(
+                equalTo: keywordSelectionLabel.bottomAnchor,
+                constant: Context.basicVerticalPadding
+            ),
+            keywordStackView.leadingAnchor.constraint(
+                equalTo: view.leadingAnchor,
+                constant: Context.horizontalPadding
+            ),
+            keywordStackView.trailingAnchor.constraint(
+                equalTo: view.trailingAnchor,
+                constant: Context.horizontalPadding
+            )
+        ])
+    }
 
     private func disableAutoresizingMaskForSubviews() {
         [nameTextLabel,
@@ -362,7 +408,6 @@ final class ProfileEditViewController: BaseViewController, ProfileEditViewable {
                 equalTo: profileImageView.bottomAnchor
             )
         ])
-
     }
 
     private func configureButtonConstraints() {
@@ -383,37 +428,6 @@ final class ProfileEditViewController: BaseViewController, ProfileEditViewable {
             keywordStackView.heightAnchor.constraint(equalToConstant: 30)
 
         ])
-    }
-}
-
-// MARK: - ProfileEditViewControlle+UITextFieldDelegate
-
-extension ProfileEditViewController: UITextFieldDelegate {
-    func textField(_ textField: UITextField,
-                   shouldChangeCharactersIn range: NSRange,
-                   replacementString string: String) -> Bool
-    {
-        guard let text = textField.text else { return true }
-        let newLength = text.count + string.count - range.length
-        return newLength <= 2
-    }
-}
-
-// MARK: - ProfileEditViewController+PHPickerViewControllerDelegate
-
-extension ProfileEditViewController: PHPickerViewControllerDelegate {
-    func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
-        picker.dismiss(animated: true, completion: nil)
-        let itemProvider = results.first?.itemProvider
-        if let itemProvider = itemProvider,
-           itemProvider.canLoadObject(ofClass: UIImage.self) {
-            itemProvider.loadObject(ofClass: UIImage.self) { image, error in
-                guard let selectedImage = image as? UIImage else { return }
-                Task { @MainActor [weak self] in
-                    self?.profileImageView.image =  selectedImage
-                }
-            }
-        }
     }
 }
 
