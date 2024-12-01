@@ -13,8 +13,7 @@ final class NotificationCell: UITableViewCell {
     private let descriptionLabel: UILabel = UILabel()
     private let dateLabel: UILabel = UILabel()
 
-    init(
-        notification: PushNotification,
+    override init(
         style: UITableViewCell.CellStyle,
         reuseIdentifier: String?
     ) {
@@ -22,7 +21,6 @@ final class NotificationCell: UITableViewCell {
         configureAttributes()
         configureHierarchy()
         configureConstraints()
-        configure(notification: notification)
     }
 
     @available(*, unavailable)
@@ -70,11 +68,11 @@ final class NotificationCell: UITableViewCell {
             )
         ])
     }
-    
-    func configure(notification: PushNotification) {
-        sectionLabel.text = notification.section
-        descriptionLabel.text = notification.description
-        dateLabel.text = notification.date
+
+    func configure(section: String, description: String, dateString: String) {
+        sectionLabel.text = section
+        descriptionLabel.text = description
+        dateLabel.text = dateString
     }
 }
 
