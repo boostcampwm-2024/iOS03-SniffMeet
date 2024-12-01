@@ -125,7 +125,7 @@ final class HomeViewController: BaseViewController, HomeViewable {
             .store(in: &cancellables)
         
         startSessionButton.publisher(event: .touchUpInside)
-            .throttle(for: .seconds(EventConstant.throttleInterbal),
+            .throttle(for: .seconds(EventConstant.throttleInterval),
                       scheduler: RunLoop.main,
                       latest: false)
             .sink {[weak self] _ in
