@@ -247,7 +247,7 @@ extension ProfileEditViewController: UITextFieldDelegate {
     {
         guard let text = textField.text else { return true }
         let newLength = text.count + string.count - range.length
-        return newLength <= 2
+        return newLength <= 10
     }
 }
 
@@ -437,7 +437,7 @@ extension ProfileEditViewController {
 extension ProfileEditViewController {
     enum Context {
         static let title: String = "반려동물 정보 수정"
-        static let completeEditButtonTitle: String = "다음으로"
+        static let completeEditButtonTitle: String = "수정하기"
         static let namePlaceholder: String = "기존 이름"
         static let agePlaceholder: String = "기존 나이"
         static let sizeLabel: String = "반려견의 크기를 선택해주세요."
