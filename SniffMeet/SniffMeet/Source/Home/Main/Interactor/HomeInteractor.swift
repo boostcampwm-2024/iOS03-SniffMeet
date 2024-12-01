@@ -43,8 +43,7 @@ final class HomeInteractor: HomeInteractable {
         Task {
             do {
                 try saveFirstLaunchUseCase.execute()
-                let isAllowed = try await requestNotificationAuthUseCase.execute()
-                guard isAllowed else { return }
+                _ = try await requestNotificationAuthUseCase.execute()
                 try await remoteSaveDeviceTokenUseCase.execute()
             } catch {
                 SNMLogger.error(error.localizedDescription)
