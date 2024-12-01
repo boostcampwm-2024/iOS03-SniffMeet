@@ -65,6 +65,8 @@
 		99FA4E792CE0FBBF00553C2E /* ProfileInputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99FA4E782CE0FBBF00553C2E /* ProfileInputViewController.swift */; };
 		A202A1152CEDD50700B98203 /* SupabaseDatabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A202A1142CEDD50700B98203 /* SupabaseDatabaseManager.swift */; };
 		A202A1172CEDD5EF00B98203 /* SupabaseDatabaseRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A202A1162CEDD5EF00B98203 /* SupabaseDatabaseRequest.swift */; };
+		A2082B972CFC0151005B7502 /* ProfileEditInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2082B962CFC0151005B7502 /* ProfileEditInteractor.swift */; };
+		A2082B992CFC01D9005B7502 /* ProfileEditRoutable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2082B982CFC01D9005B7502 /* ProfileEditRoutable.swift */; };
 		A20E71502CEC595C00272B25 /* SupabaseError.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20E714F2CEC595C00272B25 /* SupabaseError.swift */; };
 		A20E71522CEC5FE900272B25 /* SupabaseUserResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20E71512CEC5FE900272B25 /* SupabaseUserResponse.swift */; };
 		A21435F72CE20D2500564A4D /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A21435F62CE20D2500564A4D /* TabBarController.swift */; };
@@ -93,6 +95,8 @@
 		A2BD49FD2CF7712000AC72A7 /* Size.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2BD49FC2CF7712000AC72A7 /* Size.swift */; };
 		A2BD49FF2CF7712800AC72A7 /* Keyword.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2BD49FE2CF7712800AC72A7 /* Keyword.swift */; };
 		A2BD4A012CF7AD4300AC72A7 /* RequestMateInfoUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2BD4A002CF7AD4300AC72A7 /* RequestMateInfoUseCase.swift */; };
+		A2BD4A092CF83D8D00AC72A7 /* ProfileEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2BD4A082CF83D8D00AC72A7 /* ProfileEditViewController.swift */; };
+		A2BD4A0B2CF8499900AC72A7 /* ProfileEditPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2BD4A0A2CF8499900AC72A7 /* ProfileEditPresenter.swift */; };
 		A2C328862CE245AC00D255AB /* TabBarModuleBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2C328852CE245AC00D255AB /* TabBarModuleBuilder.swift */; };
 		A2C328882CE2481900D255AB /* HomeModuleBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2C328872CE2481900D255AB /* HomeModuleBuilder.swift */; };
 		A2C328922CE3BEA000D255AB /* AppRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2C328912CE3BEA000D255AB /* AppRouter.swift */; };
@@ -279,6 +283,8 @@
 		99FA4E782CE0FBBF00553C2E /* ProfileInputViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileInputViewController.swift; sourceTree = "<group>"; };
 		A202A1142CEDD50700B98203 /* SupabaseDatabaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupabaseDatabaseManager.swift; sourceTree = "<group>"; };
 		A202A1162CEDD5EF00B98203 /* SupabaseDatabaseRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupabaseDatabaseRequest.swift; sourceTree = "<group>"; };
+		A2082B962CFC0151005B7502 /* ProfileEditInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileEditInteractor.swift; sourceTree = "<group>"; };
+		A2082B982CFC01D9005B7502 /* ProfileEditRoutable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileEditRoutable.swift; sourceTree = "<group>"; };
 		A20E714F2CEC595C00272B25 /* SupabaseError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupabaseError.swift; sourceTree = "<group>"; };
 		A20E71512CEC5FE900272B25 /* SupabaseUserResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupabaseUserResponse.swift; sourceTree = "<group>"; };
 		A21435F62CE20D2500564A4D /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
@@ -306,6 +312,8 @@
 		A2BD49FC2CF7712000AC72A7 /* Size.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Size.swift; sourceTree = "<group>"; };
 		A2BD49FE2CF7712800AC72A7 /* Keyword.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keyword.swift; sourceTree = "<group>"; };
 		A2BD4A002CF7AD4300AC72A7 /* RequestMateInfoUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestMateInfoUseCase.swift; sourceTree = "<group>"; };
+		A2BD4A082CF83D8D00AC72A7 /* ProfileEditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileEditViewController.swift; sourceTree = "<group>"; };
+		A2BD4A0A2CF8499900AC72A7 /* ProfileEditPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileEditPresenter.swift; sourceTree = "<group>"; };
 		A2C328852CE245AC00D255AB /* TabBarModuleBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarModuleBuilder.swift; sourceTree = "<group>"; };
 		A2C328872CE2481900D255AB /* HomeModuleBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeModuleBuilder.swift; sourceTree = "<group>"; };
 		A2C328912CE3BEA000D255AB /* AppRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppRouter.swift; sourceTree = "<group>"; };
@@ -666,6 +674,49 @@
 			path = DogTraits;
 			sourceTree = "<group>";
 		};
+		A2BD4A022CF83CEB00AC72A7 /* EditProfile */ = {
+			isa = PBXGroup;
+			children = (
+				A2BD4A042CF83D1000AC72A7 /* View */,
+				A2BD4A052CF83D1500AC72A7 /* Interactor */,
+				A2BD4A062CF83D1D00AC72A7 /* Presenter */,
+				A2BD4A072CF83D2200AC72A7 /* Router */,
+			);
+			path = EditProfile;
+			sourceTree = "<group>";
+		};
+		A2BD4A042CF83D1000AC72A7 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				A2BD4A082CF83D8D00AC72A7 /* ProfileEditViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		A2BD4A052CF83D1500AC72A7 /* Interactor */ = {
+			isa = PBXGroup;
+			children = (
+				A2082B962CFC0151005B7502 /* ProfileEditInteractor.swift */,
+			);
+			path = Interactor;
+			sourceTree = "<group>";
+		};
+		A2BD4A062CF83D1D00AC72A7 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				A2BD4A0A2CF8499900AC72A7 /* ProfileEditPresenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		A2BD4A072CF83D2200AC72A7 /* Router */ = {
+			isa = PBXGroup;
+			children = (
+				A2082B982CFC01D9005B7502 /* ProfileEditRoutable.swift */,
+			);
+			path = Router;
+			sourceTree = "<group>";
+		};
 		A2C328892CE2F4F600D255AB /* Router */ = {
 			isa = PBXGroup;
 			children = (
@@ -795,6 +846,7 @@
 		FDA491332CD9FE7C00A36FB0 /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				A2BD4A022CF83CEB00AC72A7 /* EditProfile */,
 				A2BD49F02CF72A8800AC72A7 /* DTO */,
 				320044792CEC490600D08B6D /* Entity */,
 				320044782CEC48FB00D08B6D /* UseCase */,
@@ -1896,6 +1948,7 @@
 				FD331A502CF235C400F39426 /* WalkLogPageViewController.swift in Sources */,
 				FD119F422CED865B00BE22BD /* SelectLocationViewController.swift in Sources */,
 				A25BE4522CEBB5A900886763 /* SupabaseSession.swift in Sources */,
+				A2BD4A092CF83D8D00AC72A7 /* ProfileEditViewController.swift in Sources */,
 				3200446F2CEB23A700D08B6D /* CardPresentationController.swift in Sources */,
 				320043932CDF3D7F00D08B6D /* KeywordView.swift in Sources */,
 				320044772CEB4E1E00D08B6D /* RequestWalkUseCase.swift in Sources */,
@@ -1960,8 +2013,11 @@
 				3200441A2CE48A3D00D08B6D /* MPCBroswer.swift in Sources */,
 				A25BE4562CEBB63A00886763 /* SupabaseUser.swift in Sources */,
 				A2BA1B922CF1E8C60080575A /* MateListViewController.swift in Sources */,
+				A2082B972CFC0151005B7502 /* ProfileEditInteractor.swift in Sources */,
 				A24082722CEB36B8009109A0 /* SupabaseTokenRequest.swift in Sources */,
+				A2082B992CFC01D9005B7502 /* ProfileEditRoutable.swift in Sources */,
 				3200437C2CDCA6F300D08B6D /* (null) in Sources */,
+				A2BD4A0B2CF8499900AC72A7 /* ProfileEditPresenter.swift in Sources */,
 				3200445A2CE5B3AA00D08B6D /* ProfileCreateInteractor.swift in Sources */,
 				A2C328922CE3BEA000D255AB /* AppRouter.swift in Sources */,
 				320043702CDC9A0D00D08B6D /* (null) in Sources */,
