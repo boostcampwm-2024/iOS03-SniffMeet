@@ -52,7 +52,6 @@ final class ProfileEditViewController: BaseViewController, ProfileEditViewable {
     }()
     private var sizeSegmentedControl: UISegmentedControl = {
         let segmentedControl = UISegmentedControl(items: Context.sizeArr)
-        // 기본 선택이 없게 하고 바인딩 이후에 원래 크기에 맞춰서 인덱스를 업데이트 합니다.
         segmentedControl.selectedSegmentIndex = -1
         return segmentedControl
     }()
@@ -75,7 +74,7 @@ final class ProfileEditViewController: BaseViewController, ProfileEditViewable {
          shyKeywordButton,
          independentKeywordButton]
     }
-    private var nextButton = PrimaryButton(title: Context.nextBtnTitle)
+    private var completeEditButton = PrimaryButton(title: Context.completeEditButtonTitle)
     private var picker: PHPickerViewController = {
         var configuration = PHPickerConfiguration()
         configuration.selectionLimit = 1
@@ -107,7 +106,7 @@ final class ProfileEditViewController: BaseViewController, ProfileEditViewable {
          sizeSegmentedControl,
          keywordSelectionLabel,
          keywordStackView,
-         nextButton].forEach { subview in
+         completeEditButton].forEach { subview in
             view.addSubview(subview)
         }
 
@@ -118,7 +117,7 @@ final class ProfileEditViewController: BaseViewController, ProfileEditViewable {
 
     override func configureConstraints() {
         disableAutoresizingMaskForSubviews()
-        configureNextButtonConstraints()
+        configureCompleteEditButtonConstraints()
         configureProfileImageViewConstraints()
         NSLayoutConstraint.activate([
             nameTextLabel.topAnchor.constraint(
@@ -212,12 +211,31 @@ final class ProfileEditViewController: BaseViewController, ProfileEditViewable {
     override func bind() {
         bindKeywordButtonAction()
         bindAddPhotoButtonAction()
-        // 바인딩 할 때 받아와야 할 것
-        // 기존 정보 (user_info)
-        // 받아서 이름 플레이스 홀더를 원래 이름으로
-        // 나이도 원래 나이로
-        // 크기도 원래 크기로 세그먼트 인덱스 옮겨주고
-        // 키워드도 원래 키워드로 띄워줘야 함
+
+        presenter?.output.userInfo
+            .receive(on: RunLoop.main)
+            .sink { [weak self] userInfo in
+                self?.nameTextField.placeholder = userInfo?.dogName
+                self?.ageTextField.placeholder = String(userInfo?.age ?? 0)
+                switch userInfo?.size {
+                case .small:
+                    self?.sizeSegmentedControl.selectedSegmentIndex = 0
+                case .medium:
+                    self?.sizeSegmentedControl.selectedSegmentIndex = 1
+                case .big:
+                    self?.sizeSegmentedControl.selectedSegmentIndex = 2
+                default:
+                    self?.sizeSegmentedControl.selectedSegmentIndex = -1
+                }
+            }
+            .store(in: &cancellables)
+        presenter?.output.profileImageData
+            .receive(on: RunLoop.main)
+            .sink { [weak self] imageData in
+                guard let imageData else { return }
+                self?.profileImageView.image = UIImage(data: imageData)
+            }
+            .store(in: &cancellables)
     }
 
     private func bindKeywordButtonAction() {
@@ -237,11 +255,27 @@ final class ProfileEditViewController: BaseViewController, ProfileEditViewable {
                 .store(in: &cancellables)
         }
     }
+
     private func bindAddPhotoButtonAction() {
         addPhotoButton.publisher(event: .touchUpInside)
             .sink { [weak self] in
                 guard let picker = self?.picker else { return }
                 self?.present(picker, animated: true, completion: nil)
+            }
+            .store(in: &cancellables)
+    }
+
+    private func bindCompleteEditButtonAction() {
+        completeEditButton.publisher(event: .touchUpInside)
+            .sink { [weak self] in
+                self?.presenter?.didTapCompleteButton(
+                    name: self?.nameTextField.text,
+                    age: self?.ageTextField.text,
+                    keywords: self?.selectedKeywordButtons
+                        .compactMap { $0.titleLabel?.text },
+                    size: self?.sizeSegmentedControl.selectedSegmentIndex,
+                    profileImage: self?.profileImageView.image
+                )
             }
             .store(in: &cancellables)
     }
@@ -259,7 +293,7 @@ final class ProfileEditViewController: BaseViewController, ProfileEditViewable {
             .map { !$0.isEmpty && Int($1) != nil }
             .receive(on: RunLoop.main)
             .sink { [weak self] isEnabled in
-                self?.nextButton.isEnabled = isEnabled
+                self?.completeEditButton.isEnabled = isEnabled
             }
             .store(in: &cancellables)
     }
@@ -273,7 +307,7 @@ final class ProfileEditViewController: BaseViewController, ProfileEditViewable {
          sizeSegmentedControl,
          keywordSelectionLabel,
          keywordStackView,
-         nextButton,
+         completeEditButton,
          profileImageView,
          addPhotoButton].forEach { subview in
             subview.translatesAutoresizingMaskIntoConstraints = false
@@ -283,17 +317,17 @@ final class ProfileEditViewController: BaseViewController, ProfileEditViewable {
         }
     }
 
-    private func configureNextButtonConstraints() {
+    private func configureCompleteEditButtonConstraints() {
         NSLayoutConstraint.activate([
-            nextButton.bottomAnchor.constraint(
+            completeEditButton.bottomAnchor.constraint(
                 equalTo: view.safeAreaLayoutGuide.bottomAnchor,
                 constant: -32
             ),
-            nextButton.leadingAnchor.constraint(
+            completeEditButton.leadingAnchor.constraint(
                 equalTo: view.leadingAnchor,
                 constant: 24
             ),
-            nextButton.trailingAnchor.constraint(
+            completeEditButton.trailingAnchor.constraint(
                 equalTo: view.trailingAnchor,
                 constant: -24
             )
@@ -330,7 +364,7 @@ final class ProfileEditViewController: BaseViewController, ProfileEditViewable {
         ])
 
     }
-    
+
     private func configureButtonConstraints() {
         keywordStackView.spacing = Context.smallVerticalPadding
         keywordStackView.axis = .horizontal
@@ -349,14 +383,6 @@ final class ProfileEditViewController: BaseViewController, ProfileEditViewable {
             keywordStackView.heightAnchor.constraint(equalToConstant: 30)
 
         ])
-    }
-
-    func setButtonAction() {
-        // next button
-        // binding 하여 기존 정보를 가져온 것을 수정해야 합니다.
-
-        // keyword button
-        // 최대 2개까지만 선택, 2개 넘어가면 얼럿이든지 뭐든지 띄우기
     }
 }
 
@@ -391,9 +417,11 @@ extension ProfileEditViewController: PHPickerViewControllerDelegate {
     }
 }
 
+// MARK: - ProfileEditViewController Contexts
+
 extension ProfileEditViewController {
     enum Context {
-        static let nextBtnTitle: String = "다음으로"
+        static let completeEditButtonTitle: String = "다음으로"
         static let namePlaceholder: String = "기존 이름"
         static let agePlaceholder: String = "기존 나이"
         static let sizeLabel: String = "반려견의 크기를 선택해주세요."
