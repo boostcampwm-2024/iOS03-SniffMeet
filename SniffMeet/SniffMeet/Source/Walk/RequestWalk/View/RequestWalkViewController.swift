@@ -149,6 +149,7 @@ final class RequestWalkViewController: BaseViewController, RequestWalkViewable {
             }
             .store(in: &cancellables)
         locationView.tapPublisher
+            .debounce(for: .seconds(EventConstant.debounceInterval), scheduler: RunLoop.main)
             .sink { [weak self] in
                 self?.presenter?.didTapLocationButton()
             }

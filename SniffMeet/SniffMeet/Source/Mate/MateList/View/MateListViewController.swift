@@ -126,6 +126,7 @@ extension MateListViewController: UITableViewDelegate, UITableViewDataSource {
         button.clipsToBounds = true
 
         button.publisher(event: .touchUpInside)
+            .debounce(for: .seconds(EventConstant.debounceInterval), scheduler: RunLoop.main)
             .sink { [weak self] _ in
                 self?.presenter?.didTabAccessoryButton(mate: mate)
             }
