@@ -13,10 +13,12 @@ protocol HomePresentable: AnyObject {
     var router: (any HomeRoutable)? { get set }
     var interactor: (any HomeInteractable)? { get set }
     var output: (any HomePresenterOutput) { get }
+
     func viewDidLoad()
     func notificationBarButtonDidTap()
     func changeIsPaired(with isPaired: Bool)
     func profileData(_ data: DogProfileDTO)
+    func didTapEditButton()
 }
 
 final class HomePresenter: HomePresentable {
@@ -73,6 +75,10 @@ final class HomePresenter: HomePresentable {
     func profileData(_ data: DogProfileDTO) {
         guard let view else { return }
         router?.showMateRequestView(homeView: view, data: data)
+    }
+    func didTapEditButton() {
+        guard let view else { return }
+        router?.showProfileEditView(homeView: view)
     }
 }
 

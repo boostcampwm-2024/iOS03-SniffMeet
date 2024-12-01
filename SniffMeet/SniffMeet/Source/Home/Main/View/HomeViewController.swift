@@ -124,6 +124,15 @@ final class HomeViewController: BaseViewController, HomeViewable {
                 }
             }
             .store(in: &cancellables)
+
+        profileCardView.didTapEditButton
+            .receive(on: RunLoop.main)
+            .sink { [weak self] bool in
+                if bool {
+                    self?.presenter?.didTapEditButton()
+                }
+            }
+            .store(in: &cancellables)
     }
     @objc func notificationBarButtonDidTap() {
         presenter?.notificationBarButtonDidTap()

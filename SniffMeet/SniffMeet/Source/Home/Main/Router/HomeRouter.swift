@@ -16,9 +16,8 @@ protocol HomeRoutable: Routable {
 
 final class HomeRouter: NSObject, HomeRoutable {
     func showProfileEditView(homeView: any HomeViewable) {
-        // TODO: ProfileEditViewController로 교체 필요
         guard let homeView = homeView as? UIViewController else { return }
-        push(from: homeView, to: ProfileInputViewController(), animated: true)
+        push(from: homeView, to: ProfileEditViewController(), animated: true)
     }
     func showNotificationView(homeView: any HomeViewable) {
         // TODO: NotificationViewController로 교체 필요 
