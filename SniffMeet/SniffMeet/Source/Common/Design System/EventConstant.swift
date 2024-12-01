@@ -7,5 +7,5 @@
 
 enum EventConstant {
     static let debounceInterval: Double = 0.5
-    static let throttleInterbal: Double = 0.5
+    static let throttleInterbal: Double = 1.0
 }
