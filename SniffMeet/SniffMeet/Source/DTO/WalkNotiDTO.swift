@@ -16,8 +16,8 @@ struct WalkNotiDTO: Decodable {
     let senderId: UUID
     let receiverId: UUID
     let senderName: String
-    let category: String
-    
+    let category: WalkNotiCategory
+
     enum CodingKeys: String, CodingKey {
         case id
         case createdAt = "created_at"
@@ -41,6 +41,12 @@ struct WalkNotiDTO: Decodable {
                  longtitude: longtitude,
                  senderId: senderId,
                  senderName: senderName,
-                 category: category)
+                 category: category.rawValue)
     }
+}
+
+enum WalkNotiCategory: String, Decodable {
+    case walkRequest
+    case walkAccepted
+    case walkDeclined
 }
