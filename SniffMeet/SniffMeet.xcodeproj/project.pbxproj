@@ -56,6 +56,7 @@
 		320047852CF80B2600D08B6D /* MateList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 320047842CF80B2200D08B6D /* MateList.swift */; };
 		320047A82CFB0E2B00D08B6D /* NotiListDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 320047A72CFB0E2500D08B6D /* NotiListDTO.swift */; };
 		320047AA2CFB1C6200D08B6D /* RequestNotiListUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 320047A92CFB1C5300D08B6D /* RequestNotiListUseCase.swift */; };
+		320047B62CFCB8D000D08B6D /* EventConstant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 320047B52CFCB8CA00D08B6D /* EventConstant.swift */; };
 		9937361D2CF80D6600E3DD58 /* RequestUserInfoRemoteUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9937361C2CF80D5200E3DD58 /* RequestUserInfoRemoteUseCase.swift */; };
 		995D94262CE32ECE005A47BF /* Extension + Keyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 995D94252CE32EC1005A47BF /* Extension + Keyboard.swift */; };
 		995D94622CE598FD005A47BF /* NIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 995D94612CE598F0005A47BF /* NIManager.swift */; };
@@ -276,6 +277,7 @@
 		320047842CF80B2200D08B6D /* MateList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MateList.swift; sourceTree = "<group>"; };
 		320047A72CFB0E2500D08B6D /* NotiListDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotiListDTO.swift; sourceTree = "<group>"; };
 		320047A92CFB1C5300D08B6D /* RequestNotiListUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestNotiListUseCase.swift; sourceTree = "<group>"; };
+		320047B52CFCB8CA00D08B6D /* EventConstant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventConstant.swift; sourceTree = "<group>"; };
 		9937361C2CF80D5200E3DD58 /* RequestUserInfoRemoteUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestUserInfoRemoteUseCase.swift; sourceTree = "<group>"; };
 		995D94252CE32EC1005A47BF /* Extension + Keyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension + Keyboard.swift"; sourceTree = "<group>"; };
 		995D94612CE598F0005A47BF /* NIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NIManager.swift; sourceTree = "<group>"; };
@@ -1616,6 +1618,7 @@
 		FDE768862CF7810E00B5DE88 /* Design System */ = {
 			isa = PBXGroup;
 			children = (
+				320047B52CFCB8CA00D08B6D /* EventConstant.swift */,
 				3200438D2CDF3D7F00D08B6D /* InputTextField.swift */,
 				3200438E2CDF3D7F00D08B6D /* KeywordButton.swift */,
 				3200438F2CDF3D7F00D08B6D /* KeywordView.swift */,
@@ -1922,6 +1925,7 @@
 				A2C328882CE2481900D255AB /* HomeModuleBuilder.swift in Sources */,
 				320044712CEB45E000D08B6D /* RequestWalkPresenter.swift in Sources */,
 				995D94262CE32ECE005A47BF /* Extension + Keyboard.swift in Sources */,
+				320047B62CFCB8D000D08B6D /* EventConstant.swift in Sources */,
 				3200441C2CE48C5C00D08B6D /* MPCAdvertiser.swift in Sources */,
 				FD880B5A2CECE8FC0093BEB9 /* SNMLogger.swift in Sources */,
 				A2F825D12CDF4BA6000C5419 /* HomeViewController.swift in Sources */,
