@@ -129,6 +129,9 @@ final class ProfileEditViewController: BaseViewController, ProfileEditViewable {
         ageTextField.delegate = self
         hideKeyboardWhenTappedAround()
         ageTextField.keyboardType = .numberPad
+        navigationController?.navigationBar.configureBackButton()
+        navigationItem.title = Context.title
+        navigationItem.largeTitleDisplayMode = .never
     }
 
     override func bind() {
@@ -437,6 +440,7 @@ extension ProfileEditViewController {
 
 extension ProfileEditViewController {
     enum Context {
+        static let title: String = "반려동물 정보 수정"
         static let completeEditButtonTitle: String = "다음으로"
         static let namePlaceholder: String = "기존 이름"
         static let agePlaceholder: String = "기존 나이"
