@@ -29,10 +29,15 @@ final class HomeViewController: BaseViewController, HomeViewable {
         startSessionButton.addTarget(self, action: #selector(goToStartSession), for: .touchUpInside)
     }
 
-    override func configureAttributes() {
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        presenter?.viewDidLoad()
         navigationItem.title = Context.title
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationItem.largeTitleDisplayMode = .always
+    }
+
+    override func configureAttributes() {
         let notificationBarButtonItem = UIBarButtonItem(
             image: UIImage(systemName: "bell")?
                 .withTintColor(.tertiaryLabel, renderingMode: .alwaysOriginal),
