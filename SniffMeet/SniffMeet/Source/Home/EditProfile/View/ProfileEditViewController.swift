@@ -245,7 +245,7 @@ extension ProfileEditViewController: UITextFieldDelegate {
                    shouldChangeCharactersIn range: NSRange,
                    replacementString string: String) -> Bool
     {
-        guard let text = textField.text else { return true }
+        guard let text = ageTextField.text else { return true }
         let newLength = text.count + string.count - range.length
         return newLength <= 2
     }
