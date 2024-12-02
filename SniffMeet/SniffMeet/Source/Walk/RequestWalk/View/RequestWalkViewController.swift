@@ -15,6 +15,7 @@ protocol RequestWalkViewable: AnyObject {
 final class RequestWalkViewController: BaseViewController, RequestWalkViewable {
     var presenter: RequestWalkPresentable?
     private var cancellables: Set<AnyCancellable> = []
+    private var address: Address?
     private var dismissButton: UIButton = {
         let button = UIButton()
         button.setImage(UIImage(systemName: "xmark"), for: .normal)
@@ -61,6 +62,7 @@ final class RequestWalkViewController: BaseViewController, RequestWalkViewable {
     }
     override func configureAttributes() {
         hideKeyboardWhenTappedAround()
+        submitButton.isEnabled = false
     }
     override func configureHierachy() {
         [titleLabel,
@@ -134,9 +136,11 @@ final class RequestWalkViewController: BaseViewController, RequestWalkViewable {
         presenter?.output.selectedLocation
             .receive(on: RunLoop.main)
             .sink { [weak self] address in
+                self?.address = address
                 self?.locationView.setAddress(
                     address: address?.location ?? Context.locationGuideTitle
                 )
+                self?.submitButton.isEnabled = (self?.messageTextView.text.isEmpty == false)
             }
             .store(in: &cancellables)
         presenter?.output.profileImageData
@@ -163,6 +167,20 @@ final class RequestWalkViewController: BaseViewController, RequestWalkViewable {
                 self?.presenter?.closeTheView()
             }
             .store(in: &cancellables)
+    
+        submitButton.publisher(event: .touchUpInside)
+            .debounce(for: .seconds(EventConstant.debounceInterval), scheduler: RunLoop.main)
+            .sink { [weak self] _ in
+                guard let message = self?.messageTextView.text,
+                      let latitude = self?.address?.latitude,
+                      let longtitude = self?.address?.longtitude,
+                      let location = self?.address?.location else { return }
+                self?.presenter?.requestWalk(message: message,
+                                             latitude: latitude,
+                                             longtitude: longtitude,
+                                             location: location)
+            }
+            .store(in: &cancellables)
     }
 }
 
@@ -180,6 +198,7 @@ extension RequestWalkViewController: UITextViewDelegate {
         if textView.text == Context.messagePlaceholder {
             textView.text = nil
             textView.textColor = .black
+            submitButton.isEnabled = false
         }
     }
     func textViewDidEndEditing(_ textView: UITextView) {
@@ -187,6 +206,9 @@ extension RequestWalkViewController: UITextViewDelegate {
             textView.text = Context.messagePlaceholder
             textView.textColor = .lightGray
         }
+    }
+    func textViewDidChange(_ textView: UITextView) {
+        submitButton.isEnabled = (!textView.text.isEmpty) && (locationView.locationString != Context.locationGuideTitle)
     }
     func textView(
         _ textView: UITextView,
