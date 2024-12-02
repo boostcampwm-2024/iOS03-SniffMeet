@@ -53,8 +53,8 @@ final class RequestWalkInteractor: RequestWalkInteractable {
                                    category: .walkRequest)
         Task {
             try await requestWalkUseCase.execute(walkNoti: walkNoti)
-            presenter?.didSendWalkRequest()
         }
+        presenter?.didSendWalkRequest()
     }
 
     func requestMateInfo() {
