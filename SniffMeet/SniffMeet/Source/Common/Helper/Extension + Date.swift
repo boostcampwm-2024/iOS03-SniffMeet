@@ -20,7 +20,7 @@ extension Date {
         let components = calendar.dateComponents([.hour], from: self, to: currentDate)
         
         return components.hour ?? 0
-    
+    }
     func convertDateToISO8601String() -> String {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss'Z'"

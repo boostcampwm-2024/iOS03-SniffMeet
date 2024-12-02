@@ -45,12 +45,6 @@ struct WalkNotiDTO: Codable {
     }
 }
 
-enum WalkNotiCategory: String, Codable {
-    case walkRequest
-    case walkAccepted
-    case walkDeclined
-}
-
 extension WalkNotiDTO {
     static let example = WalkNotiDTO(id: UUID(),
                                      createdAt: Date().convertDateToISO8601String(),
