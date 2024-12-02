@@ -22,7 +22,9 @@ final class RequestWalkRouter: RequestWalkRoutable {
     
     func dismissView(view: any RequestWalkViewable) {
         if let view = view as? UIViewController {
-            view.dismiss(animated: true)
+            Task{ @MainActor in
+                view.dismiss(animated: true)
+            }
         }
     }
     func showSelectLocationView(from view: any RequestWalkViewable) {
@@ -46,12 +48,17 @@ extension RequestWalkRouter: RequestWalkBuildable {
         RequestProfileImageUseCase = RequestProfileImageUseCaseImpl(
             remoteImageManager: SupabaseStorageManager(
             networkProvider: SNMNetworkProvider()))
+        let loadInfoUseCase: LoadUserInfoUseCase = LoadUserInfoUseCaseImpl(
+            dataLoadable: LocalDataManager(),
+            imageManageable: SNMFileManager()
+            )
         let view: RequestWalkViewable & UIViewController = RequestWalkViewController()
         let presenter: RequestWalkPresentable & RequestWalkInteractorOutput = RequestWalkPresenter()
         let interactor: RequestWalkInteractable = RequestWalkInteractor(
             mate: mate,
             requestWalkUseCase: requestWalkUseCase,
-            requestProfileImageUseCase: requestProfileImageUseCase
+            requestProfileImageUseCase: requestProfileImageUseCase,
+            loadUserInfoUseCase: loadInfoUseCase
         )
         let router: RequestWalkRoutable & RequestWalkBuildable = RequestWalkRouter()
 

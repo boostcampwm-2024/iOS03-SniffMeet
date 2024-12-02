@@ -11,6 +11,9 @@ import UIKit
 final class LocationSelectionView: BaseView {
     let tapPublisher = PassthroughSubject<Void, Never>()
     private var tapGesture = UITapGestureRecognizer()
+    var locationString: String {
+        locationLabel.text ?? ""
+    }
 
     private var locationGuideLabel: UILabel = {
         let label = UILabel()

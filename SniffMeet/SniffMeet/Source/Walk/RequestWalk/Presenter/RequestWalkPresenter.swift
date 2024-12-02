@@ -15,7 +15,7 @@ protocol RequestWalkPresentable : AnyObject{
     var output: RequestWalkPresenterOutput { get set }
     
     func viewDidLoad()
-    func requestWalk(forPost walkRequest: String, to user: Int)
+    func requestWalk(message: String, latitude: Double, longtitude: Double, location: String)
     func closeTheView()
     func didTapLocationButton()
     func didSelectLocation(with: Address?)
@@ -55,8 +55,11 @@ final class RequestWalkPresenter: RequestWalkPresentable {
         interactor?.requestMateInfo()
     }
     
-    func requestWalk(forPost walkRequest: String, to user: Int) {
-        interactor?.sendWalkRequest()
+    func requestWalk(message: String, latitude: Double, longtitude: Double, location: String) {
+        interactor?.sendWalkRequest(message: message,
+                                    latitude: latitude,
+                                    longtitude: longtitude,
+                                    location: location)
     }
     func closeTheView() {
         if let view {
