@@ -7,8 +7,9 @@
 import CoreLocation
 import UIKit
 
-protocol RespondWalkRoutable: AnyObject {
+protocol RespondWalkRoutable: AnyObject, Routable {
     func dismissView(view: any RespondWalkViewable)
+    func showSelectedLocationMapView(view: any RespondWalkViewable, address: Address)
 }
 
 protocol RespondWalkBuildable {
@@ -20,6 +21,12 @@ final class RespondWalkRouter: RespondWalkRoutable {
         guard let view = view as? UIViewController else { return }
         view.dismiss(animated: true)
     }
+    func showSelectedLocationMapView(view: any RespondWalkViewable, address: Address) {
+        guard let view = view as? UIViewController else { return }
+        let selectedLocationView = RespondMapRouter.createRespondMapView(address: address)
+        selectedLocationView.modalPresentationStyle = .fullScreen
+        present(from: view, with: selectedLocationView, animated: true)
+    }
 }
 
 extension RespondWalkRouter: RespondWalkBuildable {
@@ -28,9 +35,11 @@ extension RespondWalkRouter: RespondWalkBuildable {
         let respondUseCase: RespondWalkRequestUseCase = RespondWalkRequestUseCaseImpl()
         let calculateTimeUseCase: CalculateTimeLimitUseCase = CalculateTimeLimitUseCaseImpl()
         let convertLocationToTextUseCase: ConvertLocationToTextUseCase =
-        ConvertLocationToTextUseCaseImpl(geoCoder: CLGeocoder())
+        ConvertLocationToTextUseCaseImpl()
         let requestProfileImageUseCase: RequestProfileImageUseCase =
-        RequestProfileImageUseCaseImpl()
+        RequestProfileImageUseCaseImpl(
+            remoteImageManager: SupabaseStorageManager(
+            networkProvider: SNMNetworkProvider()))
 
         let view: RespondWalkViewable & UIViewController = RespondWalkViewController()
         let presenter: RespondWalkPresentable & RespondWalkInteractorOutput =

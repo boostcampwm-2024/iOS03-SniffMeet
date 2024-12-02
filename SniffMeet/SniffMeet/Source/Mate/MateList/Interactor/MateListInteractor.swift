@@ -11,14 +11,13 @@ protocol MateListInteractable: AnyObject {
     var presenter: MateListInteractorOutput? { get set }
 
     func requestMateList(userID: UUID)
-    func requestProfileImage(index: Int, urlString: String?)
+    func requestProfileImage(index: Int, imageName: String?)
 }
 
 final class MateListInteractor: MateListInteractable {
     weak var presenter: (any MateListInteractorOutput)?
     private let requestMateListUseCase: any RequestMateListUseCase
     private let requestProfileImageUseCase: any RequestProfileImageUseCase
-
     init(
         presenter: (any MateListInteractorOutput)? = nil,
         requestMateListUseCase: any RequestMateListUseCase,
@@ -37,9 +36,9 @@ final class MateListInteractor: MateListInteractable {
         }
     }
 
-    func requestProfileImage(index: Int, urlString: String?) {
+    func requestProfileImage(index: Int, imageName: String?) {
         Task { @MainActor in
-            let imageData = await requestProfileImageUseCase.execute()
+            let imageData = try await requestProfileImageUseCase.execute(fileName: imageName ?? "")
             presenter?.didFetchProfileImage(index: index, imageData: imageData)
         }
     }

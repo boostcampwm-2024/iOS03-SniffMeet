@@ -23,10 +23,9 @@ final class HomeViewController: BaseViewController, HomeViewable {
     var dogProfile: DogProfileDTO?
 
     override func viewDidLoad() {
-        setupMPCManager()
         super.viewDidLoad()
+        setupMPCManager()
         presenter?.viewDidLoad()
-        startSessionButton.addTarget(self, action: #selector(goToStartSession), for: .touchUpInside)
     }
 
     override func configureAttributes() {
@@ -124,14 +123,21 @@ final class HomeViewController: BaseViewController, HomeViewable {
                 }
             }
             .store(in: &cancellables)
+        
+        startSessionButton.publisher(event: .touchUpInside)
+            .throttle(for: .seconds(EventConstant.throttleInterval),
+                      scheduler: RunLoop.main,
+                      latest: false)
+            .sink {[weak self] _ in
+                self?.mpcManager?.isAvailableToBeConnected = true
+                self?.count = 1
+            }
+            .store(in: &cancellables)
     }
     @objc func notificationBarButtonDidTap() {
         presenter?.notificationBarButtonDidTap()
     }
-    @objc func goToStartSession() {
-        mpcManager?.isAvailableToBeConnected = true
-        count = 1
-    }
+
     private func setupMPCManager() {
         mpcManager = MPCManager(yourName: String(UUID().uuidString.suffix(8)))
         niManager = NIManager(mpcManager: mpcManager!)

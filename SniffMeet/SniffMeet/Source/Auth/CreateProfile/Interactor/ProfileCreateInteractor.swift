@@ -12,8 +12,9 @@ protocol ProfileCreateInteractable: AnyObject {
     var saveUserInfoUseCase: SaveUserInfoUseCase { get set }
     var saveProfileImageUseCase: SaveProfileImageUseCase { get }
 
-    func signInWithProfileData(dogInfo: UserInfo, imageData: Data?)
-    func convertImageToData(image: UIImage?) -> Data?
+    func signInWithProfileData(dogInfo: UserInfo, imageData: (png: Data?, jpg: Data?))
+    func convertImageToPNGData(image: UIImage?) -> Data?
+    func convertImageToJPGData(image: UIImage?) -> Data?
 }
 
 final class ProfileCreateInteractor: ProfileCreateInteractable {
@@ -34,22 +35,24 @@ final class ProfileCreateInteractor: ProfileCreateInteractable {
         self.saveUserInfoRemoteUseCase = saveUserInfoRemoteUseCase
     }
 
-    func signInWithProfileData(dogInfo: UserInfo, imageData: Data?) {
+    func signInWithProfileData(dogInfo: UserInfo, imageData: (png: Data?, jpg: Data?)) {
         Task {
             do {
                 await SupabaseAuthManager.shared.signInAnonymously()
-                try saveUserInfoUseCase.execute(dog: UserInfo(name: dogInfo.name,
-                                                              age: dogInfo.age,
-                                                              sex: dogInfo.sex,
-                                                              sexUponIntake: dogInfo.sexUponIntake,
-                                                              size: dogInfo.size,
-                                                              keywords: dogInfo.keywords,
-                                                              nickname: dogInfo.nickname,
-                                                              profileImage: imageData))
+                try saveUserInfoUseCase.execute(dog: UserInfo(
+                    name: dogInfo.name,
+                    age: dogInfo.age,
+                    sex: dogInfo.sex,
+                    sexUponIntake: dogInfo.sexUponIntake,
+                    size: dogInfo.size,
+                    keywords: dogInfo.keywords,
+                    nickname: dogInfo.nickname,
+                    profileImage: imageData.png)
+                )
                 var fileName: String? = nil
-                if let imageData {
+                if let jpgData = imageData.jpg {
                     fileName = try await saveProfileImageUseCase.execute(
-                        imageData: imageData
+                        imageData: jpgData
                     )
                 }
                 guard let userID = SessionManager.shared.session?.user?.userID else {
@@ -66,7 +69,7 @@ final class ProfileCreateInteractor: ProfileCreateInteractable {
                         keywords: dogInfo.keywords,
                         nickname: dogInfo.nickname,
                         profileImageURL: fileName
-                    )   
+                    )
                 )
                 presenter?.didSaveUserInfo()
             } catch {
@@ -74,8 +77,12 @@ final class ProfileCreateInteractor: ProfileCreateInteractable {
             }
         }
     }
-    func convertImageToData(image: UIImage?) -> Data? {
+    func convertImageToPNGData(image: UIImage?) -> Data? {
         guard let image else { return nil }
         return image.pngData()
+    }
+    func convertImageToJPGData(image: UIImage?) -> Data? {
+        guard let image else { return nil }
+        return image.jpegData(compressionQuality: 0.8)
     }
 }

@@ -145,7 +145,7 @@ final class SelectLocationViewController: BaseViewController, SelectLocationView
             .store(in: &cancellables)
 
         completeSelectButton.publisher(event: .touchUpInside)
-            .receive(on: RunLoop.main)
+            .debounce(for: .seconds(EventConstant.debounceInterval), scheduler: RunLoop.main)
             .sink { [weak self] _ in
                 self?.presenter?.didTapSelectCompleteButton()
             }

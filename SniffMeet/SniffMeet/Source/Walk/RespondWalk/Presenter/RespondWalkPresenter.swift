@@ -18,6 +18,7 @@ protocol RespondWalkPresentable : AnyObject {
     func respondWalkRequest(isAccepted: Bool)
     func dismissView()
     func handleExceedingLimit() // 제한 시간 초과일 때 실행하는 함수
+    func didTapLocationViewButton()
 }
 
 protocol RespondWalkInteractorOutput: AnyObject {
@@ -59,7 +60,10 @@ final class RespondWalkPresenter: RespondWalkPresentable {
         guard let createdAt = noti.createdAt else { return }
         interactor?.calculateTimeLimit(requestTime: createdAt)
         Task {
-            await interactor?.convertLocationToText(latitude: noti.latitude, longtitude: noti.longtitude)
+            await interactor?.convertLocationToText(
+                latitude: noti.latitude,
+                longtitude: noti.longtitude
+            )
         }
     }
     func respondWalkRequest(isAccepted: Bool) {
@@ -70,7 +74,12 @@ final class RespondWalkPresenter: RespondWalkPresentable {
         router?.dismissView(view: view)
     }
     func handleExceedingLimit() {
-        
+
+    }
+    func didTapLocationViewButton() {
+        guard let view else { return }
+        let address: Address = Address(longtitude: noti.longtitude, latitude: noti.latitude)
+        router?.showSelectedLocationMapView(view: view, address: address)
     }
 }
 
@@ -80,12 +89,15 @@ extension RespondWalkPresenter: RespondWalkInteractorOutput {
     }
     
     func didFetchUserInfo(senderInfo: UserInfoDTO) {
-        let walkRequest = WalkRequest(mate: senderInfo.toEntity(),
-                                      address: Address(longtitude: noti.longtitude,
-                                                       latitude: noti.latitude),
-                                      message: noti.message)
-        
-        view?.showRequestDetail(request: walkRequest)
+        Task { @MainActor [weak self] in
+            guard let self else { return }
+            let walkRequest = WalkRequest(mate: senderInfo.toEntity(),
+                                          address: Address(longtitude: self.noti.longtitude,
+                                                           latitude: self.noti.latitude),
+                                          message: self.noti.message)
+
+            self.view?.showRequestDetail(request: walkRequest)
+        }
     }
     
     func didSendWalkRespond() {

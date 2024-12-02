@@ -9,6 +9,8 @@ import UIKit
 
 enum SNMFont {
     /// size: 34, weight: bold
+    static let bigLogoTitle: UIFont = UIFont.systemFont(ofSize: 48, weight: .heavy)
+    static let smallLogoTitle: UIFont = UIFont.systemFont(ofSize: 20, weight: .medium)
     static let largeTitle: UIFont = UIFont.systemFont(ofSize: 34, weight: .bold)
     /// size: 32,weight: bold
     static let title1: UIFont = UIFont.systemFont(ofSize: 32, weight: .bold)
