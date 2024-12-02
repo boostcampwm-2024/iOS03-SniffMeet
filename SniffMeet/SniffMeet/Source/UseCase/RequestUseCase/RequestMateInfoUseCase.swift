@@ -9,20 +9,16 @@ import Foundation
 
 // RequestUserInfoUseCase와 통합이 가능하다고 예상됩니다.
 protocol RequestMateInfoUseCase {
-    func execute(mateId: UUID) async -> UserInfoDTO?
+    func execute(mateId: UUID) async throws -> UserInfoDTO?
 }
 
 struct RequestMateInfoUsecaseImpl: RequestMateInfoUseCase {
-    func execute(mateId: UUID) async -> UserInfoDTO? {
-        do {
-            let mateInfoData = try await SupabaseDatabaseManager.shared.fetchData(
-                from: Environment.SupabaseTableName.userInfo,
-                query: ["id": "eq.\(mateId.uuidString)"]
-            )
-            let mateInfo = try JSONDecoder().decode(UserInfoDTO.self, from: mateInfoData)
-            return mateInfo
-        } catch {
-            return nil
-        }
+    func execute(mateId: UUID) async throws -> UserInfoDTO? {
+        let mateInfoData = try await SupabaseDatabaseManager.shared.fetchData(
+            from: "user_info",
+            query: ["id": "eq.\(mateId.uuidString)"]
+        )
+        let mateInfo = try JSONDecoder().decode([UserInfoDTO].self, from: mateInfoData)
+        return mateInfo.first
     }
 }
