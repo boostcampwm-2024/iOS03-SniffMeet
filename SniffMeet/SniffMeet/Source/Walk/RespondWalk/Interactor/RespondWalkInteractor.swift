@@ -76,7 +76,7 @@ final class RespondWalkInteractor: RespondWalkInteractable {
                 guard let date = receivedNoti.createdAt?.convertDateToISO8601String(),
                       let userID = SessionManager.shared.session?.user?.userID else { return }
                 let userInfo = try loadUserUseCase.execute()
-                let walkNoti = WalkNotiDTO(id: UUID(),
+                let walkNoti = WalkNotiDTO(id: receivedNoti.id,
                                            createdAt: date,
                                            message: receivedNoti.message,
                                            latitude: receivedNoti.latitude,
