@@ -136,7 +136,8 @@ final class MPCManager: NSObject {
     }
 
     private func updateProfile(dogInfo: UserInfo) {
-        profile = DogProfileDTO(name: dogInfo.name, keywords: dogInfo.keywords, profileImage: dogInfo.profileImage)
+        guard let userID = SessionManager.shared.session?.user?.userID else { return }
+        profile = DogProfileDTO(id: userID, name: dogInfo.name, keywords: dogInfo.keywords, profileImage: dogInfo.profileImage)
     }
 
     private func sendProfileData(data: Data) {

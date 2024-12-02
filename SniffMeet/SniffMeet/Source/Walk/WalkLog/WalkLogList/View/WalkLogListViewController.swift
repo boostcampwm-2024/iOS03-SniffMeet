@@ -48,6 +48,7 @@ extension WalkLogListViewController: UITableViewDataSource {
         // FIXME: 실제 데이터로 변경 필요
         WalkLogCell(
             dogInfo: .init(
+            id: UUID(uuidString: "") ?? DogProfileDTO.example.id,
             name: "후추추",
             keywords: [],
             profileImage: nil
