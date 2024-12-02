@@ -8,11 +8,24 @@
 import Foundation
 
 protocol RequestWalkUseCase {
-    func execute(dog: UserInfo) throws
+    func execute(walkNoti: WalkNotiDTO) async throws
 }
 
 
 struct RequestWalkUseCaseImpl: RequestWalkUseCase {
-    func execute(dog: UserInfo) throws {
+    private let session: URLSession
+    private let encoder = JSONEncoder()
+    
+    init(session: URLSession = URLSession.shared ) {
+        self.session = session
+    }
+    func execute(walkNoti: WalkNotiDTO) async throws {
+        guard let requestData = try? encoder.encode(walkNoti) else { return }
+        let request = try PushNotificationRequest.sendWalkRequest(data: requestData).urlRequest()
+        let (data, response) = try await session.data(for: request)
+    
+        if let response = response as? HTTPURLResponse {
+            print(response)
+        }
     }
 }
