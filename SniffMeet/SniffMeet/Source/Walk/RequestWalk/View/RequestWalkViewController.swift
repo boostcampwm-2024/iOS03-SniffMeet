@@ -62,7 +62,7 @@ final class RequestWalkViewController: BaseViewController, RequestWalkViewable {
     }
     override func configureAttributes() {
         hideKeyboardWhenTappedAround()
-        submitButton.isEnabled = false
+        updateSubmitButtonState()
     }
     override func configureHierachy() {
         [titleLabel,
@@ -140,7 +140,7 @@ final class RequestWalkViewController: BaseViewController, RequestWalkViewable {
                 self?.locationView.setAddress(
                     address: address?.location ?? Context.locationGuideTitle
                 )
-                self?.submitButton.isEnabled = (self?.messageTextView.text.isEmpty == false)
+                self?.updateSubmitButtonState()
             }
             .store(in: &cancellables)
         presenter?.output.profileImageData
@@ -182,6 +182,9 @@ final class RequestWalkViewController: BaseViewController, RequestWalkViewable {
             }
             .store(in: &cancellables)
     }
+    func updateSubmitButtonState() {
+        submitButton.isEnabled = (messageTextView.text.isEmpty == false) && (address != nil)
+    }
 }
 
 private extension RequestWalkViewController {
@@ -198,7 +201,7 @@ extension RequestWalkViewController: UITextViewDelegate {
         if textView.text == Context.messagePlaceholder {
             textView.text = nil
             textView.textColor = .black
-            submitButton.isEnabled = false
+            updateSubmitButtonState()
         }
     }
     func textViewDidEndEditing(_ textView: UITextView) {
@@ -208,7 +211,7 @@ extension RequestWalkViewController: UITextViewDelegate {
         }
     }
     func textViewDidChange(_ textView: UITextView) {
-        submitButton.isEnabled = (!textView.text.isEmpty) && (locationView.locationString != Context.locationGuideTitle)
+        updateSubmitButtonState()
     }
     func textView(
         _ textView: UITextView,
