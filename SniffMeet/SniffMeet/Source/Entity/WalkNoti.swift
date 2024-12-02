@@ -74,7 +74,7 @@ enum WalkNotiCategory: String, Codable {
     var description: String {
         switch self {
         case .walkRequest: "님이 산책 요청을 요청했어요!"
-        case .walkAccepted: "님이 산책 수락했어요!"
+        case .walkAccepted: "님이 산책을 수락했어요!"
         case .walkDeclined: "님이 산책을 거절했어요..."
         }
     }
