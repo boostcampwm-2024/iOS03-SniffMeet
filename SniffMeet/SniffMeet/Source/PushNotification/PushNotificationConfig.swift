@@ -6,6 +6,6 @@
 //
 import Foundation
 
-public enum PushNotificationConfig {
-    static let baseURL = URL(string: "https://sniff.fly.dev/")!
+enum PushNotificationConfig {
+    static let baseURL = URL(string: "https://sniff.fly.dev")!
 }
