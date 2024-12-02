@@ -614,6 +614,18 @@
 			path = PushNotification;
 			sourceTree = "<group>";
 		};
+		320047BC2CFDD46C00D08B6D /* Scene */ = {
+			isa = PBXGroup;
+			children = (
+				A21435F52CE20CF600564A4D /* Tab */,
+				FDA4915F2CDA791300A36FB0 /* CreateProfile */,
+				FDA4913B2CDA055900A36FB0 /* Home */,
+				FDA4913C2CDA056400A36FB0 /* Walk */,
+				FDA4913E2CDA05F900A36FB0 /* Mate */,
+			);
+			path = Scene;
+			sourceTree = "<group>";
+		};
 		995D94602CE598E1005A47BF /* NI */ = {
 			isa = PBXGroup;
 			children = (
@@ -898,7 +910,6 @@
 		FDA491332CD9FE7C00A36FB0 /* Source */ = {
 			isa = PBXGroup;
 			children = (
-				320047B72CFD365700D08B6D /* PushNotification */,
 				A2BD49F02CF72A8800AC72A7 /* DTO */,
 				320044792CEC490600D08B6D /* Entity */,
 				320044782CEC48FB00D08B6D /* UseCase */,
@@ -906,13 +917,10 @@
 				FD69B1B12CE3BC55009D71DC /* Persistence */,
 				A2C844CF2CDBE1CB007F2970 /* Common */,
 				FDA491392CD9FEC400A36FB0 /* App */,
-				A21435F52CE20CF600564A4D /* Tab */,
-				FDA4915E2CDA790300A36FB0 /* Auth */,
-				FDA4913B2CDA055900A36FB0 /* Home */,
-				FDA4913C2CDA056400A36FB0 /* Walk */,
-				FDA4913E2CDA05F900A36FB0 /* Mate */,
+				320047BC2CFDD46C00D08B6D /* Scene */,
 				FDA4913A2CDA04BB00A36FB0 /* Repository */,
 				320044172CE489A900D08B6D /* LocalNetwork */,
+				320047B72CFD365700D08B6D /* PushNotification */,
 				A24082622CEB2464009109A0 /* Supabase */,
 			);
 			path = Source;
@@ -989,7 +997,6 @@
 				3200448A2CEC872D00D08B6D /* RespondWalk */,
 				FDA491932CDA7C6200A36FB0 /* RequestWalk */,
 				FDA4914B2CDA65E200A36FB0 /* WalkLog */,
-				FDA4914A2CDA077100A36FB0 /* RecordWalk */,
 			);
 			path = Walk;
 			sourceTree = "<group>";
@@ -1010,41 +1017,6 @@
 				320044662CE6124900D08B6D /* DataManager.swift */,
 			);
 			path = Auth;
-			sourceTree = "<group>";
-		};
-		FDA491402CDA06FC00A36FB0 /* Router */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Router;
-			sourceTree = "<group>";
-		};
-		FDA491412CDA070200A36FB0 /* Entity */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Entity;
-			sourceTree = "<group>";
-		};
-		FDA491422CDA070900A36FB0 /* Presenter */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Presenter;
-			sourceTree = "<group>";
-		};
-		FDA491432CDA070F00A36FB0 /* Interactor */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Interactor;
-			sourceTree = "<group>";
-		};
-		FDA491442CDA071500A36FB0 /* View */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = View;
 			sourceTree = "<group>";
 		};
 		FDA491452CDA073200A36FB0 /* Router */ = {
@@ -1077,16 +1049,6 @@
 				A2BA1B912CF1E8C60080575A /* MateListViewController.swift */,
 			);
 			path = View;
-			sourceTree = "<group>";
-		};
-		FDA4914A2CDA077100A36FB0 /* RecordWalk */ = {
-			isa = PBXGroup;
-			children = (
-				FDA491612CDA7A6200A36FB0 /* AddRecordResult */,
-				FDA491602CDA7A4500A36FB0 /* Map */,
-				FDA4915A2CDA74C600A36FB0 /* Camera */,
-			);
-			path = RecordWalk;
 			sourceTree = "<group>";
 		};
 		FDA4914B2CDA65E200A36FB0 /* WalkLog */ = {
@@ -1203,26 +1165,6 @@
 			path = WalkReport;
 			sourceTree = "<group>";
 		};
-		FDA4915A2CDA74C600A36FB0 /* Camera */ = {
-			isa = PBXGroup;
-			children = (
-				FDA491442CDA071500A36FB0 /* View */,
-				FDA491432CDA070F00A36FB0 /* Interactor */,
-				FDA491422CDA070900A36FB0 /* Presenter */,
-				FDA491412CDA070200A36FB0 /* Entity */,
-				FDA491402CDA06FC00A36FB0 /* Router */,
-			);
-			path = Camera;
-			sourceTree = "<group>";
-		};
-		FDA4915E2CDA790300A36FB0 /* Auth */ = {
-			isa = PBXGroup;
-			children = (
-				FDA4915F2CDA791300A36FB0 /* CreateProfile */,
-			);
-			path = Auth;
-			sourceTree = "<group>";
-		};
 		FDA4915F2CDA791300A36FB0 /* CreateProfile */ = {
 			isa = PBXGroup;
 			children = (
@@ -1232,30 +1174,6 @@
 				FDA491672CDA7BEB00A36FB0 /* Router */,
 			);
 			path = CreateProfile;
-			sourceTree = "<group>";
-		};
-		FDA491602CDA7A4500A36FB0 /* Map */ = {
-			isa = PBXGroup;
-			children = (
-				FDA4917D2CDA7C2400A36FB0 /* View */,
-				FDA4917E2CDA7C2400A36FB0 /* Interactor */,
-				FDA4917F2CDA7C2400A36FB0 /* Presenter */,
-				FDA491802CDA7C2400A36FB0 /* Entity */,
-				FDA491812CDA7C2400A36FB0 /* Router */,
-			);
-			path = Map;
-			sourceTree = "<group>";
-		};
-		FDA491612CDA7A6200A36FB0 /* AddRecordResult */ = {
-			isa = PBXGroup;
-			children = (
-				FDA491782CDA7C1C00A36FB0 /* View */,
-				FDA491792CDA7C1C00A36FB0 /* Interactor */,
-				FDA4917A2CDA7C1C00A36FB0 /* Presenter */,
-				FDA4917B2CDA7C1C00A36FB0 /* Entity */,
-				FDA4917C2CDA7C1C00A36FB0 /* Router */,
-			);
-			path = AddRecordResult;
 			sourceTree = "<group>";
 		};
 		FDA491622CDA7A8D00A36FB0 /* RequestMate */ = {
@@ -1375,76 +1293,6 @@
 			sourceTree = "<group>";
 		};
 		FDA491772CDA7C1800A36FB0 /* Router */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Router;
-			sourceTree = "<group>";
-		};
-		FDA491782CDA7C1C00A36FB0 /* View */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
-		FDA491792CDA7C1C00A36FB0 /* Interactor */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Interactor;
-			sourceTree = "<group>";
-		};
-		FDA4917A2CDA7C1C00A36FB0 /* Presenter */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Presenter;
-			sourceTree = "<group>";
-		};
-		FDA4917B2CDA7C1C00A36FB0 /* Entity */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Entity;
-			sourceTree = "<group>";
-		};
-		FDA4917C2CDA7C1C00A36FB0 /* Router */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Router;
-			sourceTree = "<group>";
-		};
-		FDA4917D2CDA7C2400A36FB0 /* View */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
-		FDA4917E2CDA7C2400A36FB0 /* Interactor */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Interactor;
-			sourceTree = "<group>";
-		};
-		FDA4917F2CDA7C2400A36FB0 /* Presenter */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Presenter;
-			sourceTree = "<group>";
-		};
-		FDA491802CDA7C2400A36FB0 /* Entity */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Entity;
-			sourceTree = "<group>";
-		};
-		FDA491812CDA7C2400A36FB0 /* Router */ = {
 			isa = PBXGroup;
 			children = (
 			);
