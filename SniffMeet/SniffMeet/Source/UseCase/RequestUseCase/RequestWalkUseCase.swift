@@ -26,7 +26,7 @@ struct RequestWalkUseCaseImpl: RequestWalkUseCase {
         let (_, response) = try await session.data(for: request)
         
         do {
-            let requestData = WalkRequestInsertDTO(id: UUID(),
+            let requestData = WalkRequestInsertDTO(id: walkNoti.id,
                                                    createdAt: walkNoti.createdAt,
                                                    sender: walkNoti.senderId,
                                                    receiver: walkNoti.receiverId,
@@ -35,7 +35,7 @@ struct RequestWalkUseCaseImpl: RequestWalkUseCase {
                                                    longitude: walkNoti.longtitude,
                                                    state: .pending)
             let data = try encoder.encode(requestData)
-            try await SupabaseDatabaseManager.shared.insertData(
+            try await remoteDatabaseManager.insertData(
                 into: Environment.SupabaseTableName.walkRequest,
                 with: data
             )
