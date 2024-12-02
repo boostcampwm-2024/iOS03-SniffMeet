@@ -5,6 +5,7 @@
 //  Created by 배현진 on 11/20/24.
 //
 
+import Combine
 import UIKit
 
 protocol RequestMateViewable: AnyObject {
@@ -23,7 +24,8 @@ final class RequestMateViewController: BaseViewController, RequestMateViewable {
     private var acceptButton = PrimaryButton(title: Context.acceptTitle)
     private var keywords: [Keyword] = []
     private let profile: DogProfileDTO
-    
+    private var cancellables = Set<AnyCancellable>()
+
     init(profile: DogProfileDTO) {
         self.profile = profile
         super.init()
@@ -31,14 +33,13 @@ final class RequestMateViewController: BaseViewController, RequestMateViewable {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        presenter?.viewDidLoad()
     }
 
     override func configureAttributes() {
         profileImageView.image = UIImage(data: profile.profileImage!)
         profileImageView.contentMode = .scaleAspectFill
         profileImageView.translatesAutoresizingMaskIntoConstraints = false
+        profileImageView.isUserInteractionEnabled = false
         nameLabel.text = profile.name
         nameLabel.textColor = SNMColor.white
         nameLabel.font = SNMFont.title1
@@ -73,6 +74,9 @@ final class RequestMateViewController: BaseViewController, RequestMateViewable {
         zStackView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(zStackView)
         zStackView.addSubview(profileImageView)
+        zStackView.bringSubviewToFront(declineButton)
+        zStackView.bringSubviewToFront(acceptButton)
+        zStackView.isUserInteractionEnabled = true
 
         [profileImageView,
          nameLabel,
@@ -86,6 +90,10 @@ final class RequestMateViewController: BaseViewController, RequestMateViewable {
 
     override func configureConstraints() {
         let constraints = [
+            zStackView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            zStackView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+            zStackView.widthAnchor.constraint(equalTo: view.widthAnchor),
+            zStackView.heightAnchor.constraint(equalTo: view.heightAnchor),
             profileImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             profileImageView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
             profileImageView.widthAnchor.constraint(equalTo: view.widthAnchor),
@@ -130,7 +138,30 @@ final class RequestMateViewController: BaseViewController, RequestMateViewable {
         ]
         NSLayoutConstraint.activate(constraints)
     }
-    override func bind() {}
+    override func bind() {
+        bindDeclineButtonAction()
+        bindAccepteButtonAction()
+    }
+
+    private func bindDeclineButtonAction() {
+        declineButton.isHidden = false
+        declineButton.publisher(event: .touchUpInside)
+            .sink { [weak self] in
+                self?.presenter?.closeTheView()
+            }
+            .store(in: &cancellables)
+    }
+
+    private func bindAccepteButtonAction() {
+        acceptButton.isHidden = false
+        acceptButton.publisher(event: .touchUpInside)
+            .sink { [weak self] in
+                Task {
+                    await self?.presenter?.didTapAcceptButton(id: self?.profile.id ?? DogProfileDTO.example.id)
+                }
+            }
+            .store(in: &cancellables)
+    }
 }
 
 private extension RequestMateViewController {

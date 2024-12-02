@@ -5,9 +5,19 @@
 //  Created by 배현진 on 11/20/24.
 //
 
+import Foundation
+
 protocol RequestMatePresentable: AnyObject {
-    func didFetchDogProfile(_ dogProfile: DogProfileDTO)
-    func viewDidLoad()
+    var view: RequestMateViewable? { get set }
+    var interactor: RequestMateInteractable? { get set }
+    var router: RequestMateRoutable? { get set }
+
+    func closeTheView()
+    func didTapAcceptButton(id: UUID) async
+}
+
+protocol RequestMateInteractorOutput: AnyObject {
+
 }
 
 final class RequestMatePresenter: RequestMatePresentable {
@@ -15,10 +25,27 @@ final class RequestMatePresenter: RequestMatePresentable {
     var interactor: RequestMateInteractable?
     var router: RequestMateRoutable?
 
-    func viewDidLoad() {
-        interactor?.fetchDogProfile()
+    init(
+        view: RequestMateViewable? = nil,
+        interactor: RequestMateInteractable? = nil,
+        router: RequestMateRoutable? = nil
+    ) {
+        self.view = view
+        self.interactor = interactor
+        self.router = router
     }
 
-    func didFetchDogProfile(_ dogProfile: DogProfileDTO) {
+    func closeTheView() {
+        if let view {
+            router?.dismissView(view: view)
+        }
     }
+    func didTapAcceptButton(id: UUID) async {
+        SNMLogger.info("id: \(id)")
+        await interactor?.saveMateInfo(id: id)
+    }
+}
+
+extension RequestMatePresenter: RequestMateInteractorOutput {
+
 }
