@@ -55,7 +55,7 @@ final class RequestWalkPresenter: RequestWalkPresentable {
         interactor?.requestMateInfo()
     }
     
-    func requestWalk(forPost walkRequest: String, to user: Int) {
+    func requestWalk(forPost walkRequest: String) {
         interactor?.sendWalkRequest()
     }
     func closeTheView() {

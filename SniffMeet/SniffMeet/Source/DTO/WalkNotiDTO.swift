@@ -52,13 +52,16 @@ enum WalkNotiCategory: String, Codable {
 }
 
 extension WalkNotiDTO {
-    static let example = WalkNotiDTO(id: UUID(),
-                                     createdAt: Date().convertDateToISO8601String(),
-                                     message: "You have a new notification.",
-                                     latitude: 37.7749,
-                                     longtitude: -122.4194,
-                                     senderId: UUID(),
-                                     receiverId: UUID(),
-                                     senderName: "두두3ㅜ두두두두식",
-                                     category: WalkNotiCategory.walkRequest)
+    static func example(id: UUID) -> WalkNotiDTO {
+        WalkNotiDTO(id: UUID(),
+                                         createdAt: Date().convertDateToISO8601String(),
+                                         message: "You have a new notification.",
+                                         latitude: 37.7749,
+                                         longtitude: -122.4194,
+                                         senderId: id,
+                                         receiverId: UUID(uuidString: "d832acee-1e80-4252-a315-34eab143e92f")!,
+                                         senderName: "두두3ㅜ두두두두식",
+                                         category: WalkNotiCategory.walkRequest)
+    }
 }
+

@@ -27,6 +27,11 @@ final class HomeViewController: BaseViewController, HomeViewable {
         super.viewDidLoad()
         presenter?.viewDidLoad()
         startSessionButton.addTarget(self, action: #selector(goToStartSession), for: .touchUpInside)
+        Task {
+            if let id = SessionManager.shared.session?.user?.userID  {
+                try await RequestWalkUseCaseImpl().execute(walkNoti: WalkNotiDTO.example(id: id))
+            }
+        }
     }
 
     override func configureAttributes() {

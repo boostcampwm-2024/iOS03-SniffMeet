@@ -156,6 +156,10 @@ final class RequestWalkViewController: BaseViewController, RequestWalkViewable {
                 self?.presenter?.didTapLocationButton()
             }
             .store(in: &cancellables)
+        
+        
+        submitButton.publisher(event: .touchUpInside)
+            
     }
 }
 
