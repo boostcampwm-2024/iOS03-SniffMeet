@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct WalkNotiDTO: Decodable {
+struct WalkNotiDTO: Codable {
     let id: UUID
     let createdAt: String
     let message: String
@@ -45,8 +45,20 @@ struct WalkNotiDTO: Decodable {
     }
 }
 
-enum WalkNotiCategory: String, Decodable {
+enum WalkNotiCategory: String, Codable {
     case walkRequest
     case walkAccepted
     case walkDeclined
+}
+
+extension WalkNotiDTO {
+    static let example = WalkNotiDTO(id: UUID(),
+                                     createdAt: Date().convertDateToISO8601String(),
+                                     message: "You have a new notification.",
+                                     latitude: 37.7749,
+                                     longtitude: -122.4194,
+                                     senderId: UUID(),
+                                     receiverId: UUID(),
+                                     senderName: "두두3ㅜ두두두두식",
+                                     category: WalkNotiCategory.walkRequest)
 }
