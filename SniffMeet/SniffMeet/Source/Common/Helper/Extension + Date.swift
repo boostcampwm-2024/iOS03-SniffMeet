@@ -14,6 +14,12 @@ extension Date {
         
         return components.second ?? 0
     }
+    func hoursDifferenceFromNow() -> Int {
+        let currentDate = Date()
+        let calendar = Calendar.current
+        let components = calendar.dateComponents([.hour], from: self, to: currentDate)
+        
+        return components.hour ?? 0
     
     func convertDateToISO8601String() -> String {
         let dateFormatter = DateFormatter()

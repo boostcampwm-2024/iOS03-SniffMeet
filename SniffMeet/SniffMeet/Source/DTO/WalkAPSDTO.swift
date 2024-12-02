@@ -1,5 +1,5 @@
 //
-//  Walk.swift
+//  WalkAPSDTO.swift
 //  SniffMeet
 //
 //  Created by sole on 11/28/24.
