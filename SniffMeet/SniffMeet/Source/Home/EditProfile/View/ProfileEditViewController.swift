@@ -143,8 +143,8 @@ final class ProfileEditViewController: BaseViewController, ProfileEditViewable {
             .receive(on: RunLoop.main)
             .sink { [weak self] userInfo in
                 SNMLogger.info("Edit userInfo: \(userInfo)")
-                self?.nameTextField.placeholder = userInfo.name
-                self?.ageTextField.placeholder = String(userInfo.age)
+                self?.nameTextField.text = userInfo.name
+                self?.ageTextField.text = String(userInfo.age)
                 switch userInfo.size {
                 case .small:
                     self?.sizeSegmentedControl.selectedSegmentIndex = 0
@@ -156,7 +156,8 @@ final class ProfileEditViewController: BaseViewController, ProfileEditViewable {
                 self?.sizeSegmentedControl.setNeedsLayout()
                 self?.selectedKeywordButtons.removeAll()
                 for button in self?.keywordButtons ?? [] {
-                    if let title = button.titleLabel?.text, userInfo.keywords.contains(Keyword(rawValue: title) ?? .energetic) {
+                    if let title = button.titleLabel?.text,
+                       userInfo.keywords.contains(Keyword(rawValue: title) ?? .energetic) {
                         button.isSelected = true
                         self?.selectedKeywordButtons.append(button)
                     } else {
@@ -245,7 +246,7 @@ extension ProfileEditViewController: UITextFieldDelegate {
                    shouldChangeCharactersIn range: NSRange,
                    replacementString string: String) -> Bool
     {
-        guard let text = ageTextField.text else { return true }
+        guard textField == ageTextField, let text = textField.text else { return true }
         let newLength = text.count + string.count - range.length
         return newLength <= 2
     }
