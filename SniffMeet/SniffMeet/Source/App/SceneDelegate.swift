@@ -10,7 +10,9 @@ import UIKit
 final class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     var window: UIWindow?
     var appRouter: AppRouter?
-    private let convertToRequestAPS: any ConvertToWalkAPSUseCase = ConvertToWalkAPSUseCaseImpl()
+    private weak var sessionController: SessionViewController?
+//    private let convertToRequestAPS: any ConvertToRequestAPSUseCase = ConverToRequestAPSUseCaseImpl()
+//    private let convertToResponsdAPS: any ConvertToRespondAPSUseCase = ConvertToRespondAPSUseCaseImpl()
 
     func scene(
         _ scene: UIScene,
@@ -20,27 +22,24 @@ final class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         window = UIWindow(windowScene: windowScene)
         appRouter = AppRouter(window: window)
+        let sessionController = SessionViewController(appRouter: appRouter)
+        self.sessionController = sessionController
 
         if let response = connectionOptions.notificationResponse {
             routePushNotification(response: response)
-            return
         }
-        appRouter?.displayInitialScreen()
+        window?.rootViewController = sessionController
+        window?.makeKeyAndVisible()
     }
 
     /// push notification을 통해 앱에 처음 진입한 경우 라우팅을 진행합니다.
     private func routePushNotification(response: UNNotificationResponse) {
         let userInfo = response.notification.request.content.userInfo
-        guard let requestAPS = convertToRequestAPS.execute(walkAPSUserInfo: userInfo) else {
-            appRouter?.displayInitialScreen()
-            return
-        }
-        let walkNoti: WalkNoti = requestAPS.notification.toEntity()
-        switch requestAPS.notification.category {
-        case .walkRequest:
-            appRouter?.initializeViewAndPresentRequestView(walkNoti: walkNoti)
-        case .walkAccepted, .walkDeclined:
-            appRouter?.initializeViewAndPresentRespondView(walkNoti: walkNoti)
-        }
+//        if let requestAPS = convertToRequestAPS.execute(userInfo: userInfo) {
+//            sessionController?.walkNoti = requestAPS.walkRequest.toEntity()
+//        } else if let respondAPS = convertToResponsdAPS.execute(userInfo: userInfo) {
+//            // TODO: 산책 거절 / 수락 화면으로 라우팅
+//            sessionController?.isAccepted = respondAPS.isAccepted
+//        }
     }
 }

@@ -40,6 +40,7 @@ final class HomePresenter: HomePresentable {
     }
 
     func viewDidLoad() {
+        interactor?.saveDeviceToken()
         do {
             if let dog = try interactor?.loadInfo() {
                 output.dogInfo.send(dog)

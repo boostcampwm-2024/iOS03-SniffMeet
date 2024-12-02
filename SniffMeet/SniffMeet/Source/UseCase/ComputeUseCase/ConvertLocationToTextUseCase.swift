@@ -8,19 +8,15 @@
 import CoreLocation
 
 protocol ConvertLocationToTextUseCase {
-    func execute(location: CLLocation) async -> String?
+    func execute(latitude: Double, longtitude: Double) async -> String?
 }
 
 struct ConvertLocationToTextUseCaseImpl: ConvertLocationToTextUseCase {
-    private let geoCoder: CLGeocoder
+    private let geoCoder: CLGeocoder = CLGeocoder()
 
-    init(geoCoder: CLGeocoder) {
-        self.geoCoder = geoCoder
-    }
-
-    func execute(location: CLLocation) async -> String? {
+    func execute(latitude: Double, longtitude: Double) async -> String? {
         let placemarks = try? await geoCoder.reverseGeocodeLocation(
-            location,
+            CLLocation(latitude: latitude, longitude: longtitude),
             preferredLocale: .current
         )
         return placemarks?.first?.name

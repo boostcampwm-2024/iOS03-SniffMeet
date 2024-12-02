@@ -5,14 +5,12 @@
 //  Created by sole on 11/19/24.
 //
 
-import CoreLocation
-
 protocol SelectLocationInteractable: AnyObject {
     var presenter: SelectLocationInteractorOutput? { get set }
     
     func requestLocationAuth()
     func requestUserLocation()
-    func convertLocationToText(with location: CLLocation)
+    func convertLocationToText(latitude: Double, longtitude: Double)
 }
 
 final class SelectLocationInteractor: SelectLocationInteractable {
@@ -46,10 +44,10 @@ final class SelectLocationInteractor: SelectLocationInteractable {
             presenter?.didUpdateUserLocation(location: userLocation)
         }
     }
-    func convertLocationToText(with location: CLLocation) {
+    func convertLocationToText(latitude: Double, longtitude: Double) {
         Task {
             let locationText: String? = await convertLocationToTextUseCase.execute(
-                location: location
+                latitude: latitude, longtitude: longtitude
             )
              presenter?.didConvertLocationToText(with: locationText)
         }
