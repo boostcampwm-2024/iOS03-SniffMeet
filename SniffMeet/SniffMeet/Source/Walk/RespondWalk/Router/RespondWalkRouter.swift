@@ -19,7 +19,9 @@ protocol RespondWalkBuildable {
 final class RespondWalkRouter: RespondWalkRoutable {
     func dismissView(view: any RespondWalkViewable) {
         guard let view = view as? UIViewController else { return }
-        view.dismiss(animated: true)
+        Task { @MainActor in
+            view.dismiss(animated: true)
+        }
     }
     func showSelectedLocationMapView(view: any RespondWalkViewable, address: Address) {
         guard let view = view as? UIViewController else { return }
