@@ -158,6 +158,7 @@ final class RequestMateViewController: BaseViewController, RequestMateViewable {
             .sink { [weak self] in
                 Task {
                     await self?.presenter?.didTapAcceptButton(id: self?.profile.id ?? DogProfileDTO.example.id)
+                    self?.presenter?.closeTheView()
                 }
             }
             .store(in: &cancellables)
