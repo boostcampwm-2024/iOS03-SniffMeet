@@ -40,6 +40,7 @@ final class ProfileCardView: UIView {
     private let profileInfoStackView: UIStackView = {
         var stackView = UIStackView()
         stackView.axis = .vertical
+        stackView.alignment = .leading
         stackView.spacing = 12
         return stackView
     }()
