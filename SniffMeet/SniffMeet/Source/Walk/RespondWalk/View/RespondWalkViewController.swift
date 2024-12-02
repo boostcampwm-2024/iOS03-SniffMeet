@@ -77,7 +77,6 @@ final class RespondWalkViewController: BaseViewController, RespondWalkViewable {
             keywords: UserInfo.example.keywords.map { $0.rawValue }
         )
         messageLabel.text = "HomeView에서 dogInfo의 변경을 알아야 하더라구요. Presenter에서 HomePresenterOutput 프로토콜을 채택하도록 설정해줬습니다."
-        
         submitButton.setTitle(Context.abledSubmitButtonTitle, for: .normal)
         submitButton.setTitle(Context.disabledSubmitButtonTitle, for: .disabled)
         
@@ -182,11 +181,11 @@ final class RespondWalkViewController: BaseViewController, RespondWalkViewable {
             .store(in: &cancellables)
         
         dismissButton.publisher(event: .touchUpInside)
-            .receive(on: RunLoop.main)
+            .debounce(for: .seconds(EventConstant.debounceInterval), scheduler: RunLoop.main)
             .sink {[weak self] _ in
                 guard let self else { return }
                 if !isTimedOut {
-                    self.present(declineAlert, animated: true)
+                    present(declineAlert, animated: true)
                 } else {
                     presenter?.dismissView()
                 }
@@ -194,10 +193,9 @@ final class RespondWalkViewController: BaseViewController, RespondWalkViewable {
             .store(in: &cancellables)
         
         submitButton.publisher(event: .touchUpInside)
-            .receive(on: RunLoop.main)
+            .debounce(for: .seconds(EventConstant.debounceInterval), scheduler: RunLoop.main)
             .sink { [weak self] _ in
-                guard let self else { return }
-                self.presenter?.respondWalkRequest(isAccepted: true)
+                self?.presenter?.respondWalkRequest(isAccepted: true)
             }
             .store(in: &cancellables)
         

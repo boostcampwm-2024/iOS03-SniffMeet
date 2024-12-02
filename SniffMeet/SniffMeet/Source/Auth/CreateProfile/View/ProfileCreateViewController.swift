@@ -5,6 +5,7 @@
 //  Created by 윤지성 on 11/9/24.
 //
 
+import Combine
 import PhotosUI
 import UIKit
 
@@ -12,8 +13,9 @@ protocol ProfileCreateViewable: AnyObject {
     var presenter: ProfileCreatePresentable? { get set }
 }
 
-final class ProfileCreateViewController: UIViewController, ProfileCreateViewable {
+final class ProfileCreateViewController: BaseViewController, ProfileCreateViewable {
     var presenter: ProfileCreatePresentable?
+    private var cancellables = Set<AnyCancellable>()
     
     private var titleLabel: UILabel = {
         let label = UILabel()
@@ -55,17 +57,37 @@ final class ProfileCreateViewController: UIViewController, ProfileCreateViewable
     }()
 
     override func viewDidLoad() {
+        super.viewDidLoad()
         setSubviewsLayout()
         view.backgroundColor = SNMColor.white
         submitButton.isEnabled = false
         setDelegate()
-        setButtonAction()
         hideKeyboardWhenTappedAround()
         navigationController?.navigationBar.configureBackButton()
     }
     override func viewDidLayoutSubviews() {
         profileImageView.makeViewCircular()
         addPhotoButton.makeViewCircular()
+    }
+    override func bind() {
+        addPhotoButton.publisher(event: .touchUpInside)
+            .sink { [weak self] _ in
+                guard let picker = self?.picker else { return }
+                self?.present(picker, animated: true, completion: nil)
+            }
+            .store(in: &cancellables)
+ 
+        submitButton.publisher(event: .touchUpInside)
+            .debounce(for: .seconds(EventConstant.debounceInterval), scheduler: RunLoop.main)
+            .sink { [weak self] _ in
+                print("이벤트 발생")
+                guard let nickname = self?.nicknameTextField.text else { return }
+                self?.presenter?.didTapSubmitButton(
+                    nickname: nickname,
+                    image: self?.profileImageView.image
+                )
+            }
+            .store(in: &cancellables)
     }
 }
 
@@ -129,23 +151,6 @@ private extension ProfileCreateViewController {
     func setDelegate() {
         picker.delegate = self
         nicknameTextField.delegate = self
-    }
-    
-    func setButtonAction() {
-        addPhotoButton.addAction(UIAction { [weak self] _ in
-            guard let picker = self?.picker else { return }
-            self?.present(picker, animated: true, completion: nil)
-        }, for: .touchUpInside)
-        
-        submitButton.addAction(UIAction { [weak self] _ in
-            // approuter를 통해서 화면전환을 수행한다. window를 다르게 설정해야 할듯
-            // FIXME: File 저장 방식 변경 필요
-            guard let nickname = self?.nicknameTextField.text else { return }
-            self?.presenter?.didTapSubmitButton(
-                nickname: nickname,
-                image: self?.profileImageView.image
-            )
-        }, for: .touchUpInside)
     }
 }
 

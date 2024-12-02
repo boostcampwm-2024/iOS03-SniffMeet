@@ -61,7 +61,6 @@ final class RequestWalkViewController: BaseViewController, RequestWalkViewable {
     }
     override func configureAttributes() {
         hideKeyboardWhenTappedAround()
-        setButtonActions()
     }
     override func configureHierachy() {
         [titleLabel,
@@ -152,8 +151,16 @@ final class RequestWalkViewController: BaseViewController, RequestWalkViewable {
             }
             .store(in: &cancellables)
         locationView.tapPublisher
+            .debounce(for: .seconds(EventConstant.debounceInterval), scheduler: RunLoop.main)
             .sink { [weak self] in
                 self?.presenter?.didTapLocationButton()
+            }
+            .store(in: &cancellables)
+        
+        dismissButton.publisher(event: .touchUpInside)
+            .debounce(for: .seconds(EventConstant.debounceInterval), scheduler: RunLoop.main)
+            .sink { [weak self] _ in
+                self?.presenter?.closeTheView()
             }
             .store(in: &cancellables)
     }
@@ -165,12 +172,6 @@ private extension RequestWalkViewController {
         static let locationGuideTitle: String = "장소 선택"
         static let messagePlaceholder: String = "간단한 요청 메세지를 작성해주세요."
         static let characterCountLimit: Int = 100
-    }
-
-    func setButtonActions() {
-        dismissButton.addAction(UIAction(handler: {[weak self] _ in
-            self?.presenter?.closeTheView()
-        }), for: .touchUpInside)
     }
 }
 
