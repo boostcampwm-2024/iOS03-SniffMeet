@@ -5,9 +5,11 @@
 //  Created by Kelly Chui on 11/10/24.
 //
 
+import Combine
 import UIKit
 
 final class ProfileCardView: UIView {
+    var didTapEditButton = PassthroughSubject<Bool, Never>()
     private let profileImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFill
@@ -47,6 +49,7 @@ final class ProfileCardView: UIView {
         configureAttributes(profileImage: profileImage, name: name, keywords: keywords)
         configureHierarchy()
         configureConstraints()
+        setButtonAction()
     }
 
     @available(*, unavailable)
@@ -119,5 +122,10 @@ final class ProfileCardView: UIView {
     }
     func setProfileImage(profileImage: UIImage) {
         profileImageView.image = profileImage
+    }
+    func setButtonAction() {
+        editButton.addAction(UIAction { [weak self] _ in
+            self?.didTapEditButton.send(true)
+        }, for: .touchUpInside)
     }
 }

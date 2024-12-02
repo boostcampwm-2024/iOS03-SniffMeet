@@ -28,10 +28,15 @@ final class HomeViewController: BaseViewController, HomeViewable {
         presenter?.viewDidLoad()
     }
 
-    override func configureAttributes() {
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        presenter?.viewDidLoad()
         navigationItem.title = Context.title
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationItem.largeTitleDisplayMode = .always
+    }
+
+    override func configureAttributes() {
         let notificationBarButtonItem = UIBarButtonItem(
             image: UIImage(systemName: "bell")?
                 .withTintColor(.tertiaryLabel, renderingMode: .alwaysOriginal),
@@ -123,7 +128,13 @@ final class HomeViewController: BaseViewController, HomeViewable {
                 }
             }
             .store(in: &cancellables)
-        
+        profileCardView.didTapEditButton
+            .receive(on: RunLoop.main)
+            .sink { [weak self] bool in
+                if bool {
+                    guard let userInfo = self?.presenter?.output.dogInfo.value else { return }
+                    self?.presenter?.didTapEditButton(userInfo: userInfo)
+                }     
         startSessionButton.publisher(event: .touchUpInside)
             .throttle(for: .seconds(EventConstant.throttleInterval),
                       scheduler: RunLoop.main,

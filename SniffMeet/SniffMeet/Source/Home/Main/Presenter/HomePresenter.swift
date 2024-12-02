@@ -13,10 +13,12 @@ protocol HomePresentable: AnyObject {
     var router: (any HomeRoutable)? { get set }
     var interactor: (any HomeInteractable)? { get set }
     var output: (any HomePresenterOutput) { get }
+
     func viewDidLoad()
     func notificationBarButtonDidTap()
     func changeIsPaired(with isPaired: Bool)
     func profileData(_ data: DogProfileDTO)
+    func didTapEditButton(userInfo: UserInfo)
 }
 
 final class HomePresenter: HomePresentable {
@@ -30,7 +32,7 @@ final class HomePresenter: HomePresentable {
         router: (any HomeRoutable)? = nil,
         interactor: (any HomeInteractable)? = nil,
         output: HomePresenterOutput = DefaultHomePresenterOutput(
-            dogInfo: PassthroughSubject<UserInfo, Never>()
+            dogInfo: CurrentValueSubject<UserInfo, Never>(UserInfo.example)
         )
     ) {
         self.view = view
@@ -75,14 +77,18 @@ final class HomePresenter: HomePresentable {
         guard let view else { return }
         router?.showMateRequestView(homeView: view, data: data)
     }
+    func didTapEditButton(userInfo: UserInfo) {
+        guard let view else { return }
+        router?.showProfileEditView(homeView: view, userInfo: userInfo)
+    }
 }
 
 // MARK: - HomePresenterOutput
 
 protocol HomePresenterOutput {
-    var dogInfo: PassthroughSubject<UserInfo, Never> { get }
+    var dogInfo: CurrentValueSubject<UserInfo, Never> { get }
 }
 
 struct DefaultHomePresenterOutput: HomePresenterOutput {
-    var dogInfo: PassthroughSubject<UserInfo, Never>
+    var dogInfo: CurrentValueSubject<UserInfo, Never>
 }

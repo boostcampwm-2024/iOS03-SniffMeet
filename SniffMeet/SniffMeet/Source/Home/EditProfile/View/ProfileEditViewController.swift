@@ -14,7 +14,7 @@ protocol ProfileEditViewable: AnyObject {
 }
 
 final class ProfileEditViewController: BaseViewController, ProfileEditViewable {
-    var presenter: ProfileEditPresentable?
+    var presenter: (any ProfileEditPresentable)?
     private var cancellables = Set<AnyCancellable>()
     private var profileImageView: UIImageView = {
         let imageView = UIImageView()
@@ -129,34 +129,46 @@ final class ProfileEditViewController: BaseViewController, ProfileEditViewable {
         ageTextField.delegate = self
         hideKeyboardWhenTappedAround()
         ageTextField.keyboardType = .numberPad
+        navigationController?.navigationBar.configureBackButton()
+        navigationItem.title = Context.title
+        navigationItem.largeTitleDisplayMode = .never
     }
 
     override func bind() {
         bindKeywordButtonAction()
         bindAddPhotoButtonAction()
+        bindCompleteEditButtonAction()
 
         presenter?.output.userInfo
             .receive(on: RunLoop.main)
             .sink { [weak self] userInfo in
-                self?.nameTextField.placeholder = userInfo?.dogName
-                self?.ageTextField.placeholder = String(userInfo?.age ?? 0)
-                switch userInfo?.size {
+                SNMLogger.info("Edit userInfo: \(userInfo)")
+                self?.nameTextField.text = userInfo.name
+                self?.ageTextField.text = String(userInfo.age)
+                switch userInfo.size {
                 case .small:
                     self?.sizeSegmentedControl.selectedSegmentIndex = 0
                 case .medium:
                     self?.sizeSegmentedControl.selectedSegmentIndex = 1
                 case .big:
                     self?.sizeSegmentedControl.selectedSegmentIndex = 2
-                default:
-                    self?.sizeSegmentedControl.selectedSegmentIndex = -1
                 }
-            }
-            .store(in: &cancellables)
-        presenter?.output.profileImageData
-            .receive(on: RunLoop.main)
-            .sink { [weak self] imageData in
-                guard let imageData else { return }
-                self?.profileImageView.image = UIImage(data: imageData)
+                self?.sizeSegmentedControl.setNeedsLayout()
+                self?.selectedKeywordButtons.removeAll()
+                for button in self?.keywordButtons ?? [] {
+                    if let title = button.titleLabel?.text,
+                       userInfo.keywords.contains(Keyword(rawValue: title) ?? .energetic) {
+                        button.isSelected = true
+                        self?.selectedKeywordButtons.append(button)
+                    } else {
+                        button.isSelected = false
+                    }
+                }
+
+                if let profileImageData = userInfo.profileImage,
+                   let uiImage = UIImage(data: profileImageData) {
+                    self?.profileImageView.image = uiImage
+                }
             }
             .store(in: &cancellables)
     }
@@ -234,7 +246,7 @@ extension ProfileEditViewController: UITextFieldDelegate {
                    shouldChangeCharactersIn range: NSRange,
                    replacementString string: String) -> Bool
     {
-        guard let text = textField.text else { return true }
+        guard textField == ageTextField, let text = textField.text else { return true }
         let newLength = text.count + string.count - range.length
         return newLength <= 2
     }
@@ -329,18 +341,6 @@ extension ProfileEditViewController {
             ),
             keywordSelectionLabel.leadingAnchor.constraint(
                 equalTo: view.leadingAnchor,
-                constant: Context.horizontalPadding
-            ),
-            keywordStackView.topAnchor.constraint(
-                equalTo: keywordSelectionLabel.bottomAnchor,
-                constant: Context.basicVerticalPadding
-            ),
-            keywordStackView.leadingAnchor.constraint(
-                equalTo: view.leadingAnchor,
-                constant: Context.horizontalPadding
-            ),
-            keywordStackView.trailingAnchor.constraint(
-                equalTo: view.trailingAnchor,
                 constant: Context.horizontalPadding
             )
         ])
@@ -437,7 +437,8 @@ extension ProfileEditViewController {
 
 extension ProfileEditViewController {
     enum Context {
-        static let completeEditButtonTitle: String = "다음으로"
+        static let title: String = "반려동물 정보 수정"
+        static let completeEditButtonTitle: String = "수정하기"
         static let namePlaceholder: String = "기존 이름"
         static let agePlaceholder: String = "기존 나이"
         static let sizeLabel: String = "반려견의 크기를 선택해주세요."
