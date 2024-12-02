@@ -58,7 +58,7 @@ extension WalkNoti {
                                   category: .walkRequest)
 }
 
-enum WalkNotiCategory: String, Decodable {
+enum WalkNotiCategory: String, Codable {
     case walkRequest
     case walkAccepted
     case walkDeclined

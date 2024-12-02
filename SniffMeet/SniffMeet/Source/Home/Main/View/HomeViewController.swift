@@ -134,7 +134,10 @@ final class HomeViewController: BaseViewController, HomeViewable {
                 if bool {
                     guard let userInfo = self?.presenter?.output.dogInfo.value else { return }
                     self?.presenter?.didTapEditButton(userInfo: userInfo)
-                }     
+                }
+            }
+            .store(in: &cancellables)
+
         startSessionButton.publisher(event: .touchUpInside)
             .throttle(for: .seconds(EventConstant.throttleInterval),
                       scheduler: RunLoop.main,
@@ -145,6 +148,7 @@ final class HomeViewController: BaseViewController, HomeViewable {
             }
             .store(in: &cancellables)
     }
+
     @objc func notificationBarButtonDidTap() {
         presenter?.notificationBarButtonDidTap()
     }
@@ -154,6 +158,7 @@ final class HomeViewController: BaseViewController, HomeViewable {
         niManager = NIManager(mpcManager: mpcManager!)
     }
 }
+
 
 // MARK: - HomeViewController+Context
 
@@ -172,3 +177,4 @@ extension HomeViewController: UIViewControllerTransitioningDelegate {
         return FromTop2BottomPresentAnimator()
     }
 }
+
