@@ -19,12 +19,12 @@ protocol NotificationListPresentable: AnyObject {
     func didTapDismissButton()
 }
 
-protocol NotificationListInteractorOutput {
+protocol NotificationListInteractorOutput: AnyObject {
     func didFetchNotificationList(with: [WalkNoti])
 }
 
 final class NotificationListPresenter: NotificationListPresentable {
-    var view: (any NotificationListViewable)?
+    weak var view: (any NotificationListViewable)?
     var interactor: (any NotificationListInteractable)?
     var router: (any NotificationListRoutable)?
     var output: any NotificationListPresenterOutput

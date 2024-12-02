@@ -9,15 +9,11 @@ import Combine
 import UIKit
 
 protocol NotificationListRoutable: AnyObject, Routable {
-    var presenter: (any NotificationListPresentable)? { get set }
-
     func showWalkNotification(view: any NotificationListViewable, walkNoti: WalkNoti)
     func dismiss(view: any NotificationListViewable)
 }
 
 final class NotificationListRouter: NSObject, NotificationListRoutable {
-    var presenter: (any NotificationListPresentable)?
-
     func showWalkNotification(view: any NotificationListViewable, walkNoti: WalkNoti) {
         guard let view = view as? UIViewController else { return }
         let targetView = routeWalkNotification(walkNoti: walkNoti)
@@ -83,7 +79,6 @@ extension NotificationListModuleBuildable {
         presenter.interactor = interactor
         presenter.router = router
         interactor.presenter = presenter
-        router.presenter = presenter
 
         return view
     }

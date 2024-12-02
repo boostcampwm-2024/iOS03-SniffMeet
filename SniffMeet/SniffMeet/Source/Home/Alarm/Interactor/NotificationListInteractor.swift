@@ -11,7 +11,7 @@ protocol NotificationListInteractable: AnyObject {
 }
 
 final class NotificationListInteractor: NotificationListInteractable {
-    var presenter: (any NotificationListInteractorOutput)?
+    weak var presenter: (any NotificationListInteractorOutput)?
     private let requestNotiListUseCase: (any RequestNotiListUseCase)
 
     init(
