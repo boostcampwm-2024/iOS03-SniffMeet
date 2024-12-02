@@ -16,6 +16,7 @@ final class RequestWalkViewController: BaseViewController, RequestWalkViewable {
     var presenter: RequestWalkPresentable?
     private var cancellables: Set<AnyCancellable> = []
     private var address: Address?
+    private var textViewEdited: Bool = false
     private var dismissButton: UIButton = {
         let button = UIButton()
         button.setImage(UIImage(systemName: "xmark"), for: .normal)
@@ -183,7 +184,12 @@ final class RequestWalkViewController: BaseViewController, RequestWalkViewable {
             .store(in: &cancellables)
     }
     func updateSubmitButtonState() {
-        submitButton.isEnabled = (messageTextView.text.isEmpty == false) && (address != nil)
+        if textViewEdited == false {
+            submitButton.isEnabled = false
+        } else {
+            submitButton.isEnabled = (messageTextView.text.isEmpty == false) && (address != nil)
+        }
+        
     }
 }
 
@@ -201,7 +207,7 @@ extension RequestWalkViewController: UITextViewDelegate {
         if textView.text == Context.messagePlaceholder {
             textView.text = nil
             textView.textColor = .black
-            updateSubmitButtonState()
+            textViewEdited = true
         }
     }
     func textViewDidEndEditing(_ textView: UITextView) {
