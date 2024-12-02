@@ -61,7 +61,6 @@ final class RequestWalkViewController: BaseViewController, RequestWalkViewable {
     }
     override func configureAttributes() {
         hideKeyboardWhenTappedAround()
-        setButtonActions()
     }
     override func configureHierachy() {
         [titleLabel,
