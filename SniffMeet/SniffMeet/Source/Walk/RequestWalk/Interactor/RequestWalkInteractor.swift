@@ -52,7 +52,12 @@ final class RequestWalkInteractor: RequestWalkInteractable {
                                    senderName: myInfo.name,
                                    category: .walkRequest)
         Task {
-            try await requestWalkUseCase.execute(walkNoti: walkNoti)
+            do {
+                try await requestWalkUseCase.execute(walkNoti: walkNoti)
+
+            } catch {
+                SNMLogger.error("RequestWalkInteractor: \(error.localizedDescription)")
+            }
         }
         presenter?.didSendWalkRequest()
     }
