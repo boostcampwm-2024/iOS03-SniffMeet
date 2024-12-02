@@ -29,6 +29,7 @@ extension PushNotificationRequest: SNMRequestConvertible {
     
     var requestType: SNMRequestType {
         var header: [String: String] = [:]
+        header["Content-Type"] = "application/json"
         switch self {
         case .sendWalkRequest(let data):
             return SNMRequestType.compositePlain(

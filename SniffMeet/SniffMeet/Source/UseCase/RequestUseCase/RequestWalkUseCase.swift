@@ -24,7 +24,7 @@ struct RequestWalkUseCaseImpl: RequestWalkUseCase {
         let (_, response) = try await session.data(for: request)
     
         if let response = response as? HTTPURLResponse {
-            print(response)
+            SNMLogger.log("RequestWalkUseCaseImpl: \(response)")
         }
     }
 }
