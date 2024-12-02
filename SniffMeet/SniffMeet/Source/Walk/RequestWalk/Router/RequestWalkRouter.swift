@@ -43,7 +43,8 @@ final class RequestWalkRouter: RequestWalkRoutable {
 extension RequestWalkRouter: RequestWalkBuildable {
     /// 서버에 요청할 반려견 mateID를 함께 전달
     static func createRequestWalkModule(mate: Mate) -> UIViewController {
-        let requestWalkUseCase: RequestWalkUseCase = RequestWalkUseCaseImpl()
+        let requestWalkUseCase: RequestWalkUseCase =
+        RequestWalkUseCaseImpl(remoteDatabaseManager: SupabaseDatabaseManager.shared)
         let requestProfileImageUseCase:
         RequestProfileImageUseCase = RequestProfileImageUseCaseImpl(
             remoteImageManager: SupabaseStorageManager(
