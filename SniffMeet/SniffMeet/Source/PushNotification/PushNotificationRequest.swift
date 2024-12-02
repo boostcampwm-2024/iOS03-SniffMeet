@@ -8,32 +8,36 @@ import Foundation
 
 enum PushNotificationRequest {
     case sendWalkRequest(data: Data)
-    //case refreshUser(accessToken: String)
+    case sendWalkRespond(data: Data)
 }
 
 extension PushNotificationRequest: SNMRequestConvertible {
     var endpoint: Endpoint {
         switch self {
-        case .sendWalkRequest(_):
+        case .sendWalkRequest:
             return Endpoint(
                 baseURL: PushNotificationConfig.baseURL,
-                path: "/notification/walkRequest",
+                path: "notification/walkRequest",
                 method: .post
             )
+        case .sendWalkRespond:
+            return Endpoint(baseURL: PushNotificationConfig.baseURL,
+                            path: "notification/walkRespond",
+                            method: .post)
         }
     }
     
     var requestType: SNMRequestType {
-        var header = [
-            "Content-Type": "application/json"
-        ]
+        var header: [String: String] = [:]
         switch self {
         case .sendWalkRequest(let data):
             return SNMRequestType.compositePlain(
                 header: header,
                 body: data
             )
+        case .sendWalkRespond(let data):
+            return SNMRequestType.compositePlain(header: header,
+                                                 body: data)
         }
     }
 }
-
