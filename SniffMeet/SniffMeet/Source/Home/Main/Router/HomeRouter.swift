@@ -38,7 +38,7 @@ final class HomeRouter: NSObject, HomeRoutable {
     }
     func showMateRequestView(homeView: any HomeViewable, data: DogProfileDTO) {
         guard let homeView = homeView as? UIViewController else { return }
-        let requestMateViewController = RequestMateViewController(profile: data)
+        let requestMateViewController = RequestMateRouter.createRequestMateModule(profile: data)
         requestMateViewController.modalPresentationStyle = .fullScreen
         
         if let homeView = homeView as?  UIViewControllerTransitioningDelegate {
