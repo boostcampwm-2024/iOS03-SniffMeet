@@ -48,15 +48,21 @@ final class RespondWalkInteractor: RespondWalkInteractable {
     
     func fetchSenderInfo(userId: UUID) {
         Task {
-            guard let senderInfo =  await requestUserInfoUseCase.execute(mateId: userId) else {
-                // presenter?.didFailToFetchWalkRequest(error:)
-                return
+            do {
+                guard let senderInfo = try await requestUserInfoUseCase.execute(
+                    mateId: userId
+                ) else {
+                    presenter?.didFailToFetchWalkRequest(
+                        error: SupabaseError.notFound
+                    )
+                    return
+                }
+                presenter?.didFetchUserInfo(senderInfo: senderInfo)
+                guard let profileImageURL = senderInfo.profileImageURL else {return }
+                fetchProfileImage(urlString: profileImageURL)
+            } catch {
+                presenter?.didFailToFetchWalkRequest(error: error)
             }
-            presenter?.didFetchUserInfo(senderInfo: senderInfo)
-            guard let profileImageURL = senderInfo.profileImageURL else {
-                return
-            }
-            fetchProfileImage(urlString: profileImageURL)
         }
     }
     
@@ -77,7 +83,7 @@ final class RespondWalkInteractor: RespondWalkInteractable {
     func convertLocationToText(latitude: Double, longtitude: Double) async {
         Task {
             let locationText: String? = await convertLocationToTextUseCase.execute(
-                location: CLLocation(latitude: latitude, longitude: longtitude)
+                latitude: latitude, longtitude: longtitude
             )
             presenter?.didConvertLocationToText(with: locationText)
         }

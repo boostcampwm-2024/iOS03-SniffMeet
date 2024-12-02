@@ -205,6 +205,13 @@ final class RespondWalkViewController: BaseViewController, RespondWalkViewable {
                 self?.profileView.configureImage(with: image)
             }
             .store(in: &cancellables)
+
+        locationView.tapPublisher
+            .receive(on: RunLoop.main)
+            .sink { [weak self] _ in
+                self?.presenter?.didTapLocationViewButton()
+            }
+            .store(in: &cancellables)
     }
 }
 
