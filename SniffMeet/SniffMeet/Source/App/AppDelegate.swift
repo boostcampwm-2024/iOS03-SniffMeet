@@ -23,13 +23,13 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
         _ application: UIApplication,
         didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data
     ) {
-        let registerDeviceTokenUseCase = RegisterDeviceTokenUseCaseImpl(keychainManager: KeychainManager.shared)
-        Task {
-            do {
-                try await registerDeviceTokenUseCase.execute(deviceToken: deviceToken)
-            } catch {
-                SNMLogger.error(error.localizedDescription)
-            }
+        let registerDeviceTokenUseCase = RegisterDeviceTokenUseCaseImpl(
+            keychainManager: KeychainManager.shared
+        )
+        do {
+            try registerDeviceTokenUseCase.execute(deviceToken: deviceToken)
+        } catch {
+            SNMLogger.error("device token register \(error.localizedDescription)")
         }
     }
     func application(

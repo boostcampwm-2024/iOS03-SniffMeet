@@ -58,10 +58,11 @@ final class RespondWalkInteractor: RespondWalkInteractable {
                     return
                 }
                 presenter?.didFetchUserInfo(senderInfo: senderInfo)
+                guard let profileImageURL = senderInfo.profileImageURL else {return }
+                fetchProfileImage(urlString: profileImageURL)
             } catch {
                 presenter?.didFailToFetchWalkRequest(error: error)
             }
-            fetchProfileImage(urlString: profileImageURL)
         }
     }
     
