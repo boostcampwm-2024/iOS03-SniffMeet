@@ -63,7 +63,8 @@ final class SessionViewController: BaseViewController {
         if let walkNoti {
             appRouter?.initializeViewAndPresentRequestView(walkNoti: walkNoti)
         } else if let isAccepted {
-            appRouter?.initializeViewAndPresentRespondView(isAccepted: isAccepted)
+            // FIXME: - 수정 필요
+//            appRouter?.initializeViewAndPresentRespondView(isAccepted: isAccepted)
         } else {
             appRouter?.displayInitialScreen()
         }

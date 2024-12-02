@@ -11,8 +11,8 @@ final class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     var window: UIWindow?
     var appRouter: AppRouter?
     private weak var sessionController: SessionViewController?
-    private let convertToRequestAPS: any ConvertToRequestAPSUseCase = ConverToRequestAPSUseCaseImpl()
-    private let convertToResponsdAPS: any ConvertToRespondAPSUseCase = ConvertToRespondAPSUseCaseImpl()
+//    private let convertToRequestAPS: any ConvertToRequestAPSUseCase = ConverToRequestAPSUseCaseImpl()
+//    private let convertToResponsdAPS: any ConvertToRespondAPSUseCase = ConvertToRespondAPSUseCaseImpl()
 
     func scene(
         _ scene: UIScene,
@@ -35,11 +35,11 @@ final class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     /// push notification을 통해 앱에 처음 진입한 경우 라우팅을 진행합니다.
     private func routePushNotification(response: UNNotificationResponse) {
         let userInfo = response.notification.request.content.userInfo
-        if let requestAPS = convertToRequestAPS.execute(userInfo: userInfo) {
-            sessionController?.walkNoti = requestAPS.walkRequest.toEntity()
-        } else if let respondAPS = convertToResponsdAPS.execute(userInfo: userInfo) {
-            // TODO: 산책 거절 / 수락 화면으로 라우팅
-            sessionController?.isAccepted = respondAPS.isAccepted
-        }
+//        if let requestAPS = convertToRequestAPS.execute(userInfo: userInfo) {
+//            sessionController?.walkNoti = requestAPS.walkRequest.toEntity()
+//        } else if let respondAPS = convertToResponsdAPS.execute(userInfo: userInfo) {
+//            // TODO: 산책 거절 / 수락 화면으로 라우팅
+//            sessionController?.isAccepted = respondAPS.isAccepted
+//        }
     }
 }
