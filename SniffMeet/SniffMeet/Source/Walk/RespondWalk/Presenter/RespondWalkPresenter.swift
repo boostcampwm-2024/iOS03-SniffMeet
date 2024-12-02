@@ -67,20 +67,7 @@ final class RespondWalkPresenter: RespondWalkPresentable {
         }
     }
     func respondWalkRequest(isAccepted: Bool) {
-        let walkNotiCategory: WalkNotiCategory = isAccepted == true ? .walkAccepted : .walkDeclined
-        guard let date = noti.createdAt?.convertDateToISO8601String(),
-              let id = SessionManager.shared.session?.user?.userID else { return }
-        
-        let walkNoti = WalkNotiDTO(id: noti.id,
-                                   createdAt: date,
-                                   message: noti.message,
-                                   latitude: noti.latitude,
-                                   longtitude: noti.longtitude,
-                                   senderId: id,
-                                   receiverId: noti.senderId,
-                                   senderName: noti.senderName,
-                                   category: walkNotiCategory)
-        interactor?.respondWalkRequest(walkNoti: walkNoti)
+        interactor?.respondWalkRequest(isAccepted: isAccepted, receivedNoti: noti)
     }
     func dismissView() {
         guard let view else {return}
@@ -102,14 +89,12 @@ extension RespondWalkPresenter: RespondWalkInteractorOutput {
     }
     
     func didFetchUserInfo(senderInfo: UserInfoDTO) {
+        let walkRequest = WalkRequest(mate: senderInfo.toEntity(),
+                                      address: Address(longtitude: noti.longtitude,
+                                                       latitude: noti.latitude),
+                                      message: noti.message)
         Task { @MainActor [weak self] in
-            guard let self else { return }
-            let walkRequest = WalkRequest(mate: senderInfo.toEntity(),
-                                          address: Address(longtitude: self.noti.longtitude,
-                                                           latitude: self.noti.latitude),
-                                          message: self.noti.message)
-
-            self.view?.showRequestDetail(request: walkRequest)
+            self?.view?.showRequestDetail(request: walkRequest)
         }
     }
     
