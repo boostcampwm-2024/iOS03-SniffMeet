@@ -43,7 +43,7 @@
 		320044922CED78D200D08B6D /* RespondWalkPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 320044912CED78C100D08B6D /* RespondWalkPresenter.swift */; };
 		320044942CED80B700D08B6D /* RespondWalkInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 320044932CED80B000D08B6D /* RespondWalkInteractor.swift */; };
 		320044962CED80DA00D08B6D /* RespondWalkRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 320044952CED80D100D08B6D /* RespondWalkRouter.swift */; };
-		320044982CED81F400D08B6D /* WalkRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 320044972CED81EF00D08B6D /* WalkRequest.swift */; };
+		320044982CED81F400D08B6D /* WalkNoti.swift in Sources */ = {isa = PBXBuildFile; fileRef = 320044972CED81EF00D08B6D /* WalkNoti.swift */; };
 		3200449C2CEDA87800D08B6D /* RespondWalkRequestUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3200449B2CEDA86B00D08B6D /* RespondWalkRequestUseCase.swift */; };
 		320045352CF4353900D08B6D /* SNMFileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 320045342CF4353400D08B6D /* SNMFileManager.swift */; };
 		320045362CF4353900D08B6D /* SNMFileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 320045342CF4353400D08B6D /* SNMFileManager.swift */; };
@@ -56,6 +56,10 @@
 		320047852CF80B2600D08B6D /* MateList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 320047842CF80B2200D08B6D /* MateList.swift */; };
 		320047A82CFB0E2B00D08B6D /* NotiListDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 320047A72CFB0E2500D08B6D /* NotiListDTO.swift */; };
 		320047AA2CFB1C6200D08B6D /* RequestNotiListUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 320047A92CFB1C5300D08B6D /* RequestNotiListUseCase.swift */; };
+		320047B92CFD367300D08B6D /* PushNotificationConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 320047B82CFD366E00D08B6D /* PushNotificationConfig.swift */; };
+		320047BB2CFD368100D08B6D /* PushNotificationRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 320047BA2CFD367E00D08B6D /* PushNotificationRequest.swift */; };
+		320047B62CFCB8D000D08B6D /* EventConstant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 320047B52CFCB8CA00D08B6D /* EventConstant.swift */; };
+		320047B42CFC90C100D08B6D /* SessionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 320047B32CFC90C100D08B6D /* SessionViewController.swift */; };
 		9937361D2CF80D6600E3DD58 /* RequestUserInfoRemoteUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9937361C2CF80D5200E3DD58 /* RequestUserInfoRemoteUseCase.swift */; };
 		993736422CFCACB100E3DD58 /* UpdateUserInfoUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 993736412CFCACA800E3DD58 /* UpdateUserInfoUseCase.swift */; };
 		995D94262CE32ECE005A47BF /* Extension + Keyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 995D94252CE32EC1005A47BF /* Extension + Keyboard.swift */; };
@@ -112,6 +116,15 @@
 		FD06342A2CE596D0003C9D6B /* NetworkProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD0634292CE596C2003C9D6B /* NetworkProvider.swift */; };
 		FD06342C2CE5984D003C9D6B /* SNMNetworkResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD06342B2CE59843003C9D6B /* SNMNetworkResponse.swift */; };
 		FD0634312CE62578003C9D6B /* AnyEncodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD0634302CE62573003C9D6B /* AnyEncodable.swift */; };
+		FD11526F2CFB33B6008955C4 /* RespondMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD11526E2CFB33B0008955C4 /* RespondMapViewController.swift */; };
+		FD1152712CFB3872008955C4 /* RespondMapPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD1152702CFB386B008955C4 /* RespondMapPresenter.swift */; };
+		FD1152732CFB3A8A008955C4 /* RespondMapRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD1152722CFB3A83008955C4 /* RespondMapRouter.swift */; };
+		FD1152752CFB9F44008955C4 /* CheckFirstLaunchUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD1152742CFB9F33008955C4 /* CheckFirstLaunchUseCase.swift */; };
+		FD1152772CFBA089008955C4 /* SaveFirstLaunchUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD1152762CFBA083008955C4 /* SaveFirstLaunchUseCase.swift */; };
+		FD1152792CFC3B29008955C4 /* SaveDeviceTokenDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD1152782CFC3B23008955C4 /* SaveDeviceTokenDTO.swift */; };
+		FD11527B2CFC900F008955C4 /* NotificationListPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD11527A2CFC9006008955C4 /* NotificationListPresenter.swift */; };
+		FD11527D2CFC901A008955C4 /* NotificationListRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD11527C2CFC9015008955C4 /* NotificationListRouter.swift */; };
+		FD11527F2CFC9029008955C4 /* NotificationListInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD11527E2CFC9024008955C4 /* NotificationListInteractor.swift */; };
 		FD119F422CED865B00BE22BD /* SelectLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD119F412CED865000BE22BD /* SelectLocationViewController.swift */; };
 		FD119F462CED868D00BE22BD /* ConvertLocationToTextUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD119F452CED867600BE22BD /* ConvertLocationToTextUseCase.swift */; };
 		FD119F482CED872C00BE22BD /* RequestLocationAuthUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD119F472CED872500BE22BD /* RequestLocationAuthUseCase.swift */; };
@@ -157,7 +170,6 @@
 		FD331A8F2CF33F6700F39426 /* SupabaseStorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD331A8D2CF33F6100F39426 /* SupabaseStorageManager.swift */; };
 		FD331A912CF3461B00F39426 /* NotificationListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD331A902CF3461600F39426 /* NotificationListViewController.swift */; };
 		FD331A932CF3463200F39426 /* NotificationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD331A922CF3462E00F39426 /* NotificationCell.swift */; };
-		FD331A952CF3464000F39426 /* PushNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD331A942CF3463E00F39426 /* PushNotification.swift */; };
 		FD3A033F2CD8CF460047B7ED /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FD3A03392CD8CF460047B7ED /* Assets.xcassets */; };
 		FD3A03412CD8CF460047B7ED /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FD3A033C2CD8CF460047B7ED /* LaunchScreen.storyboard */; };
 		FD3A03422CD8CF460047B7ED /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD3A03382CD8CF460047B7ED /* AppDelegate.swift */; };
@@ -206,11 +218,10 @@
 		FDE14A522CE8D338001F7A9D /* SNMRequestType.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDE14A512CE8D331001F7A9D /* SNMRequestType.swift */; };
 		FDE768902CF7827D00B5DE88 /* AnyDecodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDE7688F2CF7827900B5DE88 /* AnyDecodable.swift */; };
 		FDE768922CF7828700B5DE88 /* AnyJSONSerializable.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDE768912CF7828600B5DE88 /* AnyJSONSerializable.swift */; };
-		FDE768942CF782E900B5DE88 /* WalkAPS.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDE768932CF782E500B5DE88 /* WalkAPS.swift */; };
+		FDE768942CF782E900B5DE88 /* WalkAPSDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDE768932CF782E500B5DE88 /* WalkAPSDTO.swift */; };
 		FDE768962CF7831000B5DE88 /* RegisterDeviceTokenUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDE768952CF7830F00B5DE88 /* RegisterDeviceTokenUseCase.swift */; };
 		FDE768982CF7836C00B5DE88 /* RemoteSaveDeviceTokenUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDE768972CF7836B00B5DE88 /* RemoteSaveDeviceTokenUseCase.swift */; };
-		FDE7689A2CF783EB00B5DE88 /* ConvertToRequestAPSUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDE768992CF783EA00B5DE88 /* ConvertToRequestAPSUseCase.swift */; };
-		FDE7689C2CF783FE00B5DE88 /* ConvertToRespondAPSUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDE7689B2CF783FD00B5DE88 /* ConvertToRespondAPSUseCase.swift */; };
+		FDE7689A2CF783EB00B5DE88 /* ConvertToWalkAPSUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDE768992CF783EA00B5DE88 /* ConvertToWalkAPSUseCase.swift */; };
 		FDE7689F2CF7858F00B5DE88 /* Extension + UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDE7689E2CF7858D00B5DE88 /* Extension + UIViewController.swift */; };
 		FDE768A12CF7873600B5DE88 /* RequestNotificationAuthUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDE768A02CF7872E00B5DE88 /* RequestNotificationAuthUseCase.swift */; };
 		FDEAEA7A2CE3148D005890FA /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDEAEA792CE3148C005890FA /* BaseView.swift */; };
@@ -266,7 +277,7 @@
 		320044912CED78C100D08B6D /* RespondWalkPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RespondWalkPresenter.swift; sourceTree = "<group>"; };
 		320044932CED80B000D08B6D /* RespondWalkInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RespondWalkInteractor.swift; sourceTree = "<group>"; };
 		320044952CED80D100D08B6D /* RespondWalkRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RespondWalkRouter.swift; sourceTree = "<group>"; };
-		320044972CED81EF00D08B6D /* WalkRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalkRequest.swift; sourceTree = "<group>"; };
+		320044972CED81EF00D08B6D /* WalkNoti.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalkNoti.swift; sourceTree = "<group>"; };
 		3200449B2CEDA86B00D08B6D /* RespondWalkRequestUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RespondWalkRequestUseCase.swift; sourceTree = "<group>"; };
 		320045342CF4353400D08B6D /* SNMFileManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SNMFileManager.swift; sourceTree = "<group>"; };
 		320045392CF43F3800D08B6D /* FileManagerTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileManagerTest.swift; sourceTree = "<group>"; };
@@ -277,6 +288,10 @@
 		320047842CF80B2200D08B6D /* MateList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MateList.swift; sourceTree = "<group>"; };
 		320047A72CFB0E2500D08B6D /* NotiListDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotiListDTO.swift; sourceTree = "<group>"; };
 		320047A92CFB1C5300D08B6D /* RequestNotiListUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestNotiListUseCase.swift; sourceTree = "<group>"; };
+		320047B52CFCB8CA00D08B6D /* EventConstant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventConstant.swift; sourceTree = "<group>"; };
+		320047B82CFD366E00D08B6D /* PushNotificationConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushNotificationConfig.swift; sourceTree = "<group>"; };
+		320047BA2CFD367E00D08B6D /* PushNotificationRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushNotificationRequest.swift; sourceTree = "<group>"; };
+		320047B32CFC90C100D08B6D /* SessionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionViewController.swift; sourceTree = "<group>"; };
 		9937361C2CF80D5200E3DD58 /* RequestUserInfoRemoteUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestUserInfoRemoteUseCase.swift; sourceTree = "<group>"; };
 		993736412CFCACA800E3DD58 /* UpdateUserInfoUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateUserInfoUseCase.swift; sourceTree = "<group>"; };
 		995D94252CE32EC1005A47BF /* Extension + Keyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension + Keyboard.swift"; sourceTree = "<group>"; };
@@ -330,6 +345,15 @@
 		FD0634292CE596C2003C9D6B /* NetworkProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkProvider.swift; sourceTree = "<group>"; };
 		FD06342B2CE59843003C9D6B /* SNMNetworkResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SNMNetworkResponse.swift; sourceTree = "<group>"; };
 		FD0634302CE62573003C9D6B /* AnyEncodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnyEncodable.swift; sourceTree = "<group>"; };
+		FD11526E2CFB33B0008955C4 /* RespondMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RespondMapViewController.swift; sourceTree = "<group>"; };
+		FD1152702CFB386B008955C4 /* RespondMapPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RespondMapPresenter.swift; sourceTree = "<group>"; };
+		FD1152722CFB3A83008955C4 /* RespondMapRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RespondMapRouter.swift; sourceTree = "<group>"; };
+		FD1152742CFB9F33008955C4 /* CheckFirstLaunchUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckFirstLaunchUseCase.swift; sourceTree = "<group>"; };
+		FD1152762CFBA083008955C4 /* SaveFirstLaunchUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveFirstLaunchUseCase.swift; sourceTree = "<group>"; };
+		FD1152782CFC3B23008955C4 /* SaveDeviceTokenDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveDeviceTokenDTO.swift; sourceTree = "<group>"; };
+		FD11527A2CFC9006008955C4 /* NotificationListPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationListPresenter.swift; sourceTree = "<group>"; };
+		FD11527C2CFC9015008955C4 /* NotificationListRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationListRouter.swift; sourceTree = "<group>"; };
+		FD11527E2CFC9024008955C4 /* NotificationListInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationListInteractor.swift; sourceTree = "<group>"; };
 		FD119F412CED865000BE22BD /* SelectLocationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectLocationViewController.swift; sourceTree = "<group>"; };
 		FD119F452CED867600BE22BD /* ConvertLocationToTextUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConvertLocationToTextUseCase.swift; sourceTree = "<group>"; };
 		FD119F472CED872500BE22BD /* RequestLocationAuthUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestLocationAuthUseCase.swift; sourceTree = "<group>"; };
@@ -349,7 +373,6 @@
 		FD331A8D2CF33F6100F39426 /* SupabaseStorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupabaseStorageManager.swift; sourceTree = "<group>"; };
 		FD331A902CF3461600F39426 /* NotificationListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationListViewController.swift; sourceTree = "<group>"; };
 		FD331A922CF3462E00F39426 /* NotificationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationCell.swift; sourceTree = "<group>"; };
-		FD331A942CF3463E00F39426 /* PushNotification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushNotification.swift; sourceTree = "<group>"; };
 		FD3A03202CD8CDE50047B7ED /* SniffMeet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SniffMeet.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FD3A03382CD8CF460047B7ED /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FD3A03392CD8CF460047B7ED /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -388,11 +411,10 @@
 		FDE14A512CE8D331001F7A9D /* SNMRequestType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SNMRequestType.swift; sourceTree = "<group>"; };
 		FDE7688F2CF7827900B5DE88 /* AnyDecodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnyDecodable.swift; sourceTree = "<group>"; };
 		FDE768912CF7828600B5DE88 /* AnyJSONSerializable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnyJSONSerializable.swift; sourceTree = "<group>"; };
-		FDE768932CF782E500B5DE88 /* WalkAPS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalkAPS.swift; sourceTree = "<group>"; };
+		FDE768932CF782E500B5DE88 /* WalkAPSDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalkAPSDTO.swift; sourceTree = "<group>"; };
 		FDE768952CF7830F00B5DE88 /* RegisterDeviceTokenUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterDeviceTokenUseCase.swift; sourceTree = "<group>"; };
 		FDE768972CF7836B00B5DE88 /* RemoteSaveDeviceTokenUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteSaveDeviceTokenUseCase.swift; sourceTree = "<group>"; };
-		FDE768992CF783EA00B5DE88 /* ConvertToRequestAPSUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConvertToRequestAPSUseCase.swift; sourceTree = "<group>"; };
-		FDE7689B2CF783FD00B5DE88 /* ConvertToRespondAPSUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConvertToRespondAPSUseCase.swift; sourceTree = "<group>"; };
+		FDE768992CF783EA00B5DE88 /* ConvertToWalkAPSUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConvertToWalkAPSUseCase.swift; sourceTree = "<group>"; };
 		FDE7689D2CF7852A00B5DE88 /* SniffMeet.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SniffMeet.entitlements; sourceTree = "<group>"; };
 		FDE7689E2CF7858D00B5DE88 /* Extension + UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension + UIViewController.swift"; sourceTree = "<group>"; };
 		FDE768A02CF7872E00B5DE88 /* RequestNotificationAuthUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestNotificationAuthUseCase.swift; sourceTree = "<group>"; };
@@ -477,10 +499,8 @@
 		320044792CEC490600D08B6D /* Entity */ = {
 			isa = PBXGroup;
 			children = (
-				FDE768932CF782E500B5DE88 /* WalkAPS.swift */,
-				FD331A942CF3463E00F39426 /* PushNotification.swift */,
 				FD331A512CF23BCE00F39426 /* WalkLog.swift */,
-				320044972CED81EF00D08B6D /* WalkRequest.swift */,
+				320044972CED81EF00D08B6D /* WalkNoti.swift */,
 				A23A3B722CF4683F00A58705 /* Mate.swift */,
 				320044522CE59A8100D08B6D /* UserInfo.swift */,
 				A2BD49F92CF770F900AC72A7 /* DogTraits */,
@@ -502,6 +522,7 @@
 		3200448B2CEC877500D08B6D /* View */ = {
 			isa = PBXGroup;
 			children = (
+				FD11526E2CFB33B0008955C4 /* RespondMapViewController.swift */,
 				3200448C2CEC877C00D08B6D /* RespondWalkViewController.swift */,
 			);
 			path = View;
@@ -518,6 +539,7 @@
 		3200448F2CED77AC00D08B6D /* Presenter */ = {
 			isa = PBXGroup;
 			children = (
+				FD1152702CFB386B008955C4 /* RespondMapPresenter.swift */,
 				320044912CED78C100D08B6D /* RespondWalkPresenter.swift */,
 			);
 			path = Presenter;
@@ -526,6 +548,7 @@
 		320044902CED77B200D08B6D /* Router */ = {
 			isa = PBXGroup;
 			children = (
+				FD1152722CFB3A83008955C4 /* RespondMapRouter.swift */,
 				320044952CED80D100D08B6D /* RespondWalkRouter.swift */,
 			);
 			path = Router;
@@ -534,8 +557,7 @@
 		320047A32CF9E24E00D08B6D /* ComputeUseCase */ = {
 			isa = PBXGroup;
 			children = (
-				FDE7689B2CF783FD00B5DE88 /* ConvertToRespondAPSUseCase.swift */,
-				FDE768992CF783EA00B5DE88 /* ConvertToRequestAPSUseCase.swift */,
+				FDE768992CF783EA00B5DE88 /* ConvertToWalkAPSUseCase.swift */,
 				3200453E2CF5A88A00D08B6D /* CalculateTimeLimitUseCase.swift */,
 				FD119F452CED867600BE22BD /* ConvertLocationToTextUseCase.swift */,
 			);
@@ -545,6 +567,7 @@
 		320047A42CF9E2A200D08B6D /* RequestUseCase */ = {
 			isa = PBXGroup;
 			children = (
+				FD1152742CFB9F33008955C4 /* CheckFirstLaunchUseCase.swift */,
 				320047A92CFB1C5300D08B6D /* RequestNotiListUseCase.swift */,
 				FDE768A02CF7872E00B5DE88 /* RequestNotificationAuthUseCase.swift */,
 				A2BD4A002CF7AD4300AC72A7 /* RequestMateInfoUseCase.swift */,
@@ -563,6 +586,7 @@
 			isa = PBXGroup;
 			children = (
 				993736412CFCACA800E3DD58 /* UpdateUserInfoUseCase.swift */,
+				FD1152762CFBA083008955C4 /* SaveFirstLaunchUseCase.swift */,
 				A266A25F2CF5CF4A002C2B3A /* CreateAccountUseCase.swift */,
 				FD880B5F2CF432780093BEB9 /* SaveProfileImageUseCase.swift */,
 				3200445D2CE5CA1A00D08B6D /* SaveUserInfoUseCase.swift */,
@@ -579,6 +603,15 @@
 				320047642CF6B83B00D08B6D /* RespondMateRequestUseCase.swift */,
 			);
 			path = RespondUseCase;
+			sourceTree = "<group>";
+		};
+		320047B72CFD365700D08B6D /* PushNotification */ = {
+			isa = PBXGroup;
+			children = (
+				320047BA2CFD367E00D08B6D /* PushNotificationRequest.swift */,
+				320047B82CFD366E00D08B6D /* PushNotificationConfig.swift */,
+			);
+			path = PushNotification;
 			sourceTree = "<group>";
 		};
 		995D94602CE598E1005A47BF /* NI */ = {
@@ -663,6 +696,8 @@
 		A2BD49F02CF72A8800AC72A7 /* DTO */ = {
 			isa = PBXGroup;
 			children = (
+				FDE768932CF782E500B5DE88 /* WalkAPSDTO.swift */,
+				FD1152782CFC3B23008955C4 /* SaveDeviceTokenDTO.swift */,
 				320047A72CFB0E2500D08B6D /* NotiListDTO.swift */,
 				320047842CF80B2200D08B6D /* MateList.swift */,
 				995D94D12CEDF031005A47BF /* MPCProfileDropDTO.swift */,
@@ -855,6 +890,8 @@
 		FDA491332CD9FE7C00A36FB0 /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				320047B72CFD365700D08B6D /* PushNotification */,
+				A2BD4A022CF83CEB00AC72A7 /* EditProfile */,
 				A2BD49F02CF72A8800AC72A7 /* DTO */,
 				320044792CEC490600D08B6D /* Entity */,
 				320044782CEC48FB00D08B6D /* UseCase */,
@@ -877,6 +914,8 @@
 		FDA491342CD9FE8000A36FB0 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				FD331A922CF3462E00F39426 /* NotificationCell.swift */,
+				FD331A902CF3461600F39426 /* NotificationListViewController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -884,6 +923,7 @@
 		FDA491352CD9FE8600A36FB0 /* Interactor */ = {
 			isa = PBXGroup;
 			children = (
+				FD11527E2CFC9024008955C4 /* NotificationListInteractor.swift */,
 			);
 			path = Interactor;
 			sourceTree = "<group>";
@@ -891,20 +931,15 @@
 		FDA491362CD9FE8C00A36FB0 /* Presenter */ = {
 			isa = PBXGroup;
 			children = (
+				FD11527A2CFC9006008955C4 /* NotificationListPresenter.swift */,
 			);
 			path = Presenter;
-			sourceTree = "<group>";
-		};
-		FDA491372CD9FE9300A36FB0 /* Entity */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Entity;
 			sourceTree = "<group>";
 		};
 		FDA491382CD9FEB000A36FB0 /* Router */ = {
 			isa = PBXGroup;
 			children = (
+				FD11527C2CFC9015008955C4 /* NotificationListRouter.swift */,
 			);
 			path = Router;
 			sourceTree = "<group>";
@@ -916,6 +951,7 @@
 				FD3A03382CD8CF460047B7ED /* AppDelegate.swift */,
 				A2C328912CE3BEA000D255AB /* AppRouter.swift */,
 				FD5134222CEC2BDB002E76F3 /* Routable.swift */,
+				320047B32CFC90C100D08B6D /* SessionViewController.swift */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -1089,7 +1125,6 @@
 				FDA491342CD9FE8000A36FB0 /* View */,
 				FDA491352CD9FE8600A36FB0 /* Interactor */,
 				FDA491362CD9FE8C00A36FB0 /* Presenter */,
-				FDA491372CD9FE9300A36FB0 /* Entity */,
 				FDA491382CD9FEB000A36FB0 /* Router */,
 			);
 			path = Alarm;
@@ -1273,8 +1308,6 @@
 		FDA491692CDA7C0B00A36FB0 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				FD331A922CF3462E00F39426 /* NotificationCell.swift */,
-				FD331A902CF3461600F39426 /* NotificationListViewController.swift */,
 				A2F825D02CDF4BA6000C5419 /* HomeViewController.swift */,
 				A2F825DC2CDFBEB4000C5419 /* ProfileCardView.swift */,
 			);
@@ -1571,6 +1604,7 @@
 		FDE768862CF7810E00B5DE88 /* Design System */ = {
 			isa = PBXGroup;
 			children = (
+				320047B52CFCB8CA00D08B6D /* EventConstant.swift */,
 				3200438D2CDF3D7F00D08B6D /* InputTextField.swift */,
 				3200438E2CDF3D7F00D08B6D /* KeywordButton.swift */,
 				3200438F2CDF3D7F00D08B6D /* KeywordView.swift */,
@@ -1845,7 +1879,6 @@
 				995D94A82CECEF91005A47BF /* RequestMateViewController.swift in Sources */,
 				A2BA1B962CF2606B0080575A /* MateListInteractor.swift in Sources */,
 				A202A1172CEDD5EF00B98203 /* SupabaseDatabaseRequest.swift in Sources */,
-				FD331A952CF3464000F39426 /* PushNotification.swift in Sources */,
 				FD3A03432CD8CF460047B7ED /* SceneDelegate.swift in Sources */,
 				99FA4E792CE0FBBF00553C2E /* ProfileInputViewController.swift in Sources */,
 				FD8020FE2CF8C8DE0089B349 /* Extension + UIImage.swift in Sources */,
@@ -1855,17 +1888,20 @@
 				FDE768982CF7836C00B5DE88 /* RemoteSaveDeviceTokenUseCase.swift in Sources */,
 				FD119F462CED868D00BE22BD /* ConvertLocationToTextUseCase.swift in Sources */,
 				A20E71522CEC5FE900272B25 /* SupabaseUserResponse.swift in Sources */,
+				320047B42CFC90C100D08B6D /* SessionViewController.swift in Sources */,
 				320045362CF4353900D08B6D /* SNMFileManager.swift in Sources */,
 				320044582CE5B04C00D08B6D /* ProfileCreateRouter.swift in Sources */,
 				A25BE4582CEBB95C00886763 /* SupabaseRefreshResponse.swift in Sources */,
 				FDEAEA7C2CE314A7005890FA /* BaseViewController.swift in Sources */,
 				FDE768A12CF7873600B5DE88 /* RequestNotificationAuthUseCase.swift in Sources */,
+				FD1152712CFB3872008955C4 /* RespondMapPresenter.swift in Sources */,
 				320047852CF80B2600D08B6D /* MateList.swift in Sources */,
 				A21435F72CE20D2500564A4D /* TabBarController.swift in Sources */,
 				320043762CDCA18E00D08B6D /* (null) in Sources */,
 				995D94D22CEDF037005A47BF /* MPCProfileDropDTO.swift in Sources */,
 				A20E71502CEC595C00272B25 /* SupabaseError.swift in Sources */,
 				A20E71502CEC595C00272B25 /* SupabaseError.swift in Sources */,
+				FD11527D2CFC901A008955C4 /* NotificationListRouter.swift in Sources */,
 				FDCD02CF2CE917D800B627D8 /* MockRequest.swift in Sources */,
 				A2BD49FD2CF7712000AC72A7 /* Size.swift in Sources */,
 				A2F825DD2CDFBEB4000C5419 /* ProfileCardView.swift in Sources */,
@@ -1878,6 +1914,7 @@
 				320044712CEB45E000D08B6D /* RequestWalkPresenter.swift in Sources */,
 				995D94262CE32ECE005A47BF /* Extension + Keyboard.swift in Sources */,
 				993736422CFCACB100E3DD58 /* UpdateUserInfoUseCase.swift in Sources */,
+				320047B62CFCB8D000D08B6D /* EventConstant.swift in Sources */,
 				3200441C2CE48C5C00D08B6D /* MPCAdvertiser.swift in Sources */,
 				FD880B5A2CECE8FC0093BEB9 /* SNMLogger.swift in Sources */,
 				A2F825D12CDF4BA6000C5419 /* HomeViewController.swift in Sources */,
@@ -1887,13 +1924,16 @@
 				A2BA1B9A2CF260A50080575A /* MateListRouter.swift in Sources */,
 				320043972CDF493C00D08B6D /* Extension + UIView.swift in Sources */,
 				FD119F4A2CED875F00BE22BD /* RequestUserLocationUseCase.swift in Sources */,
+				FD1152772CFBA089008955C4 /* SaveFirstLaunchUseCase.swift in Sources */,
 				320047A82CFB0E2B00D08B6D /* NotiListDTO.swift in Sources */,
 				995D94AC2CECFA30005A47BF /* RequestMatePresenter.swift in Sources */,
+				FD1152792CFC3B29008955C4 /* SaveDeviceTokenDTO.swift in Sources */,
 				FD0634262CE596B5003C9D6B /* Endpoint.swift in Sources */,
 				320044872CEC85CB00D08B6D /* ProfileView.swift in Sources */,
 				320044502CE595F700D08B6D /* ProfileInputPresenter.swift in Sources */,
 				FDE14A522CE8D338001F7A9D /* SNMRequestType.swift in Sources */,
 				FD69B1B32CE3BC76009D71DC /* KeychainManager.swift in Sources */,
+				FD1152732CFB3A8A008955C4 /* RespondMapRouter.swift in Sources */,
 				320043782CDCA49100D08B6D /* (null) in Sources */,
 				A24082612CEB244C009109A0 /* SupabaseConfig.swift in Sources */,
 				FD06342A2CE596D0003C9D6B /* NetworkProvider.swift in Sources */,
@@ -1901,8 +1941,9 @@
 				FDBFA9B12CE1FE5500AA9220 /* LayoutConstant.swift in Sources */,
 				320044752CEB4D6900D08B6D /* RequestWalkRouter.swift in Sources */,
 				320044962CED80DA00D08B6D /* RespondWalkRouter.swift in Sources */,
-				FDE768942CF782E900B5DE88 /* WalkAPS.swift in Sources */,
+				FDE768942CF782E900B5DE88 /* WalkAPSDTO.swift in Sources */,
 				320043912CDF3D7F00D08B6D /* KeywordButton.swift in Sources */,
+				FD11526F2CFB33B6008955C4 /* RespondMapViewController.swift in Sources */,
 				FD119F4C2CED87B000BE22BD /* SelectLocationInteractor.swift in Sources */,
 				FD880B622CF433AF0093BEB9 /* Environment.swift in Sources */,
 				320043922CDF3D7F00D08B6D /* InputTextField.swift in Sources */,
@@ -1915,7 +1956,7 @@
 				3200446F2CEB23A700D08B6D /* CardPresentationController.swift in Sources */,
 				320043932CDF3D7F00D08B6D /* KeywordView.swift in Sources */,
 				320044772CEB4E1E00D08B6D /* RequestWalkUseCase.swift in Sources */,
-				320044982CED81F400D08B6D /* WalkRequest.swift in Sources */,
+				320044982CED81F400D08B6D /* WalkNoti.swift in Sources */,
 				FDE14A502CE8D2FB001F7A9D /* URLRequest + append.swift in Sources */,
 				A2BA1B982CF260780080575A /* MateListPresenter.swift in Sources */,
 				995D94AE2CED00A4005A47BF /* RequestMateRouter.swift in Sources */,
@@ -1926,10 +1967,12 @@
 				A25BE45A2CEC2BA300886763 /* SessionManager.swift in Sources */,
 				A24082672CEB2539009109A0 /* SupabaseSessionResponse.swift in Sources */,
 				FD51341B2CEB7AE8002E76F3 /* HomePresenter.swift in Sources */,
+				FD11527F2CFC9029008955C4 /* NotificationListInteractor.swift in Sources */,
 				320043942CDF3D7F00D08B6D /* PrimaryButton.swift in Sources */,
-				FDE7689A2CF783EB00B5DE88 /* ConvertToRequestAPSUseCase.swift in Sources */,
+				FDE7689A2CF783EB00B5DE88 /* ConvertToWalkAPSUseCase.swift in Sources */,
 				FDCD02D12CE917E600B627D8 /* MockURLProtocol.swift in Sources */,
 				320043952CDF3D7F00D08B6D /* Extension + Navigation.swift in Sources */,
+				320047B92CFD367300D08B6D /* PushNotificationConfig.swift in Sources */,
 				FDBFA99F2CE1E50C00AA9220 /* SNMFont.swift in Sources */,
 				FD119F4E2CED87C200BE22BD /* SelectLocationPresenter.swift in Sources */,
 				FD5134192CEB7ADE002E76F3 /* HomeRouter.swift in Sources */,
@@ -1945,6 +1988,7 @@
 				FD119F502CED87E500BE22BD /* SelectLocationRouter.swift in Sources */,
 				FD880B602CF4327F0093BEB9 /* SaveProfileImageUseCase.swift in Sources */,
 				320047652CF6B86D00D08B6D /* RespondMateRequestUseCase.swift in Sources */,
+				320047BB2CFD368100D08B6D /* PushNotificationRequest.swift in Sources */,
 				FD331A562CF23C5300F39426 /* WalkLogListViewController.swift in Sources */,
 				320047AA2CFB1C6200D08B6D /* RequestNotiListUseCase.swift in Sources */,
 				320044672CE6125100D08B6D /* DataManager.swift in Sources */,
@@ -1953,7 +1997,7 @@
 				FDA04AA52CE91DBF002605AC /* MultipartFormData.swift in Sources */,
 				FD119F522CED881300BE22BD /* SelectLocationModuleBuildable.swift in Sources */,
 				FD331A522CF23BD000F39426 /* WalkLog.swift in Sources */,
-				FDE7689C2CF783FE00B5DE88 /* ConvertToRespondAPSUseCase.swift in Sources */,
+				FD11527B2CFC900F008955C4 /* NotificationListPresenter.swift in Sources */,
 				A2C328862CE245AC00D255AB /* TabBarModuleBuilder.swift in Sources */,
 				320044732CEB47B100D08B6D /* RequestWalkInteractor.swift in Sources */,
 				320044942CED80B700D08B6D /* RespondWalkInteractor.swift in Sources */,
@@ -1974,6 +2018,7 @@
 				FD0634312CE62578003C9D6B /* AnyEncodable.swift in Sources */,
 				FDE768962CF7831000B5DE88 /* RegisterDeviceTokenUseCase.swift in Sources */,
 				A23A3B732CF4683F00A58705 /* Mate.swift in Sources */,
+				FD1152752CFB9F44008955C4 /* CheckFirstLaunchUseCase.swift in Sources */,
 				3200441A2CE48A3D00D08B6D /* MPCBroswer.swift in Sources */,
 				A25BE4562CEBB63A00886763 /* SupabaseUser.swift in Sources */,
 				A2BA1B922CF1E8C60080575A /* MateListViewController.swift in Sources */,

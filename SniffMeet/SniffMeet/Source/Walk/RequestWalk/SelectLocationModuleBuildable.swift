@@ -17,9 +17,7 @@ extension SelectLocationModuleBuildable {
         let locationManager: CLLocationManager = CLLocationManager()
         let view: UIViewController & SelectLocationViewable = SelectLocationViewController()
         let interactor: SelectLocationInteractable = SelectLocationInteractor(
-            convertLocationToTextUseCase: ConvertLocationToTextUseCaseImpl(
-                geoCoder: CLGeocoder()
-            ),
+            convertLocationToTextUseCase: ConvertLocationToTextUseCaseImpl(),
             requestLocationAuthUseCase: RequestLocationAuthUseCaseImpl(
                 locationManager: locationManager
             ),

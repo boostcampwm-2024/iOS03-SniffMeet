@@ -9,4 +9,5 @@ import Foundation
 
 enum SupabaseError: Error {
     case sessionNotExist
+    case notFound
 }

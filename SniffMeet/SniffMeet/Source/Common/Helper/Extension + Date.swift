@@ -14,4 +14,18 @@ extension Date {
         
         return components.second ?? 0
     }
+    func hoursDifferenceFromNow() -> Int {
+        let currentDate = Date()
+        let calendar = Calendar.current
+        let components = calendar.dateComponents([.hour], from: self, to: currentDate)
+        
+        return components.hour ?? 0
+    
+    func convertDateToISO8601String() -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss'Z'"
+        dateFormatter.timeZone = TimeZone(abbreviation: "UTC") // UTC 설정
+        dateFormatter.locale = Locale(identifier: "en_US_POSIX") // 권장 로케일 설정
+        return dateFormatter.string(from: self)
+    }
 }

@@ -111,13 +111,9 @@ final class ProfileInputViewController: BaseViewController, ProfileInputViewable
         
         updateNextButtonState()
         hideKeyboardWhenTappedAround()
-        setButtonAction()
         setTextFields()
     }
     
-    override func configureAttributes() {
-        
-    }
     override func configureHierachy() {
         view.addSubview(scrollView)
         scrollView.addSubview(contentView)
@@ -180,6 +176,60 @@ final class ProfileInputViewController: BaseViewController, ProfileInputViewable
         configureTextFieldConstraints()
         configureSelectionViewConstraints()
         configureButtonConstraints()
+    }
+    override func bind() {
+        // MARK: - submit(다음으로) 버튼에 대한 액션
+        nextButton.publisher(event: .touchUpInside)
+            .debounce(for: .seconds(EventConstant.debounceInterval), scheduler: RunLoop.main)
+            .sink { [weak self] _ in
+                guard let selectedSexIdx = self?.sexSegmentedControl.selectedSegmentIndex,
+                      var selectedSexUponIntakeIdx = self?.sexSegmentedControl.selectedSegmentIndex,
+                      let selectedSizeIdx = self?.sizeSegmentedControl.selectedSegmentIndex
+                else {
+                    SNMLogger.error("ProfileInputViewController: SelectedIdx Error")
+                    return
+                }
+
+                let sexUponIntake: Bool = selectedSexUponIntakeIdx > 0 ? false : true
+                guard let name = self?.nameTextField.text,
+                      let ageText = self?.ageTextField.text,
+                      let age = UInt8(ageText),
+                      let sex = Sex(rawValue: Context.sexArr[selectedSexIdx]),
+                      let size = Size(rawValue: Context.sizeArr[selectedSizeIdx])
+                else { return }
+                
+                guard let keywordButtons = self?.keywordButtons else { return }
+                let keywords: [Keyword] = keywordButtons.filter{ $0.isSelected }.compactMap{
+                    guard let text = $0.titleLabel?.text else { return nil }
+                    return Keyword(rawValue: text)
+                }
+                
+                let dogInfo = DogInfo(name: name, age: age, sex: sex, sexUponIntake: sexUponIntake,
+                                            size: size,keywords: keywords)
+                self?.presenter?.moveToProfileCreateView(with: dogInfo)
+            }.store(in: &cancellables)
+        
+        // MARK: - keyword 버튼에 대한 액션
+        keywordStackView.subviews.forEach{
+            guard let button = $0 as? KeywordButton else {
+                return
+            }
+            button.publisher(event: .touchUpInside).sink{ [weak self] in
+                guard let selectedKeywordButtons = self?.keywordButtonsSplitBySelected.selected,
+                      let unselectedKeywordButtons = self?.keywordButtonsSplitBySelected.unselected
+                else { return }
+                
+                let selectedKeywordButtonsCount = selectedKeywordButtons.count
+                if selectedKeywordButtonsCount == 2 {
+                    unselectedKeywordButtons.forEach{ $0.isEnabled = false }
+                } else if selectedKeywordButtonsCount < 2 {
+                    unselectedKeywordButtons.filter{ $0.isEnabled == false }.forEach{
+                        $0.isEnabled = true
+                    }
+                }
+                self?.updateNextButtonState(keywordBtnSelected: !selectedKeywordButtons.isEmpty)
+            }.store(in: &cancellables)
+        }
     }
 }
 
@@ -287,62 +337,6 @@ private extension ProfileInputViewController {
            nextButton.heightAnchor.constraint(equalToConstant: 52)
        ])
    }
-    func setButtonAction() {
-        // MARK: - submit(다음으로) 버튼에 대한 액션
-        nextButton.addAction(UIAction { [weak self] _ in
-            guard let selectedSexIdx = self?.sexSegmentedControl.selectedSegmentIndex,
-                  var selectedSexUponIntakeIdx = self?.sexSegmentedControl.selectedSegmentIndex,
-                  let selectedSizeIdx = self?.sizeSegmentedControl.selectedSegmentIndex
-            else {
-                SNMLogger.error("ProfileInputViewController: SelectedIdx Error")
-                return
-            }
-
-            let sexUponIntake: Bool = selectedSexUponIntakeIdx > 0 ? false : true
-            guard let name = self?.nameTextField.text,
-                  let ageText = self?.ageTextField.text,
-                  let age = UInt8(ageText),
-                  let sex = Sex(rawValue: Context.sexArr[selectedSexIdx]),
-                  let size = Size(rawValue: Context.sizeArr[selectedSizeIdx])
-            else { return }
-            
-            guard let keywordButtons = self?.keywordButtons else { return }
-            let keywords: [Keyword] = keywordButtons.filter{ $0.isSelected }.compactMap{
-                guard let text = $0.titleLabel?.text else { return nil }
-                return Keyword(rawValue: text)
-            }
-            
-            let dogInfo = DogInfo(name: name,
-                                        age: age,
-                                        sex: sex,
-                                        sexUponIntake: sexUponIntake,
-                                        size: size,
-                                        keywords: keywords)
-            self?.presenter?.moveToProfileCreateView(with: dogInfo)
-        }, for: .touchUpInside)
-        
-        // MARK: - keyword 버튼에 대한 액션
-        keywordStackView.subviews.forEach{
-            guard let button = $0 as? KeywordButton else {
-                return
-            }
-            button.publisher(event: .touchUpInside).sink{ [weak self] in
-                guard let selectedKeywordButtons = self?.keywordButtonsSplitBySelected.selected,
-                      let unselectedKeywordButtons = self?.keywordButtonsSplitBySelected.unselected
-                else { return }
-                
-                let selectedKeywordButtonsCount = selectedKeywordButtons.count
-                if selectedKeywordButtonsCount == 2 {
-                    unselectedKeywordButtons.forEach{ $0.isEnabled = false }
-                } else if selectedKeywordButtonsCount < 2 {
-                    unselectedKeywordButtons.filter{ $0.isEnabled == false }.forEach{
-                        $0.isEnabled = true
-                    }
-                }
-                self?.updateNextButtonState(keywordBtnSelected: !selectedKeywordButtons.isEmpty)
-            }.store(in: &cancellables)
-        }
-    }
     func updateNextButtonState(keywordBtnSelected: Bool) {
         let isNameFilled = !(nameTextField.text ?? "").isEmpty
         let isAgeFilled = !(ageTextField.text ?? "").isEmpty

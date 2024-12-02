@@ -9,8 +9,7 @@ import UIKit
 
 @main
 final class AppDelegate: UIResponder, UIApplicationDelegate {
-    private let convertToRequestAPS: any ConvertToRequestAPSUseCase = ConverToRequestAPSUseCaseImpl()
-    private let convertToResponsdAPS: any ConvertToRespondAPSUseCase = ConvertToRespondAPSUseCaseImpl()
+    private let convertToWalkAPS: any ConvertToWalkAPSUseCase = ConvertToWalkAPSUseCaseImpl()
 
     func application(
         _ application: UIApplication,
@@ -24,13 +23,13 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
         _ application: UIApplication,
         didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data
     ) {
-        let registerDeviceTokenUseCase = RegisterDeviceTokenUseCaseImpl(keychainManager: KeychainManager.shared)
-        Task {
-            do {
-                try await registerDeviceTokenUseCase.execute(deviceToken: deviceToken)
-            } catch {
-                SNMLogger.error(error.localizedDescription)
-            }
+        let registerDeviceTokenUseCase = RegisterDeviceTokenUseCaseImpl(
+            keychainManager: KeychainManager.shared
+        )
+        do {
+            try registerDeviceTokenUseCase.execute(deviceToken: deviceToken)
+        } catch {
+            SNMLogger.error("device token register \(error.localizedDescription)")
         }
     }
     func application(
@@ -59,11 +58,13 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
             return
         }
         let userInfo = response.notification.request.content.userInfo
-        if let requestAPS = convertToRequestAPS.execute(userInfo: userInfo) {
-            sceneDelegate.appRouter?.presentWalkRequestView(walkNoti: requestAPS.walkRequest.toEntity())
-        } else if let respondAPS = convertToResponsdAPS.execute(userInfo: userInfo) {
-            // TODO: 산책 거절 / 수락 화면으로 라우팅
-            sceneDelegate.appRouter?.presentRespondWalkView(isAccepted: respondAPS.isAccepted)
+        guard let walkAPS = convertToWalkAPS.execute(walkAPSUserInfo: userInfo) else { return }
+        let walkNoti: WalkNoti = walkAPS.notification.toEntity()
+        switch walkAPS.notification.category {
+        case .walkRequest:
+            sceneDelegate.appRouter?.presentWalkRequestView(walkNoti: walkNoti)
+        case .walkAccepted, .walkDeclined:
+            sceneDelegate.appRouter?.presentRespondWalkView(walkNoti: walkNoti)
         }
     }
 }
