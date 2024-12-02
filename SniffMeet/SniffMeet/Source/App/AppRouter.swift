@@ -61,12 +61,12 @@ final class AppRouter: NSObject, Routable {
         }
     }
     /// 뷰에 진입한 후 산책 응답 화면을 present 합니다.
-    func initializeViewAndPresentRespondView(isAccepted: Bool ) {
+    func initializeViewAndPresentRespondView(walkNoti: WalkNoti) {
         Task { @MainActor in
             do {
                 try await SupabaseAuthManager.shared.restoreSession()
                 displayTabBar()
-                presentRespondWalkView(isAccepted: isAccepted)
+                presentRespondWalkView(walkNoti: walkNoti)
             } catch {
                 displayProfileSetupView()
             }
@@ -77,9 +77,11 @@ final class AppRouter: NSObject, Routable {
         RespondWalkRouter.createRespondtWalkModule(walkNoti: walkNoti)
         presentCardViewController(viewController: requestWalkViewController)
     }
-    func presentRespondWalkView(isAccepted: Bool) {
-        // TODO: 산책 요청 수락 화면
-        presentCardViewController(viewController: BaseViewController())
+    func presentRespondWalkView(walkNoti: WalkNoti) {
+        let respondWalkViewController = RespondWalkRouter.createRespondtWalkModule(
+            walkNoti: walkNoti
+        )
+        presentCardViewController(viewController: respondWalkViewController)
     }
     private func presentCardViewController(viewController: UIViewController) {
         viewController.modalPresentationStyle = .custom
