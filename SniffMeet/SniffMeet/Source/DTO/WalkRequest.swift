@@ -23,6 +23,10 @@ struct WalkRequestInsertDTO: Encodable {
     }
 }
 
+struct WalkRequestUpdateDTO: Encodable {
+    let state: WalkRequestState
+}
+
 enum WalkRequestState: String, Encodable {
     case pending
     case accepted
