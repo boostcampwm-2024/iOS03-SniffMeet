@@ -57,6 +57,7 @@
 		320047A82CFB0E2B00D08B6D /* NotiListDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 320047A72CFB0E2500D08B6D /* NotiListDTO.swift */; };
 		320047AA2CFB1C6200D08B6D /* RequestNotiListUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 320047A92CFB1C5300D08B6D /* RequestNotiListUseCase.swift */; };
 		320047B62CFCB8D000D08B6D /* EventConstant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 320047B52CFCB8CA00D08B6D /* EventConstant.swift */; };
+		320047B42CFC90C100D08B6D /* SessionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 320047B32CFC90C100D08B6D /* SessionViewController.swift */; };
 		9937361D2CF80D6600E3DD58 /* RequestUserInfoRemoteUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9937361C2CF80D5200E3DD58 /* RequestUserInfoRemoteUseCase.swift */; };
 		995D94262CE32ECE005A47BF /* Extension + Keyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 995D94252CE32EC1005A47BF /* Extension + Keyboard.swift */; };
 		995D94622CE598FD005A47BF /* NIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 995D94612CE598F0005A47BF /* NIManager.swift */; };
@@ -283,6 +284,7 @@
 		320047A72CFB0E2500D08B6D /* NotiListDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotiListDTO.swift; sourceTree = "<group>"; };
 		320047A92CFB1C5300D08B6D /* RequestNotiListUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestNotiListUseCase.swift; sourceTree = "<group>"; };
 		320047B52CFCB8CA00D08B6D /* EventConstant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventConstant.swift; sourceTree = "<group>"; };
+		320047B32CFC90C100D08B6D /* SessionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionViewController.swift; sourceTree = "<group>"; };
 		9937361C2CF80D5200E3DD58 /* RequestUserInfoRemoteUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestUserInfoRemoteUseCase.swift; sourceTree = "<group>"; };
 		995D94252CE32EC1005A47BF /* Extension + Keyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension + Keyboard.swift"; sourceTree = "<group>"; };
 		995D94612CE598F0005A47BF /* NIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NIManager.swift; sourceTree = "<group>"; };
@@ -931,6 +933,7 @@
 				FD3A03382CD8CF460047B7ED /* AppDelegate.swift */,
 				A2C328912CE3BEA000D255AB /* AppRouter.swift */,
 				FD5134222CEC2BDB002E76F3 /* Routable.swift */,
+				320047B32CFC90C100D08B6D /* SessionViewController.swift */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -1918,6 +1921,7 @@
 				FDE768982CF7836C00B5DE88 /* RemoteSaveDeviceTokenUseCase.swift in Sources */,
 				FD119F462CED868D00BE22BD /* ConvertLocationToTextUseCase.swift in Sources */,
 				A20E71522CEC5FE900272B25 /* SupabaseUserResponse.swift in Sources */,
+				320047B42CFC90C100D08B6D /* SessionViewController.swift in Sources */,
 				320045362CF4353900D08B6D /* SNMFileManager.swift in Sources */,
 				320044582CE5B04C00D08B6D /* ProfileCreateRouter.swift in Sources */,
 				A25BE4582CEBB95C00886763 /* SupabaseRefreshResponse.swift in Sources */,
