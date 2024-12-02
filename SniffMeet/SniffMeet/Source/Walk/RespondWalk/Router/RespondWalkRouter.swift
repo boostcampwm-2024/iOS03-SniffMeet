@@ -41,7 +41,13 @@ extension RespondWalkRouter: RespondWalkBuildable {
         let requestProfileImageUseCase: RequestProfileImageUseCase =
         RequestProfileImageUseCaseImpl(
             remoteImageManager: SupabaseStorageManager(
-            networkProvider: SNMNetworkProvider()))
+                networkProvider: SNMNetworkProvider()
+            )
+        )
+        let loadUserUseCase = LoadUserInfoUseCaseImpl(
+            dataLoadable: LocalDataManager(),
+            imageManageable: SNMFileManager()
+        )
 
         let view: RespondWalkViewable & UIViewController = RespondWalkViewController()
         let presenter: RespondWalkPresentable & RespondWalkInteractorOutput =
@@ -52,7 +58,8 @@ extension RespondWalkRouter: RespondWalkBuildable {
             respondUseCase: respondUseCase,
             calculateTimeLimitUseCase: calculateTimeUseCase,
             convertLocationToTextUseCase: convertLocationToTextUseCase,
-            requestProfileImageUseCase: requestProfileImageUseCase
+            requestProfileImageUseCase: requestProfileImageUseCase,
+            loadUserUseCase: loadUserUseCase
         )
 
         let router: RespondWalkRoutable & RespondWalkBuildable = RespondWalkRouter()
