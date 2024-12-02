@@ -14,7 +14,19 @@ struct WalkNotiDTO: Decodable {
     let latitude: Double
     let longtitude: Double
     let senderId: UUID
+    let receiverId: UUID
     let senderName: String
+    let category: WalkNotiCategory
+
+    enum CodingKeys: String, CodingKey {
+        case id
+        case createdAt = "created_at"
+        case message, latitude, longtitude
+        case senderId = "sender"
+        case receiverId = "receiver"
+        case senderName = "name"
+        case category
+    }
     
     var createdAtDate: Date? {
         let dateFormatter = ISO8601DateFormatter()
@@ -28,6 +40,13 @@ struct WalkNotiDTO: Decodable {
                  latitude: latitude,
                  longtitude: longtitude,
                  senderId: senderId,
-                 senderName: senderName)
+                 senderName: senderName,
+                 category: category.rawValue)
     }
+}
+
+enum WalkNotiCategory: String, Decodable {
+    case walkRequest
+    case walkAccepted
+    case walkDeclined
 }
