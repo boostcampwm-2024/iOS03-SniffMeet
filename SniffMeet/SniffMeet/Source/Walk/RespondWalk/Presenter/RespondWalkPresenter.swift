@@ -67,7 +67,20 @@ final class RespondWalkPresenter: RespondWalkPresentable {
         }
     }
     func respondWalkRequest(isAccepted: Bool) {
-        interactor?.respondWalkRequest(walkNotiId: noti.id, isAccepted: isAccepted)
+        let walkNotiCategory: WalkNotiCategory = isAccepted == true ? .walkAccepted : .walkDeclined
+        guard let date = noti.createdAt?.convertDateToISO8601String(),
+              let id = SessionManager.shared.session?.user?.userID else { return }
+        
+        let walkNoti = WalkNotiDTO(id: noti.id,
+                                   createdAt: date,
+                                   message: noti.message,
+                                   latitude: noti.latitude,
+                                   longtitude: noti.longtitude,
+                                   senderId: id,
+                                   receiverId: noti.senderId,
+                                   senderName: noti.senderName,
+                                   category: walkNotiCategory)
+        interactor?.respondWalkRequest(walkNoti: walkNoti)
     }
     func dismissView() {
         guard let view else {return}

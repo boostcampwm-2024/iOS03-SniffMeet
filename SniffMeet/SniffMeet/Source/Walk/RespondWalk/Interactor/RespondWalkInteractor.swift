@@ -16,7 +16,7 @@ protocol RespondWalkInteractable: AnyObject {
     var requestProfileImageUseCase: RequestProfileImageUseCase { get }
     
     func fetchSenderInfo(userId: UUID)
-    func respondWalkRequest(walkNotiId: UUID, isAccepted: Bool)
+    func respondWalkRequest(walkNoti: WalkNotiDTO)
     func calculateTimeLimit(requestTime: Date)
     func convertLocationToText(latitude: Double, longtitude: Double) async
     func fetchProfileImage(urlString: String)
@@ -66,10 +66,12 @@ final class RespondWalkInteractor: RespondWalkInteractable {
         }
     }
     
-    func respondWalkRequest(walkNotiId: UUID, isAccepted: Bool) {
+    func respondWalkRequest(walkNoti: WalkNotiDTO) {
         do {
-//            try respondWalkRequestUseCase.execute(walkNotiId: walkNotiId, isAccepted: isAccepted)
-            presenter?.didSendWalkRespond()
+            Task {
+                try await respondWalkRequestUseCase.execute(walkNoti: walkNoti)
+                presenter?.didSendWalkRespond()
+            }
         } catch {
             presenter?.didFailToSendWalkRequest(error: error)
         }

@@ -7,7 +7,7 @@
 import Foundation
 
 protocol RespondWalkRequestUseCase {
-    func execute(walkNoti: WalkNotiDTO, isAccepted: Bool) async throws
+    func execute(walkNoti: WalkNotiDTO) async throws
 }
 
 struct RespondWalkRequestUseCaseImpl: RespondWalkRequestUseCase {
@@ -18,7 +18,7 @@ struct RespondWalkRequestUseCaseImpl: RespondWalkRequestUseCase {
         self.session = session
     }
     
-    func execute(walkNoti: WalkNotiDTO, isAccepted: Bool) async throws {
+    func execute(walkNoti: WalkNotiDTO) async throws {
         guard let requestData = try? encoder.encode(walkNoti) else { return }
         let request = try PushNotificationRequest.sendWalkRespond(data: requestData).urlRequest()
         let (_, response) = try await session.data(for: request)
