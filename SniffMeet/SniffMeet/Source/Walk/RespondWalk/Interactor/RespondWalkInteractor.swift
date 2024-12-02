@@ -68,7 +68,7 @@ final class RespondWalkInteractor: RespondWalkInteractable {
     
     func respondWalkRequest(walkNotiId: UUID, isAccepted: Bool) {
         do {
-            try respondWalkRequestUseCase.execute(walkNotiId: walkNotiId, isAccepted: isAccepted)
+//            try respondWalkRequestUseCase.execute(walkNotiId: walkNotiId, isAccepted: isAccepted)
             presenter?.didSendWalkRespond()
         } catch {
             presenter?.didFailToSendWalkRequest(error: error)

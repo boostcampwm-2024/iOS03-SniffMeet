@@ -56,6 +56,8 @@
 		320047852CF80B2600D08B6D /* MateList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 320047842CF80B2200D08B6D /* MateList.swift */; };
 		320047A82CFB0E2B00D08B6D /* NotiListDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 320047A72CFB0E2500D08B6D /* NotiListDTO.swift */; };
 		320047AA2CFB1C6200D08B6D /* RequestNotiListUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 320047A92CFB1C5300D08B6D /* RequestNotiListUseCase.swift */; };
+		320047B92CFD367300D08B6D /* PushNotificationConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 320047B82CFD366E00D08B6D /* PushNotificationConfig.swift */; };
+		320047BB2CFD368100D08B6D /* PushNotificationRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 320047BA2CFD367E00D08B6D /* PushNotificationRequest.swift */; };
 		320047B62CFCB8D000D08B6D /* EventConstant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 320047B52CFCB8CA00D08B6D /* EventConstant.swift */; };
 		320047B42CFC90C100D08B6D /* SessionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 320047B32CFC90C100D08B6D /* SessionViewController.swift */; };
 		9937361D2CF80D6600E3DD58 /* RequestUserInfoRemoteUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9937361C2CF80D5200E3DD58 /* RequestUserInfoRemoteUseCase.swift */; };
@@ -284,6 +286,8 @@
 		320047A72CFB0E2500D08B6D /* NotiListDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotiListDTO.swift; sourceTree = "<group>"; };
 		320047A92CFB1C5300D08B6D /* RequestNotiListUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestNotiListUseCase.swift; sourceTree = "<group>"; };
 		320047B52CFCB8CA00D08B6D /* EventConstant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventConstant.swift; sourceTree = "<group>"; };
+		320047B82CFD366E00D08B6D /* PushNotificationConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushNotificationConfig.swift; sourceTree = "<group>"; };
+		320047BA2CFD367E00D08B6D /* PushNotificationRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushNotificationRequest.swift; sourceTree = "<group>"; };
 		320047B32CFC90C100D08B6D /* SessionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionViewController.swift; sourceTree = "<group>"; };
 		9937361C2CF80D5200E3DD58 /* RequestUserInfoRemoteUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestUserInfoRemoteUseCase.swift; sourceTree = "<group>"; };
 		995D94252CE32EC1005A47BF /* Extension + Keyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension + Keyboard.swift"; sourceTree = "<group>"; };
@@ -596,6 +600,15 @@
 			path = RespondUseCase;
 			sourceTree = "<group>";
 		};
+		320047B72CFD365700D08B6D /* PushNotification */ = {
+			isa = PBXGroup;
+			children = (
+				320047BA2CFD367E00D08B6D /* PushNotificationRequest.swift */,
+				320047B82CFD366E00D08B6D /* PushNotificationConfig.swift */,
+			);
+			path = PushNotification;
+			sourceTree = "<group>";
+		};
 		995D94602CE598E1005A47BF /* NI */ = {
 			isa = PBXGroup;
 			children = (
@@ -871,6 +884,7 @@
 		FDA491332CD9FE7C00A36FB0 /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				320047B72CFD365700D08B6D /* PushNotification */,
 				A2BD4A022CF83CEB00AC72A7 /* EditProfile */,
 				A2BD49F02CF72A8800AC72A7 /* DTO */,
 				320044792CEC490600D08B6D /* Entity */,
@@ -2002,6 +2016,7 @@
 				FDE7689A2CF783EB00B5DE88 /* ConvertToWalkAPSUseCase.swift in Sources */,
 				FDCD02D12CE917E600B627D8 /* MockURLProtocol.swift in Sources */,
 				320043952CDF3D7F00D08B6D /* Extension + Navigation.swift in Sources */,
+				320047B92CFD367300D08B6D /* PushNotificationConfig.swift in Sources */,
 				FDBFA99F2CE1E50C00AA9220 /* SNMFont.swift in Sources */,
 				FD119F4E2CED87C200BE22BD /* SelectLocationPresenter.swift in Sources */,
 				FD5134192CEB7ADE002E76F3 /* HomeRouter.swift in Sources */,
@@ -2017,6 +2032,7 @@
 				FD119F502CED87E500BE22BD /* SelectLocationRouter.swift in Sources */,
 				FD880B602CF4327F0093BEB9 /* SaveProfileImageUseCase.swift in Sources */,
 				320047652CF6B86D00D08B6D /* RespondMateRequestUseCase.swift in Sources */,
+				320047BB2CFD368100D08B6D /* PushNotificationRequest.swift in Sources */,
 				FD331A562CF23C5300F39426 /* WalkLogListViewController.swift in Sources */,
 				320047AA2CFB1C6200D08B6D /* RequestNotiListUseCase.swift in Sources */,
 				320044672CE6125100D08B6D /* DataManager.swift in Sources */,
