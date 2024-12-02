@@ -14,14 +14,13 @@ protocol MateListViewable: AnyObject {
 
 final class MateListViewController: BaseViewController, MateListViewable {
     var presenter: (any MateListPresentable)?
-    var dataSource: [Mate] = []
     var imageDataSource: [Int: Data] = [:]
     private var cancellables: Set<AnyCancellable> = []
     private let tableView: UITableView = UITableView()
 
-    override func viewDidLoad() {
-        presenter?.viewDidLoad()
-        super.viewDidLoad()
+    override func viewWillAppear(_ animated: Bool) {
+        presenter?.viewWillAppear()
+        super.viewWillAppear(animated)
     }
 
     override func configureAttributes() {
@@ -56,7 +55,6 @@ final class MateListViewController: BaseViewController, MateListViewable {
         presenter?.output.mates
             .receive(on: RunLoop.main)
             .sink { [weak self] mates in
-                self?.dataSource = mates
                 self?.tableView.reloadData()
             }
             .store(in: &cancellables)
@@ -82,7 +80,7 @@ final class MateListViewController: BaseViewController, MateListViewable {
 
 extension MateListViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        dataSource.count
+        presenter?.output.mates.value.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -94,19 +92,22 @@ extension MateListViewController: UITableViewDelegate, UITableViewDataSource {
         content.image = .app
         if let imageData = imageDataSource[indexPath.row] {
             var profileImage = UIImage(data: imageData)
-            profileImage = profileImage?.clipToSquareWithBackgroundColor(with: ItemSize.profileImageSize.width)
+            profileImage = profileImage?.clipToSquareWithBackgroundColor(
+                with: ItemSize.profileImageSize.width)
             content.image = profileImage
         } else {
             presenter?.didTableViewCellLoad(
                 index: indexPath.row,
-                urlString: dataSource[indexPath.row].profileImageURLString
+                imageName: presenter?.output.mates.value[indexPath.row].profileImageURLString
             )
         }
         content.imageProperties.maximumSize = ItemSize.profileImageSize
         content.imageProperties.cornerRadius = ItemSize.profileImageCornerRadius
-        content.text = dataSource[indexPath.row].name
+        content.text = presenter?.output.mates.value[indexPath.row].name
         cell.contentConfiguration = content
-        cell.accessoryView = createAccessoryButton(mate: dataSource[indexPath.row])
+        if let mate = presenter?.output.mates.value[indexPath.row] {
+            cell.accessoryView = createAccessoryButton(mate: mate)
+        }
         cell.selectionStyle = .none
         return cell
     }

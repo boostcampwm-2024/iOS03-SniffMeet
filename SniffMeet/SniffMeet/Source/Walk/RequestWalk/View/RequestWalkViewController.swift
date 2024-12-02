@@ -151,6 +151,11 @@ final class RequestWalkViewController: BaseViewController, RequestWalkViewable {
                 }
             }
             .store(in: &cancellables)
+        locationView.tapPublisher
+            .sink { [weak self] in
+                self?.presenter?.didTapLocationButton()
+            }
+            .store(in: &cancellables)
     }
 }
 
@@ -166,12 +171,6 @@ private extension RequestWalkViewController {
         dismissButton.addAction(UIAction(handler: {[weak self] _ in
             self?.presenter?.closeTheView()
         }), for: .touchUpInside)
-
-        // locationTapGesture.addTarget(self, action: #selector(locationDidTap))
-    }
-
-    @objc func locationDidTap() {
-        presenter?.didTapLocationButton()
     }
 }
 

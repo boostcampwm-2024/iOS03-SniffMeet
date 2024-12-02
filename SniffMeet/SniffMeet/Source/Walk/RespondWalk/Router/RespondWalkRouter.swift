@@ -30,7 +30,9 @@ extension RespondWalkRouter: RespondWalkBuildable {
         let convertLocationToTextUseCase: ConvertLocationToTextUseCase =
         ConvertLocationToTextUseCaseImpl(geoCoder: CLGeocoder())
         let requestProfileImageUseCase: RequestProfileImageUseCase =
-        RequestProfileImageUseCaseImpl()
+        RequestProfileImageUseCaseImpl(
+            remoteImageManager: SupabaseStorageManager(
+            networkProvider: SNMNetworkProvider()))
 
         let view: RespondWalkViewable & UIViewController = RespondWalkViewController()
         let presenter: RespondWalkPresentable & RespondWalkInteractorOutput =
