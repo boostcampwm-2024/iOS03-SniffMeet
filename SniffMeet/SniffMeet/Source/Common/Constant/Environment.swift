@@ -11,6 +11,7 @@ enum Environment {
         static let dogInfo: String = "dogInfo"
         static let expiresAt: String = "expiresAt"
         static let mateList: String = "mateList"
+        static let isFirstLaunch: String = "isFirstLaunch"
     }
 
     enum KeychainKey {

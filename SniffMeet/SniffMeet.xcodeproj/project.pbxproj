@@ -115,6 +115,9 @@
 		FD11526F2CFB33B6008955C4 /* RespondMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD11526E2CFB33B0008955C4 /* RespondMapViewController.swift */; };
 		FD1152712CFB3872008955C4 /* RespondMapPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD1152702CFB386B008955C4 /* RespondMapPresenter.swift */; };
 		FD1152732CFB3A8A008955C4 /* RespondMapRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD1152722CFB3A83008955C4 /* RespondMapRouter.swift */; };
+		FD1152752CFB9F44008955C4 /* CheckFirstLaunchUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD1152742CFB9F33008955C4 /* CheckFirstLaunchUseCase.swift */; };
+		FD1152772CFBA089008955C4 /* SaveFirstLaunchUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD1152762CFBA083008955C4 /* SaveFirstLaunchUseCase.swift */; };
+		FD1152792CFC3B29008955C4 /* SaveDeviceTokenDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD1152782CFC3B23008955C4 /* SaveDeviceTokenDTO.swift */; };
 		FD119F422CED865B00BE22BD /* SelectLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD119F412CED865000BE22BD /* SelectLocationViewController.swift */; };
 		FD119F462CED868D00BE22BD /* ConvertLocationToTextUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD119F452CED867600BE22BD /* ConvertLocationToTextUseCase.swift */; };
 		FD119F482CED872C00BE22BD /* RequestLocationAuthUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD119F472CED872500BE22BD /* RequestLocationAuthUseCase.swift */; };
@@ -335,6 +338,9 @@
 		FD11526E2CFB33B0008955C4 /* RespondMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RespondMapViewController.swift; sourceTree = "<group>"; };
 		FD1152702CFB386B008955C4 /* RespondMapPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RespondMapPresenter.swift; sourceTree = "<group>"; };
 		FD1152722CFB3A83008955C4 /* RespondMapRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RespondMapRouter.swift; sourceTree = "<group>"; };
+		FD1152742CFB9F33008955C4 /* CheckFirstLaunchUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckFirstLaunchUseCase.swift; sourceTree = "<group>"; };
+		FD1152762CFBA083008955C4 /* SaveFirstLaunchUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveFirstLaunchUseCase.swift; sourceTree = "<group>"; };
+		FD1152782CFC3B23008955C4 /* SaveDeviceTokenDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveDeviceTokenDTO.swift; sourceTree = "<group>"; };
 		FD119F412CED865000BE22BD /* SelectLocationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectLocationViewController.swift; sourceTree = "<group>"; };
 		FD119F452CED867600BE22BD /* ConvertLocationToTextUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConvertLocationToTextUseCase.swift; sourceTree = "<group>"; };
 		FD119F472CED872500BE22BD /* RequestLocationAuthUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestLocationAuthUseCase.swift; sourceTree = "<group>"; };
@@ -551,6 +557,7 @@
 		320047A42CF9E2A200D08B6D /* RequestUseCase */ = {
 			isa = PBXGroup;
 			children = (
+				FD1152742CFB9F33008955C4 /* CheckFirstLaunchUseCase.swift */,
 				320047A92CFB1C5300D08B6D /* RequestNotiListUseCase.swift */,
 				FDE768A02CF7872E00B5DE88 /* RequestNotificationAuthUseCase.swift */,
 				A2BD4A002CF7AD4300AC72A7 /* RequestMateInfoUseCase.swift */,
@@ -568,6 +575,7 @@
 		320047A52CF9E33200D08B6D /* SaveUseCase */ = {
 			isa = PBXGroup;
 			children = (
+				FD1152762CFBA083008955C4 /* SaveFirstLaunchUseCase.swift */,
 				A266A25F2CF5CF4A002C2B3A /* CreateAccountUseCase.swift */,
 				FD880B5F2CF432780093BEB9 /* SaveProfileImageUseCase.swift */,
 				3200445D2CE5CA1A00D08B6D /* SaveUserInfoUseCase.swift */,
@@ -668,6 +676,7 @@
 		A2BD49F02CF72A8800AC72A7 /* DTO */ = {
 			isa = PBXGroup;
 			children = (
+				FD1152782CFC3B23008955C4 /* SaveDeviceTokenDTO.swift */,
 				320047A72CFB0E2500D08B6D /* NotiListDTO.swift */,
 				320047842CF80B2200D08B6D /* MateList.swift */,
 				995D94D12CEDF031005A47BF /* MPCProfileDropDTO.swift */,
@@ -1942,8 +1951,10 @@
 				A2BA1B9A2CF260A50080575A /* MateListRouter.swift in Sources */,
 				320043972CDF493C00D08B6D /* Extension + UIView.swift in Sources */,
 				FD119F4A2CED875F00BE22BD /* RequestUserLocationUseCase.swift in Sources */,
+				FD1152772CFBA089008955C4 /* SaveFirstLaunchUseCase.swift in Sources */,
 				320047A82CFB0E2B00D08B6D /* NotiListDTO.swift in Sources */,
 				995D94AC2CECFA30005A47BF /* RequestMatePresenter.swift in Sources */,
+				FD1152792CFC3B29008955C4 /* SaveDeviceTokenDTO.swift in Sources */,
 				FD0634262CE596B5003C9D6B /* Endpoint.swift in Sources */,
 				320044872CEC85CB00D08B6D /* ProfileView.swift in Sources */,
 				320044502CE595F700D08B6D /* ProfileInputPresenter.swift in Sources */,
@@ -2030,6 +2041,7 @@
 				FD0634312CE62578003C9D6B /* AnyEncodable.swift in Sources */,
 				FDE768962CF7831000B5DE88 /* RegisterDeviceTokenUseCase.swift in Sources */,
 				A23A3B732CF4683F00A58705 /* Mate.swift in Sources */,
+				FD1152752CFB9F44008955C4 /* CheckFirstLaunchUseCase.swift in Sources */,
 				3200441A2CE48A3D00D08B6D /* MPCBroswer.swift in Sources */,
 				A25BE4562CEBB63A00886763 /* SupabaseUser.swift in Sources */,
 				A2BA1B922CF1E8C60080575A /* MateListViewController.swift in Sources */,

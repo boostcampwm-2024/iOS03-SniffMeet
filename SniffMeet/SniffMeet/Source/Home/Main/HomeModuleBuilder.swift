@@ -15,6 +15,18 @@ enum HomeModuleBuilder {
             loadUserInfoUseCase: LoadUserInfoUseCaseImpl(
                 dataLoadable: LocalDataManager(),
                 imageManageable: SNMFileManager()
+            ),
+            checkFirstLaunchUseCase: CheckFirstLaunchUseCaseImpl(
+                userDefaultsManager: UserDefaultsManager.shared
+            ),
+            saveFirstLaunchUseCase: SaveFirstLaunchUseCaseImpl(
+                userDefaultsManager: UserDefaultsManager.shared
+            ),
+            requestNotificationAuthUseCase: RequestNotificationAuthUseCaseImpl(),
+            remoteSaveDeviceTokenUseCase: RemoteSaveDeviceTokenUseCaseImpl(
+                jsonEncoder: JSONEncoder(),
+                keychainManager: KeychainManager.shared,
+                remoteDBManager: SupabaseDatabaseManager.shared
             )
         )
         view.presenter = HomePresenter(view: view, router: router, interactor: interactor)
