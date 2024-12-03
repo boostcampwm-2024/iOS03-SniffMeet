@@ -8,7 +8,7 @@
 import CoreLocation
 
 protocol RequestLocationAuthUseCase {
-    func execute() throws
+    func execute()
 }
 
 struct RequestLocationAuthUseCaseImpl: RequestLocationAuthUseCase {
@@ -18,24 +18,7 @@ struct RequestLocationAuthUseCaseImpl: RequestLocationAuthUseCase {
         self.locationManager = locationManager
     }
     
-    func execute() throws {
-        switch locationManager.authorizationStatus {
-        case .notDetermined:
-            locationManager.requestWhenInUseAuthorization()
-        case .restricted:
-            throw LocationManagerError.authorizationRestricted
-        case .denied:
-            throw LocationManagerError.authorizationDenied
-        case .authorizedAlways,
-                .authorizedWhenInUse:
-            break
-        @unknown default:
-            locationManager.requestWhenInUseAuthorization()
-        }
+    func execute() {
+        locationManager.requestWhenInUseAuthorization()
     }
-}
-
-enum LocationManagerError: Error {
-    case authorizationDenied
-    case authorizationRestricted
 }
