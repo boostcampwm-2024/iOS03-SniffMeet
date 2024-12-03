@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct WalkRequest: Codable {
+struct WalkRequestDetail: Codable {
     let mate: UserInfo
     let address: Address
     let message: String

@@ -89,12 +89,14 @@ extension RespondWalkPresenter: RespondWalkInteractorOutput {
     }
     
     func didFetchUserInfo(senderInfo: UserInfoDTO) {
-        let walkRequest = WalkRequest(mate: senderInfo.toEntity(),
-                                      address: Address(longtitude: noti.longtitude,
-                                                       latitude: noti.latitude),
-                                      message: noti.message)
         Task { @MainActor [weak self] in
-            self?.view?.showRequestDetail(request: walkRequest)
+            guard let self else { return }
+            let walkRequest = WalkRequestDetail(mate: senderInfo.toEntity(),
+                                          address: Address(longtitude: self.noti.longtitude,
+                                                           latitude: self.noti.latitude),
+                                          message: self.noti.message)
+
+            self.view?.showRequestDetail(request: walkRequest)
         }
     }
     

@@ -86,12 +86,12 @@ final class RespondWalkInteractor: RespondWalkInteractable {
                                            senderName: userInfo.nickname,
                                            category: walkNotiCategory)
                 try await respondWalkRequestUseCase.execute(walkNoti: walkNoti)
-                presenter?.didSendWalkRespond()
             }
             catch {
                 presenter?.didFailToSendWalkRequest(error: error)
             }
         }
+        presenter?.didSendWalkRespond()
     }
     func calculateTimeLimit(requestTime: Date) {
         let timeDifference = calculateTimeLimitUseCase.execute(requestTime: requestTime)
