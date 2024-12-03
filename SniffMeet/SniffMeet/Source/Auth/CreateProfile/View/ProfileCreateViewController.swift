@@ -174,4 +174,24 @@ extension ProfileCreateViewController: UITextFieldDelegate {
     func textFieldDidChangeSelection(_ textField: UITextField) {
         submitButton.isEnabled = (textField.text?.count ?? 0 > 1)
     }
+
+    func textField(_ textField: UITextField,
+                   shouldChangeCharactersIn range: NSRange,
+                   replacementString string: String) -> Bool {
+        guard let text = textField.text else { return false }
+        let newLength = text.count + string.count - range.length
+
+        UIView.animate(withDuration: 0.2) {
+            if newLength > 8 {
+                self.warningLabel.text = "닉네임은 최대 8글자까지 입력할 수 있습니다."
+                self.warningLabel.alpha = 1
+            } else {
+                self.warningLabel.alpha = 0
+            }
+        }
+        let inputTextValid = newLength <= 15
+
+        return inputTextValid
+    }
+
 }

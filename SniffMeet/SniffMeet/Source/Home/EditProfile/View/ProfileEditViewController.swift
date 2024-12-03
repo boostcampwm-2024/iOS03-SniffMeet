@@ -246,12 +246,18 @@ extension ProfileEditViewController: UITextFieldDelegate {
                    shouldChangeCharactersIn range: NSRange,
                    replacementString string: String) -> Bool
     {
-        guard textField == ageTextField, let text = textField.text else { return true }
-        let allowedCharacters = CharacterSet.decimalDigits
-        let inputCharacters = CharacterSet(charactersIn: string)
-        let filteredInputCharacters = allowedCharacters.isSuperset(of: inputCharacters)
-        let newLength = text.count + string.count - range.length
-        return filteredInputCharacters && newLength <= 2
+        if textField == nameTextField, let text = textField.text {
+            let newLength = text.count + string.count - range.length
+            return newLength <= 15
+        }
+        if textField == ageTextField, let text = textField.text {
+            let allowedCharacters = CharacterSet.decimalDigits
+            let inputCharacters = CharacterSet(charactersIn: string)
+            let filteredInputCharacters = allowedCharacters.isSuperset(of: inputCharacters)
+            let newLength = text.count + string.count - range.length
+            return filteredInputCharacters && newLength <= 2
+        }
+        return true
     }
 }
 
