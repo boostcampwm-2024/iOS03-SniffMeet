@@ -230,10 +230,10 @@ private extension RequestWalkViewController {
 
 extension RequestWalkViewController: UITextViewDelegate {
     func textViewDidBeginEditing(_ textView: UITextView) {
-        Task {
-               try? await Task.sleep(nanoseconds: 50_000_000) // 50ms (0.05초)
-            scrollView.scrollRectToVisible(textView.frame, animated: true)
-           }
+        Task {[weak self] in
+            try? await Task.sleep(nanoseconds: 10_000_000) // 50ms (0.05초)
+            self?.scrollView.scrollRectToVisible(textView.frame, animated: true)
+        }
 
         if textView.text == Context.messagePlaceholder {
             textView.text = nil
