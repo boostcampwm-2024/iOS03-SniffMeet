@@ -36,7 +36,11 @@ final class RequestMateViewController: BaseViewController, RequestMateViewable {
     }
 
     override func configureAttributes() {
-        profileImageView.image = UIImage(data: profile.profileImage!)
+        if let profileImage = profile.profileImage {
+            profileImageView.image =  UIImage(data: profileImage)
+        } else {
+            profileImageView.image = profile.profileImage
+        }
         profileImageView.contentMode = .scaleAspectFill
         profileImageView.translatesAutoresizingMaskIntoConstraints = false
         profileImageView.isUserInteractionEnabled = false
