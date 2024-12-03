@@ -60,7 +60,7 @@
 		320047B62CFCB8D000D08B6D /* EventConstant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 320047B52CFCB8CA00D08B6D /* EventConstant.swift */; };
 		320047B92CFD367300D08B6D /* PushNotificationConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 320047B82CFD366E00D08B6D /* PushNotificationConfig.swift */; };
 		320047BB2CFD368100D08B6D /* PushNotificationRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 320047BA2CFD367E00D08B6D /* PushNotificationRequest.swift */; };
-		320047BE2CFDE37300D08B6D /* WalkRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 320047BD2CFDE36C00D08B6D /* WalkRequest.swift */; };
+		320047BE2CFDE37300D08B6D /* WalkRequestDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 320047BD2CFDE36C00D08B6D /* WalkRequestDTO.swift */; };
 		9937361D2CF80D6600E3DD58 /* RequestUserInfoRemoteUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9937361C2CF80D5200E3DD58 /* RequestUserInfoRemoteUseCase.swift */; };
 		993736422CFCACB100E3DD58 /* UpdateUserInfoUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 993736412CFCACA800E3DD58 /* UpdateUserInfoUseCase.swift */; };
 		995D94262CE32ECE005A47BF /* Extension + Keyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 995D94252CE32EC1005A47BF /* Extension + Keyboard.swift */; };
@@ -293,7 +293,7 @@
 		320047B52CFCB8CA00D08B6D /* EventConstant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventConstant.swift; sourceTree = "<group>"; };
 		320047B82CFD366E00D08B6D /* PushNotificationConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushNotificationConfig.swift; sourceTree = "<group>"; };
 		320047BA2CFD367E00D08B6D /* PushNotificationRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushNotificationRequest.swift; sourceTree = "<group>"; };
-		320047BD2CFDE36C00D08B6D /* WalkRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalkRequest.swift; sourceTree = "<group>"; };
+		320047BD2CFDE36C00D08B6D /* WalkRequestDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalkRequestDTO.swift; sourceTree = "<group>"; };
 		9937361C2CF80D5200E3DD58 /* RequestUserInfoRemoteUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestUserInfoRemoteUseCase.swift; sourceTree = "<group>"; };
 		993736412CFCACA800E3DD58 /* UpdateUserInfoUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateUserInfoUseCase.swift; sourceTree = "<group>"; };
 		995D94252CE32EC1005A47BF /* Extension + Keyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension + Keyboard.swift"; sourceTree = "<group>"; };
@@ -698,7 +698,7 @@
 		A2BD49F02CF72A8800AC72A7 /* DTO */ = {
 			isa = PBXGroup;
 			children = (
-				320047BD2CFDE36C00D08B6D /* WalkRequest.swift */,
+				320047BD2CFDE36C00D08B6D /* WalkRequestDTO.swift */,
 				FDE768932CF782E500B5DE88 /* WalkAPSDTO.swift */,
 				FD1152782CFC3B23008955C4 /* SaveDeviceTokenDTO.swift */,
 				320047A72CFB0E2500D08B6D /* NotiListDTO.swift */,
@@ -1918,7 +1918,7 @@
 				FD51341F2CEB7AFE002E76F3 /* LoadUserInfoUseCase.swift in Sources */,
 				FD331A582CF23CEC00F39426 /* WalkLogCell.swift in Sources */,
 				FD5134172CEB738D002E76F3 /* UIControl + Publisher.swift in Sources */,
-				320047BE2CFDE37300D08B6D /* WalkRequest.swift in Sources */,
+				320047BE2CFDE37300D08B6D /* WalkRequestDTO.swift in Sources */,
 				320044852CEC836400D08B6D /* PaddingLabel.swift in Sources */,
 				A2BD49FF2CF7712800AC72A7 /* Keyword.swift in Sources */,
 				A2C328882CE2481900D255AB /* HomeModuleBuilder.swift in Sources */,
