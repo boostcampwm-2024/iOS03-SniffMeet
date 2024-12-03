@@ -20,12 +20,9 @@ extension SelectLocationModuleBuildable {
             convertLocationToTextUseCase: ConvertLocationToTextUseCaseImpl(),
             requestLocationAuthUseCase: RequestLocationAuthUseCaseImpl(
                 locationManager: locationManager
-            ),
-            requestUserLocationUseCase: RequestUserLocationUseCaseImpl(
-                locationManager: locationManager
             )
         )
-        let presenter: SelectLocationPresentable & SelectLocationInteractorOutput = SelectLocationPresenter()
+        let presenter = SelectLocationPresenter()
         let router: SelectLocationRoutable = SelectLocationRouter()
 
         view.presenter = presenter
