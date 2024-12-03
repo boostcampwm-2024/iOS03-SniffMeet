@@ -26,8 +26,12 @@ final class MateListViewController: BaseViewController, MateListViewable {
 
     override func viewWillAppear(_ animated: Bool) {
         presenter?.viewWillAppear()
-        setupMPCManager()
         super.viewWillAppear(animated)
+    }
+
+    override func viewDidLoad() {
+        setupMPCManager()
+        super.viewDidLoad()
     }
 
     override func configureAttributes() {

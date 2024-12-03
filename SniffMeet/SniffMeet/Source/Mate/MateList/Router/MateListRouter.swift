@@ -8,6 +8,7 @@
 import UIKit
 
 protocol MateListRoutable: Routable {
+    var presenter: (any MateListPresentable)? { get }
     func presentWalkRequestView(mateListView: any MateListViewable, mate: Mate)
     func showAlert(mateListView: any MateListViewable, title: String, message: String)
     func showMateRequestView(mateListView: any MateListViewable, data: DogProfileDTO)
@@ -18,6 +19,7 @@ protocol MateListBuildable {
 }
 
 final class MateListRouter: MateListRoutable {
+    weak var presenter: (any MateListPresentable)?
     func presentWalkRequestView(mateListView: MateListViewable, mate: Mate) {
         guard let mateListView = mateListView as? MateListViewController else { return }
         let requestWalkView = RequestWalkRouter.createRequestWalkModule(mate: mate)
