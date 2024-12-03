@@ -34,8 +34,8 @@ final class SpringBlurPawEffectAnimator: NSObject, UIViewControllerAnimatedTrans
         toView.alpha = 0.0
         containerView.addSubview(toView)
 
-        let emitterLayer = emitterLayer(x: containerView.bounds.midX,
-                                        y: -10,
+        let emitterLayer = emitterLayer(xValue: containerView.bounds.midX,
+                                        yValue: -10,
                                         width: containerView.bounds.width,
                                         height: 500)
         emitterLayer.emitterCells = [pawPrintCell(), pawPrintCell()]
@@ -76,9 +76,13 @@ final class SpringBlurPawEffectAnimator: NSObject, UIViewControllerAnimatedTrans
         emitterCell.yAcceleration = 30  // 중력 효과 추가
         return emitterCell
     }
-    func emitterLayer(x: Double, y: Double, width: Double, height: Double) -> CAEmitterLayer {
+    func emitterLayer(xValue: Double,
+                      yValue: Double,
+                      width: Double,
+                      height: Double) -> CAEmitterLayer
+    {
         let emitterLayer = CAEmitterLayer()
-        emitterLayer.emitterPosition = CGPoint(x: x, y: y) // 화면 상단 중앙
+        emitterLayer.emitterPosition = CGPoint(x: xValue, y: yValue) // 화면 상단 중앙
         emitterLayer.emitterSize = CGSize(width: width, height: height) // 화면의 너비에 맞게 설정
         emitterLayer.emitterShape = .point // 점에서 입자 발사
         emitterLayer.emitterMode = .outline
