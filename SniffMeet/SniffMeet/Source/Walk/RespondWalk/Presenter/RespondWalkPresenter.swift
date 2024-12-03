@@ -104,7 +104,7 @@ extension RespondWalkPresenter: RespondWalkInteractorOutput {
     func didFetchUserInfo(senderInfo: UserInfoDTO) {
         Task { @MainActor [weak self] in
             guard let self else { return }
-            let walkRequest = WalkRequest(mate: senderInfo.toEntity(),
+            let walkRequest = WalkRequestDetail(mate: senderInfo.toEntity(),
                                           address: Address(longtitude: self.noti.longtitude,
                                                            latitude: self.noti.latitude),
                                           message: self.noti.message)

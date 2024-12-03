@@ -10,7 +10,7 @@ import UIKit
 protocol RespondWalkViewable: AnyObject {
     var presenter: RespondWalkPresentable? { get set }
     
-    func showRequestDetail(request: WalkRequest)
+    func showRequestDetail(request: WalkRequestDetail)
     func showError()
     func startTimer(countDownValue: Int)
 }
@@ -231,7 +231,7 @@ private extension RespondWalkViewController {
 
 // MARK: - RespondWalkViewable
 extension RespondWalkViewController {
-    func showRequestDetail(request: WalkRequest) {
+    func showRequestDetail(request: WalkRequestDetail) {
         messageLabel.text = request.message
         locationView.setAddress(address: request.address.location)
         profileView.configure(
