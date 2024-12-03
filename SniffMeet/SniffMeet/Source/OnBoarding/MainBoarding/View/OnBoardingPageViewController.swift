@@ -28,7 +28,7 @@ class OnBoardingPageViewController: BaseViewController {
     }()
     private var imageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = UIImage(named: "placeholder")
+        imageView.image = UIImage(named: "ImagePlaceholder")
         imageView.contentMode = .scaleAspectFit
         return imageView
     }()

@@ -20,6 +20,14 @@ class OnBoardingViewController: BaseViewController {
     override func bind() {}
 
     private func setupPageViewController() {
+        let page1 = OnBoardingPage(title: "SniffMeet", description: "SniffMeet 앱을 이용하세요", imageName: "placeholder")
+        let page2 = OnBoardingPage(title: "프로필 드랍", description: "프로필 드랍을 이용하세요", imageName: "placeholder")
+        let page3 = OnBoardingPage(title: "산책 요청", description: "산책 요청을 이용하세요", imageName: "placeholder")
+
+        pages.append(page1)
+        pages.append(page2)
+        pages.append(page3)
+
         pageViewController = UIPageViewController(
             transitionStyle: .scroll,
             navigationOrientation: .horizontal
@@ -29,6 +37,10 @@ class OnBoardingViewController: BaseViewController {
         addChild(pageViewController)
         view.addSubview(pageViewController.view)
         pageViewController.didMove(toParent: self)
+
+        if let firstPage = pages.first {
+            pageViewController.setViewControllers([OnBoardingPageViewController(page: firstPage)], direction: .forward, animated: false, completion: nil)
+        }
     }
 
     func setButtonActions() {
