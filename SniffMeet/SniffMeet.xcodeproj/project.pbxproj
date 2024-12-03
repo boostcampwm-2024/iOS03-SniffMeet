@@ -839,13 +839,6 @@
 			path = SNMPersistenceTests;
 			sourceTree = "<group>";
 		};
-		FD9468CA2CFD590700417DC1 /* Entity */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Entity;
-			sourceTree = "<group>";
-		};
 		FD9468CC2CFD590700417DC1 /* Interactor */ = {
 			isa = PBXGroup;
 			children = (
@@ -881,7 +874,6 @@
 		FD9468D32CFD590700417DC1 /* EditProfile */ = {
 			isa = PBXGroup;
 			children = (
-				FD9468CA2CFD590700417DC1 /* Entity */,
 				FD9468CC2CFD590700417DC1 /* Interactor */,
 				FD9468CE2CFD590700417DC1 /* Presenter */,
 				FD9468D02CFD590700417DC1 /* Router */,

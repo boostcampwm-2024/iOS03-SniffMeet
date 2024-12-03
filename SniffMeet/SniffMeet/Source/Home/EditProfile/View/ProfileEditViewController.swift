@@ -16,6 +16,7 @@ protocol ProfileEditViewable: AnyObject {
 final class ProfileEditViewController: BaseViewController, ProfileEditViewable {
     var presenter: (any ProfileEditPresentable)?
     private var cancellables = Set<AnyCancellable>()
+    private let scrollView = UIScrollView()
     private var profileImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.image = UIImage(named: "ImagePlaceholder")
@@ -30,6 +31,7 @@ final class ProfileEditViewController: BaseViewController, ProfileEditViewable {
         button.tintColor = SNMColor.white
         return button
     }()
+    private var profileImageContainerView = UIView()
     private var nameTextLabel: UILabel = {
         let label = UILabel()
         label.text = "이름"
@@ -66,6 +68,7 @@ final class ProfileEditViewController: BaseViewController, ProfileEditViewable {
     private var friendlyKeywordButton = KeywordButton(title: Context.friendlyKeywordLabel)
     private var shyKeywordButton = KeywordButton(title: Context.shyKeywordLabel)
     private var independentKeywordButton = KeywordButton(title: Context.independentKeywordLabel)
+    private var contentsStackView = UIStackView()
     private var keywordStackView = UIStackView()
     private var keywordButtons: [KeywordButton] {
         [energeticKeywordButton,
@@ -83,6 +86,7 @@ final class ProfileEditViewController: BaseViewController, ProfileEditViewable {
     }()
 
     private var selectedKeywordButtons: [KeywordButton] = []
+
     override func viewDidLoad() {
         setupBinding()
         super.viewDidLoad()
@@ -96,8 +100,13 @@ final class ProfileEditViewController: BaseViewController, ProfileEditViewable {
     }
 
     override func configureHierachy() {
-        [profileImageView,
-         addPhotoButton,
+        [profileImageView, addPhotoButton].forEach { subview in
+            profileImageContainerView.addSubview(subview)
+        }
+        keywordButtons.forEach { keywordButton in
+            keywordStackView.addArrangedSubview(keywordButton)
+        }
+        [profileImageContainerView,
          nameTextLabel,
          nameTextField,
          ageTextLabel,
@@ -107,31 +116,51 @@ final class ProfileEditViewController: BaseViewController, ProfileEditViewable {
          keywordSelectionLabel,
          keywordStackView,
          completeEditButton].forEach { subview in
-            view.addSubview(subview)
+            contentsStackView.addArrangedSubview(subview)
         }
-
-        keywordButtons.forEach { keywordButton in
-            keywordStackView.addArrangedSubview(keywordButton)
-        }
+        view.addSubview(scrollView)
+        scrollView.addSubview(contentsStackView)
     }
 
     override func configureConstraints() {
         disableAutoresizingMaskForSubviews()
-        configureCompleteEditButtonConstraints()
-        configureContentsConstraints()
-        configureProfileImageViewConstraints()
-        configureButtonConstraints()
+        configureScrollViewConstraints()
+        configureContentsStackViewConstraints()
+        configureProfileImageContainerViewConstraints()
+        configureKeywordStackViewConstraints()
     }
 
     override func configureAttributes() {
+        hideKeyboardWhenTappedAround()
+        configureNavigationControllerAttributes()
+        configureDelegateForSubviews()
+        configureContentsStackViewAttributes()
+        configureKeywordStackViewAttributes()
+        ageTextField.keyboardType = .numberPad
+    }
+
+    private func configureDelegateForSubviews() {
         picker.delegate = self
         nameTextField.delegate = self
         ageTextField.delegate = self
-        hideKeyboardWhenTappedAround()
-        ageTextField.keyboardType = .numberPad
+    }
+
+    private func configureNavigationControllerAttributes() {
         navigationController?.navigationBar.configureBackButton()
         navigationItem.title = Context.title
         navigationItem.largeTitleDisplayMode = .never
+    }
+
+    private func configureContentsStackViewAttributes() {
+        contentsStackView.axis = .vertical
+        contentsStackView.alignment = .fill
+        contentsStackView.distribution = .fill
+    }
+
+    private func configureKeywordStackViewAttributes() {
+        keywordStackView.axis = .horizontal
+        keywordStackView.alignment = .fill
+        keywordStackView.distribution = .fillProportionally
     }
 
     override func bind() {
@@ -237,18 +266,27 @@ final class ProfileEditViewController: BaseViewController, ProfileEditViewable {
 // MARK: - ProfileEditViewControlle+UITextFieldDelegate
 
 extension ProfileEditViewController: UITextFieldDelegate {
+    func textField(
+        _ textField: UITextField,
+        shouldChangeCharactersIn range: NSRange,
+        replacementString string: String
+    ) -> Bool {
+        guard textField == ageTextField, let text = textField.text else { return true }
+        let newLength = text.count + string.count - range.length
+        return newLength <= 2
+    }
+
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
     }
 
-    func textField(_ textField: UITextField,
-                   shouldChangeCharactersIn range: NSRange,
-                   replacementString string: String) -> Bool
-    {
-        guard textField == ageTextField, let text = textField.text else { return true }
-        let newLength = text.count + string.count - range.length
-        return newLength <= 2
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        let rect = textField.convert(textField.bounds, to: scrollView)
+        let offset = (scrollView.frame.height - rect.height) / 2
+        let targetPoint = CGPoint(x: 0, y: rect.origin.y - offset)
+
+        scrollView.setContentOffset(targetPoint, animated: true)
     }
 }
 
@@ -273,163 +311,78 @@ extension ProfileEditViewController: PHPickerViewControllerDelegate {
 // MARK: - ProfileEditViewController Layout
 
 extension ProfileEditViewController {
-    private func configureContentsConstraints() {
-        NSLayoutConstraint.activate([
-            nameTextLabel.topAnchor.constraint(
-                equalTo: profileImageView.bottomAnchor,
-                constant: Context.largeVerticalPadding
-            ),
-            nameTextLabel.leadingAnchor.constraint(
-                equalTo: view.leadingAnchor,
-                constant: Context.horizontalPadding
-            ),
-            nameTextField.topAnchor.constraint(
-                equalTo: nameTextLabel.bottomAnchor,
-                constant: Context.basicVerticalPadding
-            ),
-            nameTextField.leadingAnchor.constraint(
-                equalTo: view.leadingAnchor,
-                constant: Context.horizontalPadding
-            ),
-            nameTextField.trailingAnchor.constraint(
-                equalTo: view.trailingAnchor,
-                constant: -Context.horizontalPadding
-            ),
-            ageTextLabel.topAnchor.constraint(
-                equalTo: nameTextField.bottomAnchor,
-                constant: Context.basicVerticalPadding
-            ),
-            ageTextLabel.leadingAnchor.constraint(
-                equalTo: view.leadingAnchor,
-                constant: Context.horizontalPadding
-            ),
-            ageTextField.topAnchor.constraint(
-                equalTo: ageTextLabel.bottomAnchor,
-                constant: Context.basicVerticalPadding
-            ),
-            ageTextField.leadingAnchor.constraint(
-                equalTo: view.leadingAnchor,
-                constant: Context.horizontalPadding
-            ),
-            ageTextField.trailingAnchor.constraint(
-                equalTo: view.trailingAnchor,
-                constant: -Context.horizontalPadding
-            ),
-            sizeSelectionLabel.topAnchor.constraint(
-                equalTo: ageTextField.bottomAnchor,
-                constant: Context.basicVerticalPadding
-            ),
-            sizeSelectionLabel.leadingAnchor.constraint(
-                equalTo: view.leadingAnchor,
-                constant: Context.horizontalPadding
-            ),
-            sizeSegmentedControl.topAnchor.constraint(
-                equalTo: sizeSelectionLabel.bottomAnchor,
-                constant: Context.basicVerticalPadding
-            ),
-            sizeSegmentedControl.leadingAnchor.constraint(
-                equalTo: view.leadingAnchor,
-                constant: Context.horizontalPadding
-            ),
-            sizeSegmentedControl.trailingAnchor.constraint(
-                equalTo: view.trailingAnchor,
-                constant: -Context.horizontalPadding
-            ),
-            keywordSelectionLabel.topAnchor.constraint(
-                equalTo: sizeSegmentedControl.bottomAnchor,
-                constant: Context.basicVerticalPadding
-            ),
-            keywordSelectionLabel.leadingAnchor.constraint(
-                equalTo: view.leadingAnchor,
-                constant: Context.horizontalPadding
-            )
-        ])
-    }
-
     private func disableAutoresizingMaskForSubviews() {
-        [nameTextLabel,
-         nameTextField,
-         ageTextLabel,
-         ageTextField,
-         sizeSelectionLabel,
-         sizeSegmentedControl,
-         keywordSelectionLabel,
-         keywordStackView,
-         completeEditButton,
-         profileImageView,
-         addPhotoButton].forEach { subview in
+        profileImageContainerView.subviews.forEach { subview in
             subview.translatesAutoresizingMaskIntoConstraints = false
         }
-        keywordButtons.forEach { subview in
+        keywordStackView.arrangedSubviews.forEach { subview in
             subview.translatesAutoresizingMaskIntoConstraints = false
         }
+        contentsStackView.arrangedSubviews.forEach { subview in
+            contentsStackView.translatesAutoresizingMaskIntoConstraints = false
+        }
+        scrollView.translatesAutoresizingMaskIntoConstraints = false
+        contentsStackView.translatesAutoresizingMaskIntoConstraints = false
     }
 
-    private func configureCompleteEditButtonConstraints() {
+    private func configureScrollViewConstraints() {
+        view.keyboardLayoutGuide.followsUndockedKeyboard = true
         NSLayoutConstraint.activate([
-            completeEditButton.bottomAnchor.constraint(
-                equalTo: view.safeAreaLayoutGuide.bottomAnchor,
-                constant: -32
-            ),
-            completeEditButton.leadingAnchor.constraint(
-                equalTo: view.leadingAnchor,
-                constant: 24
-            ),
-            completeEditButton.trailingAnchor.constraint(
-                equalTo: view.trailingAnchor,
-                constant: -24
-            )
+            scrollView.topAnchor.constraint(equalTo: view.topAnchor),
+            scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            scrollView.bottomAnchor.constraint(equalTo: view.keyboardLayoutGuide.topAnchor)
         ])
     }
 
-    private func configureProfileImageViewConstraints() {
+    private func configureContentsStackViewConstraints() {
+        let layoutGuide = scrollView.contentLayoutGuide
         NSLayoutConstraint.activate([
-            profileImageView.topAnchor.constraint(
-                equalTo: view.safeAreaLayoutGuide.topAnchor,
-                constant: 60
+            contentsStackView.topAnchor.constraint(
+                equalTo: layoutGuide.topAnchor,
+                constant: 30
             ),
+            contentsStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            contentsStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            contentsStackView.topAnchor.constraint(equalTo: layoutGuide.topAnchor),
+            contentsStackView.bottomAnchor.constraint(equalTo: layoutGuide.bottomAnchor),
+            contentsStackView.widthAnchor.constraint(equalTo: layoutGuide.widthAnchor)
+        ])
+        contentsStackView.layoutMargins = UIEdgeInsets(
+            top: 60,
+            left: 24,
+            bottom: 30,
+            right: 24
+        )
+        contentsStackView.isLayoutMarginsRelativeArrangement = true
+        contentsStackView.spacing = Context.basicVerticalPadding
+        contentsStackView.setCustomSpacing(30, after: profileImageContainerView)
+        contentsStackView.setCustomSpacing(30, after: nameTextField)
+        contentsStackView.setCustomSpacing(30, after: ageTextField)
+        contentsStackView.setCustomSpacing(30, after: sizeSegmentedControl)
+        contentsStackView.setCustomSpacing(30, after: keywordStackView)
+    }
+
+    private func configureProfileImageContainerViewConstraints() {
+        NSLayoutConstraint.activate([
+            profileImageContainerView.heightAnchor.constraint(equalToConstant: 100),
             profileImageView.centerXAnchor.constraint(
-                equalTo: view.centerXAnchor
+                equalTo: profileImageContainerView.centerXAnchor
             ),
-            profileImageView.widthAnchor.constraint(
-                equalToConstant: 100
+            profileImageView.centerYAnchor.constraint(
+                equalTo: profileImageContainerView.centerYAnchor
             ),
-            profileImageView.heightAnchor.constraint(
-                equalToConstant: 100
-            ),
-            addPhotoButton.widthAnchor.constraint(
-                equalToConstant: 32
-            ),
-            addPhotoButton.heightAnchor.constraint(
-                equalToConstant: 32
-            ),
-            addPhotoButton.trailingAnchor.constraint(
-                equalTo: profileImageView.trailingAnchor
-            ),
-            addPhotoButton.bottomAnchor.constraint(
-                equalTo: profileImageView.bottomAnchor
-            )
+            profileImageView.widthAnchor.constraint(equalToConstant: 100),
+            profileImageView.heightAnchor.constraint(equalToConstant: 100),
+            addPhotoButton.widthAnchor.constraint(equalToConstant: 32),
+            addPhotoButton.heightAnchor.constraint(equalToConstant: 32),
+            addPhotoButton.trailingAnchor.constraint(equalTo: profileImageView.trailingAnchor),
+            addPhotoButton.bottomAnchor.constraint(equalTo: profileImageView.bottomAnchor)
         ])
     }
 
-    private func configureButtonConstraints() {
+    private func configureKeywordStackViewConstraints() {
         keywordStackView.spacing = Context.smallVerticalPadding
-        keywordStackView.axis = .horizontal
-        keywordStackView.distribution = .fillProportionally
-
-        NSLayoutConstraint.activate([
-            keywordStackView.leadingAnchor.constraint(
-                equalTo: view.leadingAnchor,
-                constant: Context.horizontalPadding),
-            keywordStackView.trailingAnchor.constraint(
-                equalTo: view.trailingAnchor,
-                constant: -Context.horizontalPadding),
-            keywordStackView.topAnchor.constraint(
-                equalTo: keywordSelectionLabel.bottomAnchor,
-                constant: Context.basicVerticalPadding),
-            keywordStackView.heightAnchor.constraint(equalToConstant: 30)
-
-        ])
     }
 }
 
@@ -447,7 +400,7 @@ extension ProfileEditViewController {
             Size.medium.rawValue,
             Size.big.rawValue
         ]
-        static let keywordLabel: String = "반려견에 해당되는 키워드를 선택해주세요.(최대 2개)"
+        static let keywordLabel: String = "반려견에 해당되는 키워드를 최대 2개 선택해주세요."
         static let energeticKeywordLabel: String = Keyword.energetic.rawValue
         static let smartKeywordLabel: String = Keyword.smart.rawValue
         static let friendlyKeywordLabel: String = Keyword.friendly.rawValue
