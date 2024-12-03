@@ -39,7 +39,7 @@ final class RequestMateViewController: BaseViewController, RequestMateViewable {
         if let profileImage = profile.profileImage {
             profileImageView.image =  UIImage(data: profileImage)
         } else {
-            profileImageView.image = profile.profileImage
+            profileImageView.image = UIImage.imagePlaceholder
         }
         profileImageView.contentMode = .scaleAspectFill
         profileImageView.translatesAutoresizingMaskIntoConstraints = false
