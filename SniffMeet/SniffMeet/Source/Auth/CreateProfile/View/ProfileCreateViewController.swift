@@ -43,7 +43,6 @@ final class ProfileCreateViewController: BaseViewController, ProfileCreateViewab
         let label = UILabel()
         label.textColor = SNMColor.warningRed
         label.text = Context.warning
-        label.alpha = 1
         label.font = UIFont.systemFont(ofSize: 12)
         return label
     }()
