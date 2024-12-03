@@ -34,14 +34,22 @@ final class RespondWalkRouter: RespondWalkRoutable {
 extension RespondWalkRouter: RespondWalkBuildable {
     static func createRespondtWalkModule(walkNoti: WalkNoti) -> UIViewController {
         let requestUserInfoUseCase: RequestMateInfoUseCase = RequestMateInfoUsecaseImpl()
-        let respondUseCase: RespondWalkRequestUseCase = RespondWalkRequestUseCaseImpl()
+        let respondUseCase: RespondWalkRequestUseCase = RespondWalkRequestUseCaseImpl(
+            remoteDatabaseManager: SupabaseDatabaseManager.shared
+        )
         let calculateTimeUseCase: CalculateTimeLimitUseCase = CalculateTimeLimitUseCaseImpl()
         let convertLocationToTextUseCase: ConvertLocationToTextUseCase =
         ConvertLocationToTextUseCaseImpl()
         let requestProfileImageUseCase: RequestProfileImageUseCase =
-        RequestProfileImageUseCaseImpl(
+RequestProfileImageUseCaseImpl(
             remoteImageManager: SupabaseStorageManager(
-            networkProvider: SNMNetworkProvider()))
+                networkProvider: SNMNetworkProvider()
+            )
+        )
+        let loadUserUseCase = LoadUserInfoUseCaseImpl(
+            dataLoadable: LocalDataManager(),
+            imageManageable: SNMFileManager()
+        )
 
         let view: RespondWalkViewable & UIViewController = RespondWalkViewController()
         let presenter: RespondWalkPresentable & RespondWalkInteractorOutput =
@@ -52,7 +60,8 @@ extension RespondWalkRouter: RespondWalkBuildable {
             respondUseCase: respondUseCase,
             calculateTimeLimitUseCase: calculateTimeUseCase,
             convertLocationToTextUseCase: convertLocationToTextUseCase,
-            requestProfileImageUseCase: requestProfileImageUseCase
+            requestProfileImageUseCase: requestProfileImageUseCase,
+            loadUserUseCase: loadUserUseCase
         )
 
         let router: RespondWalkRoutable & RespondWalkBuildable = RespondWalkRouter()

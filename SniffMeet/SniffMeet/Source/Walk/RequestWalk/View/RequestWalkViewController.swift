@@ -16,6 +16,10 @@ final class RequestWalkViewController: BaseViewController, RequestWalkViewable {
     var presenter: RequestWalkPresentable?
     private var cancellables: Set<AnyCancellable> = []
     private var address: Address?
+    
+    private let scrollView = UIScrollView()
+    private let contentView = UIView()
+    private var textViewEdited: Bool = false
     private var dismissButton: UIButton = {
         let button = UIButton()
         button.setImage(UIImage(systemName: "xmark"), for: .normal)
@@ -59,39 +63,73 @@ final class RequestWalkViewController: BaseViewController, RequestWalkViewable {
         messageTextView.delegate = self
         view.backgroundColor = .systemBackground
         presenter?.viewDidLoad()
+        scrollView.delegate = self
+
     }
     override func configureAttributes() {
         hideKeyboardWhenTappedAround()
-        submitButton.isEnabled = false
+        updateSubmitButtonState()
     }
     override func configureHierachy() {
+        view.addSubview(scrollView)
+        scrollView.addSubview(contentView)
+        
+        [scrollView, contentView].forEach{
+            $0.translatesAutoresizingMaskIntoConstraints = false
+        }
+
         [titleLabel,
          dismissButton,
          profileView,
          locationView,
          messageTextView,
          submitButton].forEach{
-            view.addSubview($0)
+            contentView.addSubview($0)
             $0.translatesAutoresizingMaskIntoConstraints = false
         }
     }
     override func configureConstraints() {
+        scrollView.keyboardLayoutGuide.followsUndockedKeyboard = true
+        setScrollViewConstraint()
+        setInsideScrollViewConstraints()
+    }
+    
+    func setScrollViewConstraint() {
         NSLayoutConstraint.activate([
-            titleLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            titleLabel.topAnchor.constraint(equalTo: view.topAnchor,
+            scrollView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            scrollView.bottomAnchor.constraint(equalTo: view.keyboardLayoutGuide.topAnchor),
+            contentView.topAnchor.constraint(equalTo: scrollView.contentLayoutGuide.topAnchor),
+            contentView.leadingAnchor.constraint(equalTo:
+                                                    scrollView.contentLayoutGuide.leadingAnchor),
+            contentView.trailingAnchor.constraint(equalTo:
+                                                    scrollView.contentLayoutGuide.trailingAnchor),
+            contentView.bottomAnchor.constraint(equalTo:
+                                                    scrollView.contentLayoutGuide.bottomAnchor),
+            contentView.widthAnchor.constraint(equalTo: scrollView.frameLayoutGuide.widthAnchor),
+            contentView.heightAnchor.constraint(
+                equalToConstant: max(650, UIApplication.screenHeight * 0.8))
+        ])
+    }
+    func setInsideScrollViewConstraints() {
+        NSLayoutConstraint.activate([
+            titleLabel.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
+            titleLabel.topAnchor.constraint(equalTo: contentView.topAnchor,
                                             constant: LayoutConstant.xlargeVerticalPadding),
+            titleLabel.heightAnchor.constraint(equalToConstant: 20),
 
-            dismissButton.topAnchor.constraint(equalTo: view.topAnchor,
+            dismissButton.topAnchor.constraint(equalTo: contentView.topAnchor,
                                                constant: LayoutConstant.regularVerticalPadding),
             dismissButton.trailingAnchor.constraint(
-                equalTo: view.trailingAnchor,
+                equalTo: contentView.trailingAnchor,
                 constant: -LayoutConstant.smallHorizontalPadding),
             dismissButton.heightAnchor.constraint(equalToConstant: LayoutConstant.iconSize),
             dismissButton.widthAnchor.constraint(equalToConstant: LayoutConstant.iconSize),
 
             profileView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 20),
-            profileView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            profileView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.4),
+            profileView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
+            profileView.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: 0.4),
             profileView.widthAnchor.constraint(equalTo: profileView.heightAnchor),
 
             locationView.topAnchor.constraint(
@@ -101,21 +139,19 @@ final class RequestWalkViewController: BaseViewController, RequestWalkViewable {
                 equalTo: messageTextView.topAnchor,
                 constant: -LayoutConstant.regularVerticalPadding),
             locationView.heightAnchor.constraint(equalToConstant: 25),
+            messageTextView.heightAnchor.constraint(equalToConstant: 140),
 
-            messageTextView.bottomAnchor.constraint(
-                equalTo: submitButton.topAnchor,
-                constant: -LayoutConstant.xlargeVerticalPadding),
-
-            submitButton.bottomAnchor.constraint(equalTo: view.bottomAnchor,
-                                                 constant: -LayoutConstant.xlargeVerticalPadding)
+            submitButton.bottomAnchor.constraint(equalTo: contentView.bottomAnchor,
+                                                 constant: -LayoutConstant.xlargeVerticalPadding),
+            submitButton.heightAnchor.constraint(equalToConstant: 51)
         ])
-
+        
         [locationView, messageTextView, submitButton].forEach {
             $0.leadingAnchor.constraint(
-                equalTo: view.leadingAnchor,
+                equalTo: contentView.leadingAnchor,
                 constant: LayoutConstant.smallHorizontalPadding).isActive = true
             $0.trailingAnchor.constraint(
-                equalTo: view.trailingAnchor,
+                equalTo: contentView.trailingAnchor,
                 constant: -LayoutConstant.smallHorizontalPadding).isActive = true
         }
     }
@@ -140,7 +176,7 @@ final class RequestWalkViewController: BaseViewController, RequestWalkViewable {
                 self?.locationView.setAddress(
                     address: address?.location ?? Context.locationGuideTitle
                 )
-                self?.submitButton.isEnabled = (self?.messageTextView.text.isEmpty == false)
+                self?.updateSubmitButtonState()
             }
             .store(in: &cancellables)
         presenter?.output.profileImageData
@@ -182,6 +218,14 @@ final class RequestWalkViewController: BaseViewController, RequestWalkViewable {
             }
             .store(in: &cancellables)
     }
+    func updateSubmitButtonState() {
+        if textViewEdited == false {
+            submitButton.isEnabled = false
+        } else {
+            submitButton.isEnabled = (messageTextView.text.isEmpty == false) && (address != nil)
+        }
+        
+    }
 }
 
 private extension RequestWalkViewController {
@@ -195,10 +239,15 @@ private extension RequestWalkViewController {
 
 extension RequestWalkViewController: UITextViewDelegate {
     func textViewDidBeginEditing(_ textView: UITextView) {
+        Task {[weak self] in
+            try? await Task.sleep(nanoseconds: 10_000_000) // 50ms (0.05초)
+            self?.scrollView.scrollRectToVisible(textView.frame, animated: true)
+        }
+
         if textView.text == Context.messagePlaceholder {
             textView.text = nil
             textView.textColor = .black
-            submitButton.isEnabled = false
+            textViewEdited = true
         }
     }
     func textViewDidEndEditing(_ textView: UITextView) {
@@ -208,7 +257,7 @@ extension RequestWalkViewController: UITextViewDelegate {
         }
     }
     func textViewDidChange(_ textView: UITextView) {
-        submitButton.isEnabled = (!textView.text.isEmpty) && (locationView.locationString != Context.locationGuideTitle)
+        updateSubmitButtonState()
     }
     func textView(
         _ textView: UITextView,
