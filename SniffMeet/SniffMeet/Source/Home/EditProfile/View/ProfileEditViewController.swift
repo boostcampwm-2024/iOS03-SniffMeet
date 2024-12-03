@@ -87,7 +87,6 @@ final class ProfileEditViewController: BaseViewController, ProfileEditViewable {
 
     private var selectedKeywordButtons: [KeywordButton] = []
 
-
     override func viewDidLoad() {
         setupBinding()
         super.viewDidLoad()
@@ -267,18 +266,27 @@ final class ProfileEditViewController: BaseViewController, ProfileEditViewable {
 // MARK: - ProfileEditViewControlle+UITextFieldDelegate
 
 extension ProfileEditViewController: UITextFieldDelegate {
+    func textField(
+        _ textField: UITextField,
+        shouldChangeCharactersIn range: NSRange,
+        replacementString string: String
+    ) -> Bool {
+        guard textField == ageTextField, let text = textField.text else { return true }
+        let newLength = text.count + string.count - range.length
+        return newLength <= 2
+    }
+
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
     }
 
-    func textField(_ textField: UITextField,
-                   shouldChangeCharactersIn range: NSRange,
-                   replacementString string: String) -> Bool
-    {
-        guard textField == ageTextField, let text = textField.text else { return true }
-        let newLength = text.count + string.count - range.length
-        return newLength <= 2
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        let rect = textField.convert(textField.bounds, to: scrollView)
+        let offset = (scrollView.frame.height - rect.height) / 2
+        let targetPoint = CGPoint(x: 0, y: rect.origin.y - offset)
+
+        scrollView.setContentOffset(targetPoint, animated: true)
     }
 }
 
@@ -318,11 +326,12 @@ extension ProfileEditViewController {
     }
 
     private func configureScrollViewConstraints() {
+        view.keyboardLayoutGuide.followsUndockedKeyboard = true
         NSLayoutConstraint.activate([
             scrollView.topAnchor.constraint(equalTo: view.topAnchor),
             scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+            scrollView.bottomAnchor.constraint(equalTo: view.keyboardLayoutGuide.topAnchor)
         ])
     }
 
