@@ -408,6 +408,7 @@ extension ProfileInputViewController: UITextFieldDelegate {
             let newLength = text.count + string.count - range.length
             return filteredInputCharacters && newLength <= 2
         }
+        return true
     }
 
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
