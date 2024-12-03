@@ -17,20 +17,19 @@ protocol SelectLocationPresentable: AnyObject {
     func viewDidLoad()
     func didTapSelectCompleteButton()
     func didUpdateSelectLocation(location: CLLocation)
+    func didUpdateUserLocation(location: CLLocation)
+    func didFailToRequestLocationAuth()
 }
 
 protocol SelectLocationInteractorOutput: AnyObject {
     func didConvertLocationToText(with: String?)
-    func didSuccessRequestLocationAuth()
-    func didFailToRequestLocationAuth(error: any Error)
-    func didUpdateUserLocation(location: CLLocation)
 }
 
 final class SelectLocationPresenter: SelectLocationPresentable {
     weak var view: (any SelectLocationViewable)?
     var interactor: (any SelectLocationInteractable)?
     var router: (any SelectLocationRoutable)?
-    let output: any SelectLocationPresenterOutput
+    var output: any SelectLocationPresenterOutput
 
     init(
         view: (any SelectLocationViewable)? = nil,
@@ -38,7 +37,7 @@ final class SelectLocationPresenter: SelectLocationPresentable {
             selectedCoordinate: CLLocation(latitude: 37.334886, longitude: -122.008988),
             locationLabel: CurrentValueSubject<String?, Never>(nil),
             userLocation: CurrentValueSubject<CLLocation, Never>(
-                CLLocation(latitude: 37.334886, longitude: -122.008988) // default location
+                CLLocation(latitude: 37.334886, longitude: -122.008988)
             )
         )
     ) {
@@ -47,15 +46,7 @@ final class SelectLocationPresenter: SelectLocationPresentable {
     }
 
     func viewDidLoad() {
-        interactor?.requestLocationAuth()
-        let location = output.userLocation.value
-        interactor?.convertLocationToText(
-            latitude: location.coordinate.latitude,
-            longtitude: location.coordinate.longitude
-        )
-    }
-    func didTapFocusUserLocationButton() {
-        interactor?.requestUserLocation()
+        interactor?.requestUserLocationAuth()
     }
     func didTapSelectCompleteButton() {
         guard let view else { return }
@@ -67,9 +58,18 @@ final class SelectLocationPresenter: SelectLocationPresentable {
         router?.dismiss(from: view, with: address)
     }
     func didUpdateSelectLocation(location: CLLocation) {
+        output.selectedCoordinate = location
         interactor?.convertLocationToText(
             latitude: location.coordinate.latitude,
             longtitude: location.coordinate.longitude
+        )
+    }
+    func didFailToRequestLocationAuth() {
+        guard let view else { return }
+        router?.showAlert(
+            from: view,
+            title: "위치 권한 거부",
+            message: "유저 근처 위치를 받아올 수 없습니다. 설정에서 GPS를 허용해주세요."
         )
     }
     func didUpdateUserLocation(location: CLLocation) {
@@ -83,23 +83,12 @@ extension SelectLocationPresenter: SelectLocationInteractorOutput {
     func didConvertLocationToText(with locationText: String?) {
         output.locationLabel.send(locationText)
     }
-    func didSuccessRequestLocationAuth() {
-        interactor?.requestUserLocation()
-    }
-    func didFailToRequestLocationAuth(error: any Error) {
-        guard let view else { return }
-        router?.showAlert(
-            from: view,
-            title: "위치 권한 거부",
-            message: "유저 근처 위치를 받아올 수 없습니다. 설정에서 GPS를 허용해주세요."
-        )
-    }
 }
 
 // MARK: - SelectLocationPresenterOutput
 
 protocol SelectLocationPresenterOutput {
-    var selectedCoordinate: CLLocation { get }
+    var selectedCoordinate: CLLocation { get set }
     var locationLabel: CurrentValueSubject<String?, Never> { get }
     var userLocation: CurrentValueSubject<CLLocation, Never> { get }
 }
