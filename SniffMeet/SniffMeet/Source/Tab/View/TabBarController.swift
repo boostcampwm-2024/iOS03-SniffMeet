@@ -9,14 +9,15 @@ import UIKit
 
 typealias MainTabs = (
     home: UIViewController,
-    walk: UIViewController,
+//    walk: UIViewController,
     mate: UIViewController
 )
 
 final class TabBarController: UITabBarController {
     init(tabs: MainTabs) {
         super.init(nibName: nil, bundle: nil)
-        viewControllers = [tabs.home, tabs.walk, tabs.mate]
+//        viewControllers = [tabs.home, tabs.walk, tabs.mate]
+        viewControllers = [tabs.home, tabs.mate]
     }
 
     @available(*, unavailable)

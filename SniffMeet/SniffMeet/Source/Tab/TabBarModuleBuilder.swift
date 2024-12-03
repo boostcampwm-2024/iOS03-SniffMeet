@@ -14,11 +14,11 @@ enum TabBarModuleBuilder {
             image: UIImage(systemName: "house.fill"),
             tag: 0
         )
-        let walkTabBarItem = UITabBarItem(
-            title: "walk",
-            image: UIImage(systemName: "dog.fill"),
-            tag: 1
-        )
+//        let walkTabBarItem = UITabBarItem(
+//            title: "walk",
+//            image: UIImage(systemName: "dog.fill"),
+//            tag: 1
+//        )
         let mateTabBarItem = UITabBarItem(
             title: "mate",
             image: UIImage(systemName: "heart.fill"),
@@ -26,10 +26,11 @@ enum TabBarModuleBuilder {
         )
 
         submodules.home.tabBarItem = homeTabBarItem
-        submodules.walk.tabBarItem = walkTabBarItem
+//        submodules.walk.tabBarItem = walkTabBarItem
         submodules.mate.tabBarItem = mateTabBarItem
 
-        let tabs = (submodules.home, submodules.walk, submodules.mate)
+//        let tabs = (submodules.home, submodules.walk, submodules.mate)
+        let tabs = (submodules.home, submodules.mate)
         let tabBarController = TabBarController(tabs: tabs)
         return tabBarController
     }
