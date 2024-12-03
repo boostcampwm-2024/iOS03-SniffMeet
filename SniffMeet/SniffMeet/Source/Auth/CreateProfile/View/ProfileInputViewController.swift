@@ -408,7 +408,7 @@ extension ProfileInputViewController: UITextFieldDelegate {
             let newLength = text.count + string.count - range.length
             return filteredInputCharacters && newLength <= 2
         }
-        return true
+        return true // 충돌 해결하며 누락된 부분 추가
     }
 
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
