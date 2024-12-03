@@ -266,21 +266,29 @@ final class ProfileEditViewController: BaseViewController, ProfileEditViewable {
 // MARK: - ProfileEditViewControlle+UITextFieldDelegate
 
 extension ProfileEditViewController: UITextFieldDelegate {
-    func textField(
-        _ textField: UITextField,
-        shouldChangeCharactersIn range: NSRange,
-        replacementString string: String
-    ) -> Bool {
-        guard textField == ageTextField, let text = textField.text else { return true }
-        let newLength = text.count + string.count - range.length
-        return newLength <= 2
-    }
-
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
     }
 
+    func textField(_ textField: UITextField,
+                   shouldChangeCharactersIn range: NSRange,
+                   replacementString string: String) -> Bool
+    {
+        if textField == nameTextField, let text = textField.text {
+            let newLength = text.count + string.count - range.length
+            return newLength <= 15
+        }
+        if textField == ageTextField, let text = textField.text {
+            let allowedCharacters = CharacterSet.decimalDigits
+            let inputCharacters = CharacterSet(charactersIn: string)
+            let filteredInputCharacters = allowedCharacters.isSuperset(of: inputCharacters)
+            let newLength = text.count + string.count - range.length
+            return filteredInputCharacters && newLength <= 2
+        }
+        return true
+    }
+  
     func textFieldDidBeginEditing(_ textField: UITextField) {
         let rect = textField.convert(textField.bounds, to: scrollView)
         let offset = (scrollView.frame.height - rect.height) / 2
