@@ -52,9 +52,14 @@ final class RequestWalkInteractor: RequestWalkInteractable {
                                    senderName: myInfo.name,
                                    category: .walkRequest)
         Task {
-            try await requestWalkUseCase.execute(walkNoti: walkNoti)
-            presenter?.didSendWalkRequest()
+            do {
+                try await requestWalkUseCase.execute(walkNoti: walkNoti)
+
+            } catch {
+                SNMLogger.error("RequestWalkInteractor: \(error.localizedDescription)")
+            }
         }
+        presenter?.didSendWalkRequest()
     }
 
     func requestMateInfo() {

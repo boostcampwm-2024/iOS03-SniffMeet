@@ -19,6 +19,7 @@ final class RequestWalkViewController: BaseViewController, RequestWalkViewable {
     
     private let scrollView = UIScrollView()
     private let contentView = UIView()
+    private var textViewEdited: Bool = false
     private var dismissButton: UIButton = {
         let button = UIButton()
         button.setImage(UIImage(systemName: "xmark"), for: .normal)
@@ -67,7 +68,7 @@ final class RequestWalkViewController: BaseViewController, RequestWalkViewable {
     }
     override func configureAttributes() {
         hideKeyboardWhenTappedAround()
-        submitButton.isEnabled = false
+        updateSubmitButtonState()
     }
     override func configureHierachy() {
         view.addSubview(scrollView)
@@ -175,7 +176,7 @@ final class RequestWalkViewController: BaseViewController, RequestWalkViewable {
                 self?.locationView.setAddress(
                     address: address?.location ?? Context.locationGuideTitle
                 )
-                self?.submitButton.isEnabled = (self?.messageTextView.text.isEmpty == false)
+                self?.updateSubmitButtonState()
             }
             .store(in: &cancellables)
         presenter?.output.profileImageData
@@ -217,6 +218,14 @@ final class RequestWalkViewController: BaseViewController, RequestWalkViewable {
             }
             .store(in: &cancellables)
     }
+    func updateSubmitButtonState() {
+        if textViewEdited == false {
+            submitButton.isEnabled = false
+        } else {
+            submitButton.isEnabled = (messageTextView.text.isEmpty == false) && (address != nil)
+        }
+        
+    }
 }
 
 private extension RequestWalkViewController {
@@ -238,7 +247,7 @@ extension RequestWalkViewController: UITextViewDelegate {
         if textView.text == Context.messagePlaceholder {
             textView.text = nil
             textView.textColor = .black
-            submitButton.isEnabled = false
+            textViewEdited = true
         }
     }
     func textViewDidEndEditing(_ textView: UITextView) {
@@ -248,8 +257,7 @@ extension RequestWalkViewController: UITextViewDelegate {
         }
     }
     func textViewDidChange(_ textView: UITextView) {
-        submitButton.isEnabled = (!textView.text.isEmpty) &&
-        (locationView.locationString != Context.locationGuideTitle)
+        updateSubmitButtonState()
     }
     func textView(
         _ textView: UITextView,

@@ -70,10 +70,8 @@ final class RespondWalkInteractor: RespondWalkInteractable {
         do {
             Task {
                 try await respondWalkRequestUseCase.execute(walkNoti: walkNoti)
-                presenter?.didSendWalkRespond()
             }
-        } catch {
-            presenter?.didFailToSendWalkRequest(error: error)
+            presenter?.didSendWalkRespond()
         }
     }
     
