@@ -16,9 +16,8 @@ protocol HomePresentable: AnyObject {
 
     func viewDidLoad()
     func notificationBarButtonDidTap()
-    func changeIsPaired(with isPaired: Bool)
-    func profileData(_ data: DogProfileDTO)
     func didTapEditButton(userInfo: UserInfo)
+    func didTapRequestWalkButton()
 }
 
 final class HomePresenter: HomePresentable {
@@ -53,33 +52,20 @@ final class HomePresenter: HomePresentable {
             output.dogInfo.send(placeHolderInfo)
         }
     }
+
     func notificationBarButtonDidTap() {
         guard let view else { return }
         router?.showNotificationView(homeView: view)
     }
-    func changeIsPaired(with isPaired: Bool) {
-        guard let view else { return }
-        if isPaired {
-            router?.showAlert(
-                homeView: view,
-                title: "Connected",
-                message: "성공적으로 연결되었습니다.\n핸드폰끼리 카메라 방향으로 가까이하여 프로필을 교환해보세요."
-            )
-        } else {
-            router?.showAlert(
-                homeView: view,
-                title: "Disconnected",
-                message: "메이트 찾기 실패하였습니다.\n 와이파이와 블루투스가 켜져있는 상태인지 확인해주세요."
-            )
-        }
-    }
-    func profileData(_ data: DogProfileDTO) {
-        guard let view else { return }
-        router?.showMateRequestView(homeView: view, data: data)
-    }
+
     func didTapEditButton(userInfo: UserInfo) {
         guard let view else { return }
         router?.showProfileEditView(homeView: view, userInfo: userInfo)
+    }
+
+    func didTapRequestWalkButton() {
+        guard let view else { return }
+        router?.transitionToMateListView(homeView: view)
     }
 }
 

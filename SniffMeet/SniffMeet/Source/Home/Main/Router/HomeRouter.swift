@@ -12,6 +12,7 @@ protocol HomeRoutable: Routable {
     func showNotificationView(homeView: any HomeViewable)
     func showAlert(homeView: any HomeViewable, title: String, message: String)
     func showMateRequestView(homeView: any HomeViewable, data: DogProfileDTO)
+    func transitionToMateListView(homeView: any HomeViewable)
 }
 
 final class HomeRouter: NSObject, HomeRoutable {
@@ -45,5 +46,10 @@ final class HomeRouter: NSObject, HomeRoutable {
             requestMateViewController.transitioningDelegate = homeView
         }
         present(from: homeView, with: requestMateViewController, animated: true)
+    }
+    func transitionToMateListView(homeView: any HomeViewable) {
+        guard let homeView = homeView as? UIViewController,
+              let tabBarController = homeView.tabBarController else { return }
+        tabBarController.selectedIndex = 1
     }
 }
