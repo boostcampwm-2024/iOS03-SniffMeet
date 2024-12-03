@@ -9,19 +9,45 @@ import UIKit
 
 protocol MateListRoutable: Routable {
     func presentWalkRequestView(mateListView: any MateListViewable, mate: Mate)
+    func showAlert(mateListView: any MateListViewable, title: String, message: String)
+    func showMateRequestView(mateListView: any MateListViewable, data: DogProfileDTO)
 }
 
 protocol MateListBuildable {
     static func createMateListModule() -> UIViewController
 }
 
-struct MateListRouter: MateListRoutable {
+final class MateListRouter: MateListRoutable {
     func presentWalkRequestView(mateListView: MateListViewable, mate: Mate) {
         guard let mateListView = mateListView as? MateListViewController else { return }
         let requestWalkView = RequestWalkRouter.createRequestWalkModule(mate: mate)
         requestWalkView.modalPresentationStyle = .custom
         requestWalkView.transitioningDelegate = mateListView
         mateListView.present(requestWalkView, animated: true)
+    }
+    func showAlert(
+        mateListView: any MateListViewable,
+        title: String,
+        message: String
+    ) {
+        guard let mateListView = mateListView as? UIViewController else { return }
+        if let presentedVC = mateListView.presentedViewController as? UIAlertController {
+            presentedVC.dismiss(animated: false)
+        }
+
+        let alertVC = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alertVC.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        mateListView.present(alertVC, animated: true, completion: nil)
+    }
+    func showMateRequestView(mateListView: any MateListViewable, data: DogProfileDTO) {
+        guard let mateListView = mateListView as? UIViewController else { return }
+        let requestMateViewController = RequestMateRouter.createRequestMateModule(profile: data)
+        requestMateViewController.modalPresentationStyle = .fullScreen
+
+        if let mateListView = mateListView as?  UIViewControllerTransitioningDelegate {
+            requestMateViewController.transitioningDelegate = mateListView
+        }
+        present(from: mateListView, with: requestMateViewController, animated: true)
     }
 }
 
