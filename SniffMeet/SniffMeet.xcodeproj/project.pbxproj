@@ -1525,7 +1525,6 @@
 		FDA491932CDA7C6200A36FB0 /* RequestWalk */ = {
 			isa = PBXGroup;
 			children = (
-				FD119F512CED880A00BE22BD /* SelectLocationModuleBuildable.swift */,
 				320044692CEB182400D08B6D /* View */,
 				FDA491952CDA7C6A00A36FB0 /* Interactor */,
 				FDA491962CDA7C6A00A36FB0 /* Presenter */,
@@ -1555,6 +1554,7 @@
 		FDA491982CDA7C6A00A36FB0 /* Router */ = {
 			isa = PBXGroup;
 			children = (
+				FD119F512CED880A00BE22BD /* SelectLocationModuleBuildable.swift */,
 				320044742CEB4D6200D08B6D /* RequestWalkRouter.swift */,
 				FD119F4F2CED87DD00BE22BD /* SelectLocationRouter.swift */,
 			);

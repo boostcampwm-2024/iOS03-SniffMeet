@@ -17,6 +17,7 @@ protocol SelectLocationViewable: AnyObject {
 final class SelectLocationViewController: BaseViewController, SelectLocationViewable {
     var presenter: (any SelectLocationPresentable)?
     private var cancellables: Set<AnyCancellable> = []
+    private var cancellable: AnyCancellable?
     private let mapView: MKMapView = {
         let mapView: MKMapView = MKMapView()
         mapView.showsUserLocation = true
@@ -56,20 +57,14 @@ final class SelectLocationViewController: BaseViewController, SelectLocationView
     }()
 
     override func viewDidLoad() {
-        // presenter -> Location Auth + Updating Location 후
-        presenter?.viewDidLoad()
         super.viewDidLoad()
+        presenter?.viewDidLoad()
     }
 
     override func configureAttributes() {
         mapView.delegate = self
         mapView.setUserTrackingMode(.follow, animated: false)
-        // annotation init
         mapView.addAnnotation(pointAnnotation)
-        if let userLocation = presenter?.output.userLocation.value {
-            pointAnnotation.coordinate = userLocation.coordinate
-        }
-        mapView.setCenter(pointAnnotation.coordinate, animated: true)
     }
     override func configureHierachy() {
         [mapView,
@@ -134,8 +129,8 @@ final class SelectLocationViewController: BaseViewController, SelectLocationView
         focusUserLocationButton.publisher(event: .touchUpInside)
             .receive(on: RunLoop.main)
             .sink { [weak self] _ in
-                guard let self,
-                      let location = self.presenter?.output.userLocation.value
+                guard let self else { return }
+                guard let location = presenter?.output.userLocation.value
                 else { return }
                 self.mapView.setCenter(
                     location.coordinate,
@@ -150,6 +145,20 @@ final class SelectLocationViewController: BaseViewController, SelectLocationView
                 self?.presenter?.didTapSelectCompleteButton()
             }
             .store(in: &cancellables)
+
+        cancellable = presenter?.output.userLocation
+            .receive(on: RunLoop.main)
+            .dropFirst() // default를 버림
+            .sink(receiveValue: { [weak self] location in
+                self?.updateFocusWithUserLoaction(location: location)
+                self?.cancellable?.cancel()
+            })
+    }
+    /// 카메라, map annotation의 위치를 변경합니다.
+    private func updateFocusWithUserLoaction(location: CLLocation) {
+        pointAnnotation.coordinate = location.coordinate
+        mapView.setCenter(location.coordinate, animated: true)
+        presenter?.didUpdateSelectLocation(location: location)
     }
 }
 
@@ -181,9 +190,20 @@ extension SelectLocationViewController: MKMapViewDelegate {
             presenter?.didUpdateSelectLocation(location: location)
         }
     }
+    func mapView(_ mapView: MKMapView, didUpdate userLocation: MKUserLocation) {
+        guard let location = userLocation.location else { return }
+        presenter?.didUpdateUserLocation(location: location)
+    }
+    func mapView(_ mapView: MKMapView, didFailToLocateUserWithError error: any Error) {
+        guard let location = presenter?.output.userLocation.value else { return }
+        updateFocusWithUserLoaction(location: location)
+        presenter?.didFailToRequestLocationAuth()
+    }
 }
 
-private  extension SelectLocationViewController {
+// MARK: - SelectLocationViewController+Context
+
+private extension SelectLocationViewController {
     enum Context {
         static let selectButtonLabel: String = "선택하기"
         static let focusButtonImageName: String = "dot.scope"
