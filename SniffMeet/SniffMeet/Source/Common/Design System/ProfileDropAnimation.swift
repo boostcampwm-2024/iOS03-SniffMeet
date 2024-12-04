@@ -38,7 +38,8 @@ final class SpringBlurPawEffectAnimator: NSObject, UIViewControllerAnimatedTrans
                                         yValue: -10,
                                         width: containerView.bounds.width,
                                         height: 500)
-        emitterLayer.emitterCells = [pawPrintCell(), pawPrintCell()]
+        emitterLayer.emitterCells = [pawPrintCell(image: UIImage.navyPaw),
+                                     pawPrintCell(image: UIImage.brownPaw)]
         toView.layer.addSublayer(emitterLayer)
         
         let duration = transitionDuration(using: transitionContext)
@@ -62,9 +63,9 @@ final class SpringBlurPawEffectAnimator: NSObject, UIViewControllerAnimatedTrans
             }
         )
     }
-    private func pawPrintCell() -> CAEmitterCell {
+    private func pawPrintCell(image: UIImage) -> CAEmitterCell {
         let emitterCell = CAEmitterCell()
-        emitterCell.contents = UIImage(systemName: "pawprint.fill")?.cgImage
+        emitterCell.contents = image.cgImage
         emitterCell.birthRate = 25  // 입자 발생 비율
         emitterCell.lifetime = 3  // 입자의 생명주기
         emitterCell.velocity = 220  // 입자의 초기 속도
