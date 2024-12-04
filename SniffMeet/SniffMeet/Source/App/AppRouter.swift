@@ -48,18 +48,6 @@ final class AppRouter: NSObject, Routable {
         )
         window?.rootViewController = TabBarModuleBuilder.build(usingSubmodules: submodules)
     }
-    /// 뷰에 진입한 후 산책 요청 화면을 present 합니다.
-    func initializeViewAndPresentRequestView(walkNoti: WalkNoti) {
-        Task { @MainActor in
-            do {
-                try await SupabaseAuthManager.shared.restoreSession()
-                displayTabBar()
-                presentWalkRequestView(walkNoti: walkNoti)
-            } catch {
-                displayProfileSetupView()
-            }
-        }
-    }
     /// 뷰에 진입한 후 산책 응답 화면을 present 합니다.
     func initializeViewAndPresentRespondView(walkNoti: WalkNoti) {
         Task { @MainActor in
@@ -71,11 +59,6 @@ final class AppRouter: NSObject, Routable {
                 displayProfileSetupView()
             }
         }
-    }
-    func presentWalkRequestView(walkNoti: WalkNoti) {
-        let requestWalkViewController =
-        RespondWalkRouter.createRespondtWalkModule(walkNoti: walkNoti)
-        presentCardViewController(viewController: requestWalkViewController)
     }
     func presentRespondWalkView(walkNoti: WalkNoti) {
         let respondWalkViewController = RespondWalkRouter.createRespondtWalkModule(

@@ -42,8 +42,7 @@ final class ProfileCreateViewController: BaseViewController, ProfileCreateViewab
     private var warningLabel: UILabel = {
         let label = UILabel()
         label.textColor = SNMColor.warningRed
-        label.text = Context.placeholder
-        label.alpha = 0
+        label.text = Context.warning
         label.font = UIFont.systemFont(ofSize: 12)
         return label
     }()
@@ -95,6 +94,7 @@ private extension ProfileCreateViewController {
     enum Context {
         static let submitBtnTitle: String = "등록 완료"
         static let placeholder: String = "닉네임을 입력해주세요."
+        static let warning: String = "닉네임은 최대 8글자까지 입력할 수 있습니다."
         static let mainTitle: String = "마지막으로,\n반려견 사진과 닉네임을 등록해주세요."
         static let horizontalPadding: CGFloat = 24
         static let imageViewSize: CGFloat = 140
@@ -140,7 +140,7 @@ private extension ProfileCreateViewController {
             warningLabel.topAnchor.constraint(equalTo: nicknameTextField.bottomAnchor,
                                               constant: 16),
             warningLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor,
-                                                  constant: Context.horizontalPadding),
+                                                  constant: 26),
             submitButton.leadingAnchor.constraint(equalTo: view.leadingAnchor,
                                                   constant: Context.horizontalPadding),
             submitButton.trailingAnchor.constraint(equalTo: view.trailingAnchor,
@@ -172,6 +172,18 @@ extension ProfileCreateViewController: PHPickerViewControllerDelegate {
 
 extension ProfileCreateViewController: UITextFieldDelegate {
     func textFieldDidChangeSelection(_ textField: UITextField) {
-        submitButton.isEnabled = (textField.text?.count ?? 0 > 1)
+        guard let textCount = textField.text?.count else { return }
+        submitButton.isEnabled = (textCount > 1 && textCount < 9 )
     }
+
+    func textField(_ textField: UITextField,
+                   shouldChangeCharactersIn range: NSRange,
+                   replacementString string: String) -> Bool {
+        guard let text = textField.text else { return false }
+        let newLength = text.count + string.count - range.length
+        let inputTextValid = newLength <= 15
+
+        return inputTextValid
+    }
+
 }

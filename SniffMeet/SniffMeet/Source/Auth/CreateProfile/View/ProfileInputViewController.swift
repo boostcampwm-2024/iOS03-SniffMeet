@@ -151,12 +151,12 @@ final class ProfileInputViewController: BaseViewController, ProfileInputViewable
     override func configureConstraints() {
         var height = view.safeAreaLayoutGuide.owningView?.bounds.height ?? view.bounds.height
         height -= topbarHeight
-        
+        view.keyboardLayoutGuide.followsUndockedKeyboard = true
         NSLayoutConstraint.activate([
             scrollView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            scrollView.bottomAnchor.constraint(equalTo: view.keyboardLayoutGuide.topAnchor),
             contentView.topAnchor.constraint(equalTo: scrollView.contentLayoutGuide.topAnchor),
             contentView.leadingAnchor.constraint(equalTo:
                                                     scrollView.contentLayoutGuide.leadingAnchor),
@@ -354,6 +354,7 @@ private extension ProfileInputViewController {
                                 for: .editingChanged)
         ageTextField.addTarget(self, action: #selector(textFieldDidChange(_:)),
                                for: .editingChanged)
+        nameTextField.delegate = self
         ageTextField.delegate = self
         ageTextField.keyboardType = .numberPad
     }
@@ -396,9 +397,22 @@ extension ProfileInputViewController: UITextFieldDelegate {
                    shouldChangeCharactersIn range: NSRange,
                    replacementString string: String) -> Bool
     {
-        guard let text = textField.text else { return true }
-        let newLength = text.count + string.count - range.length
-        return newLength <= 2
-        
+        if textField == nameTextField, let text = textField.text {
+            let newLength = text.count + string.count - range.length
+            return newLength <= 15
+        }
+        if textField == ageTextField, let text = textField.text {
+            let allowedCharacters = CharacterSet.decimalDigits
+            let inputCharacters = CharacterSet(charactersIn: string)
+            let filteredInputCharacters = allowedCharacters.isSuperset(of: inputCharacters)
+            let newLength = text.count + string.count - range.length
+            return filteredInputCharacters && newLength <= 2
+        }
+        return true // 충돌 해결하며 누락된 부분 추가
+    }
+
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
     }
 }

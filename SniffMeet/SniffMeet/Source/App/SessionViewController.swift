@@ -11,16 +11,15 @@ final class SessionViewController: BaseViewController {
     private var logoImageView = UIImageView()
     private var logoTitleLabel = UILabel()
     private var smallTitleLabel = UILabel()
-    
     private weak var appRouter: AppRouter?
     var walkNoti: WalkNoti?
-    var isAccepted: Bool?
     
     init(appRouter: AppRouter?) {
         self.appRouter = appRouter
         super.init()
     }
     override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         routeView()
     }
 
@@ -61,10 +60,7 @@ final class SessionViewController: BaseViewController {
     }
     private func routeView() {
         if let walkNoti {
-            appRouter?.initializeViewAndPresentRequestView(walkNoti: walkNoti)
-        } else if let isAccepted {
-            // FIXME: - 수정 필요
-//            appRouter?.initializeViewAndPresentRespondView(isAccepted: isAccepted)
+            appRouter?.initializeViewAndPresentRespondView(walkNoti: walkNoti)
         } else {
             appRouter?.displayInitialScreen()
         }

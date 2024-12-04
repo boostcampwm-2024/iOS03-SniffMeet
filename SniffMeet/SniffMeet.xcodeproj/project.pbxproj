@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 63;
+	objectVersion = 70;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -60,6 +60,10 @@
 		320047B62CFCB8D000D08B6D /* EventConstant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 320047B52CFCB8CA00D08B6D /* EventConstant.swift */; };
 		320047B92CFD367300D08B6D /* PushNotificationConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 320047B82CFD366E00D08B6D /* PushNotificationConfig.swift */; };
 		320047BB2CFD368100D08B6D /* PushNotificationRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 320047BA2CFD367E00D08B6D /* PushNotificationRequest.swift */; };
+		320047BE2CFDE37300D08B6D /* WalkRequestDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 320047BD2CFDE36C00D08B6D /* WalkRequestDTO.swift */; };
+		320047DE2CFE9E0400D08B6D /* Extension + UIApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 320047DD2CFE9DFB00D08B6D /* Extension + UIApplication.swift */; };
+		9919104F2CFF552C008F86D6 /* OnBoardingPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9919104E2CFF5526008F86D6 /* OnBoardingPage.swift */; };
+		3200480C2CFF0FB400D08B6D /* ProfileDropAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3200480B2CFF0FA600D08B6D /* ProfileDropAnimation.swift */; };
 		9937361D2CF80D6600E3DD58 /* RequestUserInfoRemoteUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9937361C2CF80D5200E3DD58 /* RequestUserInfoRemoteUseCase.swift */; };
 		993736422CFCACB100E3DD58 /* UpdateUserInfoUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 993736412CFCACA800E3DD58 /* UpdateUserInfoUseCase.swift */; };
 		995D94262CE32ECE005A47BF /* Extension + Keyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 995D94252CE32EC1005A47BF /* Extension + Keyboard.swift */; };
@@ -293,6 +297,10 @@
 		320047B52CFCB8CA00D08B6D /* EventConstant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventConstant.swift; sourceTree = "<group>"; };
 		320047B82CFD366E00D08B6D /* PushNotificationConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushNotificationConfig.swift; sourceTree = "<group>"; };
 		320047BA2CFD367E00D08B6D /* PushNotificationRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushNotificationRequest.swift; sourceTree = "<group>"; };
+		320047BD2CFDE36C00D08B6D /* WalkRequestDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalkRequestDTO.swift; sourceTree = "<group>"; };
+		320047DD2CFE9DFB00D08B6D /* Extension + UIApplication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension + UIApplication.swift"; sourceTree = "<group>"; };
+		9919104E2CFF5526008F86D6 /* OnBoardingPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBoardingPage.swift; sourceTree = "<group>"; };
+		3200480B2CFF0FA600D08B6D /* ProfileDropAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileDropAnimation.swift; sourceTree = "<group>"; };
 		9937361C2CF80D5200E3DD58 /* RequestUserInfoRemoteUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestUserInfoRemoteUseCase.swift; sourceTree = "<group>"; };
 		993736412CFCACA800E3DD58 /* UpdateUserInfoUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateUserInfoUseCase.swift; sourceTree = "<group>"; };
 		995D94252CE32EC1005A47BF /* Extension + Keyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension + Keyboard.swift"; sourceTree = "<group>"; };
@@ -424,6 +432,10 @@
 		FDEAEA7B2CE314A3005890FA /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		991910492CFF52FD008F86D6 /* OnBoarding */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = OnBoarding; sourceTree = "<group>"; };
+/* End PBXFileSystemSynchronizedRootGroup section */
+
 /* Begin PBXFrameworksBuildPhase section */
 		FD331A622CF33C6700F39426 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
@@ -501,6 +513,7 @@
 		320044792CEC490600D08B6D /* Entity */ = {
 			isa = PBXGroup;
 			children = (
+				9919104E2CFF5526008F86D6 /* OnBoardingPage.swift */,
 				FD331A512CF23BCE00F39426 /* WalkLog.swift */,
 				320044972CED81EF00D08B6D /* WalkNoti.swift */,
 				A23A3B722CF4683F00A58705 /* Mate.swift */,
@@ -697,6 +710,7 @@
 		A2BD49F02CF72A8800AC72A7 /* DTO */ = {
 			isa = PBXGroup;
 			children = (
+				320047BD2CFDE36C00D08B6D /* WalkRequestDTO.swift */,
 				FDE768932CF782E500B5DE88 /* WalkAPSDTO.swift */,
 				FD1152782CFC3B23008955C4 /* SaveDeviceTokenDTO.swift */,
 				320047A72CFB0E2500D08B6D /* NotiListDTO.swift */,
@@ -828,13 +842,6 @@
 			path = SNMPersistenceTests;
 			sourceTree = "<group>";
 		};
-		FD9468CA2CFD590700417DC1 /* Entity */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Entity;
-			sourceTree = "<group>";
-		};
 		FD9468CC2CFD590700417DC1 /* Interactor */ = {
 			isa = PBXGroup;
 			children = (
@@ -870,7 +877,6 @@
 		FD9468D32CFD590700417DC1 /* EditProfile */ = {
 			isa = PBXGroup;
 			children = (
-				FD9468CA2CFD590700417DC1 /* Entity */,
 				FD9468CC2CFD590700417DC1 /* Interactor */,
 				FD9468CE2CFD590700417DC1 /* Presenter */,
 				FD9468D02CFD590700417DC1 /* Router */,
@@ -892,6 +898,7 @@
 		FDA491332CD9FE7C00A36FB0 /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				991910492CFF52FD008F86D6 /* OnBoarding */,
 				320047B72CFD365700D08B6D /* PushNotification */,
 				A2BD49F02CF72A8800AC72A7 /* DTO */,
 				320044792CEC490600D08B6D /* Entity */,
@@ -1523,7 +1530,6 @@
 		FDA491932CDA7C6200A36FB0 /* RequestWalk */ = {
 			isa = PBXGroup;
 			children = (
-				FD119F512CED880A00BE22BD /* SelectLocationModuleBuildable.swift */,
 				320044692CEB182400D08B6D /* View */,
 				FDA491952CDA7C6A00A36FB0 /* Interactor */,
 				FDA491962CDA7C6A00A36FB0 /* Presenter */,
@@ -1553,6 +1559,7 @@
 		FDA491982CDA7C6A00A36FB0 /* Router */ = {
 			isa = PBXGroup;
 			children = (
+				FD119F512CED880A00BE22BD /* SelectLocationModuleBuildable.swift */,
 				320044742CEB4D6200D08B6D /* RequestWalkRouter.swift */,
 				FD119F4F2CED87DD00BE22BD /* SelectLocationRouter.swift */,
 			);
@@ -1606,6 +1613,7 @@
 		FDE768862CF7810E00B5DE88 /* Design System */ = {
 			isa = PBXGroup;
 			children = (
+				3200480B2CFF0FA600D08B6D /* ProfileDropAnimation.swift */,
 				320047B52CFCB8CA00D08B6D /* EventConstant.swift */,
 				3200438D2CDF3D7F00D08B6D /* InputTextField.swift */,
 				3200438E2CDF3D7F00D08B6D /* KeywordButton.swift */,
@@ -1623,6 +1631,7 @@
 		FDE768872CF7811400B5DE88 /* Helper */ = {
 			isa = PBXGroup;
 			children = (
+				320047DD2CFE9DFB00D08B6D /* Extension + UIApplication.swift */,
 				FD8020FD2CF8C8DA0089B349 /* Extension + UIImage.swift */,
 				FDE7689E2CF7858D00B5DE88 /* Extension + UIViewController.swift */,
 				FDE768912CF7828600B5DE88 /* AnyJSONSerializable.swift */,
@@ -1696,6 +1705,9 @@
 			);
 			dependencies = (
 				FD3A03472CD8D2C90047B7ED /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				991910492CFF52FD008F86D6 /* OnBoarding */,
 			);
 			name = SniffMeet;
 			packageProductDependencies = (
@@ -1891,6 +1903,7 @@
 				FDE768982CF7836C00B5DE88 /* RemoteSaveDeviceTokenUseCase.swift in Sources */,
 				FD119F462CED868D00BE22BD /* ConvertLocationToTextUseCase.swift in Sources */,
 				A20E71522CEC5FE900272B25 /* SupabaseUserResponse.swift in Sources */,
+				9919104F2CFF552C008F86D6 /* OnBoardingPage.swift in Sources */,
 				320047B42CFC90C100D08B6D /* SessionViewController.swift in Sources */,
 				320045362CF4353900D08B6D /* SNMFileManager.swift in Sources */,
 				320044582CE5B04C00D08B6D /* ProfileCreateRouter.swift in Sources */,
@@ -1911,6 +1924,7 @@
 				FD51341F2CEB7AFE002E76F3 /* LoadUserInfoUseCase.swift in Sources */,
 				FD331A582CF23CEC00F39426 /* WalkLogCell.swift in Sources */,
 				FD5134172CEB738D002E76F3 /* UIControl + Publisher.swift in Sources */,
+				320047BE2CFDE37300D08B6D /* WalkRequestDTO.swift in Sources */,
 				320044852CEC836400D08B6D /* PaddingLabel.swift in Sources */,
 				A2BD49FF2CF7712800AC72A7 /* Keyword.swift in Sources */,
 				A2C328882CE2481900D255AB /* HomeModuleBuilder.swift in Sources */,
@@ -1955,6 +1969,7 @@
 				FD880B622CF433AF0093BEB9 /* Environment.swift in Sources */,
 				320043922CDF3D7F00D08B6D /* InputTextField.swift in Sources */,
 				FD119F482CED872C00BE22BD /* RequestLocationAuthUseCase.swift in Sources */,
+				320047DE2CFE9E0400D08B6D /* Extension + UIApplication.swift in Sources */,
 				A2BA1BAC2CF34A860080575A /* RequestProfileImageUseCase.swift in Sources */,
 				FD331A502CF235C400F39426 /* WalkLogPageViewController.swift in Sources */,
 				FD119F422CED865B00BE22BD /* SelectLocationViewController.swift in Sources */,
@@ -2012,6 +2027,7 @@
 				9937361D2CF80D6600E3DD58 /* RequestUserInfoRemoteUseCase.swift in Sources */,
 				FD331A602CF339B000F39426 /* SupabaseStorageRequest.swift in Sources */,
 				320044892CEC862D00D08B6D /* LocationSelectionView.swift in Sources */,
+				3200480C2CFF0FB400D08B6D /* ProfileDropAnimation.swift in Sources */,
 				FD331A4D2CF235A100F39426 /* SNMLineTabBar.swift in Sources */,
 				A2BD49FB2CF7711A00AC72A7 /* Sex.swift in Sources */,
 				FD69B1B52CE3BC7E009D71DC /* UserDefaultsManager.swift in Sources */,

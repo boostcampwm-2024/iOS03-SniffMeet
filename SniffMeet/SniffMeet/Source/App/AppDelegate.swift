@@ -62,7 +62,7 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
         let walkNoti: WalkNoti = walkAPS.notification.toEntity()
         switch walkAPS.notification.category {
         case .walkRequest:
-            sceneDelegate.appRouter?.presentWalkRequestView(walkNoti: walkNoti)
+            sceneDelegate.appRouter?.presentRespondWalkView(walkNoti: walkNoti)
         case .walkAccepted, .walkDeclined:
             sceneDelegate.appRouter?.presentRespondWalkView(walkNoti: walkNoti)
         }
