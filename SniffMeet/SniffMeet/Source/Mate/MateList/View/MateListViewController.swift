@@ -105,7 +105,7 @@ final class MateListViewController: BaseViewController, MateListViewable {
                         self?.addMateButton.buttonState = .failure
                     }
                     self?.presenter?.changeIsPaired(with: isPaired)
-                    self?.addMateButton.buttonState = .normal
+                    self?.addMateButton.buttonState = .connecting
                 }
                 self?.count += 1
             }
@@ -119,10 +119,19 @@ final class MateListViewController: BaseViewController, MateListViewable {
             }
             .store(in: &cancellables)
 
+        niManager?.$niPaired
+            .receive(on: RunLoop.main)
+            .sink { [weak self] isPaired in
+                if !isPaired {
+                    self?.addMateButton.buttonState = .failure
+                }
+                self?.addMateButton.buttonState = .success
+            }
+            .store(in: &cancellables)
+
         niManager?.isViewTransitioning
             .receive(on: RunLoop.main)
             .sink { [weak self] bool in
-                self?.addMateButton.buttonState = .success
                 guard let profile = self?.dogProfile else {
                     SNMLogger.error("No exist profile")
                     return
