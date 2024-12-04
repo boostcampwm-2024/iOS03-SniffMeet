@@ -103,8 +103,8 @@ final class MateListViewController: BaseViewController, MateListViewable {
                 if 1...3 ~= self?.count ?? 0 {
                     if !isPaired {
                         self?.addMateButton.buttonState = .failure
+                        self?.presenter?.showAlertDisconnected()
                     }
-                    self?.presenter?.changeIsPaired(with: isPaired)
                     self?.addMateButton.buttonState = .connecting
                 }
                 self?.count += 1
@@ -122,10 +122,12 @@ final class MateListViewController: BaseViewController, MateListViewable {
         niManager?.$niPaired
             .receive(on: RunLoop.main)
             .sink { [weak self] isPaired in
-                if !isPaired {
+                if isPaired {
+                    self?.presenter?.showAlertConnected()
+                    self?.addMateButton.buttonState = .success
+                } else {
                     self?.addMateButton.buttonState = .failure
                 }
-                self?.addMateButton.buttonState = .success
             }
             .store(in: &cancellables)
 
