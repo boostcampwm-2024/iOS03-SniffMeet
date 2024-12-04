@@ -23,6 +23,10 @@ struct SaveUserInfoUseCaseImpl: SaveUserInfoUseCase {
             SNMLogger.error("프로필 이미지 저장 실패: \(error.localizedDescription)")
         }
         
-        try localDataManager.storeData(data: [UUID(uuidString: "23f52fdb-5292-4afb-a8a4-6adb467b39ce")] , key: Environment.UserDefaultsKey.mateList)
+        try localDataManager.storeData(data: [UUID(uuidString: "717765b9-2929-4a23-919b-3bb029f557fc"),
+                                              UUID(uuidString: "46432436-4dd7-4915-a2e7-c714c45146d1"),
+                                              UUID(uuidString: "1851b20f-57e4-4b37-b43c-b09b24393449"),
+                                              UUID(uuidString: "f1be0742-7f05-4049-b883-099d017d2f4e")],
+                                       key: Environment.UserDefaultsKey.mateList)
     }
 }
