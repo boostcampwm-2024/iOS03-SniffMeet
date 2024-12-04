@@ -46,7 +46,9 @@ class OnBoardingPageViewController: BaseViewController {
     }
     
     override func configureAttributes() {
-
+        titleLabel.text = page.title
+        descriptionLabel.text = page.description
+        imageView.image = UIImage(named: page.imageName)
     }
     override func configureHierachy() {
         [titleLabel,
