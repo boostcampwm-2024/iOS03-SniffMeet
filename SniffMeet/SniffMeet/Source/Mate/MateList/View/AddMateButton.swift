@@ -13,6 +13,7 @@ final class AddMateButton: UIButton {
         case normal
         case connecting
         case success
+        case failure
     }
 
     var buttonState: ButtonState = .normal {
@@ -30,6 +31,10 @@ final class AddMateButton: UIButton {
                 configuration?.background.backgroundColor = UIColor.systemGreen
                 configuration?.title = "성공"
                 configuration?.image = UIImage(systemName: "checkmark.circle")
+            case .failure:
+                configuration?.background.backgroundColor = UIColor.systemGreen
+                configuration?.title = "실패"
+                configuration?.image = UIImage(systemName: "x.circle")
             }
         }
     }
