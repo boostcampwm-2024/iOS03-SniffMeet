@@ -5,9 +5,35 @@
 //  Created by Kelly Chui on 11/7/24.
 //
 
+import Combine
 import UIKit
 
 final class AddMateButton: UIButton {
+    enum ButtonState: String {
+        case normal
+        case connecting
+        case success
+    }
+
+    var buttonState: ButtonState = .normal {
+        didSet {
+            switch buttonState {
+            case .normal:
+                configuration?.background.backgroundColor = SNMColor.mainBeige
+                configuration?.title = "친구를 찾아보세요"
+                configuration?.image = UIImage(systemName: "person.2.badge.plus.fill")
+            case .connecting:
+                configuration?.background.backgroundColor = UIColor.systemGray
+                configuration?.title = "연결 중..."
+                configuration?.image = UIImage(systemName: "wifi")
+            case .success:
+                configuration?.background.backgroundColor = UIColor.systemGreen
+                configuration?.title = "성공"
+                configuration?.image = UIImage(systemName: "checkmark.circle")
+            }
+        }
+    }
+
     init(title: String) {
         super.init(frame: .zero)
         setupConfiguration(title: title)
@@ -39,19 +65,6 @@ final class AddMateButton: UIButton {
                 [.font: UIFont.systemFont(ofSize: 16.0, weight: .bold)]
             )
         )
-        
-        let handler: UIButton.ConfigurationUpdateHandler = { button in
-            switch button.state {
-            case .disabled:
-                button.configuration?.background.backgroundColor = SNMColor.disabledGray
-            case .normal:
-                button.configuration?.background.backgroundColor = SNMColor.mainNavy
-            default:
-                break
-            }
-        }
-
         self.configuration = configuration
-        self.configurationUpdateHandler = handler
     }
 }

@@ -17,8 +17,7 @@ final class MateListViewController: BaseViewController, MateListViewable {
     var imageDataSource: [Int: Data] = [:]
     private var cancellables: Set<AnyCancellable> = []
     private let tableView: UITableView = UITableView()
-    private let addMateButton = AddMateButton(title: "친구를 만들어?")
-
+    private let addMateButton = AddMateButton(title: "친구를 만들어봐요")
     private var mpcManager: MPCManager?
     private var niManager: NIManager?
     private var count: Int = 0
@@ -93,6 +92,7 @@ final class MateListViewController: BaseViewController, MateListViewable {
             .sink { [weak self] _ in
                 self?.mpcManager?.isAvailableToBeConnected = true
                 self?.count = 1
+                self?.addMateButton.buttonState = .connecting
             }
             .store(in: &cancellables)
 
@@ -111,12 +111,14 @@ final class MateListViewController: BaseViewController, MateListViewable {
             .sink { [weak self] profile in
                 SNMLogger.info("HomeViewController received data: \(profile)")
                 self?.dogProfile = profile
+                self?.addMateButton.buttonState = .success
             }
             .store(in: &cancellables)
 
         niManager?.isViewTransitioning
             .receive(on: RunLoop.main)
             .sink { [weak self] bool in
+                self?.addMateButton.buttonState = .normal
                 guard let profile = self?.dogProfile else {
                     SNMLogger.error("No exist profile")
                     return
