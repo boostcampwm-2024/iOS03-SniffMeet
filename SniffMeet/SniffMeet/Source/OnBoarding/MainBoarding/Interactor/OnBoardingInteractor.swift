@@ -23,9 +23,9 @@ final class OnBoardingInteractor: OnBoardingInteractable {
     }
 
     private let pages = [
-        OnBoardingPage(title: "SniffMeet", description: "SniffMeet 앱을 이용하세요", imageName: "placeholder"),
-        OnBoardingPage(title: "프로필 드랍", description: "프로필 드랍을 이용하세요", imageName: "placeholder"),
-        OnBoardingPage(title: "산책 요청", description: "산책 요청을 이용하세요", imageName: "placeholder")
+        OnBoardingPage(title: "SniffMeet", description: "SniffMeet 앱을 이용하세요", imageName: "placeholder", isGif: false),
+        OnBoardingPage(title: "프로필 드랍", description: "프로필 드랍을 이용하세요", imageName: "ProfileDrop", isGif: true),
+        OnBoardingPage(title: "산책 요청", description: "산책 요청을 이용하세요", imageName: "placeholder", isGif: false)
     ]
 
     func fetchPages() -> [OnBoardingPage] {
