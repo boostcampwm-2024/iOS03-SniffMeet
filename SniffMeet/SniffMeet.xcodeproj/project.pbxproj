@@ -60,8 +60,9 @@
 		320047B62CFCB8D000D08B6D /* EventConstant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 320047B52CFCB8CA00D08B6D /* EventConstant.swift */; };
 		320047B92CFD367300D08B6D /* PushNotificationConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 320047B82CFD366E00D08B6D /* PushNotificationConfig.swift */; };
 		320047BB2CFD368100D08B6D /* PushNotificationRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 320047BA2CFD367E00D08B6D /* PushNotificationRequest.swift */; };
-		320047DE2CFE9E0400D08B6D /* Extension + UIApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 320047DD2CFE9DFB00D08B6D /* Extension + UIApplication.swift */; };
 		320047BE2CFDE37300D08B6D /* WalkRequestDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 320047BD2CFDE36C00D08B6D /* WalkRequestDTO.swift */; };
+		320047DE2CFE9E0400D08B6D /* Extension + UIApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 320047DD2CFE9DFB00D08B6D /* Extension + UIApplication.swift */; };
+		3200480C2CFF0FB400D08B6D /* ProfileDropAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3200480B2CFF0FA600D08B6D /* ProfileDropAnimation.swift */; };
 		9937361D2CF80D6600E3DD58 /* RequestUserInfoRemoteUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9937361C2CF80D5200E3DD58 /* RequestUserInfoRemoteUseCase.swift */; };
 		993736422CFCACB100E3DD58 /* UpdateUserInfoUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 993736412CFCACA800E3DD58 /* UpdateUserInfoUseCase.swift */; };
 		995D94262CE32ECE005A47BF /* Extension + Keyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 995D94252CE32EC1005A47BF /* Extension + Keyboard.swift */; };
@@ -296,6 +297,7 @@
 		320047BA2CFD367E00D08B6D /* PushNotificationRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushNotificationRequest.swift; sourceTree = "<group>"; };
 		320047BD2CFDE36C00D08B6D /* WalkRequestDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalkRequestDTO.swift; sourceTree = "<group>"; };
 		320047DD2CFE9DFB00D08B6D /* Extension + UIApplication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension + UIApplication.swift"; sourceTree = "<group>"; };
+		3200480B2CFF0FA600D08B6D /* ProfileDropAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileDropAnimation.swift; sourceTree = "<group>"; };
 		9937361C2CF80D5200E3DD58 /* RequestUserInfoRemoteUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestUserInfoRemoteUseCase.swift; sourceTree = "<group>"; };
 		993736412CFCACA800E3DD58 /* UpdateUserInfoUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateUserInfoUseCase.swift; sourceTree = "<group>"; };
 		995D94252CE32EC1005A47BF /* Extension + Keyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension + Keyboard.swift"; sourceTree = "<group>"; };
@@ -1608,6 +1610,7 @@
 		FDE768862CF7810E00B5DE88 /* Design System */ = {
 			isa = PBXGroup;
 			children = (
+				3200480B2CFF0FA600D08B6D /* ProfileDropAnimation.swift */,
 				320047B52CFCB8CA00D08B6D /* EventConstant.swift */,
 				3200438D2CDF3D7F00D08B6D /* InputTextField.swift */,
 				3200438E2CDF3D7F00D08B6D /* KeywordButton.swift */,
@@ -2016,6 +2019,7 @@
 				9937361D2CF80D6600E3DD58 /* RequestUserInfoRemoteUseCase.swift in Sources */,
 				FD331A602CF339B000F39426 /* SupabaseStorageRequest.swift in Sources */,
 				320044892CEC862D00D08B6D /* LocationSelectionView.swift in Sources */,
+				3200480C2CFF0FB400D08B6D /* ProfileDropAnimation.swift in Sources */,
 				FD331A4D2CF235A100F39426 /* SNMLineTabBar.swift in Sources */,
 				A2BD49FB2CF7711A00AC72A7 /* Sex.swift in Sources */,
 				FD69B1B52CE3BC7E009D71DC /* UserDefaultsManager.swift in Sources */,

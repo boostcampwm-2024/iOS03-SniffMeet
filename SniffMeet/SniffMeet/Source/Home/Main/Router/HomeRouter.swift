@@ -39,11 +39,10 @@ final class HomeRouter: NSObject, HomeRoutable {
     func showMateRequestView(homeView: any HomeViewable, data: DogProfileDTO) {
         guard let homeView = homeView as? UIViewController else { return }
         let requestMateViewController = RequestMateRouter.createRequestMateModule(profile: data)
+
+        let transitionDelegate = ProfileDropTransitionDelegate()
         requestMateViewController.modalPresentationStyle = .fullScreen
-        
-        if let homeView = homeView as?  UIViewControllerTransitioningDelegate {
-            requestMateViewController.transitioningDelegate = homeView
-        }
+        requestMateViewController.transitioningDelegate = transitionDelegate
         present(from: homeView, with: requestMateViewController, animated: true)
     }
 }
