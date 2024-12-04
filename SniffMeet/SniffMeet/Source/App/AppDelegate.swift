@@ -64,7 +64,7 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
         case .walkRequest:
             sceneDelegate.appRouter?.presentRespondWalkView(walkNoti: walkNoti)
         case .walkAccepted, .walkDeclined:
-            sceneDelegate.appRouter?.presentRespondWalkView(walkNoti: walkNoti)
+            sceneDelegate.appRouter?.presentProcessedWalkView(walkNoti: walkNoti)
         }
     }
 }

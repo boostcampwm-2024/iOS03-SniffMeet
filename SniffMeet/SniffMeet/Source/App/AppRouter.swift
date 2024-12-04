@@ -28,7 +28,6 @@ final class AppRouter: NSObject, Routable {
     private func displayTabBar() {
         let submodules = (
             home: UINavigationController(rootViewController: HomeModuleBuilder.build()),
-//            walk: UINavigationController(rootViewController: WalkLogPageViewController()),
             mate: UINavigationController(rootViewController: MateListRouter.createMateListModule())
         )
         window?.rootViewController = TabBarModuleBuilder.build(usingSubmodules: submodules)
@@ -49,12 +48,12 @@ final class AppRouter: NSObject, Routable {
     func moveToHomeScreen() {
         let submodules = (
             home: UINavigationController(rootViewController:  HomeModuleBuilder.build()),
-//            walk: UINavigationController(rootViewController: WalkLogPageViewController()),
+            //            walk: UINavigationController(rootViewController: WalkLogPageViewController()),
             mate: UINavigationController(rootViewController: MateListRouter.createMateListModule())
         )
         window?.rootViewController = TabBarModuleBuilder.build(usingSubmodules: submodules)
     }
-    /// 뷰에 진입한 후 산책 응답 화면을 present 합니다.
+    /// 뷰에 진입한 후 산책 요청 화면을 present 합니다.
     func initializeViewAndPresentRespondView(walkNoti: WalkNoti) {
         Task { @MainActor in
             do {
@@ -66,11 +65,27 @@ final class AppRouter: NSObject, Routable {
             }
         }
     }
+    /// 뷰에 진입한 후 산책 응답 화면을 present 합니다.
+    func initializeViewAndPresentProcessedWalkView(walkNoti: WalkNoti) {
+        Task { @MainActor in
+            do {
+                try await SupabaseAuthManager.shared.restoreSession()
+                displayTabBar()
+                presentProcessedWalkView(walkNoti: walkNoti)
+            } catch {
+                displayProfileSetupView()
+            }
+        }
+    }
     func presentRespondWalkView(walkNoti: WalkNoti) {
         let respondWalkViewController = RespondWalkRouter.createRespondtWalkModule(
             walkNoti: walkNoti
         )
         presentCardViewController(viewController: respondWalkViewController)
+    }
+    func presentProcessedWalkView(walkNoti: WalkNoti) {
+        let processedWalkViewController = ProcessedWalkRouter.createProcessedWalkView(noti: walkNoti)
+        presentCardViewController(viewController: processedWalkViewController)
     }
     private func presentCardViewController(viewController: UIViewController) {
         viewController.modalPresentationStyle = .custom
