@@ -14,10 +14,10 @@ enum SupabaseStorageRequest {
         fileName: String,
         mimeType: MimeType
     )
-    case download(fileName: String)
+    case download(fileName: String, lastModified: String)
 }
 
-//MARK: - SupabaseStorageRequest+SNMRequestConvertible
+// MARK: - SupabaseStorageRequest+SNMRequestConvertible
 
 extension SupabaseStorageRequest: SNMRequestConvertible {
     var endpoint: Endpoint {
@@ -28,7 +28,7 @@ extension SupabaseStorageRequest: SNMRequestConvertible {
                 path: "storage/v1/object/\(SupabaseConfig.bucketName)/\(fileName)",
                 method: .post
             )
-        case .download(let fileName):
+        case .download(let fileName, _):
             Endpoint(
                 baseURL: SupabaseConfig.baseURL,
                 path: "storage/v1/object/\(SupabaseConfig.bucketName)/\(fileName)",
@@ -52,9 +52,10 @@ extension SupabaseStorageRequest: SNMRequestConvertible {
                         contentData: imageData
                     )
                 )
-        case .download:
+        case .download(_, let lastModified):
                 .header(with: [
-                    "apiKey" : SupabaseConfig.apiKey
+                    "apiKey" : SupabaseConfig.apiKey,
+                    "If-Modified-Since": lastModified
                 ])
         }
     }
