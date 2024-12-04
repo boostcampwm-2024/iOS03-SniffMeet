@@ -21,7 +21,7 @@ final class AppRouter: NSObject, Routable {
                 try await SupabaseAuthManager.shared.restoreSession()
                 displayTabBar()
             } catch {
-                displayProfileSetupView()
+                displayOnBoardingView()
             }
         }
     }
@@ -34,7 +34,13 @@ final class AppRouter: NSObject, Routable {
         window?.rootViewController = TabBarModuleBuilder.build(usingSubmodules: submodules)
         window?.makeKeyAndVisible()
     }
-    private func displayProfileSetupView() {
+    private func displayOnBoardingView() {
+        let navigationController =
+        UINavigationController(rootViewController: OnBoardingRouter.createModule())
+        window?.rootViewController = navigationController
+        window?.makeKeyAndVisible()
+    }
+    func displayProfileSetupView() {
         let navigationController =
         UINavigationController(rootViewController: ProfileInputRouter.createProfileInputModule())
         window?.rootViewController = navigationController
