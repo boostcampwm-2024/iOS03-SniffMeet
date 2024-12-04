@@ -20,9 +20,9 @@ final class AddMateButton: UIButton {
         didSet {
             switch buttonState {
             case .normal:
-                configuration?.background.backgroundColor = SNMColor.mainBeige
+                configuration?.background.backgroundColor = SNMColor.mainNavy
                 configuration?.title = "친구를 찾아보세요"
-                configuration?.image = UIImage(systemName: "person.2.badge.plus.fill")
+                configuration?.image = UIImage(systemName: "plus.magnifyingglass")
             case .connecting:
                 configuration?.background.backgroundColor = UIColor.systemGray
                 configuration?.title = "연결 중..."
@@ -52,7 +52,7 @@ final class AddMateButton: UIButton {
     private func setupConfiguration(title: String) {
         var configuration = UIButton.Configuration.filled()
         configuration.title = title
-        configuration.image = UIImage(systemName: "person.2.badge.plus.fill")
+        configuration.image = UIImage(systemName: "plus.magnifyingglass")
         configuration.imagePlacement = .trailing
         configuration.imagePadding = 4
         configuration.baseBackgroundColor = SNMColor.mainNavy
