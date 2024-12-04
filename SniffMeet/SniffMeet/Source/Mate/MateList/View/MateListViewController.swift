@@ -101,6 +101,8 @@ final class MateListViewController: BaseViewController, MateListViewable {
             .sink { [weak self] isPaired in
                 if 1...3 ~= self?.count ?? 0 {
                     self?.presenter?.changeIsPaired(with: isPaired)
+                } else {
+                    self?.addMateButton.buttonState = .normal
                 }
                 self?.count += 1
             }
