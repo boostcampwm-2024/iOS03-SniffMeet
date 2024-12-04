@@ -75,6 +75,7 @@ final class MateListViewController: BaseViewController, MateListViewable {
             .receive(on: RunLoop.main)
             .sink { [weak self] mates in
                 self?.tableView.reloadData()
+                self?.addMateButton.buttonState = .normal
             }
             .store(in: &cancellables)
         presenter?.output.profileImageData
@@ -115,14 +116,13 @@ final class MateListViewController: BaseViewController, MateListViewable {
             .sink { [weak self] profile in
                 SNMLogger.info("HomeViewController received data: \(profile)")
                 self?.dogProfile = profile
-                self?.addMateButton.buttonState = .success
             }
             .store(in: &cancellables)
 
         niManager?.isViewTransitioning
             .receive(on: RunLoop.main)
             .sink { [weak self] bool in
-                self?.addMateButton.buttonState = .normal
+                self?.addMateButton.buttonState = .success
                 guard let profile = self?.dogProfile else {
                     SNMLogger.error("No exist profile")
                     return
