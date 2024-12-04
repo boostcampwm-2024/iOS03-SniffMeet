@@ -5,6 +5,7 @@
 //  Created by 배현진 on 12/3/24.
 //
 
+import Combine
 import UIKit
 
 protocol OnBoardingViewable: AnyObject {
@@ -15,6 +16,7 @@ protocol OnBoardingViewable: AnyObject {
 
 class OnBoardingViewController: BaseViewController, OnBoardingViewable {
     var presenter: (any OnBoardingPresentable)?
+    private var cancellables = Set<AnyCancellable>()
     private var pageViewController: UIPageViewController!
     private var pages: [OnBoardingPage] = []
     private var skipButtoon = PrimaryButton(title: Context.skipLabel)
@@ -53,7 +55,13 @@ class OnBoardingViewController: BaseViewController, OnBoardingViewable {
             pageControl.centerXAnchor.constraint(equalTo: view.centerXAnchor)
         ])
     }
-    override func bind() {}
+    override func bind() {
+        skipButtoon.publisher(event: .touchUpInside)
+            .sink { [weak self] in
+                self?.presenter?.skipOnboarding()
+            }
+            .store(in: &cancellables)
+    }
 
     private func setupPageViewController() {
         SNMLogger.log("setupPageViewController")
@@ -67,10 +75,6 @@ class OnBoardingViewController: BaseViewController, OnBoardingViewable {
         addChild(pageViewController)
         view.addSubview(pageViewController.view)
         pageViewController.didMove(toParent: self)
-
-//        if let firstPage = self.pages.first {
-//            pageViewController.setViewControllers([OnBoardingPageViewController(page: firstPage)], direction: .forward, animated: false, completion: nil)
-//        }
     }
 
     func setButtonActions() {
@@ -83,10 +87,6 @@ class OnBoardingViewController: BaseViewController, OnBoardingViewable {
 
     func updatePages(_ pages: [OnBoardingPage]) {
         self.pages = pages
-        SNMLogger.info("page2: \(pages)")
-//        if let firstPage = self.pages.first {
-//            pageViewController.setViewControllers([OnBoardingPageViewController(page: firstPage)], direction: .forward, animated: false, completion: nil)
-//        }
         if let firstPage = presenter?.pageAt(index: 0) {
             let firstVC = OnBoardingPageViewController(page: firstPage)
             pageViewController.setViewControllers([firstVC], direction: .forward, animated: false)
