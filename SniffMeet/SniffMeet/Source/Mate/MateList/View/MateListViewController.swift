@@ -17,7 +17,7 @@ final class MateListViewController: BaseViewController, MateListViewable {
     var imageDataSource: [Int: Data] = [:]
     private var cancellables: Set<AnyCancellable> = []
     private let tableView: UITableView = UITableView()
-    private let addMateButton = AddMateButton(title: "친구를 만들어봐요")
+    private let addMateButton = AddMateButton(title: "새 메이트를 연결하세요")
     private var mpcManager: MPCManager?
     private var niManager: NIManager?
     private var count: Int = 0
