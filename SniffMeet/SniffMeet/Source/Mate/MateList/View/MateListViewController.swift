@@ -17,10 +17,20 @@ final class MateListViewController: BaseViewController, MateListViewable {
     var imageDataSource: [Int: Data] = [:]
     private var cancellables: Set<AnyCancellable> = []
     private let tableView: UITableView = UITableView()
+    private let addMateButton = AddMateButton(title: "친구를 만들어봐요")
+    private var mpcManager: MPCManager?
+    private var niManager: NIManager?
+    private var count: Int = 0
+    var dogProfile: DogProfileDTO?
 
     override func viewWillAppear(_ animated: Bool) {
         presenter?.viewWillAppear()
         super.viewWillAppear(animated)
+    }
+
+    override func viewDidLoad() {
+        setupMPCManager()
+        super.viewDidLoad()
     }
 
     override func configureAttributes() {
@@ -30,7 +40,9 @@ final class MateListViewController: BaseViewController, MateListViewable {
 
     override func configureHierachy() {
         view.addSubview(tableView)
+        view.addSubview(addMateButton)
         tableView.translatesAutoresizingMaskIntoConstraints = false
+        addMateButton.translatesAutoresizingMaskIntoConstraints = false
     }
 
     override func configureConstraints() {
@@ -46,6 +58,13 @@ final class MateListViewController: BaseViewController, MateListViewable {
             ),
             tableView.bottomAnchor.constraint(
                 equalTo: view.bottomAnchor
+            ),
+            addMateButton.centerXAnchor.constraint(
+                equalTo: view.centerXAnchor
+            ),
+            addMateButton.bottomAnchor.constraint(
+                equalTo: view.safeAreaLayoutGuide.bottomAnchor,
+                constant: -20
             )
         ]
         NSLayoutConstraint.activate(constraints)
@@ -56,6 +75,7 @@ final class MateListViewController: BaseViewController, MateListViewable {
             .receive(on: RunLoop.main)
             .sink { [weak self] mates in
                 self?.tableView.reloadData()
+                self?.addMateButton.buttonState = .normal
             }
             .store(in: &cancellables)
         presenter?.output.profileImageData
@@ -66,6 +86,53 @@ final class MateListViewController: BaseViewController, MateListViewable {
                 self?.tableView.reloadRows(at: [indexPath], with: .none)
             }
             .store(in: &cancellables)
+        addMateButton.publisher(event: .touchUpInside)
+            .throttle(for: .seconds(EventConstant.throttleInterval),
+                      scheduler: RunLoop.main,
+                      latest: false)
+            .sink { [weak self] _ in
+                self?.mpcManager?.isAvailableToBeConnected = true
+                self?.count = 1
+                self?.addMateButton.buttonState = .connecting
+            }
+            .store(in: &cancellables)
+
+        mpcManager?.$paired
+            .receive(on: RunLoop.main)
+            .sink { [weak self] isPaired in
+                if 1...3 ~= self?.count ?? 0 {
+                    if !isPaired {
+                        self?.addMateButton.buttonState = .failure
+                    }
+                    self?.presenter?.changeIsPaired(with: isPaired)
+                    self?.addMateButton.buttonState = .normal
+                }
+                self?.count += 1
+            }
+            .store(in: &cancellables)
+
+        mpcManager?.receivedDataPublisher
+            .receive(on: RunLoop.main)
+            .sink { [weak self] profile in
+                SNMLogger.info("HomeViewController received data: \(profile)")
+                self?.dogProfile = profile
+            }
+            .store(in: &cancellables)
+
+        niManager?.isViewTransitioning
+            .receive(on: RunLoop.main)
+            .sink { [weak self] bool in
+                self?.addMateButton.buttonState = .success
+                guard let profile = self?.dogProfile else {
+                    SNMLogger.error("No exist profile")
+                    return
+                }
+                if bool {
+                    SNMLogger.log("isViewTransitioning")
+                    self?.presenter?.profileData(profile)
+                }
+            }
+            .store(in: &cancellables)
     }
 
     private func setTableView() {
@@ -73,6 +140,11 @@ final class MateListViewController: BaseViewController, MateListViewable {
         tableView.dataSource = self
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: Identifier.mateCellID)
         tableView.separatorStyle = .none
+    }
+
+    private func setupMPCManager() {
+        mpcManager = MPCManager(yourName: String(UUID().uuidString.suffix(8)))
+        niManager = NIManager(mpcManager: mpcManager!)
     }
 }
 
