@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 63;
+	objectVersion = 70;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -62,6 +62,7 @@
 		320047BB2CFD368100D08B6D /* PushNotificationRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 320047BA2CFD367E00D08B6D /* PushNotificationRequest.swift */; };
 		320047BE2CFDE37300D08B6D /* WalkRequestDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 320047BD2CFDE36C00D08B6D /* WalkRequestDTO.swift */; };
 		320047DE2CFE9E0400D08B6D /* Extension + UIApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 320047DD2CFE9DFB00D08B6D /* Extension + UIApplication.swift */; };
+		9919104F2CFF552C008F86D6 /* OnBoardingPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9919104E2CFF5526008F86D6 /* OnBoardingPage.swift */; };
 		3200480C2CFF0FB400D08B6D /* ProfileDropAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3200480B2CFF0FA600D08B6D /* ProfileDropAnimation.swift */; };
 		9937361D2CF80D6600E3DD58 /* RequestUserInfoRemoteUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9937361C2CF80D5200E3DD58 /* RequestUserInfoRemoteUseCase.swift */; };
 		993736422CFCACB100E3DD58 /* UpdateUserInfoUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 993736412CFCACA800E3DD58 /* UpdateUserInfoUseCase.swift */; };
@@ -297,6 +298,7 @@
 		320047BA2CFD367E00D08B6D /* PushNotificationRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushNotificationRequest.swift; sourceTree = "<group>"; };
 		320047BD2CFDE36C00D08B6D /* WalkRequestDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalkRequestDTO.swift; sourceTree = "<group>"; };
 		320047DD2CFE9DFB00D08B6D /* Extension + UIApplication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension + UIApplication.swift"; sourceTree = "<group>"; };
+		9919104E2CFF5526008F86D6 /* OnBoardingPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBoardingPage.swift; sourceTree = "<group>"; };
 		3200480B2CFF0FA600D08B6D /* ProfileDropAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileDropAnimation.swift; sourceTree = "<group>"; };
 		9937361C2CF80D5200E3DD58 /* RequestUserInfoRemoteUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestUserInfoRemoteUseCase.swift; sourceTree = "<group>"; };
 		993736412CFCACA800E3DD58 /* UpdateUserInfoUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateUserInfoUseCase.swift; sourceTree = "<group>"; };
@@ -428,6 +430,10 @@
 		FDEAEA7B2CE314A3005890FA /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		991910492CFF52FD008F86D6 /* OnBoarding */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = OnBoarding; sourceTree = "<group>"; };
+/* End PBXFileSystemSynchronizedRootGroup section */
+
 /* Begin PBXFrameworksBuildPhase section */
 		FD331A622CF33C6700F39426 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
@@ -505,6 +511,7 @@
 		320044792CEC490600D08B6D /* Entity */ = {
 			isa = PBXGroup;
 			children = (
+				9919104E2CFF5526008F86D6 /* OnBoardingPage.swift */,
 				FD331A512CF23BCE00F39426 /* WalkLog.swift */,
 				320044972CED81EF00D08B6D /* WalkNoti.swift */,
 				A23A3B722CF4683F00A58705 /* Mate.swift */,
@@ -897,6 +904,7 @@
 		FDA491332CD9FE7C00A36FB0 /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				991910492CFF52FD008F86D6 /* OnBoarding */,
 				320047B72CFD365700D08B6D /* PushNotification */,
 				A2BD49F02CF72A8800AC72A7 /* DTO */,
 				320044792CEC490600D08B6D /* Entity */,
@@ -1703,6 +1711,9 @@
 			dependencies = (
 				FD3A03472CD8D2C90047B7ED /* PBXTargetDependency */,
 			);
+			fileSystemSynchronizedGroups = (
+				991910492CFF52FD008F86D6 /* OnBoarding */,
+			);
 			name = SniffMeet;
 			packageProductDependencies = (
 			);
@@ -1896,6 +1907,7 @@
 				FDE768982CF7836C00B5DE88 /* RemoteSaveDeviceTokenUseCase.swift in Sources */,
 				FD119F462CED868D00BE22BD /* ConvertLocationToTextUseCase.swift in Sources */,
 				A20E71522CEC5FE900272B25 /* SupabaseUserResponse.swift in Sources */,
+				9919104F2CFF552C008F86D6 /* OnBoardingPage.swift in Sources */,
 				320047B42CFC90C100D08B6D /* SessionViewController.swift in Sources */,
 				320045362CF4353900D08B6D /* SNMFileManager.swift in Sources */,
 				320044582CE5B04C00D08B6D /* ProfileCreateRouter.swift in Sources */,
