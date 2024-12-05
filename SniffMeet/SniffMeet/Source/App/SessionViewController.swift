@@ -62,10 +62,15 @@ final class SessionViewController: BaseViewController {
         if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
             appDelegate.markFirstLaunchHandled()
         }
-        if let walkNoti {
-            appRouter?.initializeViewAndPresentRespondView(walkNoti: walkNoti)
-        } else {
+        guard let walkNoti else {
             appRouter?.displayInitialScreen()
+            return
+        }
+        switch walkNoti.category {
+        case .walkRequest:
+            appRouter?.initializeViewAndPresentRespondView(walkNoti: walkNoti)
+        case .walkAccepted, .walkDeclined:
+            appRouter?.initializeViewAndPresentProcessedWalkView(walkNoti: walkNoti)
         }
     }
 }
