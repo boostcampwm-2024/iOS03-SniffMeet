@@ -15,7 +15,7 @@ protocol MateListPresentable: AnyObject {
     var output: any MateListPresenterOutput { get }
     
     func viewWillAppear()
-    func didTableViewCellLoad(index: Int, imageName: String?)
+    func didTableViewCellLoad(mateID: UUID, imageName: String?)
     func didTabAccessoryButton(mate: Mate)
     func showAlertConnected()
     func showAlertDisconnected()
@@ -24,7 +24,7 @@ protocol MateListPresentable: AnyObject {
 
 protocol MateListInteractorOutput: AnyObject {
     func didFetchMateList(mateList: [Mate])
-    func didFetchProfileImage(index: Int, imageData: Data?)
+    func didFetchProfileImage(id: UUID, imageData: Data?)
 }
 
 final class MateListPresenter: MateListPresentable {
@@ -53,8 +53,8 @@ final class MateListPresenter: MateListPresentable {
         SNMLogger.info("메이트 리스트 호출")
     }
 
-    func didTableViewCellLoad(index: Int, imageName: String?) {
-        interactor?.requestProfileImage(index: index, imageName: imageName)
+    func didTableViewCellLoad(mateID: UUID, imageName: String?) {
+        interactor?.requestProfileImage(id: mateID, imageName: imageName)
     }
 
     func didTabAccessoryButton(mate: Mate) {
@@ -91,9 +91,9 @@ extension MateListPresenter: MateListInteractorOutput {
         output.mates.send(mateList)
     }
 
-    func didFetchProfileImage(index: Int, imageData: Data?) {
+    func didFetchProfileImage(id: UUID, imageData: Data?) {
         guard let imageData else { return }
-        output.profileImageData.send((index, imageData))
+        output.profileImageData.send((id, imageData))
     }
 }
 
@@ -101,10 +101,10 @@ extension MateListPresenter: MateListInteractorOutput {
 
 protocol MateListPresenterOutput {
     var mates: CurrentValueSubject<[Mate], Never> { get }
-    var profileImageData: PassthroughSubject<(Int, Data?), Never> { get }
+    var profileImageData: PassthroughSubject<(UUID, Data?), Never> { get }
 }
 
 struct DefaultMateListPresenterOutput: MateListPresenterOutput {
     var mates = CurrentValueSubject<[Mate], Never>([])
-    var profileImageData = PassthroughSubject<(Int, Data?), Never>()
+    var profileImageData = PassthroughSubject<(UUID, Data?), Never>()
 }

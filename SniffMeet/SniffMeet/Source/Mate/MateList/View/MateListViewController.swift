@@ -14,7 +14,7 @@ protocol MateListViewable: AnyObject {
 
 final class MateListViewController: BaseViewController, MateListViewable {
     var presenter: (any MateListPresentable)?
-    var imageDataSource: [Int: Data] = [:]
+    var imageDataSource: [UUID: Data] = [:]
     private var cancellables: Set<AnyCancellable> = []
     private let tableView: UITableView = UITableView()
     private let addMateButton = AddMateButton(title: "새 메이트를 연결하세요")
@@ -80,8 +80,11 @@ final class MateListViewController: BaseViewController, MateListViewable {
             .store(in: &cancellables)
         presenter?.output.profileImageData
             .receive(on: RunLoop.main)
-            .sink { [weak self] (index, imageData) in
-                self?.imageDataSource[index] = imageData
+            .sink { [weak self] (mateID, imageData) in
+                self?.imageDataSource[mateID] = imageData
+                guard let index = self?.presenter?.output.mates.value.firstIndex(where: {
+                    $0.userID == mateID
+                }) else { return }
                 let indexPath = IndexPath(item: index, section: 0)
                 self?.tableView.reloadRows(at: [indexPath], with: .none)
             }
@@ -171,17 +174,18 @@ extension MateListViewController: UITableViewDelegate, UITableViewDataSource {
             withIdentifier: Identifier.mateCellID,
             for: indexPath
         )
+        guard let mate = presenter?.output.mates.value[indexPath.row] else { return cell }
         var content = cell.defaultContentConfiguration()
         content.image = .app
-        if let imageData = imageDataSource[indexPath.row] {
+        if let imageData = imageDataSource[mate.userID] {
             var profileImage = UIImage(data: imageData)
             profileImage = profileImage?.clipToSquareWithBackgroundColor(
                 with: ItemSize.profileImageSize.width)
             content.image = profileImage
         } else {
             presenter?.didTableViewCellLoad(
-                index: indexPath.row,
-                imageName: presenter?.output.mates.value[indexPath.row].profileImageURLString
+                mateID: mate.userID,
+                imageName: mate.profileImageURLString
             )
         }
         content.imageProperties.maximumSize = ItemSize.profileImageSize
