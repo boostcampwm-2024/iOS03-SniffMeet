@@ -53,7 +53,7 @@
 		3200453F2CF5A8B800D08B6D /* CalculateTimeLimitUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3200453E2CF5A88A00D08B6D /* CalculateTimeLimitUseCase.swift */; };
 		320047652CF6B86D00D08B6D /* RespondMateRequestUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 320047642CF6B83B00D08B6D /* RespondMateRequestUseCase.swift */; };
 		320047832CF70CA300D08B6D /* PresentAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 320047822CF70C9E00D08B6D /* PresentAnimator.swift */; };
-		320047852CF80B2600D08B6D /* MateList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 320047842CF80B2200D08B6D /* MateList.swift */; };
+		320047852CF80B2600D08B6D /* MateListDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 320047842CF80B2200D08B6D /* MateListDTO.swift */; };
 		320047A82CFB0E2B00D08B6D /* NotiListDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 320047A72CFB0E2500D08B6D /* NotiListDTO.swift */; };
 		320047AA2CFB1C6200D08B6D /* RequestNotiListUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 320047A92CFB1C5300D08B6D /* RequestNotiListUseCase.swift */; };
 		320047B42CFC90C100D08B6D /* SessionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 320047B32CFC90C100D08B6D /* SessionViewController.swift */; };
@@ -301,7 +301,7 @@
 		3200453E2CF5A88A00D08B6D /* CalculateTimeLimitUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculateTimeLimitUseCase.swift; sourceTree = "<group>"; };
 		320047642CF6B83B00D08B6D /* RespondMateRequestUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RespondMateRequestUseCase.swift; sourceTree = "<group>"; };
 		320047822CF70C9E00D08B6D /* PresentAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentAnimator.swift; sourceTree = "<group>"; };
-		320047842CF80B2200D08B6D /* MateList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MateList.swift; sourceTree = "<group>"; };
+		320047842CF80B2200D08B6D /* MateListDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MateListDTO.swift; sourceTree = "<group>"; };
 		320047A72CFB0E2500D08B6D /* NotiListDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotiListDTO.swift; sourceTree = "<group>"; };
 		320047A92CFB1C5300D08B6D /* RequestNotiListUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestNotiListUseCase.swift; sourceTree = "<group>"; };
 		320047B32CFC90C100D08B6D /* SessionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionViewController.swift; sourceTree = "<group>"; };
@@ -738,7 +738,7 @@
 				FDE768932CF782E500B5DE88 /* WalkAPSDTO.swift */,
 				FD1152782CFC3B23008955C4 /* SaveDeviceTokenDTO.swift */,
 				320047A72CFB0E2500D08B6D /* NotiListDTO.swift */,
-				320047842CF80B2200D08B6D /* MateList.swift */,
+				320047842CF80B2200D08B6D /* MateListDTO.swift */,
 				995D94D12CEDF031005A47BF /* MPCProfileDropDTO.swift */,
 				A2BD49F52CF72B4000AC72A7 /* WalkNotiDTO.swift */,
 				A2BD49F12CF72A9500AC72A7 /* DogProfileDTO.swift */,
@@ -1942,7 +1942,7 @@
 				FDE768A12CF7873600B5DE88 /* RequestNotificationAuthUseCase.swift in Sources */,
 				FD1152712CFB3872008955C4 /* RespondMapPresenter.swift in Sources */,
 				FDDDB93A2D00423D000D4528 /* ProcessedWalkRouter.swift in Sources */,
-				320047852CF80B2600D08B6D /* MateList.swift in Sources */,
+				320047852CF80B2600D08B6D /* MateListDTO.swift in Sources */,
 				A21435F72CE20D2500564A4D /* TabBarController.swift in Sources */,
 				320043762CDCA18E00D08B6D /* (null) in Sources */,
 				995D94D22CEDF037005A47BF /* MPCProfileDropDTO.swift in Sources */,

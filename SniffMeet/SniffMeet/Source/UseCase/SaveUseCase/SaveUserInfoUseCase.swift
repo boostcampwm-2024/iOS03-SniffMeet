@@ -25,8 +25,10 @@ struct SaveUserInfoUseCaseImpl: SaveUserInfoUseCase {
         }
         try localDataManager.storeData(
             data: [
-                UUID(uuidString: "21767f45-b598-426a-b5f1-a3d2381ad614"),
-                UUID(uuidString: "df0448fc-15f4-4b69-8fd3-da3e54bf120e")
+                UUID(uuidString: "f27c02f6-0110-4291-b866-a1ead0742755") ?? .init(),
+                UUID(uuidString: "b79bc6b9-b776-4f5b-8f6c-48ba498b6e3a") ?? .init(),
+                UUID(uuidString: "bda7ec28-1407-4871-93ea-c7835986726a") ?? .init(),
+                UUID(uuidString: "a96ee934-03b9-43f3-b29b-53c3ba945363") ?? .init()
             ] , key: Environment.UserDefaultsKey.mateList)
     }
 }
