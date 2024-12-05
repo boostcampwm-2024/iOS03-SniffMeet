@@ -32,6 +32,7 @@ extension BaseViewController {
             let imageView = UIImageView()
             imageView.image = image
             imageView.contentMode = .scaleAspectFit
+            imageView.tintColor = .white
             return imageView
         }()
 
@@ -112,7 +113,7 @@ extension BaseViewController {
 
         let backgroundView: UIView = {
             let backgroundView = UIView()
-            backgroundView.backgroundColor = UIColor.black.withAlphaComponent(0.6)
+            backgroundView.backgroundColor = UIColor.systemGray3.withAlphaComponent(0.6)
             backgroundView.layer.cornerRadius = 20
             return backgroundView
         }()
@@ -121,6 +122,7 @@ extension BaseViewController {
             let imageView = UIImageView()
             imageView.image = image
             imageView.contentMode = .scaleAspectFit
+            imageView.tintColor = .white
             return imageView
         }()
 
@@ -161,7 +163,7 @@ extension BaseViewController {
 
         NSLayoutConstraint.activate([
             backgroundView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
-            backgroundView.widthAnchor.constraint(equalToConstant: 300),
+            backgroundView.widthAnchor.constraint(equalToConstant: 150),
             backgroundView.heightAnchor.constraint(greaterThanOrEqualToConstant: 80),
             imageView.leadingAnchor.constraint(equalTo: backgroundView.leadingAnchor, constant: 10),
             imageView.centerYAnchor.constraint(equalTo: backgroundView.centerYAnchor),
