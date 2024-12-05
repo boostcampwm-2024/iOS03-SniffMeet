@@ -232,6 +232,7 @@ final class ProfileEditViewController: BaseViewController, ProfileEditViewable {
     private func bindCompleteEditButtonAction() {
         completeEditButton.publisher(event: .touchUpInside)
             .sink { [weak self] in
+                self?.showSNMProgressToast()
                 self?.presenter?.didTapCompleteButton(
                     name: self?.nameTextField.text,
                     age: self?.ageTextField.text,
