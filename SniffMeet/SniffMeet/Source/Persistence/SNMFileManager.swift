@@ -7,12 +7,17 @@
 import Foundation
 
 protocol ImageManagable {
-    func get(forKey: String) throws -> Data?
-    func set(imageData: Data, forKey: String) throws
+    func image(forKey: String) throws -> Data?
+    func setImage(imageData: Data, forKey: String) throws
+    func deleteImage(forKey: String) throws
+}
+protocol FileManageable {
+    func fetch(forKey: String) throws -> Data?
+    func set(data: Data, forKey: String) throws
     func delete(forKey: String) throws
 }
 
-struct SNMFileManager: ImageManagable {
+struct SNMFileManager: FileManageable {
     private var fileManager: FileManager { FileManager.default }
     private var documentsDir: URL? {
         fileManager.urls(for: .documentDirectory, in: .userDomainMask).first
@@ -29,25 +34,24 @@ struct SNMFileManager: ImageManagable {
     }
     
     /// key 값은 Environment.FileManagerKey를 이용하시면 됩니다.
-    func get(forKey: String) throws -> Data? {
+    func fetch(forKey: String) throws -> Data? {
         guard let documentsDir else {
             throw FileManagerError.directoryNotFound
         }
-        let fileURL = documentsDir.appendingPathComponent(forKey, conformingTo: .png)
+        let fileURL = documentsDir.appendingPathComponent(forKey)
         guard fileManager.fileExists(atPath: fileURL.path) else {
             throw FileManagerError.fileNotFound
         }
         return try? Data(contentsOf: fileURL)
     }
     
-    func set(imageData: Data, forKey: String) throws {
+    func set(data: Data, forKey: String) throws {
         guard let documentsDir else {
             throw FileManagerError.directoryNotFound
         }
-        /// key 값을 받아 해당 키 값이 파일 이름인 파일을 생성한다.
-        let fileURL = documentsDir.appendingPathComponent(forKey, conformingTo: .png)
+        let fileURL = documentsDir.appendingPathComponent(forKey)
         do {
-            try imageData.write(to: fileURL)
+            try data.write(to: fileURL)
         } catch {
             SNMLogger.log(error.localizedDescription)
             throw FileManagerError.writeError
@@ -64,6 +68,36 @@ struct SNMFileManager: ImageManagable {
         } catch {
             throw FileManagerError.deleteError
         }
+    }
+}
+
+extension SNMFileManager: ImageManagable {
+    func image(forKey: String) throws -> Data? {
+        guard let documentsDir else {
+            throw FileManagerError.directoryNotFound
+        }
+        let fileURL = documentsDir.appendingPathComponent(forKey, conformingTo: .png)
+        guard fileManager.fileExists(atPath: fileURL.path) else {
+            throw FileManagerError.fileNotFound
+        }
+        return try? Data(contentsOf: fileURL)
+    }
+    
+    func setImage(imageData: Data, forKey: String) throws {
+        guard let documentsDir else {
+            throw FileManagerError.directoryNotFound
+        }
+        let fileURL = documentsDir.appendingPathComponent(forKey, conformingTo: .png)
+        do {
+            try imageData.write(to: fileURL)
+        } catch {
+            SNMLogger.log(error.localizedDescription)
+            throw FileManagerError.writeError
+        }
+    }
+    
+    func deleteImage(forKey: String) throws {
+        try delete(forKey: forKey)
     }
 }
 

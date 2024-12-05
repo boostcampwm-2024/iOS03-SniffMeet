@@ -34,7 +34,7 @@ struct RequestProfileImageUseCaseImpl: RequestProfileImageUseCase {
                     SNMLogger.log("not modified")
                     return cacheableImage.imageData
                 } else {
-                    cacheManager.saveMemoryCache(urlString: fileName,
+                    cacheManager.save(urlString: fileName,
                                                  lastModified: remoteImage.lastModified,
                                                  imageData: remoteImage.imageData)
                     return remoteImage.imageData!
@@ -49,7 +49,7 @@ struct RequestProfileImageUseCaseImpl: RequestProfileImageUseCase {
                     fileName: fileName,
                     lastModified: ""
                 )
-                cacheManager.saveMemoryCache(urlString: fileName,
+                cacheManager.save(urlString: fileName,
                                              lastModified: remoteImage.lastModified,
                                              imageData: remoteImage.imageData)
                 return remoteImage.imageData
