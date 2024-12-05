@@ -10,7 +10,8 @@ import UIKit
 @main
 final class AppDelegate: UIResponder, UIApplicationDelegate {
     private let convertToWalkAPS: any ConvertToWalkAPSUseCase = ConvertToWalkAPSUseCaseImpl()
-
+    private var isFirstLaunch: Bool = true
+    
     func application(
         _ application: UIApplication,
         didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?
@@ -53,18 +54,28 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
         _ center: UNUserNotificationCenter,
         didReceive response: UNNotificationResponse
     ) async {
-        guard let sceneDelegate = UIApplication.shared.connectedScenes
-            .first?.delegate as? SceneDelegate else {
-            return
-        }
-        let userInfo = response.notification.request.content.userInfo
-        guard let walkAPS = convertToWalkAPS.execute(walkAPSUserInfo: userInfo) else { return }
-        let walkNoti: WalkNoti = walkAPS.notification.toEntity()
-        switch walkAPS.notification.category {
-        case .walkRequest:
-            sceneDelegate.appRouter?.presentRespondWalkView(walkNoti: walkNoti)
-        case .walkAccepted, .walkDeclined:
-            sceneDelegate.appRouter?.presentProcessedWalkView(walkNoti: walkNoti)
-        }
+            guard let sceneDelegate = UIApplication.shared.connectedScenes
+                .first?.delegate as? SceneDelegate else {
+                return
+            }
+            
+            if isFirstLaunch {
+                markFirstLaunchHandled()
+                return
+            }
+            let userInfo = response.notification.request.content.userInfo
+            guard let walkAPS = convertToWalkAPS.execute(walkAPSUserInfo: userInfo) else { return }
+            let walkNoti: WalkNoti = walkAPS.notification.toEntity()
+            
+            switch walkAPS.notification.category {
+            case .walkRequest:
+                sceneDelegate.appRouter?.presentRespondWalkView(walkNoti: walkNoti)
+            case .walkAccepted, .walkDeclined:
+                sceneDelegate.appRouter?.presentRespondWalkView(walkNoti: walkNoti)
+            }
+    }
+    func markFirstLaunchHandled() {
+        isFirstLaunch = false
     }
 }
+
