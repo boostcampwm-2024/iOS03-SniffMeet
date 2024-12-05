@@ -59,6 +59,9 @@ final class SessionViewController: BaseViewController {
         ])
     }
     private func routeView() {
+        if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
+            appDelegate.markFirstLaunchHandled()
+        }
         guard let walkNoti else {
             appRouter?.displayInitialScreen()
             return
@@ -78,3 +81,4 @@ extension SessionViewController {
         static let logoSmallTitleVerticalPadding: CGFloat = 19
     }
 }
+
