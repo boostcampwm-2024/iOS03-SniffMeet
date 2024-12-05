@@ -59,10 +59,15 @@ final class SessionViewController: BaseViewController {
         ])
     }
     private func routeView() {
-        if let walkNoti {
-            appRouter?.initializeViewAndPresentRespondView(walkNoti: walkNoti)
-        } else {
+        guard let walkNoti else {
             appRouter?.displayInitialScreen()
+            return
+        }
+        switch walkNoti.category {
+        case .walkRequest:
+            appRouter?.initializeViewAndPresentRespondView(walkNoti: walkNoti)
+        case .walkAccepted, .walkDeclined:
+            appRouter?.initializeViewAndPresentProcessedWalkView(walkNoti: walkNoti)
         }
     }
 }

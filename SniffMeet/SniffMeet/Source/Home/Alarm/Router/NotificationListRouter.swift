@@ -34,7 +34,7 @@ final class NotificationListRouter: NSObject, NotificationListRoutable {
         case .walkRequest:
             RespondWalkRouter.createRespondtWalkModule(walkNoti: walkNoti)
         case .walkAccepted, .walkDeclined:
-            RespondWalkRouter.createRespondtWalkModule(walkNoti: walkNoti)
+            ProcessedWalkRouter.createProcessedWalkView(noti: walkNoti)
         }
     }
 }

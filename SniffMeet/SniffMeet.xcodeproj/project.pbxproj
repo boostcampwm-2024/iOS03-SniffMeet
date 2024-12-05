@@ -224,6 +224,10 @@
 		FDCD02D52CE9182200B627D8 /* SNMNetworkTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDCD02D32CE9182200B627D8 /* SNMNetworkTests.swift */; };
 		FDCD02D72CE9182F00B627D8 /* AnyEncodableTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDCD02D62CE9182A00B627D8 /* AnyEncodableTests.swift */; };
 		FDCD02D92CE9183700B627D8 /* EndpointTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDCD02D82CE9183200B627D8 /* EndpointTests.swift */; };
+		FDDDB9362D00421F000D4528 /* ProcessedWalkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDDDB9352D004214000D4528 /* ProcessedWalkViewController.swift */; };
+		FDDDB9382D004233000D4528 /* ProcessedWalkPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDDDB9372D00422D000D4528 /* ProcessedWalkPresenter.swift */; };
+		FDDDB93A2D00423D000D4528 /* ProcessedWalkRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDDDB9392D004238000D4528 /* ProcessedWalkRouter.swift */; };
+		FDDDB93C2D004247000D4528 /* ProcessedWalkInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDDDB93B2D004242000D4528 /* ProcessedWalkInteractor.swift */; };
 		FDE14A4E2CE8D144001F7A9D /* HTTPStatusCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDE14A4D2CE8D13E001F7A9D /* HTTPStatusCode.swift */; };
 		FDE14A502CE8D2FB001F7A9D /* URLRequest + append.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDE14A4F2CE8D2E7001F7A9D /* URLRequest + append.swift */; };
 		FDE14A522CE8D338001F7A9D /* SNMRequestType.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDE14A512CE8D331001F7A9D /* SNMRequestType.swift */; };
@@ -424,6 +428,10 @@
 		FDCD02D32CE9182200B627D8 /* SNMNetworkTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SNMNetworkTests.swift; sourceTree = "<group>"; };
 		FDCD02D62CE9182A00B627D8 /* AnyEncodableTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnyEncodableTests.swift; sourceTree = "<group>"; };
 		FDCD02D82CE9183200B627D8 /* EndpointTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndpointTests.swift; sourceTree = "<group>"; };
+		FDDDB9352D004214000D4528 /* ProcessedWalkViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProcessedWalkViewController.swift; sourceTree = "<group>"; };
+		FDDDB9372D00422D000D4528 /* ProcessedWalkPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProcessedWalkPresenter.swift; sourceTree = "<group>"; };
+		FDDDB9392D004238000D4528 /* ProcessedWalkRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProcessedWalkRouter.swift; sourceTree = "<group>"; };
+		FDDDB93B2D004242000D4528 /* ProcessedWalkInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProcessedWalkInteractor.swift; sourceTree = "<group>"; };
 		FDE14A4D2CE8D13E001F7A9D /* HTTPStatusCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPStatusCode.swift; sourceTree = "<group>"; };
 		FDE14A4F2CE8D2E7001F7A9D /* URLRequest + append.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URLRequest + append.swift"; sourceTree = "<group>"; };
 		FDE14A512CE8D331001F7A9D /* SNMRequestType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SNMRequestType.swift; sourceTree = "<group>"; };
@@ -545,6 +553,7 @@
 		3200448B2CEC877500D08B6D /* View */ = {
 			isa = PBXGroup;
 			children = (
+				FDDDB9352D004214000D4528 /* ProcessedWalkViewController.swift */,
 				FD11526E2CFB33B0008955C4 /* RespondMapViewController.swift */,
 				3200448C2CEC877C00D08B6D /* RespondWalkViewController.swift */,
 			);
@@ -554,6 +563,7 @@
 		3200448E2CED778600D08B6D /* Interactor */ = {
 			isa = PBXGroup;
 			children = (
+				FDDDB93B2D004242000D4528 /* ProcessedWalkInteractor.swift */,
 				320044932CED80B000D08B6D /* RespondWalkInteractor.swift */,
 			);
 			path = Interactor;
@@ -562,6 +572,7 @@
 		3200448F2CED77AC00D08B6D /* Presenter */ = {
 			isa = PBXGroup;
 			children = (
+				FDDDB9372D00422D000D4528 /* ProcessedWalkPresenter.swift */,
 				FD1152702CFB386B008955C4 /* RespondMapPresenter.swift */,
 				320044912CED78C100D08B6D /* RespondWalkPresenter.swift */,
 			);
@@ -571,6 +582,7 @@
 		320044902CED77B200D08B6D /* Router */ = {
 			isa = PBXGroup;
 			children = (
+				FDDDB9392D004238000D4528 /* ProcessedWalkRouter.swift */,
 				FD1152722CFB3A83008955C4 /* RespondMapRouter.swift */,
 				320044952CED80D100D08B6D /* RespondWalkRouter.swift */,
 			);
@@ -1924,6 +1936,7 @@
 				FDEAEA7C2CE314A7005890FA /* BaseViewController.swift in Sources */,
 				FDE768A12CF7873600B5DE88 /* RequestNotificationAuthUseCase.swift in Sources */,
 				FD1152712CFB3872008955C4 /* RespondMapPresenter.swift in Sources */,
+				FDDDB93A2D00423D000D4528 /* ProcessedWalkRouter.swift in Sources */,
 				320047852CF80B2600D08B6D /* MateList.swift in Sources */,
 				A21435F72CE20D2500564A4D /* TabBarController.swift in Sources */,
 				320043762CDCA18E00D08B6D /* (null) in Sources */,
@@ -1970,6 +1983,7 @@
 				FD69B1B32CE3BC76009D71DC /* KeychainManager.swift in Sources */,
 				FD1152732CFB3A8A008955C4 /* RespondMapRouter.swift in Sources */,
 				320043782CDCA49100D08B6D /* (null) in Sources */,
+				FDDDB9382D004233000D4528 /* ProcessedWalkPresenter.swift in Sources */,
 				A24082612CEB244C009109A0 /* SupabaseConfig.swift in Sources */,
 				FD06342A2CE596D0003C9D6B /* NetworkProvider.swift in Sources */,
 				A2BD49F22CF72A9500AC72A7 /* DogProfileDTO.swift in Sources */,
@@ -2040,6 +2054,7 @@
 				FDE768922CF7828700B5DE88 /* AnyJSONSerializable.swift in Sources */,
 				9937361D2CF80D6600E3DD58 /* RequestUserInfoRemoteUseCase.swift in Sources */,
 				FD331A602CF339B000F39426 /* SupabaseStorageRequest.swift in Sources */,
+				FDDDB93C2D004247000D4528 /* ProcessedWalkInteractor.swift in Sources */,
 				320044892CEC862D00D08B6D /* LocationSelectionView.swift in Sources */,
 				3200480C2CFF0FB400D08B6D /* ProfileDropAnimation.swift in Sources */,
 				FD331A4D2CF235A100F39426 /* SNMLineTabBar.swift in Sources */,
@@ -2051,6 +2066,7 @@
 				FDE14A4E2CE8D144001F7A9D /* HTTPStatusCode.swift in Sources */,
 				3200441E2CE48D3500D08B6D /* MPCManager.swift in Sources */,
 				FDE768902CF7827D00B5DE88 /* AnyDecodable.swift in Sources */,
+				FDDDB9362D00421F000D4528 /* ProcessedWalkViewController.swift in Sources */,
 				FD0634312CE62578003C9D6B /* AnyEncodable.swift in Sources */,
 				FDE768962CF7831000B5DE88 /* RegisterDeviceTokenUseCase.swift in Sources */,
 				A23A3B732CF4683F00A58705 /* Mate.swift in Sources */,
