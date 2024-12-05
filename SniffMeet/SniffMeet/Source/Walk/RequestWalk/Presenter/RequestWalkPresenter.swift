@@ -87,6 +87,10 @@ extension RequestWalkPresenter: RequestWalkInteractorOutput {
         if let view {
             router?.dismissView(view: view)
         }
+        NotificationCenter.default.post(
+            name: .init(rawValue: "requestWalk"),
+            object: nil
+        )
     }
     func didFailToFetchDogInfo(error: any Error) {
         /// 반려견 정보를 가져오는 것을 실패했을 때 실행할 로직

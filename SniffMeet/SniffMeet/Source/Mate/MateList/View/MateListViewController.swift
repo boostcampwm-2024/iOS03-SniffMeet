@@ -31,6 +31,12 @@ final class MateListViewController: BaseViewController, MateListViewable {
     override func viewDidLoad() {
         setupMPCManager()
         super.viewDidLoad()
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(showSentAlert),
+            name: .init(rawValue: "requestWalk"),
+            object: nil
+        )
     }
 
     override func configureAttributes() {
@@ -147,6 +153,14 @@ final class MateListViewController: BaseViewController, MateListViewable {
                 }
             }
             .store(in: &cancellables)
+    }
+    
+    @objc private func showSentAlert() {
+        showSNMTextAndImageToast(
+            image: UIImage(systemName: "paperplane.fill"),
+            text: "전송 완료!",
+            animationType: .slideDown
+        )
     }
 
     private func setTableView() {
