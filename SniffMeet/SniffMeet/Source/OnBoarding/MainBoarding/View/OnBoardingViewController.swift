@@ -46,12 +46,30 @@ class OnBoardingViewController: BaseViewController, OnBoardingViewable {
     }
     override func configureConstraints() {
         NSLayoutConstraint.activate([
-            skipButtoon.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -20),
-            skipButtoon.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
-            skipButtoon.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
-            pageControl.bottomAnchor.constraint(equalTo: skipButtoon.topAnchor, constant: -30),
-            pageControl.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
-            pageControl.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+            skipButtoon.bottomAnchor.constraint(
+                equalTo: view.safeAreaLayoutGuide.bottomAnchor,
+                constant: -LayoutConstant.horizontalPadding
+            ),
+            skipButtoon.leadingAnchor.constraint(
+                equalTo: view.leadingAnchor,
+                constant: LayoutConstant.horizontalPadding
+            ),
+            skipButtoon.trailingAnchor.constraint(
+                equalTo: view.trailingAnchor,
+                constant: -LayoutConstant.horizontalPadding
+            ),
+            pageControl.bottomAnchor.constraint(
+                equalTo: skipButtoon.topAnchor,
+                constant: -10
+            ),
+            pageControl.leadingAnchor.constraint(
+                equalTo: view.leadingAnchor,
+                constant: LayoutConstant.horizontalPadding
+            ),
+            pageControl.trailingAnchor.constraint(
+                equalTo: view.trailingAnchor,
+                constant: -LayoutConstant.horizontalPadding
+            ),
             pageControl.centerXAnchor.constraint(equalTo: view.centerXAnchor)
         ])
     }
