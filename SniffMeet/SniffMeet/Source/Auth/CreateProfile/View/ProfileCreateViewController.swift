@@ -85,6 +85,7 @@ final class ProfileCreateViewController: BaseViewController, ProfileCreateViewab
                     nickname: nickname,
                     image: self?.profileImageView.image
                 )
+                self?.showSNMProgressToast()
             }
             .store(in: &cancellables)
     }
