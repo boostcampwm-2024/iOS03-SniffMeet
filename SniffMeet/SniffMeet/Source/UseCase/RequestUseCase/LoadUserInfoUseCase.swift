@@ -21,7 +21,7 @@ struct LoadUserInfoUseCaseImpl: LoadUserInfoUseCase {
     func execute() throws -> UserInfo {
         var userInfo = try dataLoadable.loadData(forKey: Environment.UserDefaultsKey.dogInfo,
                                                  type: UserInfo.self)
-        userInfo.profileImage = try imageManageable.get(forKey: Environment.FileManagerKey.profileImage)
+        userInfo.profileImage = try imageManageable.image(forKey: Environment.FileManagerKey.profileImage)
         return userInfo
     }
 }
