@@ -172,7 +172,7 @@ extension MPCManager: MCSessionDelegate {
             }
         default:
             Task { @MainActor in
-                self.paired = false
+                self.paired = true
             }
         }
     }

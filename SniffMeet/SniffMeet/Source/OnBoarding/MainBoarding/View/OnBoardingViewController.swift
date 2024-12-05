@@ -5,14 +5,34 @@
 //  Created by 배현진 on 12/3/24.
 //
 
+import Combine
 import UIKit
 
-class OnBoardingViewController: BaseViewController {
+protocol OnBoardingViewable: AnyObject {
+    var presenter: (any OnBoardingPresentable)? { get set }
+
+    func updatePages(_ pages: [OnBoardingPage])
+}
+
+class OnBoardingViewController: BaseViewController, OnBoardingViewable {
+    var presenter: (any OnBoardingPresentable)?
+    private var cancellables = Set<AnyCancellable>()
     private var pageViewController: UIPageViewController!
     private var pages: [OnBoardingPage] = []
     private var skipButtoon = PrimaryButton(title: Context.skipLabel)
-    private var pageControl: UIPageControl!
+    private var pageControl: UIPageControl = {
+        let pageControl = UIPageControl()
+        pageControl.numberOfPages = 3
+        pageControl.currentPage = 0
+        pageControl.currentPageIndicatorTintColor = SNMColor.mainNavy
+        pageControl.pageIndicatorTintColor = SNMColor.mainBrown
+        return pageControl
+    }()
 
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        presenter?.viewDidLoad()
+    }
     override func configureAttributes() {
         setupPageViewController()
         setButtonActions()
@@ -26,26 +46,44 @@ class OnBoardingViewController: BaseViewController {
     }
     override func configureConstraints() {
         NSLayoutConstraint.activate([
-            skipButtoon.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -20),
-            skipButtoon.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
-            skipButtoon.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
-            pageControl.bottomAnchor.constraint(equalTo: skipButtoon.topAnchor, constant: -30),
-            pageControl.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
-            pageControl.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+            skipButtoon.bottomAnchor.constraint(
+                equalTo: view.safeAreaLayoutGuide.bottomAnchor,
+                constant: -LayoutConstant.horizontalPadding
+            ),
+            skipButtoon.leadingAnchor.constraint(
+                equalTo: view.leadingAnchor,
+                constant: LayoutConstant.horizontalPadding
+            ),
+            skipButtoon.trailingAnchor.constraint(
+                equalTo: view.trailingAnchor,
+                constant: -LayoutConstant.horizontalPadding
+            ),
+            pageControl.bottomAnchor.constraint(
+                equalTo: skipButtoon.topAnchor,
+                constant: -10
+            ),
+            pageControl.leadingAnchor.constraint(
+                equalTo: view.leadingAnchor,
+                constant: LayoutConstant.horizontalPadding
+            ),
+            pageControl.trailingAnchor.constraint(
+                equalTo: view.trailingAnchor,
+                constant: -LayoutConstant.horizontalPadding
+            ),
             pageControl.centerXAnchor.constraint(equalTo: view.centerXAnchor)
         ])
     }
-    override func bind() {}
+    override func bind() {
+        skipButtoon.publisher(event: .touchUpInside)
+            .sink { [weak self] in
+                self?.presenter?.skipOnboarding()
+            }
+            .store(in: &cancellables)
+    }
 
     private func setupPageViewController() {
-        let page1 = OnBoardingPage(title: "SniffMeet", description: "SniffMeet 앱을 이용하세요", imageName: "placeholder")
-        let page2 = OnBoardingPage(title: "프로필 드랍", description: "프로필 드랍을 이용하세요", imageName: "placeholder")
-        let page3 = OnBoardingPage(title: "산책 요청", description: "산책 요청을 이용하세요", imageName: "placeholder")
-
-        pages.append(page1)
-        pages.append(page2)
-        pages.append(page3)
-
+        SNMLogger.log("setupPageViewController")
+        SNMLogger.info("page: \(pages)")
         pageViewController = UIPageViewController(
             transitionStyle: .scroll,
             navigationOrientation: .horizontal
@@ -55,16 +93,6 @@ class OnBoardingViewController: BaseViewController {
         addChild(pageViewController)
         view.addSubview(pageViewController.view)
         pageViewController.didMove(toParent: self)
-
-        if let firstPage = pages.first {
-            pageViewController.setViewControllers([OnBoardingPageViewController(page: firstPage)], direction: .forward, animated: false, completion: nil)
-        }
-
-        pageControl = UIPageControl()
-        pageControl.numberOfPages = pages.count
-        pageControl.currentPage = 0
-        pageControl.currentPageIndicatorTintColor = SNMColor.mainNavy
-        pageControl.pageIndicatorTintColor = SNMColor.mainBrown
     }
 
     func setButtonActions() {
@@ -73,6 +101,14 @@ class OnBoardingViewController: BaseViewController {
 
     func updatePageControl(for index: Int) {
         pageControl.currentPage = index
+    }
+
+    func updatePages(_ pages: [OnBoardingPage]) {
+        self.pages = pages
+        if let firstPage = presenter?.pageAt(index: 0) {
+            let firstVC = OnBoardingPageViewController(page: firstPage)
+            pageViewController.setViewControllers([firstVC], direction: .forward, animated: false)
+        }
     }
 }
 

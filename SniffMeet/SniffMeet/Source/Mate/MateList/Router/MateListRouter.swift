@@ -44,11 +44,9 @@ final class MateListRouter: MateListRoutable {
     func showMateRequestView(mateListView: any MateListViewable, data: DogProfileDTO) {
         guard let mateListView = mateListView as? UIViewController else { return }
         let requestMateViewController = RequestMateRouter.createRequestMateModule(profile: data)
+        let transitionDelegate = ProfileDropTransitionDelegate()
         requestMateViewController.modalPresentationStyle = .fullScreen
-
-        if let mateListView = mateListView as?  UIViewControllerTransitioningDelegate {
-            requestMateViewController.transitioningDelegate = mateListView
-        }
+        requestMateViewController.transitioningDelegate = transitionDelegate
         present(from: mateListView, with: requestMateViewController, animated: true)
     }
 }

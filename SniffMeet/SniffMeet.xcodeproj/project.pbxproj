@@ -67,6 +67,7 @@
 		32A7563D2D00398100965F0A /* CacheManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32A7563B2D00397D00965F0A /* CacheManager.swift */; };
 		32A7563E2D00398100965F0A /* CacheManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32A7563B2D00397D00965F0A /* CacheManager.swift */; };
 		9919104F2CFF552C008F86D6 /* OnBoardingPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9919104E2CFF5526008F86D6 /* OnBoardingPage.swift */; };
+		9919104F2CFF552C008F86D6 /* OnBoardingPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9919104E2CFF5526008F86D6 /* OnBoardingPage.swift */; };
 		9937361D2CF80D6600E3DD58 /* RequestUserInfoRemoteUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9937361C2CF80D5200E3DD58 /* RequestUserInfoRemoteUseCase.swift */; };
 		993736422CFCACB100E3DD58 /* UpdateUserInfoUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 993736412CFCACA800E3DD58 /* UpdateUserInfoUseCase.swift */; };
 		995D94262CE32ECE005A47BF /* Extension + Keyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 995D94252CE32EC1005A47BF /* Extension + Keyboard.swift */; };
@@ -76,6 +77,8 @@
 		995D94AC2CECFA30005A47BF /* RequestMatePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 995D94AB2CECFA24005A47BF /* RequestMatePresenter.swift */; };
 		995D94AE2CED00A4005A47BF /* RequestMateRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 995D94AD2CED0093005A47BF /* RequestMateRouter.swift */; };
 		995D94D22CEDF037005A47BF /* MPCProfileDropDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 995D94D12CEDF031005A47BF /* MPCProfileDropDTO.swift */; };
+		99A5A1B32CFFE545002F1D2D /* ProfileDrop.gif in Resources */ = {isa = PBXBuildFile; fileRef = 99A5A1B22CFFE544002F1D2D /* ProfileDrop.gif */; };
+		99A5A1B42CFFE545002F1D2D /* ProfileDrop.gif in Resources */ = {isa = PBXBuildFile; fileRef = 99A5A1B22CFFE544002F1D2D /* ProfileDrop.gif */; };
 		99FA4E792CE0FBBF00553C2E /* ProfileInputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99FA4E782CE0FBBF00553C2E /* ProfileInputViewController.swift */; };
 		A202A1152CEDD50700B98203 /* SupabaseDatabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A202A1142CEDD50700B98203 /* SupabaseDatabaseManager.swift */; };
 		A202A1172CEDD5EF00B98203 /* SupabaseDatabaseRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A202A1162CEDD5EF00B98203 /* SupabaseDatabaseRequest.swift */; };
@@ -314,6 +317,7 @@
 		995D94AB2CECFA24005A47BF /* RequestMatePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestMatePresenter.swift; sourceTree = "<group>"; };
 		995D94AD2CED0093005A47BF /* RequestMateRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestMateRouter.swift; sourceTree = "<group>"; };
 		995D94D12CEDF031005A47BF /* MPCProfileDropDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MPCProfileDropDTO.swift; sourceTree = "<group>"; };
+		99A5A1B22CFFE544002F1D2D /* ProfileDrop.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = ProfileDrop.gif; sourceTree = "<group>"; };
 		99FA4E782CE0FBBF00553C2E /* ProfileInputViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileInputViewController.swift; sourceTree = "<group>"; };
 		A202A1142CEDD50700B98203 /* SupabaseDatabaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupabaseDatabaseManager.swift; sourceTree = "<group>"; };
 		A202A1162CEDD5EF00B98203 /* SupabaseDatabaseRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupabaseDatabaseRequest.swift; sourceTree = "<group>"; };
@@ -893,6 +897,7 @@
 		FDA4912A2CD9FE3500A36FB0 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				99A5A1B22CFFE544002F1D2D /* ProfileDrop.gif */,
 				FD3A033C2CD8CF460047B7ED /* LaunchScreen.storyboard */,
 				FD3A033A2CD8CF460047B7ED /* Info.plist */,
 				FD3A03392CD8CF460047B7ED /* Assets.xcassets */,
@@ -1822,6 +1827,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A288A63D2CDC595000D11C34 /* (null) in Resources */,
+				99A5A1B32CFFE545002F1D2D /* ProfileDrop.gif in Resources */,
 				FD3A033F2CD8CF460047B7ED /* Assets.xcassets in Resources */,
 				FD3A03412CD8CF460047B7ED /* LaunchScreen.storyboard in Resources */,
 			);
@@ -1832,6 +1838,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3200453B2CF442D500D08B6D /* Assets.xcassets in Resources */,
+				99A5A1B42CFFE545002F1D2D /* ProfileDrop.gif in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
