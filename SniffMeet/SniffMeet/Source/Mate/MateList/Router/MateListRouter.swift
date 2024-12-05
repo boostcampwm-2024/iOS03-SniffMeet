@@ -57,7 +57,9 @@ extension MateListRouter: MateListBuildable {
             remoteDatabaseManager: SupabaseDatabaseManager.shared)
         let requestProfileImageUseCase: RequestProfileImageUseCase = RequestProfileImageUseCaseImpl(
             remoteImageManager: SupabaseStorageManager(
-            networkProvider: SNMNetworkProvider()))
+            networkProvider: SNMNetworkProvider()),
+            cacheManager: ImageNSCacheManager.shared
+        )
         let view: MateListViewable & UIViewController = MateListViewController()
         let presenter: MateListPresentable & MateListInteractorOutput =
         MateListPresenter()

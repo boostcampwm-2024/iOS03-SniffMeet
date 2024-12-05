@@ -49,6 +49,6 @@ public enum HTTPStatusCode: Int {
 
     /// 성공코드인지 확인합니다.
     var isSuccess: Bool {
-        200...299 ~= self.rawValue
+        200...304 ~= self.rawValue
     }
 }

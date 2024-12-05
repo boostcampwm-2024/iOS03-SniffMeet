@@ -48,7 +48,9 @@ extension RequestWalkRouter: RequestWalkBuildable {
         let requestProfileImageUseCase:
         RequestProfileImageUseCase = RequestProfileImageUseCaseImpl(
             remoteImageManager: SupabaseStorageManager(
-            networkProvider: SNMNetworkProvider()))
+            networkProvider: SNMNetworkProvider()),
+            cacheManager: ImageNSCacheManager.shared
+        )
         let loadInfoUseCase: LoadUserInfoUseCase = LoadUserInfoUseCaseImpl(
             dataLoadable: LocalDataManager(),
             imageManageable: SNMFileManager()
