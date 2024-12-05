@@ -31,10 +31,9 @@ SniffMEET에서 반려견과의 산책을 더욱 특별하게 만들어보세요
 - 반려동물 정보 입력만으로 앱 이용이 가능해요
 - 반려동물 정보는 홈 프로필 카드를 통해 확인 / 수정할 수 있어요
 
-|홈 화면|반려동물 정보 수정|
+|온보딩 및 로그인|반려동물 정보 수정|
 |---|---|
-|<img src="https://github.com/user-attachments/assets/67aedbf5-9bce-4be9-891e-667a2f5b0d0d" width = 200 >|<img src="https://github.com/user-attachments/assets/f55fd88a-0e49-4843-b579-9df23e3e59c3" width = 200 >|
-
+|<img src="https://github.com/user-attachments/assets/dad6bf82-6d75-4c49-862d-6a991b4664c0" width = 200 >|<img src="https://github.com/user-attachments/assets/a3b1dbf9-2fea-488a-8d2f-e132e0d532bd" width = 200 >|
 </br>
 
 ### 메이트 맺기
@@ -43,9 +42,9 @@ SniffMEET에서 반려견과의 산책을 더욱 특별하게 만들어보세요
 - 요청이 들어오면 요청 상대의 반려동물의 정보를 확인할 수 있어요
 - 수락시 메이트 관계가 형성되어 이후 산책을 요청할 수 있어요
 
-|홈 화면|상대 반려견 정보 확인|메이트 목록|
+|프로필 드랍|상대 반려견 정보 확인|메이트 목록|
 |---|---|---|
-|<img src="https://github.com/user-attachments/assets/67aedbf5-9bce-4be9-891e-667a2f5b0d0d" width = 200 >|<img src="https://github.com/user-attachments/assets/458bb507-f388-4471-8717-a06bb668fde0" width = 200 >|<img src="https://github.com/user-attachments/assets/9a3f7743-73ee-4f9e-8cca-e5b01b544cca" width = 200 >|
+|<img src="https://github.com/user-attachments/assets/181f392b-c241-4674-a8e8-6363f1e2b99e" width = 200 >|<img src="https://github.com/user-attachments/assets/458bb507-f388-4471-8717-a06bb668fde0" width = 200 >|<img src="https://github.com/user-attachments/assets/f6b66520-23ff-4fba-9351-736abfd93c35" width = 200 >|
 
 ### 산책 요청
 
@@ -54,9 +53,9 @@ SniffMEET에서 반려견과의 산책을 더욱 특별하게 만들어보세요
 - 지도에서 만날 장소를 지정할 수 있어요
 - 알림을 통해 메이트에게 요청이 전달돼요
 
-|메이트 리스트|산책 요청 보내기|산책 장소 선택하기|산책 요청 알림|
-|---|---|---|---|
-|<img src="https://github.com/user-attachments/assets/3141a843-74ce-4647-af41-7ec8b15030f4" width = 200 >|<img src="https://github.com/user-attachments/assets/41eeb613-1266-4b8f-9ef1-13aa99828da0" width = 200 >|<img src="https://github.com/user-attachments/assets/36eeb0d8-187f-4054-a1ce-fc0252c587f3" width = 200 >|<img src="https://github.com/user-attachments/assets/b18fd8ea-16dd-4d66-b82c-c3d72dda3c79" width = 200 >|
+|산책 요청 보내기|산책 요청 수락 알림|
+|---|---|
+|<img src="https://github.com/user-attachments/assets/ce16c025-f6e9-41b6-a9b7-534410d738c6" width = 200 >|<img src="https://github.com/user-attachments/assets/d502945c-6960-40a9-8ee4-4b6ced624c09" width = 200 >|
 
 # **🛠** 기술 스택
 
@@ -84,10 +83,10 @@ SniffMEET에서 반려견과의 산책을 더욱 특별하게 만들어보세요
 
 사용성이 편리하다는 점과 커스텀이 비교적 간편한 이유로 지도 사용에 MapKit을 선택했습니다.
 
-
 ### Supabase
 Supabase 서버와 HTTP REST API로 직접 통신하도록 Supabase Layer를 애플리케이션 내부에서 자체적으로 구현했습니다.
 Supabase 유저와 세션 복원이나 갱신과 같은 로직을 직접 구현해서 사용합니다.
+![image](https://github.com/user-attachments/assets/8f11c4a1-3606-4919-b131-599fae3f0eb4)
 
 ### Nearby Interaction
 
