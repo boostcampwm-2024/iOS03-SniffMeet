@@ -71,7 +71,6 @@ extension ImageNSCacheManager: ImageCacheable {
         let cacheableImage = CacheableImage(lastModified: lastModified, imageData: imageData)
         
         saveMemoryCache(urlString: urlString, cacheableImage: cacheableImage)
-        if onlyMemory { return }
         saveDiskCache(urlString: urlString, cacheableImage: cacheableImage)
     }
     
