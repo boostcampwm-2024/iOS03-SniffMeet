@@ -71,6 +71,7 @@ extension ImageNSCacheManager: ImageCacheable {
         let cacheableImage = CacheableImage(lastModified: lastModified, imageData: imageData)
         
         saveMemoryCache(urlString: urlString, cacheableImage: cacheableImage)
+        if onlyMemory { return }
         saveDiskCache(urlString: urlString, cacheableImage: cacheableImage)
     }
     
@@ -81,6 +82,7 @@ extension ImageNSCacheManager: ImageCacheable {
         }
         if let image = imageFromDiskCache(urlString: urlString) { // 디스크 캐시 hit
             SNMLogger.info("disk cache hit")
+            saveMemoryCache(urlString: urlString, cacheableImage: image)
             return image
         }
         // 모두 miss
