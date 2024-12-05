@@ -11,6 +11,8 @@ import UIKit
 protocol ProcessedWalkPresentable: AnyObject {
     var noti: WalkNoti { get }
     var view: (any ProcessedWalkViewable)? { get set }
+    var interactor: (any ProcessedWalkInteractable)? { get set }
+    var router: (any ProcessedWalkRoutable)? { get set }
     var output: (any ProcessedWalkPresenterOutput) { get }
 
     func viewDidLoad()
