@@ -32,6 +32,9 @@ struct RequestProfileImageUseCaseImpl: RequestProfileImageUseCase {
                 )
                 if !remoteImage.isModified { // 변경되지 않음
                     SNMLogger.log("not modified")
+                    cacheManager.save(urlString: fileName,
+                                                 lastModified: cacheableImage.lastModified,
+                                                 imageData: cacheableImage.imageData)
                     return cacheableImage.imageData
                 } else {
                     cacheManager.save(urlString: fileName,

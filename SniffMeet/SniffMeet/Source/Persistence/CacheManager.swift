@@ -80,7 +80,6 @@ extension ImageNSCacheManager: ImageCacheable {
             return image
         }
         if let image = imageFromDiskCache(urlString: urlString) { // 디스크 캐시 hit
-            saveMemoryCache(urlString: urlString, cacheableImage: image)
             SNMLogger.info("disk cache hit")
             return image
         }
