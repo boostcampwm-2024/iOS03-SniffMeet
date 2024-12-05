@@ -83,7 +83,7 @@ final class RespondWalkInteractor: RespondWalkInteractable {
                                            longtitude: receivedNoti.longtitude,
                                            senderId: userID,
                                            receiverId: receivedNoti.senderId,
-                                           senderName: userInfo.nickname,
+                                           senderName: userInfo.name,
                                            category: walkNotiCategory)
                 try await respondWalkRequestUseCase.execute(walkNoti: walkNoti)
             }
