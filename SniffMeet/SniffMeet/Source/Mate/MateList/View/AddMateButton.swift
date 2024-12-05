@@ -21,19 +21,19 @@ final class AddMateButton: UIButton {
             switch buttonState {
             case .normal:
                 configuration?.background.backgroundColor = SNMColor.mainNavy
-                configuration?.title = "친구를 찾아보세요"
+                configuration?.title = "새 메이트를 연결하세요"
                 configuration?.image = UIImage(systemName: "plus.magnifyingglass")
             case .connecting:
-                configuration?.background.backgroundColor = UIColor.systemGray
+                configuration?.background.backgroundColor = SNMColor.disabledGray
                 configuration?.title = "연결 중..."
                 configuration?.image = UIImage(systemName: "wifi")
             case .success:
-                configuration?.background.backgroundColor = UIColor.systemGreen
-                configuration?.title = "성공"
+                configuration?.background.backgroundColor = SNMColor.mainBrown
+                configuration?.title = "연결 성공, 프로필드랍 시도하세요"
                 configuration?.image = UIImage(systemName: "checkmark.circle")
             case .failure:
-                configuration?.background.backgroundColor = UIColor.systemGreen
-                configuration?.title = "실패"
+                configuration?.background.backgroundColor = SNMColor.disabledGray
+                configuration?.title = "연결 실패"
                 configuration?.image = UIImage(systemName: "x.circle")
             }
         }

@@ -32,7 +32,11 @@ public final class SNMNetworkProvider: NetworkProvider {
             else {
                 throw SNMNetworkError.failedStatusCode(reason: status)
             }
-            let snmResponse = SNMNetworkResponse(statusCode: status, data: data)
+            let snmResponse = SNMNetworkResponse(
+                statusCode: status,
+                data: data,
+                header: httpResponse.allHeaderFields
+            )
             return snmResponse
         } catch let error as URLError {
             throw SNMNetworkError.urlError(urlError: error)

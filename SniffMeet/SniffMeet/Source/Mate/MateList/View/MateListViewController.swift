@@ -17,7 +17,7 @@ final class MateListViewController: BaseViewController, MateListViewable {
     var imageDataSource: [Int: Data] = [:]
     private var cancellables: Set<AnyCancellable> = []
     private let tableView: UITableView = UITableView()
-    private let addMateButton = AddMateButton(title: "친구를 만들어봐요")
+    private let addMateButton = AddMateButton(title: "새 메이트를 연결하세요")
     private var mpcManager: MPCManager?
     private var niManager: NIManager?
     private var count: Int = 0
@@ -103,9 +103,9 @@ final class MateListViewController: BaseViewController, MateListViewable {
                 if 1...3 ~= self?.count ?? 0 {
                     if !isPaired {
                         self?.addMateButton.buttonState = .failure
+                        self?.presenter?.showAlertDisconnected()
                     }
-                    self?.presenter?.changeIsPaired(with: isPaired)
-                    self?.addMateButton.buttonState = .normal
+                    self?.addMateButton.buttonState = .connecting
                 }
                 self?.count += 1
             }
@@ -119,10 +119,21 @@ final class MateListViewController: BaseViewController, MateListViewable {
             }
             .store(in: &cancellables)
 
+        niManager?.$niPaired
+            .receive(on: RunLoop.main)
+            .sink { [weak self] isPaired in
+                if isPaired {
+                    self?.presenter?.showAlertConnected()
+                    self?.addMateButton.buttonState = .success
+                } else {
+                    self?.addMateButton.buttonState = .failure
+                }
+            }
+            .store(in: &cancellables)
+
         niManager?.isViewTransitioning
             .receive(on: RunLoop.main)
             .sink { [weak self] bool in
-                self?.addMateButton.buttonState = .success
                 guard let profile = self?.dogProfile else {
                     SNMLogger.error("No exist profile")
                     return

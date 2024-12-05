@@ -35,7 +35,6 @@ class OnBoardingPageViewController: BaseViewController {
     private var stackView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .vertical
-        stackView.spacing = 32
         stackView.alignment = .center
         return stackView
     }()
@@ -46,8 +45,11 @@ class OnBoardingPageViewController: BaseViewController {
     }
     
     override func configureAttributes() {
-        let highlightText = "산책 메이트"
-        titleLabel.attributedText = getAttributedText(fullText: page.title, highlight: highlightText, color: SNMColor.mainBrown)
+        titleLabel.attributedText = getAttributedText(
+            fullText: page.title,
+            highlight: Context.highlightText,
+            color: SNMColor.mainBrown
+        )
         descriptionLabel.text = page.description
         if page.isGif {
             if let gifImageView = createGIFImageView(named: page.imageName) {
@@ -66,6 +68,8 @@ class OnBoardingPageViewController: BaseViewController {
             $0.translatesAutoresizingMaskIntoConstraints = false
             stackView.addArrangedSubview($0)
         }
+        stackView.setCustomSpacing(Context.smallStackSpacing, after: titleLabel)
+        stackView.setCustomSpacing(Context.largeStackSpacing, after: imageView)
 
         stackView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(stackView)
@@ -73,13 +77,29 @@ class OnBoardingPageViewController: BaseViewController {
     }
     override func configureConstraints() {
         NSLayoutConstraint.activate([
-            stackView.topAnchor.constraint(equalTo: view.topAnchor, constant: 150),
-            stackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
-            stackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
-            stackView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -200),
-//            stackView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+            stackView.leadingAnchor.constraint(
+                equalTo: view.leadingAnchor,
+                constant: LayoutConstant.horizontalPadding
+            ),
+            stackView.trailingAnchor.constraint(
+                equalTo: view.trailingAnchor,
+                constant: -LayoutConstant.horizontalPadding
+            ),
+            stackView.centerYAnchor.constraint(
+                equalTo: view.centerYAnchor,
+                constant: -Context.stackCenter
+            ),
+            stackView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            stackView.heightAnchor.constraint(
+                equalTo: view.heightAnchor,
+                multiplier: Context.multiplier
+            ),
+            stackView.widthAnchor.constraint(equalTo: stackView.widthAnchor),
 
-            imageView.heightAnchor.constraint(equalTo: stackView.widthAnchor, multiplier: 0.7),
+            imageView.heightAnchor.constraint(
+                equalTo: stackView.widthAnchor,
+                multiplier: Context.multiplier
+            ),
             imageView.widthAnchor.constraint(equalTo: stackView.widthAnchor)
         ])
     }
@@ -90,6 +110,11 @@ private extension OnBoardingPageViewController {
     enum Context {
         static let titleLabel: String = "온보딩 타이틀"
         static let descriptionLabel: String = "온보딩 설명"
+        static let highlightText: String = "산책 메이트"
+        static let smallStackSpacing: CGFloat = 10
+        static let largeStackSpacing: CGFloat = 50
+        static let stackCenter: CGFloat = 60
+        static let multiplier: Double = 0.7
     }
 }
 
@@ -123,7 +148,10 @@ private extension OnBoardingPageViewController {
         return imageView
     }
 
-    private func getAttributedText(fullText: String, highlight: String, color: UIColor) -> NSAttributedString {
+    private func getAttributedText(
+        fullText: String,
+        highlight: String,
+        color: UIColor) -> NSAttributedString {
         let attributedString = NSMutableAttributedString(string: fullText)
 
         if let range = fullText.range(of: highlight) {

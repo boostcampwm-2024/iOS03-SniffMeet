@@ -4,18 +4,24 @@
 //
 //  Created by 윤지성 on 11/7/24.
 //
-
 import Foundation
 
 public final class SNMNetworkResponse {
     public let statusCode: HTTPStatusCode
     public let data: Data
     public let response: HTTPURLResponse?
-    
-    public init(statusCode: HTTPStatusCode, data: Data, response: HTTPURLResponse? = nil) {
+    public let header: [AnyHashable : Any]?
+
+    public init(
+        statusCode: HTTPStatusCode,
+        data: Data,
+        response: HTTPURLResponse? = nil,
+        header: [AnyHashable : Any]?
+    ) {
         self.statusCode = statusCode
         self.data = data
         self.response = response
+        self.header = header
     }
 }
 
@@ -32,3 +38,4 @@ extension SNMNetworkResponse: CustomDebugStringConvertible, Equatable {
         && lhs.response == rhs.response
     }
 }
+
