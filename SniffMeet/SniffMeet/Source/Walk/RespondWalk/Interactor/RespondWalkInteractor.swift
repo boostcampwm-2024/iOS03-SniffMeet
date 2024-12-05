@@ -85,7 +85,7 @@ final class RespondWalkInteractor: RespondWalkInteractable {
                                            receiverId: receivedNoti.senderId,
                                            senderName: userInfo.name,
                                            category: walkNotiCategory)
-                try await respondWalkRequestUseCase.execute(walkNoti: walkNoti)
+                try await respondWalkRequestUseCase.execute(requestID: receivedNoti.id, walkNoti: walkNoti)
             }
             catch {
                 presenter?.didFailToSendWalkRequest(error: error)
